@@ -2809,7 +2809,7 @@ static void se_draw_emulated_system_screen(bool preview){
   
   float pad_x = scr_h/se_dpi_scale()*0.025;
   // Handle themes where there is no controller region, or when screen overlap is allowed. 
-  if(!(result&SE_THEME_DREW_CONTROLLER)&&(!gui_state.block_touchscreen||preview)){
+  if(!(result&SE_THEME_DREW_CONTROLLER)){
     float x = win_pos.x+pad_x; 
     float y = win_pos.y+pad_x; 
     float w = scr_w/se_dpi_scale()-pad_x*2;
@@ -3392,7 +3392,7 @@ void se_draw_lcd(uint8_t *data, int im_width, int im_height,int x, int y, int re
     .color_correction_strength=gui_state.test_runner_mode?0:gui_state.settings.color_correction
   };
 
-  if(is_touch){
+  if(is_touch && !gui_state.block_touchscreen){
     float tx = gui_state.mouse_pos[0];
     float ty = gui_state.mouse_pos[1];
     tx-=x;
@@ -3879,6 +3879,7 @@ bool se_handle_keybind_settings(int keybind_type, se_keybind_state_t * state){
 }
 void se_draw_onscreen_controller(sb_emu_state_t*state, int mode, float win_x, float win_y, float win_w, float win_h, bool preview, bool center){  
   if(state->run_mode!=SB_MODE_RUN&&preview==false)return;
+  if(gui_state.block_touchscreen && !preview)return; 
 
   //Split the region in half if this is a both LEFT/RIGHT command
   float right_x_off = 0; 
@@ -3924,7 +3925,7 @@ void se_draw_onscreen_controller(sb_emu_state_t*state, int mode, float win_x, fl
   int p = 0;
   //if(IsMouseButtonDown(0))points[p++] = GetMousePosition();
   for(int i=0; i<SAPP_MAX_TOUCHPOINTS;++i){
-    if(p<max_points&&gui_state.touch_points[i].active){
+    if(p<max_points&&gui_state.touch_points[i].active&&!gui_state.block_touchscreen){
       points[p][0]=gui_state.touch_points[i].pos[0]/se_dpi_scale();
       points[p][1]=gui_state.touch_points[i].pos[1]/se_dpi_scale();
       ++p;
