@@ -263,52 +263,53 @@ else()
 endif()
 target_link_libraries(sokol PUBLIC cimgui)
 target_include_directories(sokol INTERFACE src/sokol)
-
-find_package(Git)
-
-if(GIT_EXECUTABLE)
-  # Generate a git-describe version string from Git repository tags
-  execute_process(
-    COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_DESCRIBE
-    RESULT_VARIABLE GIT_DESCRIBE_ERROR_CODE
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-  if(NOT GIT_DESCRIBE_ERROR_CODE)
-    set(GIT_COMMIT_HASH ${GIT_DESCRIBE})
+if(NOT RETRO_CORE_ONLY) 
+  find_package(Git)
+  
+  if(GIT_EXECUTABLE)
+    # Generate a git-describe version string from Git repository tags
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+      OUTPUT_VARIABLE GIT_DESCRIBE
+      RESULT_VARIABLE GIT_DESCRIBE_ERROR_CODE
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      )
+    if(NOT GIT_DESCRIBE_ERROR_CODE)
+      set(GIT_COMMIT_HASH ${GIT_DESCRIBE})
+    endif()
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+      OUTPUT_VARIABLE GIT_DESCRIBE
+      RESULT_VARIABLE GIT_DESCRIBE_ERROR_CODE
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      )
+    if(NOT GIT_DESCRIBE_ERROR_CODE)
+      set(GIT_BRANCH ${GIT_DESCRIBE})
+    endif()
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} describe --exact-match --tags
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+      OUTPUT_VARIABLE GIT_DESCRIBE
+      RESULT_VARIABLE GIT_DESCRIBE_ERROR_CODE
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      )
+    if(NOT GIT_DESCRIBE_ERROR_CODE)
+      set(GIT_TAG ${GIT_DESCRIBE})
+    endif()
   endif()
-  execute_process(
-    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_DESCRIBE
-    RESULT_VARIABLE GIT_DESCRIBE_ERROR_CODE
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-  if(NOT GIT_DESCRIBE_ERROR_CODE)
-    set(GIT_BRANCH ${GIT_DESCRIBE})
+  
+  # Final fallback: Just use a bogus version string that is semantically older
+  # than anything else and spit out a warning to the developer.
+  if(NOT DEFINED GIT_COMMIT_HASH)
+    set(GIT_COMMIT_HASH "(Modified Local Build)")
+    message(WARNING "Failed to determine GIT_COMMIT_HASH from Git tags. Using default version \"${GIT_COMMIT_HASH}\".")
   endif()
-  execute_process(
-    COMMAND ${GIT_EXECUTABLE} describe --exact-match --tags
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_DESCRIBE
-    RESULT_VARIABLE GIT_DESCRIBE_ERROR_CODE
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-  if(NOT GIT_DESCRIBE_ERROR_CODE)
-    set(GIT_TAG ${GIT_DESCRIBE})
-  endif()
+  add_definitions(-DGIT_COMMIT_HASH=\"${GIT_COMMIT_HASH}\")
+  add_definitions(-DGIT_BRANCH=\"${GIT_BRANCH}\")
+  add_definitions(-DGIT_TAG=\"${GIT_TAG}\")
 endif()
-
-# Final fallback: Just use a bogus version string that is semantically older
-# than anything else and spit out a warning to the developer.
-if(NOT DEFINED GIT_COMMIT_HASH)
-  set(GIT_COMMIT_HASH "(Modified Local Build)")
-  message(WARNING "Failed to determine GIT_COMMIT_HASH from Git tags. Using default version \"${GIT_COMMIT_HASH}\".")
-endif()
-add_definitions(-DGIT_COMMIT_HASH=\"${GIT_COMMIT_HASH}\")
-add_definitions(-DGIT_BRANCH=\"${GIT_BRANCH}\")
-add_definitions(-DGIT_TAG=\"${GIT_TAG}\")
 
 set(SKYEMU_SRC src/main.c src/shared.c src/cloud.cpp src/https.cpp src/stb.c src/miniz.c src/res.c src/localization.c src/mutex.cpp)
 
@@ -460,22 +461,24 @@ if(USE_SDL AND NOT RETRO_CORE_ONLY)
   endif()
 endif()
 
-target_link_libraries(${PROJECT_NAME} ${LINK_LIBS})
-if(MSVC)
-    set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
-elseif(MACOS OR IOS)
-    set_target_properties(${PROJECT_NAME} PROPERTIES
-        MACOSX_BUNDLE ON
-        MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
-        MACOSX_BUNDLE_BUNDLE_IDENTIFIER "com.sky.${PROJECT_NAME}")
-elseif(EMSCRIPTEN)
-    add_custom_command(
-        TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-                ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/icons/favicon_package
-                ${CMAKE_CURRENT_BINARY_DIR}/bin)
+if(NOT RETRO_CORE_ONLY)
+  target_link_libraries(${PROJECT_NAME} ${LINK_LIBS})
+  if(MSVC)
+      set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded")
+  elseif(MACOS OR IOS)
+      set_target_properties(${PROJECT_NAME} PROPERTIES
+          MACOSX_BUNDLE ON
+          MACOSX_BUNDLE_BUNDLE_NAME ${PROJECT_NAME}
+          MACOSX_BUNDLE_BUNDLE_IDENTIFIER "com.sky.${PROJECT_NAME}")
+  elseif(EMSCRIPTEN)
+      add_custom_command(
+          TARGET ${PROJECT_NAME} POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -E copy_directory
+                  ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/icons/favicon_package
+                  ${CMAKE_CURRENT_BINARY_DIR}/bin)
+  endif()
+  
+  install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin"
+    BUNDLE DESTINATION "${CMAKE_INSTALL_PREFIX}/Applications")
 endif()
-
-install(TARGETS ${PROJECT_NAME}
-  RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin"
-  BUNDLE DESTINATION "${CMAKE_INSTALL_PREFIX}/Applications")
