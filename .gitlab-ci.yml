@@ -77,7 +77,7 @@ include:
   ################################## CONSOLES ################################  
   # Nintendo Switch
   - project: 'libretro-infrastructure/ci-templates'
-    file: '/libnx-static.yml'
+    file: '/libnx-shared.yml'
 
   # tvOS arm64
   - project: 'libretro-infrastructure/ci-templates'
@@ -168,7 +168,7 @@ libretro-build-ios-arm64:
 # Nintendo Switch
 libretro-build-libnx-aarch64:
   extends:
-    - .libretro-libnx-static-retroarch-master
+    - .libretro-libnx-shared-retroarch-master
     - .core-defs
 
 # tvOS arm64
