@@ -1856,12 +1856,12 @@ mmio_reg_t nds7_io_reg_desc[]={
 #define NDS_LCD_H 192
 
 #define NDS_VRAM_BGA_SLOT0 0x06A00000
-#define NDS_VRAM_BGB_SLOT0 0x06B00000
-#define NDS_VRAM_OBJA_SLOT0 0x06C00000
-#define NDS_VRAM_OBJB_SLOT0 0x06D00000
-#define NDS_VRAM_TEX_SLOT0  0x06E00000
-#define NDS_VRAM_TEX_SLOT1  (0x06E00000 + 128*1024)
-#define NDS_VRAM_TEX_PAL_SLOT0  0x06F00000
+#define NDS_VRAM_BGB_SLOT0 0x06C00000
+#define NDS_VRAM_OBJA_SLOT0 0x06E00000
+#define NDS_VRAM_OBJB_SLOT0 0x06F00000
+#define NDS_VRAM_TEX_SLOT0  0x07100000
+#define NDS_VRAM_TEX_SLOT1  (0x07100000 + 128*1024)
+#define NDS_VRAM_TEX_PAL_SLOT0  0x07300000
 
 #define NDS_VRAM_SLOT_OFF    0x20000
 #define NDS_ARM9 1
@@ -2566,7 +2566,7 @@ static FORCE_INLINE uint32_t nds_apply_vram_mem_op(nds_t *nds,uint32_t address, 
       {NDS_MEM_ARM7, 0, 0x06860000,0x100000-1}, //MST 0 6860000h-687FFFFh
       {NDS_MEM_ARM7, 1, 0x06000000,0x80000-1}, //MST 1 6000000h+(20000h*OFS)
       {NDS_MEM_ARM9|NDS_MEM_PPU, 6, 0x06000000,0x80000-1}, //MST 2 6000000h+(20000h*OFS.0)  ;OFS.1 must be zero
-      {NDS_MEM_ARM7|NDS_MEM_ARM9, 6, NDS_VRAM_TEX_SLOT0}, //MST 3 Slot OFS(0-3)   ;(Slot2-3: Texture, or Rear-plane)
+      {NDS_MEM_ARM7|NDS_MEM_ARM9, 6, NDS_VRAM_TEX_SLOT0,0x80000-1}, //MST 3 Slot OFS(0-3)   ;(Slot2-3: Texture, or Rear-plane)
       {NDS_MEM_ARM7, 0, 0x06600000,0x20000-1}, //MST 4 6600000h
       {0xffffffff, 0, 0x0}, // MST 5 INVALID
       {0xffffffff, 0, 0x0}, // MST 6 INVALID
@@ -2649,10 +2649,14 @@ static FORCE_INLINE uint32_t nds_apply_vram_mem_op(nds_t *nds,uint32_t address, 
 
     int base = bank.mem_address_start;
     base += offset_table[bank.offset_table][off];
-    if((address&0x0ffe0000)!=(base&0x0ffe0000))continue;
+    //Vram bank types are seperated by 2MB blocks (1MB block mirrored within that)
+    if((address&0x0fe00000)!=(base&0x0fe00000))continue;
 
-    int bank_offset = address-base; 
+    //Mirror 1MB section within the 2MB block
+    int bank_offset = (address-base)&0xfffff; 
+    //Perform sub-bank mirroring
     bank_offset&=bank.mirror? bank.mirror : -1;
+    //Gaps return no data
     if(bank_offset>=bank_size[b])continue;
     int vram_addr = bank_offset+vram_off;
 
@@ -6418,6 +6422,7 @@ static FORCE_INLINE void nds_tick_dma(nds_t*nds, int last_tick){
         int  src_addr_ctl = SB_BFE(cnt_h,7,2); // 0: incr 1: decr 2: fixed 3: not allowed
         bool dma_repeat = SB_BFE(cnt_h,9,1); 
         int  mode = nds->dma[cpu][i].trigger_mode;
+
         if(cpu==NDS_ARM7)mode= SB_BFE(cnt_h,12,2);
         bool irq_enable = SB_BFE(cnt_h,14,1);
         bool force_first_write_sequential = false;
