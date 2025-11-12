@@ -5296,14 +5296,14 @@ static bool nds_preprocess_mmio(nds_t * nds, uint32_t addr,uint32_t data, int tr
       switch(mode){
         case 0:{
           busy = nds->current_clock-nds->math.div_last_update_clock <= 18; 
-          numer = (int32_t)numer;
-          denom = (int32_t)denom;
+          numer = (numer&0x80000000)?(numer|0xffffffff00000000ull):(numer&0x00000000ffffffffull);
+          denom = (denom&0x80000000)?(denom|0xffffffff00000000ull):(denom&0x00000000ffffffffull);
           break; 
         }
         case 1: case 3:{
           busy = nds->current_clock-nds->math.div_last_update_clock <= 34; 
           numer = (int64_t)numer;
-          denom = (int32_t)denom;
+          denom = (denom&0x80000000)?(denom|0xffffffff00000000ull):(denom&0x00000000ffffffffull);
           break; 
         }
         case 2: {
