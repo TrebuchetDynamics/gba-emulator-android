@@ -5282,14 +5282,18 @@ static bool nds_preprocess_mmio(nds_t * nds, uint32_t addr,uint32_t data, int tr
       if(cpu!=NDS_ARM9)return true; 
       uint32_t cnt = nds9_io_read32(nds,NDS9_DIVCNT);
       int mode = SB_BFE(cnt,0,2);
-      int64_t numer = nds9_io_read32(nds,NDS9_DIV_NUMER+4);
-      numer<<=32ll;
-      numer|= nds9_io_read32(nds,NDS9_DIV_NUMER);
+      uint32_t numer_parts[2] = {
+        nds9_io_read32(nds,NDS9_DIV_NUMER),
+        nds9_io_read32(nds,NDS9_DIV_NUMER+4)
+      };
+      uint32_t denom_parts[2] = {
+        nds9_io_read32(nds,NDS9_DIV_DENOM),
+        nds9_io_read32(nds,NDS9_DIV_DENOM+4)
+      };
+      int64_t numer = *(uint64_t*)&numer_parts[0];
+      int64_t denom=  *(uint64_t*)&denom_parts[0];
+      
       bool busy= true; 
-
-      int64_t denom = nds9_io_read32(nds,NDS9_DIV_DENOM+4);
-      denom<<=32ll;
-      denom|= nds9_io_read32(nds,NDS9_DIV_DENOM);
       bool div_zero = denom==0; 
       int64_t result = 0; 
       int64_t mod_result = 0;
@@ -5317,6 +5321,9 @@ static bool nds_preprocess_mmio(nds_t * nds, uint32_t addr,uint32_t data, int tr
         mod_result = numer;
         result = numer>-1?-1:1;
         if(mode==0)result^=0xffffffff00000000ull;
+      }else if(denom ==-1 && numer== 0x8000000000000000ll){ // max negative divided by -1 overflow case
+        result = numer;
+        mod_result = 0;
       }else{
         result = (numer)/(denom);
         mod_result = (numer)%(denom);
@@ -5664,7 +5671,7 @@ static FORCE_INLINE void nds_tick_ppu(nds_t* nds,bool render){
         ppu->last_vblank = vblank;
         if(vblank){
           //Done with capture
-          dispcapcnt&=~(1<<31);
+          dispcapcnt&=~(1u<<31u);
           nds9_io_store32(nds,NDS_DISPCAPCNT,dispcapcnt);
         }else{
           for(int aff=0;aff<2;++aff){
