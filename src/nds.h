@@ -1856,12 +1856,12 @@ mmio_reg_t nds7_io_reg_desc[]={
 #define NDS_LCD_H 192
 
 #define NDS_VRAM_BGA_SLOT0 0x06A00000
-#define NDS_VRAM_BGB_SLOT0 0x06B00000
-#define NDS_VRAM_OBJA_SLOT0 0x06C00000
-#define NDS_VRAM_OBJB_SLOT0 0x06D00000
-#define NDS_VRAM_TEX_SLOT0  0x06E00000
-#define NDS_VRAM_TEX_SLOT1  (0x06E00000 + 128*1024)
-#define NDS_VRAM_TEX_PAL_SLOT0  0x06F00000
+#define NDS_VRAM_BGB_SLOT0 0x06C00000
+#define NDS_VRAM_OBJA_SLOT0 0x06E00000
+#define NDS_VRAM_OBJB_SLOT0 0x06F00000
+#define NDS_VRAM_TEX_SLOT0  0x07100000
+#define NDS_VRAM_TEX_SLOT1  (0x07100000 + 128*1024)
+#define NDS_VRAM_TEX_PAL_SLOT0  0x07300000
 
 #define NDS_VRAM_SLOT_OFF    0x20000
 #define NDS_ARM9 1
@@ -2566,7 +2566,7 @@ static FORCE_INLINE uint32_t nds_apply_vram_mem_op(nds_t *nds,uint32_t address, 
       {NDS_MEM_ARM7, 0, 0x06860000,0x100000-1}, //MST 0 6860000h-687FFFFh
       {NDS_MEM_ARM7, 1, 0x06000000,0x80000-1}, //MST 1 6000000h+(20000h*OFS)
       {NDS_MEM_ARM9|NDS_MEM_PPU, 6, 0x06000000,0x80000-1}, //MST 2 6000000h+(20000h*OFS.0)  ;OFS.1 must be zero
-      {NDS_MEM_ARM7|NDS_MEM_ARM9, 6, NDS_VRAM_TEX_SLOT0}, //MST 3 Slot OFS(0-3)   ;(Slot2-3: Texture, or Rear-plane)
+      {NDS_MEM_ARM7|NDS_MEM_ARM9, 6, NDS_VRAM_TEX_SLOT0,0x80000-1}, //MST 3 Slot OFS(0-3)   ;(Slot2-3: Texture, or Rear-plane)
       {NDS_MEM_ARM7, 0, 0x06600000,0x20000-1}, //MST 4 6600000h
       {0xffffffff, 0, 0x0}, // MST 5 INVALID
       {0xffffffff, 0, 0x0}, // MST 6 INVALID
@@ -2649,10 +2649,14 @@ static FORCE_INLINE uint32_t nds_apply_vram_mem_op(nds_t *nds,uint32_t address, 
 
     int base = bank.mem_address_start;
     base += offset_table[bank.offset_table][off];
-    if((address&0x0ffe0000)!=(base&0x0ffe0000))continue;
+    //Vram bank types are seperated by 2MB blocks (1MB block mirrored within that)
+    if((address&0x0fe00000)!=(base&0x0fe00000))continue;
 
-    int bank_offset = address-base; 
+    //Mirror 1MB section within the 2MB block
+    int bank_offset = (address-base)&0xfffff; 
+    //Perform sub-bank mirroring
     bank_offset&=bank.mirror? bank.mirror : -1;
+    //Gaps return no data
     if(bank_offset>=bank_size[b])continue;
     int vram_addr = bank_offset+vram_off;
 
@@ -5278,28 +5282,32 @@ static bool nds_preprocess_mmio(nds_t * nds, uint32_t addr,uint32_t data, int tr
       if(cpu!=NDS_ARM9)return true; 
       uint32_t cnt = nds9_io_read32(nds,NDS9_DIVCNT);
       int mode = SB_BFE(cnt,0,2);
-      int64_t numer = nds9_io_read32(nds,NDS9_DIV_NUMER+4);
-      numer<<=32ll;
-      numer|= nds9_io_read32(nds,NDS9_DIV_NUMER);
+      uint32_t numer_parts[2] = {
+        nds9_io_read32(nds,NDS9_DIV_NUMER),
+        nds9_io_read32(nds,NDS9_DIV_NUMER+4)
+      };
+      uint32_t denom_parts[2] = {
+        nds9_io_read32(nds,NDS9_DIV_DENOM),
+        nds9_io_read32(nds,NDS9_DIV_DENOM+4)
+      };
+      int64_t numer = *(uint64_t*)&numer_parts[0];
+      int64_t denom=  *(uint64_t*)&denom_parts[0];
+      
       bool busy= true; 
-
-      int64_t denom = nds9_io_read32(nds,NDS9_DIV_DENOM+4);
-      denom<<=32ll;
-      denom|= nds9_io_read32(nds,NDS9_DIV_DENOM);
       bool div_zero = denom==0; 
       int64_t result = 0; 
       int64_t mod_result = 0;
       switch(mode){
         case 0:{
           busy = nds->current_clock-nds->math.div_last_update_clock <= 18; 
-          numer = (int32_t)numer;
-          denom = (int32_t)denom;
+          numer = (numer&0x80000000)?(numer|0xffffffff00000000ull):(numer&0x00000000ffffffffull);
+          denom = (denom&0x80000000)?(denom|0xffffffff00000000ull):(denom&0x00000000ffffffffull);
           break; 
         }
         case 1: case 3:{
           busy = nds->current_clock-nds->math.div_last_update_clock <= 34; 
           numer = (int64_t)numer;
-          denom = (int32_t)denom;
+          denom = (denom&0x80000000)?(denom|0xffffffff00000000ull):(denom&0x00000000ffffffffull);
           break; 
         }
         case 2: {
@@ -5313,6 +5321,9 @@ static bool nds_preprocess_mmio(nds_t * nds, uint32_t addr,uint32_t data, int tr
         mod_result = numer;
         result = numer>-1?-1:1;
         if(mode==0)result^=0xffffffff00000000ull;
+      }else if(denom ==-1 && numer== 0x8000000000000000ll){ // max negative divided by -1 overflow case
+        result = numer;
+        mod_result = 0;
       }else{
         result = (numer)/(denom);
         mod_result = (numer)%(denom);
@@ -5660,7 +5671,7 @@ static FORCE_INLINE void nds_tick_ppu(nds_t* nds,bool render){
         ppu->last_vblank = vblank;
         if(vblank){
           //Done with capture
-          dispcapcnt&=~(1<<31);
+          dispcapcnt&=~(1u<<31u);
           nds9_io_store32(nds,NDS_DISPCAPCNT,dispcapcnt);
         }else{
           for(int aff=0;aff<2;++aff){
@@ -6418,6 +6429,7 @@ static FORCE_INLINE void nds_tick_dma(nds_t*nds, int last_tick){
         int  src_addr_ctl = SB_BFE(cnt_h,7,2); // 0: incr 1: decr 2: fixed 3: not allowed
         bool dma_repeat = SB_BFE(cnt_h,9,1); 
         int  mode = nds->dma[cpu][i].trigger_mode;
+
         if(cpu==NDS_ARM7)mode= SB_BFE(cnt_h,12,2);
         bool irq_enable = SB_BFE(cnt_h,14,1);
         bool force_first_write_sequential = false;

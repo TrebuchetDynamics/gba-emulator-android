@@ -262,6 +262,7 @@ _Static_assert(sizeof(se_search_paths_t)==SB_FILE_PATH_SIZE*8, "se_search_paths_
 
 #define SE_MAX_BIOS_FILES 8
 #define SE_BIOS_NAME_SIZE 32
+#define SE_MAX_COMBO_STRING_OPTIONS 2048
 
 #define SE_UI_DESKTOP 0
 #define SE_UI_ANDROID 1 
@@ -645,7 +646,13 @@ static void se_cache_glyphs(const char* input_string){
     int size = utf8proc_iterate(str, -1, &codepoint_ref);
     if(size<=0)break;
     str+=size;
-    if(codepoint_ref>SE_MAX_UNICODE_CODE_POINT)continue;;
+    if(codepoint_ref>SE_MAX_UNICODE_CODE_POINT){
+      printf("Too large to cache\n");
+      for(int i=0;i<size;++i)putchar((str-size)[i]);;
+      printf(" - Unicode codepoint U+%X is too large to cache (max U+%X)\n",codepoint_ref, SE_MAX_UNICODE_CODE_POINT);
+      continue;
+    }
+
     uint32_t font_cache_page = codepoint_ref/SE_FONT_CACHE_PAGE_SIZE;
     if(gui_state.font_cache_page_valid[font_cache_page]==0x0){
       gui_state.font_cache_page_valid[font_cache_page]=0x1;
@@ -689,12 +696,15 @@ static void se_text_disabled(const char* label,...){
   va_end(args);
 }
 static bool se_combo_str(const char* label,int* current_item,const char* items_separated_by_zeros,int popup_max_height_in_items){
-  const char* localize_string= items_separated_by_zeros;
-  while(localize_string[0]){
-    se_cache_glyphs(localize_string);
-    localize_string+=strlen(localize_string)+1;
+  const char* tmp_string = items_separated_by_zeros;
+  int number_of_strings = 0;
+  const char * localized_combo_options[SE_MAX_COMBO_STRING_OPTIONS]={0};
+  while(tmp_string[0]&&number_of_strings<SE_MAX_COMBO_STRING_OPTIONS){
+    localized_combo_options[number_of_strings]=se_localize_and_cache(tmp_string);
+    tmp_string+=strlen(tmp_string)+1;
+    number_of_strings++;
   }
-  return igComboStr(se_localize_and_cache(label),current_item,se_localize_and_cache(items_separated_by_zeros),popup_max_height_in_items);
+  return igComboStr_arr(se_localize_and_cache(label),current_item,localized_combo_options,number_of_strings,popup_max_height_in_items);
 }
 static bool se_input_int(const char* label,int* v,int step,int step_fast,ImGuiInputTextFlags flags){
   return igInputInt(se_localize_and_cache(label),v,step,step_fast,flags);
@@ -2809,7 +2819,7 @@ static void se_draw_emulated_system_screen(bool preview){
   
   float pad_x = scr_h/se_dpi_scale()*0.025;
   // Handle themes where there is no controller region, or when screen overlap is allowed. 
-  if(!(result&SE_THEME_DREW_CONTROLLER)&&(!gui_state.block_touchscreen||preview)){
+  if(!(result&SE_THEME_DREW_CONTROLLER)){
     float x = win_pos.x+pad_x; 
     float y = win_pos.y+pad_x; 
     float w = scr_w/se_dpi_scale()-pad_x*2;
@@ -3392,7 +3402,7 @@ void se_draw_lcd(uint8_t *data, int im_width, int im_height,int x, int y, int re
     .color_correction_strength=gui_state.test_runner_mode?0:gui_state.settings.color_correction
   };
 
-  if(is_touch){
+  if(is_touch && !gui_state.block_touchscreen){
     float tx = gui_state.mouse_pos[0];
     float ty = gui_state.mouse_pos[1];
     tx-=x;
@@ -3879,6 +3889,7 @@ bool se_handle_keybind_settings(int keybind_type, se_keybind_state_t * state){
 }
 void se_draw_onscreen_controller(sb_emu_state_t*state, int mode, float win_x, float win_y, float win_w, float win_h, bool preview, bool center){  
   if(state->run_mode!=SB_MODE_RUN&&preview==false)return;
+  if(gui_state.block_touchscreen && !preview)return; 
 
   //Split the region in half if this is a both LEFT/RIGHT command
   float right_x_off = 0; 
@@ -3924,7 +3935,7 @@ void se_draw_onscreen_controller(sb_emu_state_t*state, int mode, float win_x, fl
   int p = 0;
   //if(IsMouseButtonDown(0))points[p++] = GetMousePosition();
   for(int i=0; i<SAPP_MAX_TOUCHPOINTS;++i){
-    if(p<max_points&&gui_state.touch_points[i].active){
+    if(p<max_points&&gui_state.touch_points[i].active&&!gui_state.block_touchscreen){
       points[p][0]=gui_state.touch_points[i].pos[0]/se_dpi_scale();
       points[p][1]=gui_state.touch_points[i].pos[1]/se_dpi_scale();
       ++p;
@@ -7420,12 +7431,11 @@ static void frame(void) {
       config3->OversampleH=1;
       config3->PixelSnapH = true;
 
-      static ImWchar ranges[((SE_MAX_UNICODE_CODE_POINT+1)/SE_FONT_CACHE_PAGE_SIZE)*2+1] = {0};
+      static ImWchar ranges[((SE_MAX_UNICODE_CODE_POINT+1)/SE_FONT_CACHE_PAGE_SIZE)*2+2] = {0};
       int index = 0; 
       for(int i = 0; i<((SE_MAX_UNICODE_CODE_POINT+1)/SE_FONT_CACHE_PAGE_SIZE);++i){
         if(gui_state.font_cache_page_valid[i]==0x1){
-          ranges[index*2] = i*SE_FONT_CACHE_PAGE_SIZE;
-          if(ranges[index*2]==0)ranges[index*2]=1;
+          ranges[index*2] = i==0? 1: i*SE_FONT_CACHE_PAGE_SIZE;
           ranges[index*2+1] = i*SE_FONT_CACHE_PAGE_SIZE+SE_FONT_CACHE_PAGE_SIZE;
           index++;
         }
