@@ -7003,6 +7003,7 @@ uint8_t* se_hcs_stream_callback(uint64_t* result_size){
   se_screenshot(imdata, &out_width, &out_height);
   
   // Encode as JPEG (more efficient for streaming than PNG)
+  // Note: se_png_write_context_t is used for both PNG and JPEG encoding
   se_png_write_context_t jpeg_write_ctx = {0};
   stbi_write_jpg_to_func(se_png_write_mem, &jpeg_write_ctx, out_width, out_height, 4, imdata, 85);
   free(imdata);
