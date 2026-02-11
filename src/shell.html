@@ -191,9 +191,11 @@
       }
 
       // PWA Install Popup Logic
+      var pwaEventListenersAttached = false;
+
       function isMobileDevice() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-               (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+               (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
       }
 
       function isStandalone() {
@@ -272,15 +274,18 @@
           console.log('Could not check localStorage', e);
         }
 
-        // Ensure event listeners are attached
-        var gotItBtn = document.getElementById('pwaGotItBtn');
-        var dontShowBtn = document.getElementById('pwaDontShowBtn');
-        
-        if (gotItBtn && !gotItBtn.onclick) {
-          gotItBtn.addEventListener('click', closePWAPopup);
-        }
-        if (dontShowBtn && !dontShowBtn.onclick) {
-          dontShowBtn.addEventListener('click', dontShowAgain);
+        // Ensure event listeners are attached (only once)
+        if (!pwaEventListenersAttached) {
+          var gotItBtn = document.getElementById('pwaGotItBtn');
+          var dontShowBtn = document.getElementById('pwaDontShowBtn');
+          
+          if (gotItBtn) {
+            gotItBtn.addEventListener('click', closePWAPopup);
+          }
+          if (dontShowBtn) {
+            dontShowBtn.addEventListener('click', dontShowAgain);
+          }
+          pwaEventListenersAttached = true;
         }
 
         // Set the instructions based on device
