@@ -272,6 +272,17 @@
           console.log('Could not check localStorage', e);
         }
 
+        // Ensure event listeners are attached
+        var gotItBtn = document.getElementById('pwaGotItBtn');
+        var dontShowBtn = document.getElementById('pwaDontShowBtn');
+        
+        if (gotItBtn && !gotItBtn.onclick) {
+          gotItBtn.addEventListener('click', closePWAPopup);
+        }
+        if (dontShowBtn && !dontShowBtn.onclick) {
+          dontShowBtn.addEventListener('click', dontShowAgain);
+        }
+
         // Set the instructions based on device
         document.getElementById('pwaInstructions').innerHTML = getInstallInstructions();
 
@@ -281,21 +292,8 @@
         }, 2000);
       }
 
-      // Show popup when page loads
+      // Show popup when page fully loads
       window.addEventListener('load', showPWAInstallPopup);
-
-      // Add event listeners for popup buttons
-      document.addEventListener('DOMContentLoaded', function() {
-        var gotItBtn = document.getElementById('pwaGotItBtn');
-        var dontShowBtn = document.getElementById('pwaDontShowBtn');
-        
-        if (gotItBtn) {
-          gotItBtn.addEventListener('click', closePWAPopup);
-        }
-        if (dontShowBtn) {
-          dontShowBtn.addEventListener('click', dontShowAgain);
-        }
-      });
 
       window.scroll(0,1);
       var statusElement = document.getElementById('status');
