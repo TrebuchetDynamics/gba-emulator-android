@@ -1716,8 +1716,8 @@ static uint8_t se_detect_system_type(const char* path) {
   if(sb_path_has_file_ext(path, ".gbc")) return 1; // GBC
   if(sb_path_has_file_ext(path, ".gba")) return 2; // GBA
   if(sb_path_has_file_ext(path, ".nds")) return 3; // NDS
-  if(sb_path_has_file_ext(path, ".zip")) return 255; // ZIP (unknown until extracted)
-  return 255;
+  // Note: ZIP files are intentionally excluded from library as they require extraction to determine system type
+  return 255; // Unknown/unsupported
 }
 
 static void se_scan_directory_for_games(const char* dir_path, bool recursive) {
@@ -1780,8 +1780,6 @@ static void se_scan_game_library() {
 static int se_game_library_alpha_comparator(const void* a, const void* b) {
   int ia = *(const int*)a;
   int ib = *(const int*)b;
-  if(ia == -1) return 1;
-  if(ib == -1) return -1;
   return strcmp(gui_state.game_library.entries[ia].name, gui_state.game_library.entries[ib].name);
 }
 
@@ -1790,15 +1788,17 @@ static int se_game_library_rev_alpha_comparator(const void* a, const void* b) {
 }
 
 static void se_sort_game_library() {
-  int size = 0;
-  for(int i = 0; i < SE_MAX_GAME_LIBRARY_ENTRIES; ++i) {
-    if(i >= gui_state.game_library.num_entries) {
-      gui_state.game_library.sorted_entries[i] = -1;
-    } else {
-      gui_state.game_library.sorted_entries[i] = i;
-      size = i + 1;
-    }
+  int size = gui_state.game_library.num_entries;
+  
+  for(int i = 0; i < size; ++i) {
+    gui_state.game_library.sorted_entries[i] = i;
   }
+  // Mark remaining entries as invalid
+  for(int i = size; i < SE_MAX_GAME_LIBRARY_ENTRIES; ++i) {
+    gui_state.game_library.sorted_entries[i] = -1;
+  }
+  
+  if(size == 0) return;
   
   if(gui_state.game_library.library_sort_type == SE_SORT_ALPHA_ASC) {
     qsort(gui_state.game_library.sorted_entries, size, sizeof(int), se_game_library_alpha_comparator);
@@ -5351,12 +5351,14 @@ void se_load_rom_overlay(bool visible){
   
   igSameLine(0,5);
   const char* lib_icon=ICON_FK_SORT_ALPHA_ASC;
+  // Validate and correct sort type once if invalid
+  if(gui_state.game_library.library_sort_type < SE_SORT_ALPHA_ASC || 
+     gui_state.game_library.library_sort_type > SE_SORT_ALPHA_DESC) {
+    gui_state.game_library.library_sort_type = SE_SORT_ALPHA_ASC;
+  }
   switch(gui_state.game_library.library_sort_type){
     case SE_SORT_ALPHA_ASC: lib_icon=ICON_FK_SORT_ALPHA_ASC;break;
     case SE_SORT_ALPHA_DESC:lib_icon=ICON_FK_SORT_ALPHA_DESC;break;
-    default: 
-      gui_state.game_library.library_sort_type = SE_SORT_ALPHA_ASC;
-      se_sort_game_library();
   }
   if(se_button(lib_icon,(ImVec2){40-4,0})){
     gui_state.game_library.library_sort_type++;
