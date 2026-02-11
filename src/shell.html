@@ -167,8 +167,8 @@
         <div id="pwaInstructions">
           <!-- Instructions will be dynamically inserted here -->
         </div>
-        <button class="pwa-popup-button" onclick="closePWAPopup()">Got it!</button>
-        <button class="pwa-popup-button secondary" onclick="dontShowAgain()">Don't show again</button>
+        <button class="pwa-popup-button" id="pwaGotItBtn">Got it!</button>
+        <button class="pwa-popup-button secondary" id="pwaDontShowBtn">Don't show again</button>
       </div>
     </div>
     <figure style="overflow:visible;" id="spinner"><div class="spinner"></div><center style="margin-top:0.5em"><strong>emscripten</strong></center></figure>
@@ -283,6 +283,19 @@
 
       // Show popup when page loads
       window.addEventListener('load', showPWAInstallPopup);
+
+      // Add event listeners for popup buttons
+      document.addEventListener('DOMContentLoaded', function() {
+        var gotItBtn = document.getElementById('pwaGotItBtn');
+        var dontShowBtn = document.getElementById('pwaDontShowBtn');
+        
+        if (gotItBtn) {
+          gotItBtn.addEventListener('click', closePWAPopup);
+        }
+        if (dontShowBtn) {
+          dontShowBtn.addEventListener('click', dontShowAgain);
+        }
+      });
 
       window.scroll(0,1);
       var statusElement = document.getElementById('status');
