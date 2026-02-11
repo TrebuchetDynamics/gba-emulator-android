@@ -1711,12 +1711,12 @@ static void se_clear_game_from_recents(int index) {
 }
 
 // Game library functions
-static uint8_t se_detect_system_type(const char* ext) {
-  if(sb_path_has_file_ext(ext, ".gb")) return 0;  // GB
-  if(sb_path_has_file_ext(ext, ".gbc")) return 1; // GBC
-  if(sb_path_has_file_ext(ext, ".gba")) return 2; // GBA
-  if(sb_path_has_file_ext(ext, ".nds")) return 3; // NDS
-  if(sb_path_has_file_ext(ext, ".zip")) return 255; // ZIP (unknown until extracted)
+static uint8_t se_detect_system_type(const char* path) {
+  if(sb_path_has_file_ext(path, ".gb")) return 0;  // GB
+  if(sb_path_has_file_ext(path, ".gbc")) return 1; // GBC
+  if(sb_path_has_file_ext(path, ".gba")) return 2; // GBA
+  if(sb_path_has_file_ext(path, ".nds")) return 3; // NDS
+  if(sb_path_has_file_ext(path, ".zip")) return 255; // ZIP (unknown until extracted)
   return 255;
 }
 
@@ -1742,7 +1742,7 @@ static void se_scan_directory_for_games(const char* dir_path, bool recursive) {
     if(file.is_dir && recursive) {
       se_scan_directory_for_games(file.path, recursive);
     } else if(!file.is_dir) {
-      uint8_t system_type = se_detect_system_type(file.extension);
+      uint8_t system_type = se_detect_system_type(file.path);
       if(system_type != 255) {
         // Valid ROM file found
         if(gui_state.game_library.num_entries < SE_MAX_GAME_LIBRARY_ENTRIES) {
