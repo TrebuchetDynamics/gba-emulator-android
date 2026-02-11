@@ -110,7 +110,7 @@ Provides a continuous real-time stream of the emulated screen using multipart/x-
 
 The parameter `fps` controls the frame rate (default: 30, min: 1, max: 60).
 
-The parameter `format` specifies the image format (jpg or png, default: jpg). JPEG is recommended for better streaming performance.
+Frames are encoded as JPEG for optimal streaming performance.
 
 **Example:**
 
@@ -127,14 +127,6 @@ Continuous stream of JPEG images at 30 FPS. This endpoint is designed to be open
 **Result:**
 
 Continuous stream of JPEG images at 60 FPS.
-
-**Example (PNG format):**
-
-```http://localhost:8080/stream?format=png&fps=15```
-
-**Result:**
-
-Continuous stream of PNG images at 15 FPS.
 
 **Usage in HTML:**
 

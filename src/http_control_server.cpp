@@ -29,16 +29,15 @@ struct HCSServer{
             int fps = 30;
             auto fps_param = req.get_param_value("fps");
             if(!fps_param.empty()) {
-                fps = std::stoi(fps_param);
-                if(fps < 1) fps = 1;
-                if(fps > 60) fps = 60;
-            }
-            
-            // Parse format parameter (default jpg, can be png)
-            std::string format = "jpg";
-            auto format_param = req.get_param_value("format");
-            if(!format_param.empty() && (format_param == "png" || format_param == "PNG")) {
-                format = "png";
+                try {
+                    fps = std::stoi(fps_param);
+                    if(fps < 1) fps = 1;
+                    if(fps > 60) fps = 60;
+                } catch (const std::invalid_argument&) {
+                    fps = 30; // Default on invalid input
+                } catch (const std::out_of_range&) {
+                    fps = 30; // Default on out of range
+                }
             }
             
             int frame_delay_ms = 1000 / fps;
@@ -49,7 +48,7 @@ struct HCSServer{
             
             res.set_chunked_content_provider(
                 content_type,
-                [server, boundary, frame_delay_ms, format](size_t offset, httplib::DataSink& sink) {
+                [server, boundary, frame_delay_ms](size_t offset, httplib::DataSink& sink) {
                     uint64_t result_size = 0;
                     server->mutex.lock();
                     uint8_t* frame_data = server->stream_callback(&result_size);
@@ -62,7 +61,7 @@ struct HCSServer{
                     // Send multipart frame header
                     std::ostringstream header;
                     header << "--" << boundary << "\r\n";
-                    header << "Content-Type: image/" << format << "\r\n";
+                    header << "Content-Type: image/jpeg\r\n";
                     header << "Content-Length: " << result_size << "\r\n\r\n";
                     
                     std::string header_str = header.str();
