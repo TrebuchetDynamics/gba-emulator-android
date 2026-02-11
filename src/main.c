@@ -145,6 +145,7 @@ const static char* se_analog_bind_names[]={
 #define SE_NUM_RECENT_PATHS 32
 #define SE_FONT_CACHE_PAGE_SIZE 16
 #define SE_MAX_UNICODE_CODE_POINT 0xffff
+#define SE_MAX_PATH_LABEL_SIZE 64
 
 typedef struct{
   int bind_being_set;
@@ -1749,8 +1750,8 @@ static void se_scan_directory_for_games(const char* dir_path, bool recursive) {
           se_game_library_entry_t* entry = &gui_state.game_library.entries[gui_state.game_library.num_entries];
           strncpy(entry->path, file.path, SB_FILE_PATH_SIZE-1);
           entry->path[SB_FILE_PATH_SIZE-1] = '\0';
-          strncpy(entry->name, file.name, 255);
-          entry->name[255] = '\0';
+          strncpy(entry->name, file.name, sizeof(entry->name)-1);
+          entry->name[sizeof(entry->name)-1] = '\0';
           entry->system_type = system_type;
           gui_state.game_library.num_entries++;
         }
@@ -1780,6 +1781,9 @@ static void se_scan_game_library() {
 static int se_game_library_alpha_comparator(const void* a, const void* b) {
   int ia = *(const int*)a;
   int ib = *(const int*)b;
+  // Bounds checking to prevent out-of-bounds access
+  if(ia < 0 || ia >= gui_state.game_library.num_entries) return 1;
+  if(ib < 0 || ib >= gui_state.game_library.num_entries) return -1;
   return strcmp(gui_state.game_library.entries[ia].name, gui_state.game_library.entries[ib].name);
 }
 
@@ -1799,6 +1803,12 @@ static void se_sort_game_library() {
   }
   
   if(size == 0) return;
+  
+  // Validate sort type
+  if(gui_state.game_library.library_sort_type < SE_SORT_ALPHA_ASC || 
+     gui_state.game_library.library_sort_type > SE_SORT_ALPHA_DESC) {
+    gui_state.game_library.library_sort_type = SE_SORT_ALPHA_ASC;
+  }
   
   if(gui_state.game_library.library_sort_type == SE_SORT_ALPHA_ASC) {
     qsort(gui_state.game_library.sorted_entries, size, sizeof(int), se_game_library_alpha_comparator);
@@ -5351,11 +5361,6 @@ void se_load_rom_overlay(bool visible){
   
   igSameLine(0,5);
   const char* lib_icon=ICON_FK_SORT_ALPHA_ASC;
-  // Validate and correct sort type once if invalid
-  if(gui_state.game_library.library_sort_type < SE_SORT_ALPHA_ASC || 
-     gui_state.game_library.library_sort_type > SE_SORT_ALPHA_DESC) {
-    gui_state.game_library.library_sort_type = SE_SORT_ALPHA_ASC;
-  }
   switch(gui_state.game_library.library_sort_type){
     case SE_SORT_ALPHA_ASC: lib_icon=ICON_FK_SORT_ALPHA_ASC;break;
     case SE_SORT_ALPHA_DESC:lib_icon=ICON_FK_SORT_ALPHA_DESC;break;
@@ -6719,8 +6724,8 @@ void se_draw_menu_panel(){
     se_section(ICON_FK_GAMEPAD " Game Library Paths");
     se_text("Configure folders to scan for games");
     for(int i = 0; i < SE_MAX_GAME_LIBRARY_PATHS; ++i) {
-      char label[64];
-      snprintf(label, 64, "Game Library Path %d", i + 1);
+      char label[SE_MAX_PATH_LABEL_SIZE];
+      snprintf(label, SE_MAX_PATH_LABEL_SIZE, "Game Library Path %d", i + 1);
       se_input_path(label, gui_state.paths.game_library[i], ImGuiInputTextFlags_None);
     }
     bool recursive_scan = gui_state.settings.game_library_recursive_scan;
