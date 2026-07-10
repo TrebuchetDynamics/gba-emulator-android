@@ -1,3 +1,11 @@
+# GBA Emulator Android
+
+Trebuchet Dynamics' Android emulator workspace has two isolated paths: a hardened SkyEmu MVP and a custom Android host around canonical mGBA. See [MVP.md](MVP.md) for builds, architecture, licensing, and validation. No proprietary ROMs or BIOS files are included.
+
+> This repository is a fork of [SkyEmu](https://github.com/skylersaleh/SkyEmu). SkyEmu-originated code remains under its MIT license; the pinned mGBA submodule is MPL-2.0.
+
+---
+
 <a href="https://nightly.link/skylersaleh/SkyEmu/workflows/deploy_win/dev/WindowsRelease.zip" rel="Download Windows">![Windows Build](https://github.com/skylersaleh/SkyEmu/actions/workflows/deploy_win.yml/badge.svg)</a>
 <a href="https://nightly.link/skylersaleh/SkyEmu/workflows/deploy_mac/dev/MacOSRelease.zip" rel="Download macOS">![Mac Build](https://github.com/skylersaleh/SkyEmu/actions/workflows/deploy_mac.yml/badge.svg)</a>
 <a href="https://nightly.link/skylersaleh/SkyEmu/workflows/deploy_linux/dev/LinuxRelease.zip" rel="Download Linux">![Linux Build](https://github.com/skylersaleh/SkyEmu/actions/workflows/deploy_linux.yml/badge.svg)</a>
