@@ -29,13 +29,15 @@ No games or proprietary BIOS files are included. Supply only content you are aut
 
 ```sh
 tools/android_project/gradlew -p mgba-android clean lintDebug \
-  :app:assembleDebug :core:assembleDebug :core:assembleDebugAndroidTest
+  :app:assembleBenchmark :core:assembleBenchmark :core:assembleDebugAndroidTest
 ```
 
 Outputs:
 
-- APK: `mgba-android/app/build/outputs/apk/debug/app-debug.apk`
-- AAR: `mgba-android/core/build/outputs/aar/core-debug.aar`
+- optimized test APK: `mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk`
+- optimized AAR: `mgba-android/core/build/outputs/aar/core-benchmark.aar`
+
+The installable benchmark APK uses `-O2` native code and an Android debug key; it is for performance testing, not production distribution.
 
 The custom app loads user-selected GBA ROMs, renders mGBA frames, streams audio, maps touch/gamepad input, and persists cartridge saves. See `mgba-android/README.md` and `docs/adr/0001-dual-core-strategy.md`.
 
