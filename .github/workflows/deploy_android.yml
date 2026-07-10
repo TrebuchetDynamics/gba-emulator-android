@@ -25,6 +25,9 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Install native Android toolchain
+        run: sdkmanager "cmake;3.18.1" "ndk;22.1.7171670"
+
       - name: Lint and build debug APK
         working-directory: tools/android_project
         run: ./gradlew lintDebug assembleDebug
