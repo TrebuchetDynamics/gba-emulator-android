@@ -11,5 +11,8 @@ add_subdirectory("${MGBA_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/mgba" EXCLUDE
 add_executable(mgba-core-smoke mgba_core_smoke.c)
 target_link_libraries(mgba-core-smoke PRIVATE mgba)
 
+add_executable(mgba-core-benchmark mgba_core_benchmark.c)
+target_link_libraries(mgba-core-benchmark PRIVATE mgba)
+
 enable_testing()
 add_test(NAME mgba-core-smoke COMMAND mgba-core-smoke)

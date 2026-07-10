@@ -38,8 +38,8 @@ jobs:
           cmake --build build/mgba-smoke
           ctest --test-dir build/mgba-smoke --output-on-failure
 
-      - name: Build custom mGBA app and core
-        run: tools/android_project/gradlew -p mgba-android lintDebug :app:assembleDebug :core:assembleDebug
+      - name: Build optimized custom mGBA app and core
+        run: tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :core:assembleBenchmark
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
@@ -47,14 +47,14 @@ jobs:
           name: android-mvp
           path: tools/android_project/app/build/outputs/apk/debug/*.apk
 
-      - name: Upload custom mGBA APK
+      - name: Upload optimized custom mGBA APK
         uses: actions/upload-artifact@v4
         with:
-          name: mgba-custom-android
-          path: mgba-android/app/build/outputs/apk/debug/app-debug.apk
+          name: mgba-custom-android-benchmark
+          path: mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk
 
-      - name: Upload mGBA core AAR
+      - name: Upload optimized mGBA core AAR
         uses: actions/upload-artifact@v4
         with:
-          name: mgba-android-core
-          path: mgba-android/core/build/outputs/aar/core-debug.aar
+          name: mgba-android-core-benchmark
+          path: mgba-android/core/build/outputs/aar/core-benchmark.aar

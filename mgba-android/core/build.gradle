@@ -22,6 +22,12 @@ android {
         }
     }
 
+    buildTypes {
+        benchmark {
+            initWith release
+        }
+    }
+
     externalNativeBuild {
         cmake {
             version '3.22.1'
