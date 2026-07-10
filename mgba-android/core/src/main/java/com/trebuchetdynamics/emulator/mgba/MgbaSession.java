@@ -1,0 +1,141 @@
+package com.trebuchetdynamics.emulator.mgba;
+
+/**
+ * Product-owned, single-threaded session boundary around an mGBA GBA core.
+ *
+ * <p>Callers provide ROM bytes obtained through their own Android storage layer. No ROM or BIOS
+ * content is bundled by this library.</p>
+ */
+public final class MgbaSession implements AutoCloseable {
+    public static final int VIDEO_WIDTH = 240;
+    public static final int VIDEO_HEIGHT = 160;
+    public static final int FRAME_PIXELS = VIDEO_WIDTH * VIDEO_HEIGHT;
+    public static final int AUDIO_SAMPLE_RATE = 48_000;
+    public static final int MIN_AUDIO_BUFFER_SAMPLES = 2_048;
+
+    public static final int KEY_A = 1 << 0;
+    public static final int KEY_B = 1 << 1;
+    public static final int KEY_SELECT = 1 << 2;
+    public static final int KEY_START = 1 << 3;
+    public static final int KEY_RIGHT = 1 << 4;
+    public static final int KEY_LEFT = 1 << 5;
+    public static final int KEY_UP = 1 << 6;
+    public static final int KEY_DOWN = 1 << 7;
+    public static final int KEY_R = 1 << 8;
+    public static final int KEY_L = 1 << 9;
+
+    static {
+        System.loadLibrary("mgba-android");
+    }
+
+    private long handle;
+    private boolean loaded;
+
+    public MgbaSession() {
+        handle = nativeCreate();
+        if (handle == 0) {
+            throw new IllegalStateException("Could not initialize the mGBA core");
+        }
+    }
+
+    /** Loads one GBA ROM into this session. A session cannot be reused for another ROM. */
+    public synchronized void loadRom(byte[] rom) {
+        requireOpen();
+        if (loaded) {
+            throw new IllegalStateException("A ROM is already loaded");
+        }
+        if (rom == null || rom.length == 0) {
+            throw new IllegalArgumentException("ROM data is empty");
+        }
+        if (!nativeLoadRom(handle, rom)) {
+            throw new IllegalArgumentException("mGBA rejected the ROM data");
+        }
+        loaded = true;
+    }
+
+    /**
+     * Runs one emulated frame.
+     *
+     * @param keys bitwise combination of {@code KEY_*} constants
+     * @param argbPixels output buffer containing 240×160 Android ARGB pixels
+     * @param stereoAudio output buffer containing interleaved signed 16-bit stereo samples
+     * @return number of stereo audio frames written
+     */
+    public synchronized int runFrame(int keys, int[] argbPixels, short[] stereoAudio) {
+        requireLoaded();
+        if (argbPixels == null || argbPixels.length < FRAME_PIXELS) {
+            throw new IllegalArgumentException("Pixel buffer must hold 240x160 pixels");
+        }
+        if (stereoAudio == null || stereoAudio.length < MIN_AUDIO_BUFFER_SAMPLES) {
+            throw new IllegalArgumentException("Audio buffer is too small");
+        }
+        return nativeRunFrame(handle, keys & 0x3FF, argbPixels, stereoAudio);
+    }
+
+    public synchronized long frameCounter() {
+        requireLoaded();
+        return nativeFrameCounter(handle);
+    }
+
+    public synchronized byte[] saveState() {
+        requireLoaded();
+        byte[] state = nativeSaveState(handle);
+        if (state == null) {
+            throw new IllegalStateException("Could not serialize mGBA state");
+        }
+        return state;
+    }
+
+    public synchronized void loadState(byte[] state) {
+        requireLoaded();
+        if (state == null || state.length == 0 || !nativeLoadState(handle, state)) {
+            throw new IllegalArgumentException("Invalid mGBA save state");
+        }
+    }
+
+    /** Returns the current cartridge save data, or an empty array when the ROM has none. */
+    public synchronized byte[] copySavedata() {
+        requireLoaded();
+        byte[] data = nativeCopySavedata(handle);
+        return data == null ? new byte[0] : data;
+    }
+
+    public synchronized void restoreSavedata(byte[] data) {
+        requireLoaded();
+        if (data == null || !nativeRestoreSavedata(handle, data)) {
+            throw new IllegalArgumentException("Invalid cartridge save data");
+        }
+    }
+
+    @Override
+    public synchronized void close() {
+        if (handle != 0) {
+            nativeDestroy(handle);
+            handle = 0;
+            loaded = false;
+        }
+    }
+
+    private void requireOpen() {
+        if (handle == 0) {
+            throw new IllegalStateException("Session is closed");
+        }
+    }
+
+    private void requireLoaded() {
+        requireOpen();
+        if (!loaded) {
+            throw new IllegalStateException("No ROM is loaded");
+        }
+    }
+
+    private static native long nativeCreate();
+    private static native boolean nativeLoadRom(long handle, byte[] rom);
+    private static native int nativeRunFrame(long handle, int keys, int[] pixels, short[] audio);
+    private static native long nativeFrameCounter(long handle);
+    private static native byte[] nativeSaveState(long handle);
+    private static native boolean nativeLoadState(long handle, byte[] state);
+    private static native byte[] nativeCopySavedata(long handle);
+    private static native boolean nativeRestoreSavedata(long handle, byte[] data);
+    private static native void nativeDestroy(long handle);
+}
