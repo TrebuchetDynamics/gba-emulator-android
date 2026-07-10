@@ -34,7 +34,20 @@
 *.exe
 *.out
 *.app
+
+# Android build and signing artifacts
 *.apk
+*.aab
+*.aar
+*.ap_
+*.dex
+*.class
+*.hprof
+*.jks
+*.keystore
+local.properties
+captures/
+.externalNativeBuild/
 build*/
 cmake-build-*/
 .DS_Store
