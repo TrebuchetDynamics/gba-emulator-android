@@ -205,33 +205,39 @@ public class EnhancedNativeActivity extends NativeActivity {
             }
         });
     }
-    private File copyFileToExternalDirectory(Uri sourceFilePath, String destinationDirectoryPath, String filename) {
-        File sourceFile = new File(sourceFilePath.getPath());
-        if(sourceFile!=null)Log.i("FilePicker","Source File Exists\n");
-        File destinationDirectory = new File(destinationDirectoryPath);
-        if(destinationDirectory!=null)Log.i("FilePicker","Destination File Exists\n");
-
-        if (!destinationDirectory.exists()) {
-            destinationDirectory.mkdirs();
+    private File copyFileToPrivateStorage(Uri sourceFileUri, String filename) {
+        File destinationDirectory = new File(getFilesDir(), "roms");
+        if (!destinationDirectory.exists() && !destinationDirectory.mkdirs()) {
+            Log.e(TAG, "Could not create private ROM directory");
+            return null;
         }
 
         File copiedFile = new File(destinationDirectory, filename);
-        if(copiedFile!=null)Log.i("FilePicker","Copied File Exists\n");
-
-        try (InputStream in = getContentResolver().openInputStream(sourceFilePath);
-             OutputStream out = new FileOutputStream(copiedFile)) {
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) > 0) {
-                out.write(buffer, 0, length);
+        try {
+            InputStream source = getContentResolver().openInputStream(sourceFileUri);
+            if (source == null) {
+                Log.e(TAG, "Content provider returned no stream for selected file");
+                return null;
             }
-            Log.i("FilePicker","Done copying\n");
+            try (InputStream in = source; OutputStream out = new FileOutputStream(copiedFile)) {
+                byte[] buffer = new byte[64 * 1024];
+                int length;
+                while ((length = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, length);
+                }
+            }
             return copiedFile;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | SecurityException e) {
+            Log.e(TAG, "Could not import selected file", e);
             return null;
         }
     }
+
+    private String safeFileName(String filename) {
+        String safeName = new File(filename).getName();
+        return safeName.isEmpty() ? "imported-rom" : safeName;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         first_event=true;
         super.onCreate(savedInstanceState);
@@ -300,32 +306,27 @@ public class EnhancedNativeActivity extends NativeActivity {
     public void openFile(){
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
-                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+                | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
         startActivityForResult(intent, FILE_PICKER_REQUEST_CODE);
     }
     public String getFileName(Uri uri) {
         String result = null;
-        if (uri.getScheme().equals("content")) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            try {
+        if ("content".equals(uri.getScheme())) {
+            try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                    int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (nameIndex >= 0) {
+                        result = cursor.getString(nameIndex);
+                    }
                 }
-            } finally {
-                cursor.close();
             }
         }
         if (result == null) {
-            result = uri.getPath();
-            int cut = result.lastIndexOf('/');
-            if (cut != -1) {
-                result = result.substring(cut + 1);
-            }
+            result = uri.getLastPathSegment();
         }
-        return result;
+        return result == null ? "imported-rom" : safeFileName(result);
     }
     @Override
     public boolean onKeyDown(int keycode, KeyEvent event) {
@@ -360,22 +361,18 @@ public class EnhancedNativeActivity extends NativeActivity {
         return false;
     }
     public void loadURI(Uri selectedFileUri, boolean is_rom){
+        if (selectedFileUri == null) {
+            Log.w(TAG, "No file URI was provided");
+            return;
+        }
+
         String filename = getFileName(selectedFileUri);
-        File file = new File(selectedFileUri.getPath());//create path from uri
-        Log.i("SkyEmu", "Selected file path: " + filename);
-
-        if (selectedFileUri != null) {
-            // Get the original file's path using its URI
-            // Copy the file to the external directory
-            String externalDirectoryPath = getExternalFilesDir(null).getAbsolutePath();
-            File copiedFile = copyFileToExternalDirectory(selectedFileUri, externalDirectoryPath,filename);
-
-            if (copiedFile != null) {
-                String copiedFilePath = copiedFile.getAbsolutePath();
-                if(is_rom)se_android_load_rom(copiedFilePath);
-                se_android_load_file(copiedFilePath);
-                Log.i("SkyEmu", "Copied file path: " + copiedFilePath);
-            }
+        File copiedFile = copyFileToPrivateStorage(selectedFileUri, filename);
+        if (copiedFile != null) {
+            String copiedFilePath = copiedFile.getAbsolutePath();
+            if (is_rom) se_android_load_rom(copiedFilePath);
+            se_android_load_file(copiedFilePath);
+            Log.i(TAG, "Imported file: " + filename);
         }
     }
     public void openCustomTab(String url){
@@ -385,16 +382,22 @@ public class EnhancedNativeActivity extends NativeActivity {
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // If the selection didn't work
-        if (resultCode != RESULT_OK) {
-            // Exit without doing anything else
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK || requestCode != FILE_PICKER_REQUEST_CODE || data == null) {
             return;
-        } else {
-            if (requestCode == FILE_PICKER_REQUEST_CODE && data != null) {
-                Uri selectedFileUri = data.getData();
-                loadURI(selectedFileUri,false);
-            }
         }
+
+        Uri selectedFileUri = data.getData();
+        if (selectedFileUri == null) {
+            return;
+        }
+        try {
+            getContentResolver().takePersistableUriPermission(
+                    selectedFileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } catch (SecurityException e) {
+            Log.w(TAG, "Provider did not grant persistent read access", e);
+        }
+        loadURI(selectedFileUri, false);
     }
     public native void se_android_load_file(String filePath);
     public native void se_android_load_rom(String filePath);

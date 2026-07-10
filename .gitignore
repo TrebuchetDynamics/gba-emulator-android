@@ -51,3 +51,7 @@ cmake-build-*/
 .gradle
 .google
 tools/android_project/app/release
+tools/android_project/local.properties
+tools/android_project/skyemu-open-signing-store
+research/**/platform-sources/*.html
+research/**/coverage-stats.log
