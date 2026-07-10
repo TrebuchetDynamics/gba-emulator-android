@@ -1,0 +1,15 @@
+10.2307/j.ctvp7d4qp.4	Determinism and Despair
+10.1515/9780691200934-002	1. Determinism and Despair
+10.1090/chel/360/08	Determinism and state; Statistical determinism
+10.1332/policypress/9781529213409.003.0002	Technological Determinism and Debates about State Formation in Early Modern Europe
+10.32614/cran.package.sakura	sakura: Extension to R Serialization
+10.23860/thesis-thibeaulty-christopher-2013	System for Video Game Enhancement Using Console Emulator State Information and Scene Recognition
+10.1007/springerreference_24439	serialization
+10.46692/9781529213430.002	Technological Determinism and Debates about State Formation in Early Modern Europe
+10.5040/9798216432432.ch-2	The Melodrama of Television Serialization
+10.2307/jj.5274083.4	Technological Determinism and Debates about State Formation in Early Modern Europe
+10.7717/peerj-cs.95/fig-5	Figure 5: Time comparison of MEL to Boost Serialization Library for File Read/Write on a single node, to a within node Solid State Drive.
+10.1080/20549547.2018.1450002	Skipping Breakfast to Save the Nation: A Different Kind of Dietary Determinism in Early Twentieth-Century China
+10.1093/oso/9780198791263.003.0005	The limits of verb serialization
+10.32388/74ce73	Serialization
+10.1093/oed/1121346765	serialization, n.

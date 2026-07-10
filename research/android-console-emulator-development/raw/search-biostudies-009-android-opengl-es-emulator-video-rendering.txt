@@ -1,0 +1,20 @@
+	PREDICTOR: A Physical emulatoR enabling safEty anD ergonomICs evaluation and Training of physical human-rObot collaboRation
+	ProteinShader: illustrative rendering of macromolecules.
+	Learning to predict perceptual visibility of rendering deterioration in computer games.
+	Identification and Evaluation of the Face System of a Child Android Robot Affetto for Surface Motion Design.
+	Added value of video edutainment on android handsets in home visits to improve maternal and child health in Bauchi State, Nigeria: Secondary analysis from a cluster randomised controlled trial.
+	Asymmetric communication: cognitive models of humans toward an android robot.
+	Visually detectable facial mimicry in response to android facial expressions.
+	Alignment of the attitude of teleoperators with that of a semi-autonomous android.
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	Development of Drug Release Model for Suspensions in ESCAR (Emulator of SubCutaneous Absorption and Release).
+	Brian2Loihi: An emulator for the neuromorphic chip Loihi using the spiking neural network simulator Brian.
+	Relaxing Gaze Aversion of Adolescents With Autism Spectrum Disorder in Consecutive Conversations With Human and Android Robot-A Preliminary Study.
+	Bayesian Sensitivity Analysis of a Cardiac Cell Model Using a Gaussian Process Emulator.
+	Android malware analysis in a nutshell.
+	High-Performance Virtual Reality Volume Rendering of Original Optical Coherence Tomography Point-Cloud Data Enhanced With Real-Time Ray Casting.
+	Deep learning based emulator for predicting voltage behaviour in lithium ion batteries.
+	Data on Vulnerability Detection in Android.
+	A High-Performance and Cost-Effective Field Programmable Gate Array-Based Motor Drive Emulator
+	Alignment-Annotator web server: rendering and annotating sequence alignments.
+	The effects of ankle stiffness on mechanics and energetics of walking with added loads: a prosthetic emulator study.

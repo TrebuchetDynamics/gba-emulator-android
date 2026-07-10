@@ -1,0 +1,16 @@
+10.3390/s23229221	A Survey of the Security Analysis of Embedded Devices.
+10.3390/s21041387	Measuring Key Quality Indicators in Cloud Gaming: Framework and Assessment Over Wireless Networks.
+10.3390/s21186303	Analysis of Single Board Architectures Integrating Sensors Technologies.
+10.1007/s12083-023-01478-w	IoT malware: An attribute-based taxonomy, detection mechanisms and challenges.
+10.1016/j.fsisyn.2022.100313	Interpol review of digital evidence for 2019-2022.
+10.3390/s22113967	Security and Privacy Analysis of Youth-Oriented Connected Devices.
+10.1371/journal.pone.0326774	Strategic orchestration in sharing economies: A configurational analysis of platform differentiation and governance alignment.
+10.5210/ojphi.v11i2.9998	On the Potential, Feasibility, and Effectiveness of Chat Bots in Public Health Research Going Forward.
+10.3390/s16040435	A Simple Interface for 3D Position Estimation of a Mobile Robot with Single Camera.
+10.3390/s24030865	Smart Resource Allocation in Mobile Cloud Next-Generation Network (NGN) Orchestration with Context-Aware Data and Machine Learning for the Cost Optimization of Microservice Applications.
+10.1038/s41598-026-48705-x	A privacy-preserving cloud storage framework with hybrid encryption, homomorphic keyword search, and blockchain-based integrity verification.
+10.1016/j.actpsy.2025.105490	Better than industry self-regulation: Compliance of mobile games with newly adopted and actively enforced loot box probability disclosure law in South Korea.
+10.1186/s12984-017-0321-3	How a diverse research ecosystem has generated new rehabilitation technologies: Review of NIDILRR's Rehabilitation Engineering Research Centers.
+10.1007/s11227-023-05272-6	Blockchain-enabled secure and efficient data sharing scheme for trust management in healthcare smartphone network.
+10.3390/s19020299	Navigating Virtual Environments Using Leg Poses and Smartphone Sensors.
+10.1177/1751143719835452	Intensive Care Society State of the Art 2018 Abstracts.

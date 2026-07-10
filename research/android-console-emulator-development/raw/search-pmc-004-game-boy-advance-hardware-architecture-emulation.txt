@@ -1,0 +1,20 @@
+10.4329/wjr.v17.i11.114754	Large language models and large concept models in radiology: Present challenges, future directions, and critical perspectives.
+10.3390/s26102971	A Lightweight Identity Authentication Protocol for Vehicle Ad Hoc Network Based on PUF-Obfuscation.
+10.3390/jimaging6080078	A Survey of Computer Vision Methods for 2D Object Detection from Unmanned Aerial Vehicles.
+10.1007/s40747-023-01077-5	A biologically inspired decision-making system for the autonomous adaptive behavior of social robots.
+10.3390/s25226813	CATO: Wake-Up reCeiver-bAsed communicaTiOn for Batteryless Devices.
+10.1186/s12984-017-0321-3	How a diverse research ecosystem has generated new rehabilitation technologies: Review of NIDILRR's Rehabilitation Engineering Research Centers.
+10.3390/s23136040	Human Action Recognition in Smart Living Services and Applications: Context Awareness, Data Availability, Personalization, and Privacy.
+10.3389/fcvm.2025.1674486	Artificial intelligence in aortic CT angiography: current applications and future perspectives.
+10.3390/s23083890	An Open-Source, Interoperable Architecture for Generating Real-Time Surgical Team Cognitive Alerts from Heart-Rate Variability Monitoring.
+10.3389/fnbot.2023.1274543	Research on deep reinforcement learning basketball robot shooting skills improvement based on end to end architecture and multi-modal perception.
+10.1007/s00521-025-11695-4	Sequential pattern transformer (SPT): a generative and interpretable framework for predicting disease trajectories.
+10.3390/s25226848	The Application of VR Technology in Engineering Issues: Geodesy and Geomatics, Mining, Environmental Protection and Occupational Safety.
+10.1371/journal.pone.0048331	Beaming into the rat world: enabling real-time interaction between rat and human each at their own scale.
+10.3389/fbioe.2025.1658222	Quantitative video analysis of head acceleration events: a review.
+10.1088/1361-6579/ad548e	Developing technologies to assess vascular ageing: a roadmap from VascAgeNet.
+10.2196/medinform.5587	An Assistive Technology System that Provides Personalized Dressing Support for People Living with Dementia: Capability Study.
+10.3389/frobt.2022.739088	Serious Games Strategies With Cable-Driven Robots for Bimanual Rehabilitation: A Randomized Controlled Trial With Post-Stroke Patients.
+10.1016/j.jpi.2023.100357	Computational pathology: A survey review and the way forward.
+10.34133/cbsystems.0477	Space Physiology and Technology: Adaptations, Countermeasures, and Opportunities for Wearable Systems.
+10.1016/j.neuropsychologia.2017.04.034	Auditory object perception: A neurobiological model and prospective review.

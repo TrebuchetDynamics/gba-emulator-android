@@ -1,0 +1,15 @@
+cycle accurate versus instruction accurate emulation
+real time emulator synchronization audio video
+emulator save state serialization determinism
+emulator memory bus timing wait states
+Game Boy Advance PPU rendering emulation
+Game Boy Advance APU audio emulation
+Game Boy Advance DMA timer interrupt emulation
+Game Boy Advance BIOS high level emulation
+emulator conformance testing ROM test suite
+emulator differential testing fuzzing
+mobile emulator battery thermal performance
+Android emulator foreground service lifecycle storage
+software emulation techniques survey
+video game preservation emulation legal interoperability
+open source Game Boy Advance emulator accuracy testing

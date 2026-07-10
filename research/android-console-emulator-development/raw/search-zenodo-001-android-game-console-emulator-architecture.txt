@@ -1,0 +1,20 @@
+10.5281/zenodo.10342668	TVG-10 game console
+10.5281/zenodo.7684870	Battery-Free Game Boy - IMWUT/UbiComp 2020 Artifact
+10.5281/zenodo.14497828	AT Emulator
+10.5281/zenodo.7665495	ObreusDroid
+10.5281/zenodo.10372025	ІГРИ В СТИЛІ ПІКСЕЛЬ-АРТ
+10.5281/zenodo.3673079	ComboDroid-Artifact
+10.5281/zenodo.1420449	Dataset of "Extinguishing Ransomware - A Hybrid Approach to Android Ransomware Detection"
+10.5281/zenodo.20757534	ANDROID STUDIO MUHITI VA JAVA DASTURLASH TILINING AFZALLIKLARI
+10.59890/ijatss.v2i1.1310	Design and Development of the Midwifery Emergency Guidelines Application in the Islands (Si-PK3) as an Alternative Management Guide Maternal Emergency for Midwives in the Archipelago Region
+10.5281/zenodo.10224565	Retro console Amiga CD32
+10.5281/zenodo.15672037	Perancangan Game Survival Horror "Kepunan" Menggunakan Unity Game Engine
+10.5281/zenodo.1296278	DYNAMISM - Postprocessed Execution Traces Of Android Malware and Benign Apps
+10.5281/zenodo.7889579	Artifact for EdgeEmu - Emulator for Android Edge Devices (DAIS 2023)
+10.5281/zenodo.20164081	Renaissance architecture console figuring a woman
+10.5281/zenodo.8070311	ConfFix: Repairing Configuration Compatibility Issues in Android Apps
+10.5281/zenodo.19977227	RISE OF SHADOWS: DEVELOPMENT OF A 2D ANDROID DUNGEON CRAWLER WITH AI DRIVEN GAMEPLAY MECHANICS AND PROCEDURAL GENERATION
+10.5281/zenodo.3492181	thanhsr/online: Game for Android
+10.5281/zenodo.18525656	AccessDroid: Detecting Screen Reader Accessibility Issues in Android Applications via Semantics Trees
+10.5281/zenodo.10288529	Joust Console
+10.5281/zenodo.14632293	Computer games design based on the application of a microcontroller

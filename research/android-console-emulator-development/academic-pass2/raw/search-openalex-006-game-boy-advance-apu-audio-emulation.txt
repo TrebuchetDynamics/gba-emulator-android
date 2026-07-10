@@ -1,0 +1,3 @@
+10.23860/thesis-thibeaulty-christopher-2013	System for Video Game Enhancement Using Console Emulator State Information and Scene Recognition
+	Understanding Game Scoring: Software Programming, Aleatoric Composition and Mimetic Music Technology
+	Creating a method for video game subtitle analysis and presenting a demonstrative case study on Trine 2’s Finnish subtitles

@@ -1,0 +1,15 @@
+10.2139/ssrn.5120452	General Timing Games with Multiple Players
+10.1007/978-1-4842-1139-7_12	In-Memory OLTP–Related Wait Types
+10.1109/idt.2009.5404142	CAN bus analyzer and emulator
+10.1109/samos.2011.6045471	Optimizing wait-states in the synthesis of memory references with unpredictable latencies
+10.2139/ssrn.4090339	General Timing Games with Multiple Players
+10.2139/ssrn.2314722	Innovation in a Generalized Timing Game
+10.31979/mti.2019.1801	Predicting Acceptable Wait Times for Patrons at Transit Bus Stops by Time of Day
+10.5821/dissertation-2117-104207	A multicore emulator with a profiling infrastructure for transactional memory on FPGA
+10.1007/s12029-020-00491-z	The Timing of Liver Transplantation Following Downstaging: Wait of Not to Wait?
+10.2139/ssrn.3254683	Blocking in a Timing Game with Asymmetric Players
+10.1007/978-1-349-06978-1_4	Bus Signal Timing and Input/Output Timing
+10.2172/1157427	16-Channel timing card with Q-BUS interface
+10.1093/acprof:oso/9780195130027.003.0001	Introduction: Sometimes the Bus Does Wait
+10.1007/978-3-030-15006-8_10	Timing of Appendectomy for Acute Appendicitis: Can Surgery Wait?
+10.1007/978-1-4842-4916-1_13	In-Memory OLTP–Related Wait Types

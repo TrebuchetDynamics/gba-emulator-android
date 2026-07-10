@@ -1,0 +1,20 @@
+	A New Tool to Facilitate Learning Reading for Early Childhood
+	Inclusive Game Design Facilitating Shared Gaming Experience
+	Wooden Peg Game: Implementations as Both a Web App and as an Android App
+	Low Latency Audio Video: Potentials for Collaborative Music Making through Distance Learning
+	It&apos;s about Time: Minimizing Hardware and Software Latencies in Speech Research with Real-Time Auditory Feedback
+	A &quot;Mixed&quot; Strategy for Collaborative Group Formation and Its Learning Outcomes
+	B&apos;Math: An Alternative Android-Based Learning Media for Mathematics to Enhance Elementary Students&apos; Early Counting Skills
+	Development of a Metal Detector for Smartphones and Its Use in the Teaching Laboratory
+	Android Game HUPROSED (Human Reproductive System and Sex Education) as Learning Media on Human Reproductive System Topic
+	Reliability and Efficiency of Pitch-Shifting Plug-Ins in Voice and Hearing Research
+	Learning Electricity Using Arduino-Android Based Game to Improve STEM Literacy
+	Gleaming English Game for Youth, an Android-Based Game for English Literacy Improvement: Research and Development
+	Computer-Assisted Learning Using Dynamic Electronic Books.
+	A Microcomputer-Controlled T-60 NMR Emulator.
+	Digital Game-Based Learning in an Introductory Accounting Course: Design and Development of an Instructional Game
+	Educational Game &quot;Mengenal Indonesia&quot; as a Medium to Introduce Indonesia to the Kids
+	The Effect of Perceived Child Anxiety Status on Parental Latency to Intervene with Anxious and Nonanxious Youth
+	Does Neighborhood Density Influence Repetition Latency for Nonwords? Separating the Effects of Density and Duration
+	Design and Usability Testing of an Audio Platform Game for Players with Visual Impairments
+	Using Pre and Post Low-"p" Latency to Assess Behavioral Momentum: A Preliminary Investigation

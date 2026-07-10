@@ -1,0 +1,20 @@
+10.1007/978-1-4302-6131-5	Android on x86
+10.1007/978-1-4842-0100-8	Android Application Development for the Intel Platform
+10.1007/978-1-4842-0382-8	GUI Design for Android Apps
+10.5117/9789048551736	Game Production Studies
+10.5117/9789463725439	Game Production Studies
+10.14361/9783839471968	Imagination und Immersion
+10.14361/9783839460399	Migrating Through the Web
+10.4324/9781003333739	Empathy’s Role in Understanding Persons, Literature, and Art
+10.14361/9783839461921	Fictional Practices of Spirituality I
+10.1007/978-1-4842-7185-8	Ray Tracing Gems II
+10.58895/ksp/1000169488	Proceedings of the 10th bwHPC Symposium: HPC Activites in Baden-Württemberg
+10.1007/978-3-319-90415-3	Autonomous Control for a Reliable Internet of Services: Methods, Models, Approaches, Techniques, Algorithms, and Tools
+10.1007/978-3-030-03635-5	3D Recording and Interpretation for Maritime Archaeology
+10.1007/978-3-319-65633-5	Earth Observation Open Science and Innovation
+10.4324/9780429288159	Rights for Robots
+10.4324/9780429288159	Rights for Robots
+10.1007/978-3-031-71162-6	Formal Methods
+10.1515/9783111329154	Connected Histories
+10.36253/978-88-6655-128-7	ECLAP 2012 Conference on Information Technologies for Performing Arts, Media Access and Entertainment
+10.5117/9789089647153	Across Space and Time. Papers from the 41st Conference on Computer Applications and Quantitative Methods in Archaeology, Perth, 25-28 March 2013

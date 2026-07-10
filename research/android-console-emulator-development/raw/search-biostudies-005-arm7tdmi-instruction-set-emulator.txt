@@ -1,0 +1,20 @@
+	Regulation of adeno-associated virus DNA replication by the cellular TAF-I/set complex.
+	Identification of heterogeneity among soft tissue sarcomas by gene expression profiles from different tumors.
+	Silencing of IFN-stimulated gene transcription is regulated by histone H1 and its chaperone TAF-I.
+	Sperm chromatin decondensation by template activating factor I through direct interaction with basic proteins.
+	Effect of leucine-to-methionine substitutions on the diffraction quality of histone chaperone SET/TAF-Ibeta/INHAT crystals.
+	PP32 and SET/TAF-Iβ proteins regulate the acetylation of newly synthesized histone H4.
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	The evolutionary origin of Bayesian heuristics and finite memory.
+	Template activating factor-I epigenetically regulates the TERT transcription in human cancer cells.
+	Cellular and viral chromatin proteins are positive factors in the regulation of adenovirus gene expression.
+	A role for the nucleosome assembly proteins TAF-Iβ and NAP1 in the activation of BZLF1 expression and Epstein-Barr virus reactivation.
+	Understanding evolutionary potential in virtual CPU instruction set architectures.
+	PP2A is activated by cytochrome <i>c</i> upon formation of a diffuse encounter complex with SET/TAF-Iβ.
+	Instruction consisting of a rule and set of examples and nonexamples reliably teaches concepts.
+	Function of HP1BP3 as a linker histone is regulated by linker histone chaperones, NPM1 and TAF-I.
+	PREDICTOR: A Physical emulatoR enabling safEty anD ergonomICs evaluation and Training of physical human-rObot collaboRation
+	Soft-core processor integration based on different instruction set architectures and field programmable gate array custom datapath implementation.
+	A Method for Visualization of Incoming Adenovirus Chromatin Complexes in Fixed and Living Cells.
+	Assembly and disassembly of nucleosome core particles containing histone variants by human nucleosome assembly protein I.
+	NeuroLab: A Set of Graphical Computer Simulations to Support Neuroscience Instruction at the High School and Undergraduate Level.

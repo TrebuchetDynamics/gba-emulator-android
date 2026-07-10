@@ -1,0 +1,20 @@
+10.23860/thesis-thibeaulty-christopher-2013	System for Video Game Enhancement Using Console Emulator State Information and Scene Recognition
+10.2139/ssrn.5382583	Retro Gaming Console using Raspberry Pi 4
+10.2139/ssrn.5011361	Retro Gaming Console Using Raspberry Pi 4
+10.1007/978-1-4842-4146-2	Beginning Programming Using Retro Computing
+10.1007/978-1-4842-4146-2_3	Math
+10.1007/978-1-4842-4146-2_11	Questions
+10.1109/mobilesoft.2019.00019	Google Play Console: Insightful Development Using Android Vitals and Pre-Launch Reports
+10.1007/978-1-4842-4146-2_5	Colors
+10.1145/3502718.3524791	RISC-V Console
+10.1007/978-1-4842-4146-2_7	Errors
+10.1007/978-1-4842-4146-2_12	Counting
+10.1007/978-1-4842-4146-2_6	Graphics
+10.1007/978-1-4842-4146-2_4	Sound
+10.1007/978-1-4842-4146-2_2	Simple Drawing
+10.1007/978-1-4842-4146-2_8	Variables
+10.1007/978-1-4842-4146-2_1	The Start Screen
+10.1007/978-1-4842-4146-2_13	What If?
+10.1007/978-1-4842-4146-2_9	Math and Variables
+10.1007/978-1-4842-4146-2_10	A Program
+10.1007/978-1-4842-4146-2_14	More Programs

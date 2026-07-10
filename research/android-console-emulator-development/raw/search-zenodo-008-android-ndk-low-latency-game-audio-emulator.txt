@@ -1,0 +1,20 @@
+10.5281/zenodo.13842728	OPTIMIZING ANDROID APPLICATION PERFORMANCE: MODERN METHODS AND PRACTICES
+10.5281/zenodo.1179140	MobileFaust: a Set of Tools to Make Musical Mobile Applications with the Faust Programming Language
+10.5281/zenodo.15050585	Pengembangan Aplikasi Audiobook Berbasis Android Menggunakan Metode Multimedia Development Life Cycle
+10.5281/zenodo.7665495	ObreusDroid
+10.5281/zenodo.3673079	ComboDroid-Artifact
+10.5281/zenodo.11189186	Leveraging Android Phones to Democratize Low-level Audio Programming
+10.5281/zenodo.3754190	Low Latency Audio Source Separation for Speech Enhancement in Cochlear Implants
+10.35940/ijrte.a6894.0511122	AI Radio App
+10.5281/zenodo.17684575	AI on the Edge: An Automated Pipeline for PyTorch-to-Android Deployment and Benchmarking
+10.5281/zenodo.16928107	Tpf-tools. A low-latency multi-channel audio transmission software (client)
+10.5281/zenodo.1178899	Low-Latency Audio Pitch Tracking: A Multi-Modal Sensor-Assisted Approach
+10.1109/globecom54140.2023.10437664	A Packet Delay Emulator for High-Bandwidth and Low-Latency Traffic in 5G Networks
+10.5281/zenodo.16962376	Tpf-tools. A low-latency multi-channel audio transmission software (server)
+10.5281/zenodo.16963509	Tpf-tools. A low-latency multi-channel audio transmission software (installers)
+10.5281/zenodo.1420449	Dataset of "Extinguishing Ransomware - A Hybrid Approach to Android Ransomware Detection"
+10.5281/zenodo.52884	A High Performance, Low Latency, Low Power Audio Processing System For Wideband Speech Over Wireless Links
+10.5281/zenodo.39933	A High Performance, Low Latency, Low Power Audio Processing System For Wideband Speech Over Wireless Links
+10.5281/zenodo.20757534	ANDROID STUDIO MUHITI VA JAVA DASTURLASH TILINING AFZALLIKLARI
+10.59890/ijatss.v2i1.1310	Design and Development of the Midwifery Emergency Guidelines Application in the Islands (Si-PK3) as an Alternative Management Guide Maternal Emergency for Midwives in the Archipelago Region
+10.5281/zenodo.21229513	Programación Nativa de Dispositivos Móviles

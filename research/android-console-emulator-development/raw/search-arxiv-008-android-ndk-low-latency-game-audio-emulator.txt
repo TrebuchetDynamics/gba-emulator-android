@@ -1,0 +1,20 @@
+	Playing a 2D Game Indefinitely using NEAT and Reinforcement Learning
+10.17743/jaes.2022.0129	Diffusion-Based Audio Inpainting
+10.1007/s00182-012-0345-7	Optimal strategies for a game on amenable semigroups
+	ASVAAN: Semi-automatic side-channel analysis of Android NDK
+10.1109/taslp.2020.3000593	Audio-visual Speech Enhancement Using Conditional Variational Auto-Encoders
+10.1109/taslp.2024.3477291	Towards Improved Objective Perceptual Audio Quality Assessment -- Part 1: A Novel Data-Driven Cognitive Model
+10.1109/taslpro.2025.3626233	From Alignment to Advancement: Bootstrapping Audio-Language Alignment with Synthetic Data
+	Baseline Systems For The 2025 Low-Resource Audio Codec Challenge
+	VQCPC-GAN: Variable-Length Adversarial Audio Synthesis Using Vector-Quantized Contrastive Predictive Coding
+10.1109/taslpro.2025.3648794	Unified Cross-modal Translation of Score Images, Symbolic Music, and Performance Audio
+10.21638/11701/spbu31.2022.26	Dynamic Structure in Four-strategy Game: Theory and Experiment
+	Tiered-Latency DRAM (TL-DRAM)
+10.3390/math10183338	Advanced Drone Swarm Security by Using Blockchain Governance Game
+10.1109/taslpro.2025.3622985	dCoNNear: An Artifact-Free Neural Network Architecture for Closed-loop Audio Signal Processing
+10.1109/lcomm.2017.2705148	Ultra-Reliable and Low Latency Communication in mmWave-Enabled Massive MIMO Networks
+	Zero-shot audio captioning with audio-language model guidance and audio context keywords
+10.1109/taslp.2021.3120633	PSLA: Improving Audio Tagging with Pretraining, Sampling, Labeling, and Aggregation
+	Superstructures at low spin - high spin transitions
+10.1186/s13636-025-00416-3	Comparative Study of State-based Neural Networks for Virtual Analog Audio Effects Modeling
+	Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models

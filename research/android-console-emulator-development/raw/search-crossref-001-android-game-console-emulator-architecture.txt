@@ -1,0 +1,20 @@
+10.23860/thesis-thibeaulty-christopher-2013	System for Video Game Enhancement Using Console Emulator State Information and Scene Recognition
+10.1145/3502718.3524791	RISC-V Console
+10.18844/prosoc.v3i5.1958	New generation console game technologies; Console game application supported with projection mapping
+10.1109/telfor.2017.8249473	UHI boot protocol implementation in Android emulator for MIPS architecture
+10.1016/b978-1-931836-31-9.x5000-4	Game Console Hacking
+10.1016/b978-193183631-9/50012-x	Nintendo Game Boy Advance
+10.18844/gjae.v6i4.1827	New generation console game technologies; Console game application supported with projection mapping
+10.1016/b978-193183631-9/50000-3	Acknowledgments
+10.1016/b978-193183631-9/50004-0	Technical Reviewer
+10.32614/cran.package.pixelpuzzle	pixelpuzzle: Puzzle Game for the R Console
+10.1016/b978-193183631-9/50002-7	Contributors
+10.1016/b978-193183631-9/50003-9	Foreword Contributor
+10.1016/b978-193183631-9/50010-6	Xbox
+10.1016/b978-193183631-9/50019-2	Index
+10.1016/b978-193183631-9/50017-9	Atari 7800
+10.1016/b978-193183631-9/50016-7	Atari 5200
+10.1016/b978-193183631-9/50014-3	Nintendo NES
+10.1016/b978-193183631-9/50015-5	Atari 2600
+10.1016/b978-193183631-9/50011-8	PlayStation 2
+10.1016/b978-193183631-9/50009-x	Case Modifications

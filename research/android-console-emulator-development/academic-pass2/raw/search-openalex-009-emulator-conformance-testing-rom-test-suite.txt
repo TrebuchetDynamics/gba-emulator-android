@@ -1,0 +1,15 @@
+10.5772/intechopen.74186	Advanced Engineering Testing
+10.1063/5.0061577	On closures for reduced order models—A spectrum of first-principle to machine-learned avenues
+10.6028/jres.106.013	Information technology measurement and testing activities at NIST
+10.1097/gim.0b013e3181d72661	Myriad Genetics: In the eye of the policy storm
+10.17125/gov2018.ch21	A Coastal Ocean Forecast System for U.S. Mid-Atlantic Bight and Gulf of Maine
+10.1007/s11160-021-09643-1	Technological innovations in the recreational fishing sector: implications for fisheries management and policy
+10.1109/jas.2023.123537	Machine Learning With Data Assimilation and Uncertainty Quantification for Dynamical Systems: A Review
+10.1038/s41598-018-30117-1	Quantifying Topological Uncertainty in Fractured Systems using Graph Theory and Machine Learning
+10.6028/nist.sp.800-72	Guidelines on PDA forensics
+10.6028/nist.sp.800-124	Guidelines on Cell Phone and PDA Security
+10.3390/en10101589	A Flexible Experimental Laboratory for Distributed Generation Networks Based on Power Inverters
+10.1007/978-3-030-60910-8	Embedded System Design
+	A robustness testing approach for RESTful Web Services
+	Automatic non-functional testing and tuning of configurable generators
+10.1093/nar/gku757	Synthesis, properties, and biological activity of boranophosphate analogs of the mRNA cap: versatile tools for manipulation of therapeutically relevant cap-dependent processes

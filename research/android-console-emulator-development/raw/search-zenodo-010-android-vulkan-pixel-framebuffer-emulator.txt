@@ -1,0 +1,20 @@
+10.5281/zenodo.8070311	ConfFix: Repairing Configuration Compatibility Issues in Android Apps
+10.5281/zenodo.10372025	ІГРИ В СТИЛІ ПІКСЕЛЬ-АРТ
+10.5281/zenodo.7665495	ObreusDroid
+10.5281/zenodo.3673079	ComboDroid-Artifact
+10.5281/zenodo.1420449	Dataset of "Extinguishing Ransomware - A Hybrid Approach to Android Ransomware Detection"
+10.5281/zenodo.20757534	ANDROID STUDIO MUHITI VA JAVA DASTURLASH TILINING AFZALLIKLARI
+10.5281/zenodo.1296278	DYNAMISM - Postprocessed Execution Traces Of Android Malware and Benign Apps
+10.5281/zenodo.16687648	Artifact for WebView Tracer
+10.5281/zenodo.7889579	Artifact for EdgeEmu - Emulator for Android Edge Devices (DAIS 2023)
+10.5281/zenodo.16299071	Vulkan
+10.5281/zenodo.15672037	Perancangan Game Survival Horror "Kepunan" Menggunakan Unity Game Engine
+10.5281/zenodo.14906360	Developing a framework for enhancing security testing of android applications
+10.5281/zenodo.18525656	AccessDroid: Detecting Screen Reader Accessibility Issues in Android Applications via Semantics Trees
+10.5281/zenodo.8013542	Android Permisos y Grupos de Permisos
+10.5281/zenodo.1228834	dpw901e17/vulkan-application: First release
+10.5281/zenodo.7528259	Development and validation of a SAR wind emulator
+10.5281/zenodo.14647093	Using the android emulator for the Pepper robot for project work
+10.5281/zenodo.18258201	vkCompViz: Universal C++ Library for GPU-Based Experiments
+10.5281/zenodo.10625233	REACH_InvestorContacts_DB_v2
+10.5281/zenodo.13885929	Efficient Machining Solutions for Sustainable Aircraft Production

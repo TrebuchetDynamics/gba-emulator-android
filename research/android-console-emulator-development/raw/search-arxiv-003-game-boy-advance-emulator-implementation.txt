@@ -1,0 +1,20 @@
+	Playing a 2D Game Indefinitely using NEAT and Reinforcement Learning
+10.1007/s00182-012-0345-7	Optimal strategies for a game on amenable semigroups
+10.3390/math10183338	Advanced Drone Swarm Security by Using Blockchain Governance Game
+10.21638/11701/spbu31.2022.26	Dynamic Structure in Four-strategy Game: Theory and Experiment
+10.1007/s00182-025-00928-4	Specifying a Game-Theoretic Extensive Form as an Abstract 5-ary Relation
+	Computational Complexity of Game Boy Games
+	GAN-Based Content Generation of Maps for Strategy Games
+10.13140/rg.2.1.3128.9446	Flip the Cloud: Cyber-Physical Signaling Games in the Presence of Advanced Persistent Threats
+	Evaluation of Game Templates to support Programming Activities in Schools
+	Parametric Open Source Games
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+	Graphical Potential Games
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+	Using Game Theory to maximize the chance of victory in two-player sports
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+10.1103/physrevd.110.123041	A neural network emulator of the Advanced LIGO and Advanced Virgo selection function
+	Rank Reduction in Bimatrix Games
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+	Additive Security Games: Structure and Optimization
+	On the NP-completeness of Finding an Optimal Strategy in Games with Common Payoffs

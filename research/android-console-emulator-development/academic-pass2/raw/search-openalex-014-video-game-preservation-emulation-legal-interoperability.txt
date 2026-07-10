@@ -1,0 +1,15 @@
+10.7207/twr12-03	Digital Forensics and Preservation
+	The preservation of digital heritage: epistemological and legal reflections
+10.1002/asi.24244	Curation as “Interoperability With the Future”: Preserving Scholarly Research Software in Academic Libraries
+	Knowledge Accessibility and Preservation Policy for the Digital Age
+10.1109/access.2023.3241628	Metaverse for Healthcare: A Survey on Potential Applications, Challenges and Future Directions
+10.2139/ssrn.785945	Legal Protection of Technological Measures Protecting Works of Authorship: International Obligations and the US Experience
+10.2139/ssrn.2018883	‘Emulation is the Most Sincere Form of Flattery: Retro Videogames, Rom Distribution and Copyright’
+10.5281/zenodo.5260033	Digital Curation and Preservation Bibliography 2010
+10.17605/osf.io/6xj32	Supporting Virtual Reality and 3D in Academic Libraries: Defining Preservation and Curation Challenges
+10.5281/zenodo.1472637	Preserving The Emerging: Virtual Reality And 360-Degree Video, An Internship Research Report
+	Digital Preservation Sound and Vision: Policy, Standards and Procedures
+	Preserving digital entities: A framework for choosing and testing preservation strategies
+10.5210/fm.v6i6.864	The battle to define the future of the book in the digital world
+10.5281/zenodo.5539935	Digital Curation Bibliography: Preservation and Stewardship of Scholarly Works
+10.3390/s23031583	Digital Twins and Enabling Technologies in Museums and Cultural Heritage: An Overview

@@ -1,0 +1,20 @@
+10.5281/zenodo.7665495	ObreusDroid
+10.5281/zenodo.3673079	ComboDroid-Artifact
+10.5281/zenodo.5097751	Kivy
+10.5281/zenodo.15163528	Designing and Implementing a Game Engine with Typescript and WebGL: Bird and Obstacles 2D Game
+10.5281/zenodo.19099345	Implementación de una aplicación movil para realizar  compras inteligentes
+10.5281/zenodo.1146875	Aerial Virtual Reality: Remote Tourism with Drones
+10.5281/zenodo.1420449	Dataset of "Extinguishing Ransomware - A Hybrid Approach to Android Ransomware Detection"
+10.5281/zenodo.17183463	Emerging Trends and Technologies in Graphics Rendering Pipeline
+10.5281/zenodo.20757534	ANDROID STUDIO MUHITI VA JAVA DASTURLASH TILINING AFZALLIKLARI
+10.5281/zenodo.1246423	Prototyping 3D Virtual Learning Environments with X3D-based Content and Visualization Tools-Figure 3. The graphic stack of X3DOM (Havele 2011)
+10.5281/zenodo.20621027	PROCESSING LARGE-SCALE GRAPHICAL DATA ON MOBILE DEVICES: LITERATURE REVIEW AND IDENTIFICATION OF PROBLEMS
+10.5281/zenodo.1296278	DYNAMISM - Postprocessed Execution Traces Of Android Malware and Benign Apps
+10.5281/zenodo.3747539	Commercial Application for Business Management
+10.5281/zenodo.16754714	Choose Your Own Adventures in Source Code
+10.5281/zenodo.7889579	Artifact for EdgeEmu - Emulator for Android Edge Devices (DAIS 2023)
+10.5281/zenodo.18851857	HERRAMIENTAS PARA EL PROCESAMIENTO DIGITAL DE IMÁGENES EN DISPOSITIVOS MÓVILES.
+10.5281/zenodo.8070311	ConfFix: Repairing Configuration Compatibility Issues in Android Apps
+10.5281/zenodo.4106061	Jetson AI-Computer Emulator
+10.21303/2461-4262.2018.00680	EXPLANATION OF THE ALGORITHMS FOR DISPLAYING 3D FIGURES ON THE COMPUTER SCREEN
+10.5281/zenodo.37969	Video Object Coding and Rendering for Panoramic Video

@@ -1,0 +1,9 @@
+10.1007/978-1-4302-6131-5	Android on x86
+10.1007/978-1-4842-0100-8	Android Application Development for the Intel Platform
+10.1007/978-3-642-30241-1	The Future Internet: Future Internet Assembly 2012: From Promises to Reality
+10.1007/978-981-19-2456-9	Proceeding of 2021 International Conference on Wireless Communications, Networking and Applications
+10.1007/978-3-658-47725-7	Planung und Durchführung von Missionen autonomer Drohnen im Schwarm
+10.5445/ksp/1000175307	Trustworthy Distributed Usage Control Enforcement in Heterogeneous Trusted Computing Environments
+10.21827/646242d096beb	Digital Humanities, Corpus and Language Technology = Humanidades Digitales, Corpus y Tecnología del Lenguaje
+10.1007/978-3-030-45237-7	Tools and Algorithms for the Construction and Analysis of Systems
+10.1007/978-3-319-89884-1	Programming Languages and Systems: 27th European Symposium on Programming, ESOP 2018, Held as Part of the European Joint Conferences on Theory and Practice of Software, ETAPS 2018, Thessaloniki, Greece, April 14-20, 2018, Proceedings

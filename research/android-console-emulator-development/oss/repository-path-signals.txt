@@ -1,0 +1,1333 @@
+
+## Swordfish90/Lemuroid truncated= False
+.github
+.github/FUNDING.yml
+.github/ISSUE_TEMPLATE
+.github/ISSUE_TEMPLATE/bug_report.md
+.github/ISSUE_TEMPLATE/feature_request.md
+.github/workflows
+.github/workflows/checkstyle.yml
+.github/workflows/publish.yml
+COPYING
+baselineprofile/src/main/AndroidManifest.xml
+fastlane/metadata/android
+fastlane/metadata/android/en-US
+fastlane/metadata/android/en-US/full_description.txt
+fastlane/metadata/android/en-US/images
+fastlane/metadata/android/en-US/images/phoneScreenshots
+fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg
+fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg
+fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg
+fastlane/metadata/android/en-US/images/tvBanner.png
+fastlane/metadata/android/en-US/short_description.txt
+gradle.properties
+gradle
+gradle/wrapper
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+lemuroid-app-ext-free/src/main/AndroidManifest.xml
+lemuroid-app-ext-play/src/main/AndroidManifest.xml
+lemuroid-app/src/main/AndroidManifest.xml
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/ActivityUtils.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/ComposeUtils.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/ContextUtils.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/WorkManagerUtils.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/compose
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/compose/MergedPaddingValues.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/settings
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/settings/Components.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/settings/LemuroidSettingsList.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/settings/LemuroidSettingsListMultiSelect.kt
+lemuroid-app/src/main/java/com/swordfish/lemuroid/app/utils/android/settings/States.kt
+lemuroid-app/src/main/res/raw/licenses.html
+lemuroid-metadata-libretro-db/src/main/AndroidManifest.xml
+lemuroid-metadata-libretro-db/src/main/assets/libretro-db.sqlite
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/LibretroDBMetadataProvider.kt
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/db
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/db/LibretroDBManager.kt
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/db/LibretroDatabase.kt
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/db/dao
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/db/dao/GameDao.kt
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/db/entity
+lemuroid-metadata-libretro-db/src/main/java/com/swordfish/lemuroid/metadata/libretrodb/db/entity/LibretroRom.kt
+lemuroid-touchinput/src/main/AndroidManifest.xml
+retrograde-app-shared/src/main/AndroidManifest.xml
+retrograde-app-shared/src/main/java/com/swordfish/lemuroid/lib/android
+retrograde-app-shared/src/main/java/com/swordfish/lemuroid/lib/android/RetrogradeActivity.kt
+retrograde-app-shared/src/main/java/com/swordfish/lemuroid/lib/android/RetrogradeAppCompatActivity.kt
+retrograde-app-shared/src/main/java/com/swordfish/lemuroid/lib/android/RetrogradeComponentActivity.kt
+retrograde-app-shared/src/main/java/com/swordfish/lemuroid/lib/injection/AndroidWorkerInjection.kt
+retrograde-app-shared/src/main/java/com/swordfish/lemuroid/lib/injection/AndroidWorkerInjectionModule.kt
+retrograde-app-shared/src/main/java/com/swordfish/lemuroid/lib/storage/local/DocumentFileParser.kt
+retrograde-util/src/main/AndroidManifest.xml
+retrograde-util/src/main/java/com/swordfish/lemuroid/common/Android.kt
+matched 65 total 1098
+
+## libretro/RetroArch truncated= False
+.github
+.github/FUNDING.yml
+.github/ISSUE_TEMPLATE
+.github/ISSUE_TEMPLATE/01-bug-report.yml
+.github/ISSUE_TEMPLATE/02-feature-request.md
+.github/ISSUE_TEMPLATE/config.yml
+.github/PULL_REQUEST_TEMPLATE.md
+.github/dependabot.yml
+.github/workflows
+.github/workflows/3DS.yml
+.github/workflows/Android.yml
+.github/workflows/DOS-DJGPP.yml
+.github/workflows/Emscripten.yml
+.github/workflows/GameCube.yml
+.github/workflows/Linux-Headless.yml
+.github/workflows/Linux-asan-ubsan.yml
+.github/workflows/Linux-libretro-common-samples.yml
+.github/workflows/Linux-libretro-db-samples.yml
+.github/workflows/Linux-samples-gfx.yml
+.github/workflows/Linux-samples-tasks.yml
+.github/workflows/Linux.yml
+.github/workflows/MSVC.yml
+.github/workflows/MSYS2.yml
+.github/workflows/MacOS.yml
+.github/workflows/Miyoo.yml
+.github/workflows/PS2.yml
+.github/workflows/PS3-PSL1GHT.yml
+.github/workflows/PS4-ORBIS.yml
+.github/workflows/PSP.yml
+.github/workflows/PSVita.yml
+.github/workflows/RS90.yml
+.github/workflows/RetroFW.yml
+.github/workflows/SourceRelease.yml
+.github/workflows/Switch-libnx.yml
+.github/workflows/Wii.yml
+.github/workflows/WiiU.yml
+.github/workflows/Windows-ARM64.yml
+.github/workflows/Windows-i686-MXE.yml
+.github/workflows/Windows-x64-MXE.yml
+.github/workflows/crowdin-daily.yml
+.github/workflows/crowdin.yml
+.github/workflows/iOS.yml
+.github/workflows/retroarch.yml
+.github/workflows/webOS.yml
+COPYING
+SECURITY.md
+camera/drivers/android.c
+cores/libretro-ffmpeg
+cores/libretro-ffmpeg/Makefile
+cores/libretro-ffmpeg/Makefile.common
+cores/libretro-ffmpeg/Makefile.ffmpeg
+cores/libretro-ffmpeg/ffmpeg_core.c
+cores/libretro-ffmpeg/internal_cores.h
+cores/libretro-ffmpeg/link.T
+cores/libretro-imageviewer
+cores/libretro-imageviewer/LICENSE
+cores/libretro-imageviewer/Makefile
+cores/libretro-imageviewer/image_core.c
+cores/libretro-imageviewer/internal_cores.h
+cores/libretro-imageviewer/stb_image.h
+cores/libretro-mpv
+cores/libretro-mpv/LICENSE
+cores/libretro-mpv/Makefile
+cores/libretro-mpv/README.md
+cores/libretro-mpv/internal_cores.h
+cores/libretro-mpv/link.T
+cores/libretro-mpv/mpv-libretro.c
+cores/libretro-mpv/version.h
+cores/libretro-net-retropad
+cores/libretro-net-retropad/Makefile
+cores/libretro-net-retropad/internal_cores.h
+cores/libretro-net-retropad/jni
+cores/libretro-net-retropad/jni/Android.mk
+cores/libretro-net-retropad/jni/Application.mk
+cores/libretro-net-retropad/link.T
+cores/libretro-net-retropad/net_retropad_core.c
+cores/libretro-net-retropad/remotepad.h
+cores/libretro-video-processor
+cores/libretro-video-processor/LICENSE
+cores/libretro-video-processor/Makefile
+cores/libretro-video-processor/README.md
+cores/libretro-video-processor/internal_cores.h
+cores/libretro-video-processor/link.T
+cores/libretro-video-processor/video_processor_v4l2.c
+cores/libretro-webm
+cores/libretro-webm/internal_cores.h
+cores/libretro-webm/webm_core.c
+deps/Pigs-In-A-Blanket/LICENSE
+deps/SPIRV-Cross/.github
+deps/SPIRV-Cross/.github/workflows
+deps/SPIRV-Cross/.github/workflows/main.yml
+deps/SPIRV-Cross/CMakeLists.txt
+deps/SPIRV-Cross/LICENSE
+deps/SPIRV-Cross/LICENSES
+deps/SPIRV-Cross/LICENSES/Apache-2.0.txt
+deps/SPIRV-Cross/LICENSES/CC-BY-4.0.txt
+deps/SPIRV-Cross/LICENSES/MIT.txt
+deps/SPIRV-Cross/cmake
+deps/SPIRV-Cross/cmake/gitversion.in.h
+deps/SPIRV-Cross/reference/shaders-no-opt/asm/comp/fuzz-collapse-degenerate-loop.asm.comp
+deps/SPIRV-Cross/reference/shaders-no-opt/asm/comp/fuzz-loop-variable-dominator-with-unreachable-continue-block.asm.comp
+deps/SPIRV-Cross/shaders-no-opt/asm/comp/fuzz-collapse-degenerate-loop.asm.comp
+deps/SPIRV-Cross/shaders-no-opt/asm/comp/fuzz-loop-variable-dominator-with-unreachable-continue-block.asm.comp
+deps/SPIRV-Cross/test_shaders.py
+deps/SPIRV-Cross/test_shaders.sh
+deps/SPIRV-Cross/tests-other
+deps/SPIRV-Cross/tests-other/c_api_test.c
+deps/SPIRV-Cross/tests-other/c_api_test.spv
+deps/SPIRV-Cross/tests-other/hlsl_resource_binding.spv
+deps/SPIRV-Cross/tests-other/hlsl_resource_bindings.cpp
+deps/SPIRV-Cross/tests-other/hlsl_wave_mask.cpp
+deps/SPIRV-Cross/tests-other/msl_constexpr_test.cpp
+deps/SPIRV-Cross/tests-other/msl_constexpr_test.spv
+deps/SPIRV-Cross/tests-other/msl_resource_binding.spv
+deps/SPIRV-Cross/tests-other/msl_resource_bindings.cpp
+deps/SPIRV-Cross/tests-other/msl_ycbcr_conversion_test.cpp
+deps/SPIRV-Cross/tests-other/msl_ycbcr_conversion_test.spv
+deps/SPIRV-Cross/tests-other/msl_ycbcr_conversion_test_2.spv
+deps/SPIRV-Cross/tests-other/small_vector.cpp
+deps/SPIRV-Cross/tests-other/typed_id_test.cpp
+deps/bearssl-0.6/LICENSE.txt
+deps/bearssl-0.6/test
+deps/bearssl-0.6/test/test_crypto.c
+deps/bearssl-0.6/test/test_math.c
+deps/bearssl-0.6/test/test_speed.c
+deps/bearssl-0.6/test/test_x509.c
+deps/bearssl-0.6/test/x509
+deps/bearssl-0.6/test/x509/alltests.txt
+deps/bearssl-0.6/test/x509/dn-ee.der
+deps/bearssl-0.6/test/x509/dn-ica1.der
+deps/bearssl-0.6/test/x509/dn-ica2.der
+deps/bearssl-0.6/test/x509/dn-root-new.der
+deps/bearssl-0.6/test/x509/dn-root.der
+deps/bearssl-0.6/test/x509/ee-badsig1.crt
+deps/bearssl-0.6/test/x509/ee-badsig2.crt
+deps/bearssl-0.6/test/x509/ee-cp1.crt
+deps/bearssl-0.6/test/x509/ee-cp2.crt
+deps/bearssl-0.6/test/x509/ee-cp3.crt
+deps/bearssl-0.6/test/x509/ee-cp4.crt
+deps/bearssl-0.6/test/x509/ee-dates.crt
+deps/bearssl-0.6/test/x509/ee-md5.crt
+deps/bearssl-0.6/test/x509/ee-names.crt
+deps/bearssl-0.6/test/x509/ee-names2.crt
+deps/bearssl-0.6/test/x509/ee-names3.crt
+deps/bearssl-0.6/test/x509/ee-names4.crt
+deps/bearssl-0.6/test/x509/ee-p256-sha1.crt
+deps/bearssl-0.6/test/x509/ee-p256-sha224.crt
+deps/bearssl-0.6/test/x509/ee-p256-sha256.crt
+deps/bearssl-0.6/test/x509/ee-p256-sha384.crt
+deps/bearssl-0.6/test/x509/ee-p256-sha512.crt
+deps/bearssl-0.6/test/x509/ee-p256.crt
+deps/bearssl-0.6/test/x509/ee-p384.crt
+deps/bearssl-0.6/test/x509/ee-p521.crt
+deps/bearssl-0.6/test/x509/ee-sha1.crt
+deps/bearssl-0.6/test/x509/ee-sha224.crt
+deps/bearssl-0.6/test/x509/ee-sha384.crt
+deps/bearssl-0.6/test/x509/ee-sha512.crt
+deps/bearssl-0.6/test/x509/ee-trailing.crt
+deps/bearssl-0.6/test/x509/ee.crt
+deps/bearssl-0.6/test/x509/ica1-1016.crt
+deps/bearssl-0.6/test/x509/ica1-1017.crt
+deps/bearssl-0.6/test/x509/ica1-4096.crt
+deps/bearssl-0.6/test/x509/ica1-p256.crt
+deps/bearssl-0.6/test/x509/ica1-p384.crt
+deps/bearssl-0.6/test/x509/ica1-p521.crt
+deps/bearssl-0.6/test/x509/ica1.crt
+deps/bearssl-0.6/test/x509/ica2-1016.crt
+deps/bearssl-0.6/test/x509/ica2-1017.crt
+deps/bearssl-0.6/test/x509/ica2-4096.crt
+deps/bearssl-0.6/test/x509/ica2-notCA.crt
+deps/bearssl-0.6/test/x509/ica2-p256.crt
+deps/bearssl-0.6/test/x509/ica2-p384.crt
+deps/bearssl-0.6/test/x509/ica2-p521.crt
+deps/bearssl-0.6/test/x509/ica2.crt
+deps/bearssl-0.6/test/x509/junk.crt
+deps/bearssl-0.6/test/x509/names.crt
+deps/bearssl-0.6/test/x509/root-p256.crt
+deps/bearssl-0.6/test/x509/root-p384.crt
+deps/bearssl-0.6/test/x509/root-p521.crt
+deps/bearssl-0.6/test/x509/root.crt
+deps/game_ai_lib/CMakeLists.txt
+deps/game_ai_lib/test.cpp
+deps/glslang/glslang/CMakeLists.txt
+deps/glslang/glslang/External/CMakeLists.txt
+deps/glslang/glslang/OGLCompilersDLL/CMakeLists.txt
+deps/glslang/glslang/SPIRV/CMakeLists.txt
+deps/glslang/glslang/SPIRV/doc.cpp
+deps/glslang/glslang/SPIRV/doc.h
+deps/glslang/glslang/StandAlone/CMakeLists.txt
+deps/glslang/glslang/Test
+deps/glslang/glslang/Test/100.conf
+deps/glslang/glslang/Test/100.frag
+deps/glslang/glslang/Test/100Limits.vert
+deps/glslang/glslang/Test/100samplerExternal.frag
+deps/glslang/glslang/Test/100scope.vert
+deps/glslang/glslang/Test/110scope.vert
+deps/glslang/glslang/Test/120.frag
+deps/glslang/glslang/Test/120.vert
+deps/glslang/glslang/Test/130.frag
+deps/glslang/glslang/Test/130.vert
+deps/glslang/glslang/Test/140.frag
+deps/glslang/glslang/Test/140.vert
+deps/glslang/glslang/Test/150.frag
+deps/glslang/glslang/Test/150.geom
+deps/glslang/glslang/Test/150.tesc
+deps/glslang/glslang/Test/150.tese
+deps/glslang/glslang/Test/150.vert
+deps/glslang/glslang/Test/300.frag
+deps/glslang/glslang/Test/300.vert
+deps/glslang/glslang/Test/300BuiltIns.frag
+deps/glslang/glslang/Test/300block.frag
+deps/glslang/glslang/Test/300layout.frag
+deps/glslang/glslang/Test/300layout.vert
+deps/glslang/glslang/Test/300link.frag
+deps/glslang/glslang/Test/300link2.frag
+deps/glslang/glslang/Test/300link3.frag
+deps/glslang/glslang/Test/300operations.frag
+deps/glslang/glslang/Test/300samplerExternal.frag
+deps/glslang/glslang/Test/300scope.vert
+deps/glslang/glslang/Test/310.comp
+deps/glslang/glslang/Test/310.frag
+deps/glslang/glslang/Test/310.geom
+deps/glslang/glslang/Test/310.tesc
+deps/glslang/glslang/Test/310.tese
+deps/glslang/glslang/Test/310.vert
+deps/glslang/glslang/Test/310AofA.vert
+deps/glslang/glslang/Test/310implicitSizeArrayError.vert
+deps/glslang/glslang/Test/310runtimeArray.vert
+deps/glslang/glslang/Test/320.comp
+deps/glslang/glslang/Test/320.frag
+deps/glslang/glslang/Test/320.geom
+deps/glslang/glslang/Test/320.tesc
+deps/glslang/glslang/Test/320.tese
+deps/glslang/glslang/Test/320.vert
+deps/glslang/glslang/Test/330.frag
+deps/glslang/glslang/Test/330comp.frag
+deps/glslang/glslang/Test/400.frag
+deps/glslang/glslang/Test/400.geom
+deps/glslang/glslang/Test/400.tesc
+deps/glslang/glslang/Test/400.tese
+deps/glslang/glslang/Test/400.vert
+deps/glslang/glslang/Test/410.geom
+deps/glslang/glslang/Test/410.tesc
+deps/glslang/glslang/Test/410.vert
+deps/glslang/glslang/Test/420.comp
+deps/glslang/glslang/Test/420.frag
+deps/glslang/glslang/Test/420.geom
+deps/glslang/glslang/Test/420.tesc
+deps/glslang/glslang/Test/420.tese
+deps/glslang/glslang/Test/420.vert
+matched 2786 total 12126
+
+## libretro/mgba truncated= False
+.github
+.github/FUNDING.yml
+.github/workflows
+.github/workflows/compilation.yml
+.github/workflows/crowdin_prep.yml
+.github/workflows/crowdin_translate.yml
+CMakeLists.txt
+CMakePresets.json
+LICENSE
+cinema
+cinema/.gitignore
+cinema/gb
+cinema/gb/acid
+cinema/gb/acid/cgb-acid2
+cinema/gb/acid/cgb-acid2/baseline_0000.png
+cinema/gb/acid/cgb-acid2/test.gbc
+cinema/gb/acid/config.ini
+cinema/gb/acid/dmg-acid2
+cinema/gb/acid/dmg-acid2/baseline_0000.png
+cinema/gb/acid/dmg-acid2/test.gb
+cinema/gb/blargg
+cinema/gb/blargg/cgb_sound
+cinema/gb/blargg/cgb_sound/01-registers
+cinema/gb/blargg/cgb_sound/01-registers/baseline_0000.png
+cinema/gb/blargg/cgb_sound/01-registers/test.gb
+cinema/gb/blargg/cgb_sound/02-len ctr
+cinema/gb/blargg/cgb_sound/02-len ctr/baseline_0000.png
+cinema/gb/blargg/cgb_sound/02-len ctr/config.ini
+cinema/gb/blargg/cgb_sound/02-len ctr/test.gb
+cinema/gb/blargg/cgb_sound/03-trigger
+cinema/gb/blargg/cgb_sound/03-trigger/baseline_0000.png
+cinema/gb/blargg/cgb_sound/03-trigger/config.ini
+cinema/gb/blargg/cgb_sound/03-trigger/test.gb
+cinema/gb/blargg/cgb_sound/04-sweep
+cinema/gb/blargg/cgb_sound/04-sweep/baseline_0000.png
+cinema/gb/blargg/cgb_sound/04-sweep/test.gb
+cinema/gb/blargg/cgb_sound/05-sweep details
+cinema/gb/blargg/cgb_sound/05-sweep details/baseline_0000.png
+cinema/gb/blargg/cgb_sound/05-sweep details/test.gb
+cinema/gb/blargg/cgb_sound/06-overflow on trigger
+cinema/gb/blargg/cgb_sound/06-overflow on trigger/baseline_0000.png
+cinema/gb/blargg/cgb_sound/06-overflow on trigger/test.gb
+cinema/gb/blargg/cgb_sound/07-len sweep period sync
+cinema/gb/blargg/cgb_sound/07-len sweep period sync/baseline_0000.png
+cinema/gb/blargg/cgb_sound/07-len sweep period sync/test.gb
+cinema/gb/blargg/cgb_sound/08-len ctr during power
+cinema/gb/blargg/cgb_sound/08-len ctr during power/baseline_0000.png
+cinema/gb/blargg/cgb_sound/08-len ctr during power/test.gb
+cinema/gb/blargg/cgb_sound/09-wave read while on
+cinema/gb/blargg/cgb_sound/09-wave read while on/baseline_0000.png
+cinema/gb/blargg/cgb_sound/09-wave read while on/test.gb
+cinema/gb/blargg/cgb_sound/10-wave trigger while on
+cinema/gb/blargg/cgb_sound/10-wave trigger while on/baseline_0000.png
+cinema/gb/blargg/cgb_sound/10-wave trigger while on/test.gb
+cinema/gb/blargg/cgb_sound/11-regs after power
+cinema/gb/blargg/cgb_sound/11-regs after power/baseline_0000.png
+cinema/gb/blargg/cgb_sound/11-regs after power/test.gb
+cinema/gb/blargg/cgb_sound/12-wave
+cinema/gb/blargg/cgb_sound/12-wave/baseline_0000.png
+cinema/gb/blargg/cgb_sound/12-wave/test.gb
+cinema/gb/blargg/config.ini
+cinema/gb/blargg/cpu_instrs
+cinema/gb/blargg/cpu_instrs/01-special
+cinema/gb/blargg/cpu_instrs/01-special/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/01-special/test.gb
+cinema/gb/blargg/cpu_instrs/02-interrupts
+cinema/gb/blargg/cpu_instrs/02-interrupts/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/02-interrupts/test.gb
+cinema/gb/blargg/cpu_instrs/03-op sp,hl
+cinema/gb/blargg/cpu_instrs/03-op sp,hl/config.ini
+cinema/gb/blargg/cpu_instrs/03-op sp,hl/test.gb
+cinema/gb/blargg/cpu_instrs/03-op sp,hl/xbaseline_0000.png
+cinema/gb/blargg/cpu_instrs/04-op r,imm
+cinema/gb/blargg/cpu_instrs/04-op r,imm/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/04-op r,imm/test.gb
+cinema/gb/blargg/cpu_instrs/05-op rp
+cinema/gb/blargg/cpu_instrs/05-op rp/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/05-op rp/test.gb
+cinema/gb/blargg/cpu_instrs/06-ld r,r
+cinema/gb/blargg/cpu_instrs/06-ld r,r/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/06-ld r,r/test.gb
+cinema/gb/blargg/cpu_instrs/07-jr,jp,call,ret,rst
+cinema/gb/blargg/cpu_instrs/07-jr,jp,call,ret,rst/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/07-jr,jp,call,ret,rst/test.gb
+cinema/gb/blargg/cpu_instrs/08-misc instrs
+cinema/gb/blargg/cpu_instrs/08-misc instrs/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/08-misc instrs/test.gb
+cinema/gb/blargg/cpu_instrs/09-op r,r
+cinema/gb/blargg/cpu_instrs/09-op r,r/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/09-op r,r/test.gb
+cinema/gb/blargg/cpu_instrs/10-bit ops
+cinema/gb/blargg/cpu_instrs/10-bit ops/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/10-bit ops/config.ini
+cinema/gb/blargg/cpu_instrs/10-bit ops/test.gb
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)/config.ini
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)/test.gb
+cinema/gb/blargg/dmg_sound
+cinema/gb/blargg/dmg_sound/01-registers
+cinema/gb/blargg/dmg_sound/01-registers/baseline_0000.png
+cinema/gb/blargg/dmg_sound/01-registers/test.gb
+cinema/gb/blargg/dmg_sound/02-len ctr
+cinema/gb/blargg/dmg_sound/02-len ctr/baseline_0000.png
+cinema/gb/blargg/dmg_sound/02-len ctr/config.ini
+cinema/gb/blargg/dmg_sound/02-len ctr/test.gb
+cinema/gb/blargg/dmg_sound/03-trigger
+cinema/gb/blargg/dmg_sound/03-trigger/baseline_0000.png
+cinema/gb/blargg/dmg_sound/03-trigger/config.ini
+cinema/gb/blargg/dmg_sound/03-trigger/test.gb
+cinema/gb/blargg/dmg_sound/04-sweep
+cinema/gb/blargg/dmg_sound/04-sweep/baseline_0000.png
+cinema/gb/blargg/dmg_sound/04-sweep/test.gb
+cinema/gb/blargg/dmg_sound/05-sweep details
+cinema/gb/blargg/dmg_sound/05-sweep details/baseline_0000.png
+cinema/gb/blargg/dmg_sound/05-sweep details/test.gb
+cinema/gb/blargg/dmg_sound/06-overflow on trigger
+cinema/gb/blargg/dmg_sound/06-overflow on trigger/baseline_0000.png
+cinema/gb/blargg/dmg_sound/06-overflow on trigger/test.gb
+cinema/gb/blargg/dmg_sound/07-len sweep period sync
+cinema/gb/blargg/dmg_sound/07-len sweep period sync/baseline_0000.png
+cinema/gb/blargg/dmg_sound/07-len sweep period sync/test.gb
+cinema/gb/blargg/dmg_sound/08-len ctr during power
+cinema/gb/blargg/dmg_sound/08-len ctr during power/baseline_0000.png
+cinema/gb/blargg/dmg_sound/08-len ctr during power/test.gb
+cinema/gb/blargg/dmg_sound/09-wave read while on
+cinema/gb/blargg/dmg_sound/09-wave read while on/baseline_0000.png
+cinema/gb/blargg/dmg_sound/09-wave read while on/test.gb
+cinema/gb/blargg/dmg_sound/10-wave trigger while on
+cinema/gb/blargg/dmg_sound/10-wave trigger while on/config.ini
+cinema/gb/blargg/dmg_sound/10-wave trigger while on/test.gb
+cinema/gb/blargg/dmg_sound/10-wave trigger while on/xbaseline_0000.png
+cinema/gb/blargg/dmg_sound/11-regs after power
+cinema/gb/blargg/dmg_sound/11-regs after power/baseline_0000.png
+cinema/gb/blargg/dmg_sound/11-regs after power/test.gb
+cinema/gb/blargg/dmg_sound/12-wave write while on
+cinema/gb/blargg/dmg_sound/12-wave write while on/baseline_0000.png
+cinema/gb/blargg/dmg_sound/12-wave write while on/test.gb
+cinema/gb/blargg/halt_bug
+cinema/gb/blargg/halt_bug/baseline_0000.png
+cinema/gb/blargg/halt_bug/test.gb
+cinema/gb/blargg/instr_timing
+cinema/gb/blargg/instr_timing/baseline_0000.png
+cinema/gb/blargg/instr_timing/test.gb
+cinema/gb/blargg/interrupt_time
+cinema/gb/blargg/interrupt_time/baseline_0000.png
+cinema/gb/blargg/interrupt_time/test.gb
+cinema/gb/blargg/mem_timing
+cinema/gb/blargg/mem_timing/01-read_timing
+cinema/gb/blargg/mem_timing/01-read_timing/baseline_0000.png
+cinema/gb/blargg/mem_timing/01-read_timing/test.gb
+cinema/gb/blargg/mem_timing/02-write_timing
+cinema/gb/blargg/mem_timing/02-write_timing/baseline_0000.png
+cinema/gb/blargg/mem_timing/02-write_timing/test.gb
+cinema/gb/blargg/mem_timing/03-modify_timing
+cinema/gb/blargg/mem_timing/03-modify_timing/baseline_0000.png
+cinema/gb/blargg/mem_timing/03-modify_timing/test.gb
+cinema/gb/mooneye-gb
+cinema/gb/mooneye-gb/LICENSE
+cinema/gb/mooneye-gb/acceptance
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing/test.gb
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing/test.sym
+cinema/gb/mooneye-gb/acceptance/bits
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam/test.gb
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam/test.sym
+cinema/gb/mooneye-gb/acceptance/bits/reg_f
+cinema/gb/mooneye-gb/acceptance/bits/reg_f/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/bits/reg_f/test.gb
+cinema/gb/mooneye-gb/acceptance/bits/reg_f/test.sym
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS/test.gb
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-S
+cinema/gb/mooneye-gb/acceptance/boot_div-S/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div-S/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div-S/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-S/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div2-S
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/test.sym
+cinema/gb/mooneye-gb/acceptance/call_cc_timing
+cinema/gb/mooneye-gb/acceptance/call_cc_timing/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/call_cc_timing/test.gb
+cinema/gb/mooneye-gb/acceptance/call_cc_timing/test.sym
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2/test.gb
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2/test.sym
+cinema/gb/mooneye-gb/acceptance/call_timing
+cinema/gb/mooneye-gb/acceptance/call_timing/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/call_timing/test.gb
+cinema/gb/mooneye-gb/acceptance/call_timing/test.sym
+cinema/gb/mooneye-gb/acceptance/call_timing2
+matched 1793 total 3637
+
+## mgba-emu/mgba truncated= False
+.github
+.github/FUNDING.yml
+CMakeLists.txt
+CMakePresets.json
+LICENSE
+cinema
+cinema/.gitignore
+cinema/gb
+cinema/gb/acid
+cinema/gb/acid/cgb-acid2
+cinema/gb/acid/cgb-acid2/baseline_0000.png
+cinema/gb/acid/cgb-acid2/test.gbc
+cinema/gb/acid/config.ini
+cinema/gb/acid/dmg-acid2
+cinema/gb/acid/dmg-acid2/baseline_0000.png
+cinema/gb/acid/dmg-acid2/test.gb
+cinema/gb/blargg
+cinema/gb/blargg/cgb_sound
+cinema/gb/blargg/cgb_sound/01-registers
+cinema/gb/blargg/cgb_sound/01-registers/baseline_0000.png
+cinema/gb/blargg/cgb_sound/01-registers/test.gb
+cinema/gb/blargg/cgb_sound/02-len ctr
+cinema/gb/blargg/cgb_sound/02-len ctr/baseline_0000.png
+cinema/gb/blargg/cgb_sound/02-len ctr/config.ini
+cinema/gb/blargg/cgb_sound/02-len ctr/test.gb
+cinema/gb/blargg/cgb_sound/03-trigger
+cinema/gb/blargg/cgb_sound/03-trigger/baseline_0000.png
+cinema/gb/blargg/cgb_sound/03-trigger/config.ini
+cinema/gb/blargg/cgb_sound/03-trigger/test.gb
+cinema/gb/blargg/cgb_sound/04-sweep
+cinema/gb/blargg/cgb_sound/04-sweep/baseline_0000.png
+cinema/gb/blargg/cgb_sound/04-sweep/test.gb
+cinema/gb/blargg/cgb_sound/05-sweep details
+cinema/gb/blargg/cgb_sound/05-sweep details/baseline_0000.png
+cinema/gb/blargg/cgb_sound/05-sweep details/test.gb
+cinema/gb/blargg/cgb_sound/06-overflow on trigger
+cinema/gb/blargg/cgb_sound/06-overflow on trigger/baseline_0000.png
+cinema/gb/blargg/cgb_sound/06-overflow on trigger/test.gb
+cinema/gb/blargg/cgb_sound/07-len sweep period sync
+cinema/gb/blargg/cgb_sound/07-len sweep period sync/baseline_0000.png
+cinema/gb/blargg/cgb_sound/07-len sweep period sync/test.gb
+cinema/gb/blargg/cgb_sound/08-len ctr during power
+cinema/gb/blargg/cgb_sound/08-len ctr during power/baseline_0000.png
+cinema/gb/blargg/cgb_sound/08-len ctr during power/test.gb
+cinema/gb/blargg/cgb_sound/09-wave read while on
+cinema/gb/blargg/cgb_sound/09-wave read while on/baseline_0000.png
+cinema/gb/blargg/cgb_sound/09-wave read while on/test.gb
+cinema/gb/blargg/cgb_sound/10-wave trigger while on
+cinema/gb/blargg/cgb_sound/10-wave trigger while on/baseline_0000.png
+cinema/gb/blargg/cgb_sound/10-wave trigger while on/test.gb
+cinema/gb/blargg/cgb_sound/11-regs after power
+cinema/gb/blargg/cgb_sound/11-regs after power/baseline_0000.png
+cinema/gb/blargg/cgb_sound/11-regs after power/test.gb
+cinema/gb/blargg/cgb_sound/12-wave
+cinema/gb/blargg/cgb_sound/12-wave/baseline_0000.png
+cinema/gb/blargg/cgb_sound/12-wave/test.gb
+cinema/gb/blargg/config.ini
+cinema/gb/blargg/cpu_instrs
+cinema/gb/blargg/cpu_instrs/01-special
+cinema/gb/blargg/cpu_instrs/01-special/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/01-special/test.gb
+cinema/gb/blargg/cpu_instrs/02-interrupts
+cinema/gb/blargg/cpu_instrs/02-interrupts/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/02-interrupts/test.gb
+cinema/gb/blargg/cpu_instrs/03-op sp,hl
+cinema/gb/blargg/cpu_instrs/03-op sp,hl/config.ini
+cinema/gb/blargg/cpu_instrs/03-op sp,hl/test.gb
+cinema/gb/blargg/cpu_instrs/03-op sp,hl/xbaseline_0000.png
+cinema/gb/blargg/cpu_instrs/04-op r,imm
+cinema/gb/blargg/cpu_instrs/04-op r,imm/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/04-op r,imm/test.gb
+cinema/gb/blargg/cpu_instrs/05-op rp
+cinema/gb/blargg/cpu_instrs/05-op rp/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/05-op rp/test.gb
+cinema/gb/blargg/cpu_instrs/06-ld r,r
+cinema/gb/blargg/cpu_instrs/06-ld r,r/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/06-ld r,r/test.gb
+cinema/gb/blargg/cpu_instrs/07-jr,jp,call,ret,rst
+cinema/gb/blargg/cpu_instrs/07-jr,jp,call,ret,rst/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/07-jr,jp,call,ret,rst/test.gb
+cinema/gb/blargg/cpu_instrs/08-misc instrs
+cinema/gb/blargg/cpu_instrs/08-misc instrs/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/08-misc instrs/test.gb
+cinema/gb/blargg/cpu_instrs/09-op r,r
+cinema/gb/blargg/cpu_instrs/09-op r,r/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/09-op r,r/test.gb
+cinema/gb/blargg/cpu_instrs/10-bit ops
+cinema/gb/blargg/cpu_instrs/10-bit ops/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/10-bit ops/config.ini
+cinema/gb/blargg/cpu_instrs/10-bit ops/test.gb
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)/baseline_0000.png
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)/config.ini
+cinema/gb/blargg/cpu_instrs/11-op a,(hl)/test.gb
+cinema/gb/blargg/dmg_sound
+cinema/gb/blargg/dmg_sound/01-registers
+cinema/gb/blargg/dmg_sound/01-registers/baseline_0000.png
+cinema/gb/blargg/dmg_sound/01-registers/test.gb
+cinema/gb/blargg/dmg_sound/02-len ctr
+cinema/gb/blargg/dmg_sound/02-len ctr/baseline_0000.png
+cinema/gb/blargg/dmg_sound/02-len ctr/config.ini
+cinema/gb/blargg/dmg_sound/02-len ctr/test.gb
+cinema/gb/blargg/dmg_sound/03-trigger
+cinema/gb/blargg/dmg_sound/03-trigger/baseline_0000.png
+cinema/gb/blargg/dmg_sound/03-trigger/config.ini
+cinema/gb/blargg/dmg_sound/03-trigger/test.gb
+cinema/gb/blargg/dmg_sound/04-sweep
+cinema/gb/blargg/dmg_sound/04-sweep/baseline_0000.png
+cinema/gb/blargg/dmg_sound/04-sweep/test.gb
+cinema/gb/blargg/dmg_sound/05-sweep details
+cinema/gb/blargg/dmg_sound/05-sweep details/baseline_0000.png
+cinema/gb/blargg/dmg_sound/05-sweep details/test.gb
+cinema/gb/blargg/dmg_sound/06-overflow on trigger
+cinema/gb/blargg/dmg_sound/06-overflow on trigger/baseline_0000.png
+cinema/gb/blargg/dmg_sound/06-overflow on trigger/test.gb
+cinema/gb/blargg/dmg_sound/07-len sweep period sync
+cinema/gb/blargg/dmg_sound/07-len sweep period sync/baseline_0000.png
+cinema/gb/blargg/dmg_sound/07-len sweep period sync/test.gb
+cinema/gb/blargg/dmg_sound/08-len ctr during power
+cinema/gb/blargg/dmg_sound/08-len ctr during power/baseline_0000.png
+cinema/gb/blargg/dmg_sound/08-len ctr during power/test.gb
+cinema/gb/blargg/dmg_sound/09-wave read while on
+cinema/gb/blargg/dmg_sound/09-wave read while on/baseline_0000.png
+cinema/gb/blargg/dmg_sound/09-wave read while on/test.gb
+cinema/gb/blargg/dmg_sound/10-wave trigger while on
+cinema/gb/blargg/dmg_sound/10-wave trigger while on/config.ini
+cinema/gb/blargg/dmg_sound/10-wave trigger while on/test.gb
+cinema/gb/blargg/dmg_sound/10-wave trigger while on/xbaseline_0000.png
+cinema/gb/blargg/dmg_sound/11-regs after power
+cinema/gb/blargg/dmg_sound/11-regs after power/baseline_0000.png
+cinema/gb/blargg/dmg_sound/11-regs after power/test.gb
+cinema/gb/blargg/dmg_sound/12-wave write while on
+cinema/gb/blargg/dmg_sound/12-wave write while on/baseline_0000.png
+cinema/gb/blargg/dmg_sound/12-wave write while on/test.gb
+cinema/gb/blargg/halt_bug
+cinema/gb/blargg/halt_bug/baseline_0000.png
+cinema/gb/blargg/halt_bug/test.gb
+cinema/gb/blargg/instr_timing
+cinema/gb/blargg/instr_timing/baseline_0000.png
+cinema/gb/blargg/instr_timing/test.gb
+cinema/gb/blargg/interrupt_time
+cinema/gb/blargg/interrupt_time/baseline_0000.png
+cinema/gb/blargg/interrupt_time/test.gb
+cinema/gb/blargg/mem_timing
+cinema/gb/blargg/mem_timing/01-read_timing
+cinema/gb/blargg/mem_timing/01-read_timing/baseline_0000.png
+cinema/gb/blargg/mem_timing/01-read_timing/test.gb
+cinema/gb/blargg/mem_timing/02-write_timing
+cinema/gb/blargg/mem_timing/02-write_timing/baseline_0000.png
+cinema/gb/blargg/mem_timing/02-write_timing/test.gb
+cinema/gb/blargg/mem_timing/03-modify_timing
+cinema/gb/blargg/mem_timing/03-modify_timing/baseline_0000.png
+cinema/gb/blargg/mem_timing/03-modify_timing/test.gb
+cinema/gb/mooneye-gb
+cinema/gb/mooneye-gb/LICENSE
+cinema/gb/mooneye-gb/acceptance
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing/test.gb
+cinema/gb/mooneye-gb/acceptance/add_sp_e_timing/test.sym
+cinema/gb/mooneye-gb/acceptance/bits
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam/test.gb
+cinema/gb/mooneye-gb/acceptance/bits/mem_oam/test.sym
+cinema/gb/mooneye-gb/acceptance/bits/reg_f
+cinema/gb/mooneye-gb/acceptance/bits/reg_f/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/bits/reg_f/test.gb
+cinema/gb/mooneye-gb/acceptance/bits/reg_f/test.sym
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS/test.gb
+cinema/gb/mooneye-gb/acceptance/bits/unused_hwio-GS/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-S
+cinema/gb/mooneye-gb/acceptance/boot_div-S/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div-S/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div-S/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-S/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-dmg0/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_div-dmgABCmgb/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div2-S
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_div2-S/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-S/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmg0/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_hwio-dmgABCmgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmg0/xbaseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-dmgABC/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-mgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb/test.sym
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/config.ini
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/test.gb
+cinema/gb/mooneye-gb/acceptance/boot_regs-sgb2/test.sym
+cinema/gb/mooneye-gb/acceptance/call_cc_timing
+cinema/gb/mooneye-gb/acceptance/call_cc_timing/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/call_cc_timing/test.gb
+cinema/gb/mooneye-gb/acceptance/call_cc_timing/test.sym
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2/test.gb
+cinema/gb/mooneye-gb/acceptance/call_cc_timing2/test.sym
+cinema/gb/mooneye-gb/acceptance/call_timing
+cinema/gb/mooneye-gb/acceptance/call_timing/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/call_timing/test.gb
+cinema/gb/mooneye-gb/acceptance/call_timing/test.sym
+cinema/gb/mooneye-gb/acceptance/call_timing2
+cinema/gb/mooneye-gb/acceptance/call_timing2/baseline_0000.png
+cinema/gb/mooneye-gb/acceptance/call_timing2/test.gb
+cinema/gb/mooneye-gb/acceptance/call_timing2/test.sym
+cinema/gb/mooneye-gb/acceptance/di_timing-GS
+matched 1859 total 3725
+
+## nba-emu/NanoBoyAdvance truncated= False
+.github
+.github/workflows
+.github/workflows/build.yml
+CMakeLists.txt
+LICENSE
+src/nba/CMakeLists.txt
+src/platform/core/CMakeLists.txt
+src/platform/qt/CMakeLists.txt
+thirdparty/CMakeLists.txt
+thirdparty/atom-1.0.1/CMakeLists.txt
+thirdparty/atom-1.0.1/LICENSE
+thirdparty/atom-1.0.1/common/CMakeLists.txt
+thirdparty/atom-1.0.1/logger/CMakeLists.txt
+thirdparty/fmt-12.1.0/CMakeLists.txt
+thirdparty/fmt-12.1.0/LICENSE
+thirdparty/fmt-12.1.0/doc-html
+thirdparty/fmt-12.1.0/doc-html/404.html
+thirdparty/fmt-12.1.0/doc-html/api.html
+thirdparty/fmt-12.1.0/doc-html/assets
+thirdparty/fmt-12.1.0/doc-html/assets/_mkdocstrings.css
+thirdparty/fmt-12.1.0/doc-html/assets/images
+thirdparty/fmt-12.1.0/doc-html/assets/images/favicon.png
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/bundle.081f42fc.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/bundle.081f42fc.min.js.map
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.ar.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.da.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.de.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.du.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.el.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.es.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.fi.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.fr.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.he.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.hi.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.hu.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.hy.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.it.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.ja.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.jp.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.kn.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.ko.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.multi.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.nl.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.no.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.pt.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.ro.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.ru.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.sa.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.stemmer.support.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.sv.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.ta.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.te.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.th.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.tr.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.vi.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/min/lunr.zh.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/tinyseg.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/lunr/wordcut.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/workers
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/workers/search.b8dbb3d2.min.js
+thirdparty/fmt-12.1.0/doc-html/assets/javascripts/workers/search.b8dbb3d2.min.js.map
+thirdparty/fmt-12.1.0/doc-html/assets/stylesheets
+thirdparty/fmt-12.1.0/doc-html/assets/stylesheets/main.6543a935.min.css
+thirdparty/fmt-12.1.0/doc-html/assets/stylesheets/main.6543a935.min.css.map
+thirdparty/fmt-12.1.0/doc-html/assets/stylesheets/palette.06af60db.min.css
+thirdparty/fmt-12.1.0/doc-html/assets/stylesheets/palette.06af60db.min.css.map
+thirdparty/fmt-12.1.0/doc-html/fmt.css
+thirdparty/fmt-12.1.0/doc-html/fmt.js
+thirdparty/fmt-12.1.0/doc-html/get-started.html
+thirdparty/fmt-12.1.0/doc-html/index.html
+thirdparty/fmt-12.1.0/doc-html/perf.svg
+thirdparty/fmt-12.1.0/doc-html/python-license.txt
+thirdparty/fmt-12.1.0/doc-html/search
+thirdparty/fmt-12.1.0/doc-html/search/search_index.json
+thirdparty/fmt-12.1.0/doc-html/sitemap.xml
+thirdparty/fmt-12.1.0/doc-html/sitemap.xml.gz
+thirdparty/fmt-12.1.0/doc-html/syntax.html
+thirdparty/fmt-12.1.0/doc
+thirdparty/fmt-12.1.0/doc/ChangeLog-old.md
+thirdparty/fmt-12.1.0/doc/api.md
+thirdparty/fmt-12.1.0/doc/fmt.css
+thirdparty/fmt-12.1.0/doc/fmt.js
+thirdparty/fmt-12.1.0/doc/get-started.md
+thirdparty/fmt-12.1.0/doc/index.md
+thirdparty/fmt-12.1.0/doc/perf.svg
+thirdparty/fmt-12.1.0/doc/python-license.txt
+thirdparty/fmt-12.1.0/doc/syntax.md
+thirdparty/fmt-12.1.0/support/Android.mk
+thirdparty/fmt-12.1.0/support/AndroidManifest.xml
+thirdparty/fmt-12.1.0/support/cmake
+thirdparty/fmt-12.1.0/support/cmake/FindSetEnv.cmake
+thirdparty/fmt-12.1.0/support/cmake/JoinPaths.cmake
+thirdparty/fmt-12.1.0/support/cmake/fmt-config.cmake.in
+thirdparty/fmt-12.1.0/support/cmake/fmt.pc.in
+thirdparty/fmt-12.1.0/support/docopt.py
+thirdparty/fmt-12.1.0/test
+thirdparty/fmt-12.1.0/test/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/add-subdirectory-test
+thirdparty/fmt-12.1.0/test/add-subdirectory-test/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/add-subdirectory-test/main.cc
+thirdparty/fmt-12.1.0/test/args-test.cc
+thirdparty/fmt-12.1.0/test/assert-test.cc
+thirdparty/fmt-12.1.0/test/base-test.cc
+thirdparty/fmt-12.1.0/test/chrono-test.cc
+thirdparty/fmt-12.1.0/test/color-test.cc
+thirdparty/fmt-12.1.0/test/compile-error-test
+thirdparty/fmt-12.1.0/test/compile-error-test/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/compile-fp-test.cc
+thirdparty/fmt-12.1.0/test/compile-test.cc
+thirdparty/fmt-12.1.0/test/cuda-test
+thirdparty/fmt-12.1.0/test/cuda-test/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/cuda-test/cpp14.cc
+thirdparty/fmt-12.1.0/test/cuda-test/cuda-cpp14.cu
+thirdparty/fmt-12.1.0/test/detect-stdfs.cc
+thirdparty/fmt-12.1.0/test/enforce-checks-test.cc
+thirdparty/fmt-12.1.0/test/find-package-test
+thirdparty/fmt-12.1.0/test/find-package-test/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/find-package-test/main.cc
+thirdparty/fmt-12.1.0/test/format-impl-test.cc
+thirdparty/fmt-12.1.0/test/format-test.cc
+thirdparty/fmt-12.1.0/test/fuzzing
+thirdparty/fmt-12.1.0/test/fuzzing/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/fuzzing/README.md
+thirdparty/fmt-12.1.0/test/fuzzing/build.sh
+thirdparty/fmt-12.1.0/test/fuzzing/chrono-duration.cc
+thirdparty/fmt-12.1.0/test/fuzzing/chrono-timepoint.cc
+thirdparty/fmt-12.1.0/test/fuzzing/float.cc
+thirdparty/fmt-12.1.0/test/fuzzing/fuzzer-common.h
+thirdparty/fmt-12.1.0/test/fuzzing/main.cc
+thirdparty/fmt-12.1.0/test/fuzzing/named-arg.cc
+thirdparty/fmt-12.1.0/test/fuzzing/one-arg.cc
+thirdparty/fmt-12.1.0/test/fuzzing/two-args.cc
+thirdparty/fmt-12.1.0/test/gtest-extra-test.cc
+thirdparty/fmt-12.1.0/test/gtest-extra.cc
+thirdparty/fmt-12.1.0/test/gtest-extra.h
+thirdparty/fmt-12.1.0/test/gtest
+thirdparty/fmt-12.1.0/test/gtest/.clang-format
+thirdparty/fmt-12.1.0/test/gtest/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/gtest/gmock-gtest-all.cc
+thirdparty/fmt-12.1.0/test/gtest/gmock
+thirdparty/fmt-12.1.0/test/gtest/gmock/gmock.h
+thirdparty/fmt-12.1.0/test/gtest/gtest
+thirdparty/fmt-12.1.0/test/gtest/gtest/gtest-spi.h
+thirdparty/fmt-12.1.0/test/gtest/gtest/gtest.h
+thirdparty/fmt-12.1.0/test/header-only-test.cc
+thirdparty/fmt-12.1.0/test/mock-allocator.h
+thirdparty/fmt-12.1.0/test/module-test.cc
+thirdparty/fmt-12.1.0/test/no-builtin-types-test.cc
+thirdparty/fmt-12.1.0/test/noexception-test.cc
+thirdparty/fmt-12.1.0/test/os-test.cc
+thirdparty/fmt-12.1.0/test/ostream-test.cc
+thirdparty/fmt-12.1.0/test/perf-sanity.cc
+thirdparty/fmt-12.1.0/test/posix-mock-test.cc
+thirdparty/fmt-12.1.0/test/posix-mock.h
+thirdparty/fmt-12.1.0/test/printf-test.cc
+thirdparty/fmt-12.1.0/test/ranges-odr-test.cc
+thirdparty/fmt-12.1.0/test/ranges-test.cc
+thirdparty/fmt-12.1.0/test/scan-test.cc
+thirdparty/fmt-12.1.0/test/scan.h
+thirdparty/fmt-12.1.0/test/static-export-test
+thirdparty/fmt-12.1.0/test/static-export-test/CMakeLists.txt
+thirdparty/fmt-12.1.0/test/static-export-test/library.cc
+thirdparty/fmt-12.1.0/test/static-export-test/main.cc
+thirdparty/fmt-12.1.0/test/std-test.cc
+thirdparty/fmt-12.1.0/test/test-assert.h
+thirdparty/fmt-12.1.0/test/test-main.cc
+thirdparty/fmt-12.1.0/test/unicode-test.cc
+thirdparty/fmt-12.1.0/test/util.cc
+thirdparty/fmt-12.1.0/test/util.h
+thirdparty/fmt-12.1.0/test/xchar-test.cc
+thirdparty/toml11-4.4.0-patch/.clusterfuzzlite/Dockerfile
+thirdparty/toml11-4.4.0-patch/.github
+thirdparty/toml11-4.4.0-patch/.github/workflows
+thirdparty/toml11-4.4.0-patch/.github/workflows/document.yml
+thirdparty/toml11-4.4.0-patch/.github/workflows/fuzzing.yml
+thirdparty/toml11-4.4.0-patch/.github/workflows/main.yml
+thirdparty/toml11-4.4.0-patch/.github/workflows/single-include.yml
+thirdparty/toml11-4.4.0-patch/.github/workflows/toml-test.yml
+thirdparty/toml11-4.4.0-patch/CMakeLists.txt
+thirdparty/toml11-4.4.0-patch/LICENSE
+thirdparty/toml11-4.4.0-patch/cmake
+thirdparty/toml11-4.4.0-patch/cmake/toml11Config.cmake.in
+thirdparty/toml11-4.4.0-patch/docs
+thirdparty/toml11-4.4.0-patch/docs/.gitignore
+thirdparty/toml11-4.4.0-patch/docs/config.toml
+thirdparty/toml11-4.4.0-patch/docs/content.en
+thirdparty/toml11-4.4.0-patch/docs/content.en/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/changelog
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/changelog/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/configure_types.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/error_message.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/extension.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/literal.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/parsing_files.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/serialize.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/toml_spec.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/features/value.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/installation
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/installation/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/color.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/comments.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/conversion.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/datetime.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/error_info.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/exception.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/find.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/format.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/from.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/get.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/into.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/literal.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/ordered_map.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/parser.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/result.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/serializer.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/source_location.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/spec.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/toml.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/toml_fwd.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/types.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/value.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/value_t.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/version.md
+thirdparty/toml11-4.4.0-patch/docs/content.en/docs/reference/visit.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja
+thirdparty/toml11-4.4.0-patch/docs/content.ja/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/changelog
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/changelog/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/configure_types.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/error_message.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/extension.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/literal.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/parsing_files.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/serialize.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/toml_spec.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/features/value.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/installation
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/installation/_index.md
+thirdparty/toml11-4.4.0-patch/docs/content.ja/docs/reference
+matched 365 total 889
+
+## skylersaleh/SkyEmu truncated= False
+.github
+.github/workflows
+.github/workflows/deploy_android.yml
+.github/workflows/deploy_freebsd.yml
+.github/workflows/deploy_ios.yml
+.github/workflows/deploy_linux.yml
+.github/workflows/deploy_mac.yml
+.github/workflows/deploy_retro_linux.yml
+.github/workflows/deploy_retro_mac.yml
+.github/workflows/deploy_retro_win.yml
+.github/workflows/deploy_web.yml
+.github/workflows/deploy_win.yml
+CMakeLists.txt
+LICENSE
+docs
+docs/ARM7TDMI.pdf
+docs/Accuracy.md
+docs/HTTP_CONTROL_SERVER.md
+docs/LibraryModifications.md
+docs/SameBoy Audio Video Sync.txt
+docs/Theme control strips.md
+docs/accuracy_screenshots
+docs/accuracy_screenshots/NBA
+docs/accuracy_screenshots/NBA/DigimonRacing.png
+docs/accuracy_screenshots/NBA/HelloKitty.png
+docs/accuracy_screenshots/NBA/James Pond.png
+docs/accuracy_screenshots/NBA/Lufia.png
+docs/accuracy_screenshots/NBA/NES-classics.png
+docs/accuracy_screenshots/NBA/PinballTycoon.png
+docs/accuracy_screenshots/NBA/Screen Shot 2022-07-05 at 9.12.25 PM.png
+docs/accuracy_screenshots/NBA/Sennen.png
+docs/accuracy_screenshots/NBA/StarWars.png
+docs/accuracy_screenshots/NBA/iridion3D.png
+docs/accuracy_screenshots/SkyEmu
+docs/accuracy_screenshots/SkyEmu/AGS-aging.png
+docs/accuracy_screenshots/SkyEmu/Acrobat Kid.png
+docs/accuracy_screenshots/SkyEmu/Classic-nes.png
+docs/accuracy_screenshots/SkyEmu/Iridian.png
+docs/accuracy_screenshots/SkyEmu/JamesPond.png
+docs/accuracy_screenshots/SkyEmu/Lufia.png
+docs/accuracy_screenshots/SkyEmu/Pinball-Tycoon.png
+docs/accuracy_screenshots/SkyEmu/Sennen.png
+docs/accuracy_screenshots/SkyEmu/StarWars.png
+docs/accuracy_screenshots/SkyEmu/digimon.png
+docs/accuracy_screenshots/SkyEmu/hellokitty.png
+docs/accuracy_screenshots/VBA-M
+docs/accuracy_screenshots/VBA-M/AGS.png
+docs/accuracy_screenshots/VBA-M/Classic NES Series - The Legend of Zelda (USA, Europe).png
+docs/accuracy_screenshots/VBA-M/Dai-mahjong. (Japan).png
+docs/accuracy_screenshots/VBA-M/Iridion.png
+docs/accuracy_screenshots/VBA-M/James Pond - Codename Robocod (Europe) (En,Fr,De,Es,It,Nl,Pt) 2.png
+docs/accuracy_screenshots/VBA-M/Lufia.png
+docs/accuracy_screenshots/VBA-M/PinballTycoon.png
+docs/accuracy_screenshots/VBA-M/Sennen.png
+docs/accuracy_screenshots/VBA-M/StarWars.png
+docs/accuracy_screenshots/VBA-M/digimon.png
+docs/accuracy_screenshots/VBA-M/hello-kitty.png
+docs/accuracy_screenshots/mGBA
+docs/accuracy_screenshots/mGBA/AGS.png
+docs/accuracy_screenshots/mGBA/Classic NES Series - The Legend of Zelda (USA, Europe)-0.png
+docs/accuracy_screenshots/mGBA/Digimon Racing (Europe) (En,Fr,De,Es,It)-0.png
+docs/accuracy_screenshots/mGBA/Hello Kitty Collection - Miracle Fashion Maker (Japan)-0.png
+docs/accuracy_screenshots/mGBA/Iridion 3D (USA, Europe)-1.png
+docs/accuracy_screenshots/mGBA/Iridion 3D (USA, Europe)-2.png
+docs/accuracy_screenshots/mGBA/Iridion.png
+docs/accuracy_screenshots/mGBA/James Pond - Codename Robocod (Europe) (En,Fr,De,Es,It,Nl,Pt) 2-0.png
+docs/accuracy_screenshots/mGBA/Lufia - The Ruins of Lore (USA)-0.png
+docs/accuracy_screenshots/mGBA/Pinball Tycoon (U)-0.png
+docs/accuracy_screenshots/mGBA/Sennen Kazoku (Japan)-0.png
+docs/accuracy_screenshots/mGBA/StarWars.png
+docs/gbops - The Game Boy opcode table.html
+docs/melonDS romDB relicense
+docs/melonDS romDB relicense/part1.png
+docs/melonDS romDB relicense/part2.png
+docs/skyemu-theme-default.png
+docs/skyemu-theme-default.pxd
+docs/skyemu-theme-mini.png
+docs/skyemu-theme-mini.pxd
+docs/skyemu-theme-template.png
+docs/skyemu-theme-template.pxd
+src/SDL2/Android.mk
+src/SDL2/CMakeLists.txt
+src/SDL2/LICENSE.txt
+src/SDL2/VisualC/tests
+src/SDL2/VisualC/tests/checkkeys
+src/SDL2/VisualC/tests/checkkeys/checkkeys.vcxproj
+src/SDL2/VisualC/tests/controllermap
+src/SDL2/VisualC/tests/controllermap/controllermap.vcxproj
+src/SDL2/VisualC/tests/loopwave
+src/SDL2/VisualC/tests/loopwave/loopwave.vcxproj
+src/SDL2/VisualC/tests/testatomic
+src/SDL2/VisualC/tests/testatomic/testatomic.vcxproj
+src/SDL2/VisualC/tests/testautomation
+src/SDL2/VisualC/tests/testautomation/testautomation.vcxproj
+src/SDL2/VisualC/tests/testdraw2
+src/SDL2/VisualC/tests/testdraw2/testdraw2.vcxproj
+src/SDL2/VisualC/tests/testfile
+src/SDL2/VisualC/tests/testfile/testfile.vcxproj
+src/SDL2/VisualC/tests/testgamecontroller
+src/SDL2/VisualC/tests/testgamecontroller/testgamecontroller.vcxproj
+src/SDL2/VisualC/tests/testgesture
+src/SDL2/VisualC/tests/testgesture/testgesture.vcxproj
+src/SDL2/VisualC/tests/testgl2
+src/SDL2/VisualC/tests/testgl2/testgl2.vcxproj
+src/SDL2/VisualC/tests/testgles2
+src/SDL2/VisualC/tests/testgles2/testgles2.vcxproj
+src/SDL2/VisualC/tests/testjoystick
+src/SDL2/VisualC/tests/testjoystick/testjoystick.vcxproj
+src/SDL2/VisualC/tests/testoverlay2
+src/SDL2/VisualC/tests/testoverlay2/testoverlay2.vcxproj
+src/SDL2/VisualC/tests/testplatform
+src/SDL2/VisualC/tests/testplatform/testplatform.vcxproj
+src/SDL2/VisualC/tests/testpower
+src/SDL2/VisualC/tests/testpower/testpower.vcxproj
+src/SDL2/VisualC/tests/testrendertarget
+src/SDL2/VisualC/tests/testrendertarget/testrendertarget.vcxproj
+src/SDL2/VisualC/tests/testrumble
+src/SDL2/VisualC/tests/testrumble/testrumble.vcxproj
+src/SDL2/VisualC/tests/testscale
+src/SDL2/VisualC/tests/testscale/testscale.vcxproj
+src/SDL2/VisualC/tests/testsensor
+src/SDL2/VisualC/tests/testsensor/testsensor.vcxproj
+src/SDL2/VisualC/tests/testshape
+src/SDL2/VisualC/tests/testshape/testshape.vcxproj
+src/SDL2/VisualC/tests/testsprite2
+src/SDL2/VisualC/tests/testsprite2/testsprite2.vcxproj
+src/SDL2/VisualC/tests/testsurround
+src/SDL2/VisualC/tests/testsurround/testsurround.vcxproj
+src/SDL2/VisualC/tests/testvulkan
+src/SDL2/VisualC/tests/testvulkan/testvulkan.vcxproj
+src/SDL2/VisualC/tests/testwm2
+src/SDL2/VisualC/tests/testwm2/testwm2.vcxproj
+src/SDL2/VisualC/tests/testyuv
+src/SDL2/VisualC/tests/testyuv/testyuv.vcxproj
+src/SDL2/VisualC/visualtest/unittest/testquit
+src/SDL2/VisualC/visualtest/unittest/testquit/testquit_VS2012.vcxproj
+src/SDL2/Xcode-iOS/Demos/data/bitmapfont/license.txt
+src/SDL2/Xcode-iOS/Test
+src/SDL2/Xcode-iOS/Test/Info.plist
+src/SDL2/Xcode-iOS/Test/README
+src/SDL2/Xcode-iOS/Test/TestiPhoneOS.xcodeproj
+src/SDL2/Xcode-iOS/Test/TestiPhoneOS.xcodeproj/project.pbxproj
+src/SDL2/Xcode/SDL/pkg-support/resources/License.txt
+src/SDL2/Xcode/SDLTest/TestDropFile-Info.plist
+src/SDL2/android-project
+src/SDL2/android-project/app
+src/SDL2/android-project/app/jni
+src/SDL2/android-project/app/jni/Android.mk
+src/SDL2/android-project/app/jni/Application.mk
+src/SDL2/android-project/app/jni/CMakeLists.txt
+src/SDL2/android-project/app/jni/src
+src/SDL2/android-project/app/jni/src/Android.mk
+src/SDL2/android-project/app/jni/src/CMakeLists.txt
+src/SDL2/android-project/app/proguard-rules.pro
+src/SDL2/android-project/app/src
+src/SDL2/android-project/app/src/main
+src/SDL2/android-project/app/src/main/AndroidManifest.xml
+src/SDL2/android-project/app/src/main/java
+src/SDL2/android-project/app/src/main/java/org
+src/SDL2/android-project/app/src/main/java/org/libsdl
+src/SDL2/android-project/app/src/main/java/org/libsdl/app
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/HIDDevice.java
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/HIDDeviceBLESteamController.java
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/HIDDeviceManager.java
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/HIDDeviceUSB.java
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/SDL.java
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/SDLActivity.java
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/SDLAudioManager.java
+src/SDL2/android-project/app/src/main/java/org/libsdl/app/SDLControllerManager.java
+src/SDL2/android-project/app/src/main/res
+src/SDL2/android-project/app/src/main/res/mipmap-hdpi
+src/SDL2/android-project/app/src/main/res/mipmap-hdpi/ic_launcher.png
+src/SDL2/android-project/app/src/main/res/mipmap-mdpi
+src/SDL2/android-project/app/src/main/res/mipmap-mdpi/ic_launcher.png
+src/SDL2/android-project/app/src/main/res/mipmap-xhdpi
+src/SDL2/android-project/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+src/SDL2/android-project/app/src/main/res/mipmap-xxhdpi
+src/SDL2/android-project/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+src/SDL2/android-project/app/src/main/res/mipmap-xxxhdpi
+src/SDL2/android-project/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+src/SDL2/android-project/app/src/main/res/values
+src/SDL2/android-project/app/src/main/res/values/colors.xml
+src/SDL2/android-project/app/src/main/res/values/strings.xml
+src/SDL2/android-project/app/src/main/res/values/styles.xml
+src/SDL2/android-project/gradle.properties
+src/SDL2/android-project/gradle
+src/SDL2/android-project/gradle/wrapper
+src/SDL2/android-project/gradle/wrapper/gradle-wrapper.jar
+src/SDL2/android-project/gradle/wrapper/gradle-wrapper.properties
+src/SDL2/android-project/gradlew
+src/SDL2/android-project/gradlew.bat
+src/SDL2/android-project/settings.gradle
+src/SDL2/cmake
+src/SDL2/cmake/macros.cmake
+src/SDL2/cmake/sdlchecks.cmake
+src/SDL2/cmake_uninstall.cmake.in
+src/SDL2/docs
+src/SDL2/docs/README-android.md
+src/SDL2/docs/README-cmake.md
+src/SDL2/docs/README-directfb.md
+src/SDL2/docs/README-dynapi.md
+src/SDL2/docs/README-emscripten.md
+src/SDL2/docs/README-gesture.md
+src/SDL2/docs/README-git.md
+src/SDL2/docs/README-hg.md
+src/SDL2/docs/README-ios.md
+src/SDL2/docs/README-kmsbsd.md
+src/SDL2/docs/README-linux.md
+src/SDL2/docs/README-macos.md
+src/SDL2/docs/README-nacl.md
+src/SDL2/docs/README-os2.md
+src/SDL2/docs/README-pandora.md
+src/SDL2/docs/README-platforms.md
+src/SDL2/docs/README-porting.md
+src/SDL2/docs/README-psp.md
+src/SDL2/docs/README-raspberrypi.md
+src/SDL2/docs/README-riscos.md
+src/SDL2/docs/README-touch.md
+src/SDL2/docs/README-visualc.md
+src/SDL2/docs/README-vita.md
+src/SDL2/docs/README-wince.md
+src/SDL2/docs/README-windows.md
+src/SDL2/docs/README-winrt.md
+src/SDL2/docs/README.md
+src/SDL2/docs/doxyfile
+src/SDL2/src/audio/android
+src/SDL2/src/audio/android/SDL_androidaudio.c
+src/SDL2/src/audio/android/SDL_androidaudio.h
+src/SDL2/src/core/android
+src/SDL2/src/core/android/SDL_android.c
+src/SDL2/src/core/android/SDL_android.h
+src/SDL2/src/core/android/keyinfotable.h
+src/SDL2/src/core/os2/geniconv/test.c
+src/SDL2/src/filesystem/android
+src/SDL2/src/filesystem/android/SDL_sysfilesystem.c
+src/SDL2/src/haptic/android
+src/SDL2/src/haptic/android/SDL_syshaptic.c
+src/SDL2/src/haptic/android/SDL_syshaptic_c.h
+src/SDL2/src/hidapi/LICENSE-bsd.txt
+src/SDL2/src/hidapi/LICENSE-gpl3.txt
+src/SDL2/src/hidapi/LICENSE-orig.txt
+src/SDL2/src/hidapi/LICENSE.txt
+src/SDL2/src/hidapi/android
+src/SDL2/src/hidapi/android/hid.cpp
+src/SDL2/src/hidapi/android/jni
+src/SDL2/src/hidapi/android/jni/Android.mk
+src/SDL2/src/hidapi/android/jni/Application.mk
+src/SDL2/src/hidapi/android/project.properties
+src/SDL2/src/hidapi/testgui
+src/SDL2/src/hidapi/testgui/Makefile-manual
+matched 5524 total 10370

@@ -1,0 +1,5 @@
+10.1007/978-1-4302-6131-5	Android on x86
+10.1007/978-1-4842-0100-8	Android Application Development for the Intel Platform
+10.1007/978-1-4302-6838-3	Intel Galileo and Intel Galileo Gen 2
+10.3726/b21556	Educational Media: International Perspectives
+10.5117/9789462982147	Memory in Motion. Archives, Technology, and the Social

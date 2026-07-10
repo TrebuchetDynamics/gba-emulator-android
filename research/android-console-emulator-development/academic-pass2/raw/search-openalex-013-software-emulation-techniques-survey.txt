@@ -1,0 +1,15 @@
+10.1186/s42400-019-0038-7	Survey of intrusion detection systems: techniques, datasets and challenges
+10.1145/2893356	A Survey of Techniques for Approximate Computing
+	A Survey of Program Slicing Techniques.
+10.1016/s0921-8890(02)00372-x	A survey of socially interactive robots
+10.1109/comst.2018.2815638	Network Slicing and Softwarization: A Survey on Principles, Enabling Technologies, and Solutions
+10.1109/tpami.2020.3008413	Event-Based Vision: A Survey
+	A Survey on Fault Injection Techniques
+10.1109/comst.2016.2611524	A Comparative Survey of VANET Clustering Techniques
+10.1109/surv.2011.032511.00097	Security Aspects in Software Defined Radio and Cognitive Radio Networks: A Survey and A Way Ahead
+10.1109/access.2019.2953499	A Survey on Digital Twin: Definitions, Characteristics, Applications, and Design Implications
+10.1109/comst.2020.3028247	Satellite Communications in the New Space Era: A Survey and Future Challenges
+10.1016/j.mechatronics.2018.02.009	Survey on human–robot collaboration in industrial settings: Safety, intuitive interfaces and applications
+10.1145/356556.356559	Contemporary Concepts of Microprogramming and Emulation
+10.1016/j.jnca.2017.05.009	Ubiquitous sensor network simulation and emulation environments: A survey
+10.1045/october2000-granger	Emulation as a Digital Preservation Strategy

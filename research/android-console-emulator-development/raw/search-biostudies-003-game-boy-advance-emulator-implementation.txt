@@ -1,0 +1,20 @@
+	Evaluating an Advance Care Planning Curriculum: a Lecture, a Game, a Patient, and an Essay.
+	Implementation of a Curriculum-Integrated Computer Game for Introducing Scientific Argumentation.
+	Association of Participation in an End-of-Life Conversation Game With Advance Care Planning Behavior and Perspectives Among African American Individuals.
+	Advance Care Planning in Dialysis Patients With a Conversation Game
+	Design and implementation of a Serious Game on neurorehabilitation: Data on modifications of functionalities along implementation releases.
+	The CFIR Card Game: a new approach for working with implementation teams to identify challenges and strategies.
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	The International Pharmacy Game: A Comparison of Implementation in Seven Universities World-Wide.
+	A Digital Serious Game (Anticip’action) to Support Advance Care Planning Discussions in the General Population: Usability Study
+	Development of a theory-based video-game intervention to increase advance care planning conversations by healthcare providers.
+	Development of Drug Release Model for Suspensions in ESCAR (Emulator of SubCutaneous Absorption and Release).
+	Using a Video Game Intervention to Increase Hospitalists' Advance Care Planning Conversations with Older Adults: a Stepped Wedge Randomized Clinical Trial.
+	Collaborating with health economists to advance implementation science: a qualitative study.
+	Brian2Loihi: An emulator for the neuromorphic chip Loihi using the spiking neural network simulator Brian.
+	Bayesian Sensitivity Analysis of a Cardiac Cell Model Using a Gaussian Process Emulator.
+	Co-design and Development of Implementation Strategies: Enhancing the PAX Good Behaviour Game in Australian Schools.
+	Stakeholder perspective on barrier to the implementation of Advance Care Planning in a traditionally paternalistic healthcare system.
+	Factors Influencing the Implementation of Digital Advance Care Planning: Qualitative Interview Study.
+	Using Implementation Science to Further the Adoption and Implementation of Advance Care Planning in Rural Primary Care.
+	Deep learning based emulator for predicting voltage behaviour in lithium ion batteries.

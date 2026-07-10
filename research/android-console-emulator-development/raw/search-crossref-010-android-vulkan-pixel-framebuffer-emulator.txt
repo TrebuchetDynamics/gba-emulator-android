@@ -1,0 +1,20 @@
+10.1007/978-1-4302-5786-8_5	Android DIP: Device-Independent Pixel Graphics Design
+10.53846/goediss-12119	FPGA-based emulator platform for high-rate tests of the ATLAS ITk-Pixel readout system
+10.1109/telfor.2016.7818873	TLB maintenance optimization in android emulator for MIPS platform
+10.1109/telfor.2016.7818883	TLB maintenance optimization in android emulator for mips platform
+10.17487/rfc6143	The Remote Framebuffer Protocol
+10.18489/sacj.v29i1.435	A Mobile Augmented Reality Emulator for Android
+10.22323/1.313.0074	FED Firmware Interface Testing with Pixel Phase 1 Emulator
+10.51903/pixel.v15i2.847	DESAIN APLIKASI MODUL PEMBELAJARAN BAHASA INDONESIA BERBASIS ANDROID
+10.1109/iccsce.2013.6719997	Card Emulator for Door Access Using Android Platform
+10.1109/pdgc.2012.6449897	Cloudtarun Application deployed over GAE and android emulator
+10.51903/pixel.v13i2.326	MULTIMEDIA KATALOG BERBASIS ANDROID DENGAN MENGGUNAKAN APLIKASI ADOBE FLASH PADA IDEKU DEKAL JERSEY SALATIGA
+10.51903/pixel.v17i1.2012	Implementasi Android Sebagai Web Server Online Dengan Virtual Private Network
+10.20533/ijicr.2042.4655.2015.0079	Artificial User Emulator to Detect Intelligent Malware on Android
+10.1109/telfor.2017.8249473	UHI boot protocol implementation in Android emulator for MIPS architecture
+10.35784/jcsi.644	Performance comparison of an emulator and physical Android mobile device based on chess algorithm
+10.51903/pixel.v15i2.912	Rancang Bangun Aplikasi Pelayanan Pelanggan Air Bersih Berbasis Android Pada Bumdes Lantongau
+10.1109/compcomm.2018.8781056	Forensics on Twitter and WeChat Using a Customised Android Emulator
+10.51903/pixel.v13i2.317	PENERAPAN AUGMENTED REALITY PADA MEDIA PEMBELAJARAN PEMINTALAN SERAT BUATAN BERBASIS ANDROID (studi kasus : SMK Texmaco Semarang)
+10.51903/pixel.v13i1.163	PERANCANGAN AR DAN VR BERBASIS ANDROID UNTUK MEDIA PROMOSI PENGEMBANG PERUMAHAN PT. GRIYA PANTURA MANDIRI KENDAL
+10.30865/mib.v6i3.4205	Penerapan Metode VIKOR (Visekriterijumsko Kompromisno Rangiranje) dalam Pengambilan Keputusan Pemilihan Emulator Android pada Komputer

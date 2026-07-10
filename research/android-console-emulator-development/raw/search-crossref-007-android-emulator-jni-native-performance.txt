@@ -1,0 +1,20 @@
+10.1007/978-1-4302-4828-6_3	Communicating with Native Code using JNI
+10.1007/978-1-4302-2648-2_5	Hybrid 3D Graphics with OpenGL and JNI
+10.1007/978-1-4302-4798-2_3	More Gaming Tricks with OpenGL and JNI
+10.1007/978-1-4842-0587-7_3	More Gaming Tricks with OpenGL and JNI
+10.1007/978-1-4302-4060-0_3	More Gaming Tricks with OpenGL and JNI
+10.1007/978-1-4302-4828-6_4	Auto-Generate JNI Code Using SWIG
+10.35784/jcsi.644	Performance comparison of an emulator and physical Android mobile device based on chess algorithm
+10.5935/jetia.v11i51.1310	Comparative evaluation between Java application using JNI and native C/C++ application running on an Android platform
+10.1109/iccas.2010.5669738	Evaluating performance of Android platform using native C for embedded systems
+10.15242/ijccie.iae0915001	Java Application Development using JNI on Android
+10.1007/978-1-4302-2648-2_2	Compiling Native Code in Android
+10.1017/cbo9780511615948.023	The Java Native Interface (JNI)
+10.1201/9781003286325-10	Android Native Databases as Persistent Storage
+10.1201/9781003286325-2	Lift Off with Android Native Apps
+10.1007/978-1-4302-4435-6_7	Android Native Development Using Eclipse
+10.1109/isicir.2014.7029514	Differences of energetic consumption between Java and JNI Android apps
+10.1007/978-1-4302-6548-1_11	The Android Native Development Kit (NDK)
+10.1109/telfor.2016.7818873	TLB maintenance optimization in android emulator for MIPS platform
+10.1109/telfor.2016.7818883	TLB maintenance optimization in android emulator for mips platform
+10.18489/sacj.v29i1.435	A Mobile Augmented Reality Emulator for Android

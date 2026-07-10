@@ -1,0 +1,20 @@
+10.7910/dvn/vjqkpq	Replication data for: Understanding Wordscores
+10.7910/dvn/26792	Replication data for: Replication data and supplementary materials for Using Twitter to mobilise protest action.
+10.7910/dvn/1copoz	Gaming Stones morphological data
+10.7910/dvn/josioq	Audio Recordings, undated
+10.7910/dvn/u02xuw	Dataset 1 — Low-Cost Triaxial Accelerometer Benchtop Validation Dataset
+10.7910/dvn/6tffpg	Replication Data for: All-Optical Photoluminescence Spectra of Nitrogen-Vacancy Ensembles in Diamond at Low Magnetic Fields
+10.7910/dvn/zp9pik	Replication Data for "The Role of Race in the Legal Representation of Low-Income Defendants"
+10.7910/dvn/ildem0	Replication Data for: Study 2 (The Transmission Game: Testing behavioral interventions in a pandemic-like simulation)
+10.7910/dvn/rhr2a5	Replication Data for: Study 1 (The Transmission Game: Testing behavioral interventions in a pandemic-like simulation)
+10.7910/dvn/s4u2v0	Practical Considerations and Strategies for Collecting Data on Implementation Determinants in Low Resource Healthcare Settings
+10.7910/dvn/mv0f9j	Replication Data for: Intestinal Parasitic Infection and Associated Risk Factors in Pregnant Women
+10.7910/dvn/mfr950	The Benefits and Burdens of Nuclear Latency
+10.7910/dvn/n3wtwv	Integrated Datalog MicroRNA and Glioma Grade
+10.7910/dvn/rl7fgv	Replication data for: Botswana (2007):  MAP Study Evaluating Coverage and Quality of Coverage of Lovers Plus Condoms  Second Round
+10.7910/dvn/nyu6oq	Replication data for: Botswana (2005): TRaC and MAP to Plan, Monitor & Evaluate PSI's Social Marketing Program on HIV/AIDS Prevention in Botswana
+10.7910/dvn/u76jip	Replication data for: Response Latency Methodology for Survey Research: Measurement & Modeling Strategies
+10.7910/dvn/pvekm9	Stochastic resonance data
+10.7910/dvn/qugfli	Replication Data for: The Human Capital - Reproductive Capital Tradeoff in Marriage Market Matching
+10.7910/dvn/gcnzvo	Price is Right - raw data
+10.7910/dvn/zezpjf	APUL data

@@ -1,0 +1,20 @@
+10.1109/tcsvt.2018.2886277	Assessing Visual Quality of Omnidirectional Videos
+10.1109/pcs50896.2021.9477481	Power Consumption of Video-Decoders on Various Android Devices
+10.1109/tpami.2022.3166989	Robust Pose Transfer with Dynamic Details using Neural Video Rendering
+10.1109/tcsvt.2019.2910119	Image and Video Compression with Neural Networks: A Review
+10.1109/tcsvt.2024.3475510	Prompting Video-Language Foundation Models with Domain-specific Fine-grained Heuristics for Video Question Answering
+	SecComp: Towards Practically Defending Against Component Hijacking in Android Applications
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+10.1109/access.2021.3077313	Adaptive Video Encoding For Different Video Codecs
+	Evolutive Rendering Models
+	Ripple: Reflection Analysis for Android Apps in Incomplete Information Environments
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+	Automata Quest: NCAs as a Video Game Life Mechanic
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+10.13140/rg.2.1.1400.4729	Shesop Healthcare: Android application to monitor heart rate variance, display influenza and stress condition using Polar H7
+	VRT: A Video Restoration Transformer
+10.1145/3041008.3041010	EMULATOR vs REAL PHONE: Android Malware Detection Using Machine Learning
+10.1109/hicss.2014.593	Android Anti-forensics: Modifying CyanogenMod
+	Adaptive Encoding for Constrained Video Delivery in HEVC, VP9, AV1 and VVC Compression Standards and Adaptation to Video Content
+	A Large-Scale Study on the Prevalence and Usage of TEE-based Features on Android

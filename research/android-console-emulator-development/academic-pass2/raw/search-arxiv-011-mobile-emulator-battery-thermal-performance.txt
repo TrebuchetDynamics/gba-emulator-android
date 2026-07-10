@@ -1,0 +1,15 @@
+	Comprehensive Analysis of Thermal Dissipation in Lithium-Ion Battery Packs
+	ARMrayan Multimedia Mobile CMS: a Simplified Approach towards Content-Oriented Mobile Application Designing
+10.1109/tmc.2022.3207745	LEAP: TrustZone Based Developer-Friendly TEE for Intelligent Mobile Apps
+	Energy Harvesting Communications Using Dual Alternating Batteries
+10.1115/1.4049869	Thermal Model of an Omnimagnet for Performance Assessment and Temperature Control
+10.1007/978-3-031-43185-2_16	Performance of Genetic Algorithms in the Context of Software Model Refactoring
+	Coherently Driven Quantum Harmonic Oscillator Battery
+10.5121/ijwmn.2011.3516	A Low-Energy Fast Cyber Foraging Mechanism for Mobile Devices
+10.1145/3704413.3765308	Modeling Object Attention in Mobile AR for Intrinsic Cognitive Security
+	A Mobile Application for Smart House Remote Control System
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+10.1103/physreva.109.042207	Quantum battery with non-Hermitian charging
+10.1116/5.0184903	Beneficial and detrimental entanglement for quantum battery charging
+10.1063/5.0166887	High-performance state-vector emulator of a gate-based quantum processor implemented in the Rust programming language
+	On the Performance Evaluation and Analysis of the Hybridised Bittorrent Protocol with Partial Mobility Characteristics

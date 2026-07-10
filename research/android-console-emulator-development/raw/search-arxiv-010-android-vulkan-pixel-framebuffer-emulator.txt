@@ -1,0 +1,20 @@
+	The ATLAS Pixel Project
+10.1016/j.phpro.2012.02.436	Recent progress of the ATLAS Planar Pixel Sensor R&D Project
+	SecComp: Towards Practically Defending Against Component Hijacking in Android Applications
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+	Ripple: Reflection Analysis for Android Apps in Incomplete Information Environments
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+10.13140/rg.2.1.1400.4729	Shesop Healthcare: Android application to monitor heart rate variance, display influenza and stress condition using Polar H7
+10.1145/3041008.3041010	EMULATOR vs REAL PHONE: Android Malware Detection Using Machine Learning
+10.1109/hicss.2014.593	Android Anti-forensics: Modifying CyanogenMod
+	A Large-Scale Study on the Prevalence and Usage of TEE-based Features on Android
+10.1007/s11433-025-2764-x	CSST Cosmological Emulator II: Generalized Accurate Halo Mass Function Emulation
+10.1109/saner67736.2026.00053	Relocate and Emulate: Re-Hosting Android's Application Layer
+10.1103/physrevd.103.123525	Matter Power Spectrum Emulator for f(R) Modified Gravity Cosmologies
+	The Mira-Titan Universe. III. Emulation of the Halo Mass Function
+	AiDroid: When Heterogeneous Information Network Marries Deep Neural Network for Real-time Android Malware Detection
+	Dark Quest II: A Wide-Coverage Neural Network Emulator of the Nonlinear Matter Power Spectrum Across Extended Cosmologies
+10.1007/s11433-025-2671-0	CSST Cosmological Emulator I: Matter Power Spectrum Emulation with one percent accuracy to k = 10 h/Mpc
+10.1063/5.0166887	High-performance state-vector emulator of a gate-based quantum processor implemented in the Rust programming language

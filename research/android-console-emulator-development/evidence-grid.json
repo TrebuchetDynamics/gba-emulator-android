@@ -1,0 +1,133 @@
+{
+  "question": "How should we build an Android app that emulates a console such as the Game Boy Advance, using academic and open-source evidence?",
+  "generated_at": "2026-07-09T19:24:54-06:00",
+  "status": "agent-prepared; not human-screened or extraction-approved",
+  "items": [
+    {
+      "id": "E01",
+      "claim": "Reusing an existing emulator core is the lowest-risk route to a usable Android GBA app.",
+      "evidence": ["mgba-emu/mgba", "skylersaleh/SkyEmu", "Swordfish90/Lemuroid"],
+      "type": "OSS architecture comparison",
+      "conditions": "Repository metadata and source trees retrieved 2026-07-09; no local build performed.",
+      "confidence": "high",
+      "limits": "Does not compare measured performance on the target Android devices."
+    },
+    {
+      "id": "E02",
+      "claim": "SkyEmu is the shortest permissively licensed fork path because it is MIT-licensed and contains an Android Gradle project and Android deployment workflow.",
+      "evidence": ["https://github.com/skylersaleh/SkyEmu", "oss/raw/skylersaleh--SkyEmu--tree.json", "oss/raw/skylersaleh--SkyEmu--repo.json"],
+      "type": "OSS repository evidence",
+      "conditions": "GitHub default branch as retrieved 2026-07-09.",
+      "confidence": "high",
+      "limits": "Its native build is described by the project as experimental; UX and device compatibility still require validation."
+    },
+    {
+      "id": "E03",
+      "claim": "mGBA is the strongest candidate for a custom product core, but the canonical repository does not provide a first-party Android frontend.",
+      "evidence": ["https://github.com/mgba-emu/mgba", "oss/raw/mgba-emu--mgba--README.md", "oss/tree-signals.json"],
+      "type": "OSS repository evidence",
+      "conditions": "mGBA is MPL-2.0 and provides C/C++, CMake, a libretro core, core tests, fuzz/performance tools, and save-state features.",
+      "confidence": "high",
+      "limits": "Android NDK integration and MPL compliance need product-specific engineering/legal review."
+    },
+    {
+      "id": "E04",
+      "claim": "Lemuroid is the best Android-native reference implementation for a libretro-based emulator frontend.",
+      "evidence": ["https://github.com/Swordfish90/Lemuroid", "oss/raw/Swordfish90--Lemuroid--README.md", "oss/raw/Swordfish90--Lemuroid--tree.json"],
+      "type": "OSS repository evidence",
+      "conditions": "The project identifies Android integration and ease of use as goals and uses mGBA for GBA.",
+      "confidence": "high",
+      "limits": "Lemuroid and LibretroDroid are GPL-3.0; this may be unsuitable for a closed-source app."
+    },
+    {
+      "id": "E05",
+      "claim": "A libretro boundary separates the emulator core from frontend audio, video, input, and lifecycle concerns.",
+      "evidence": ["https://github.com/libretro/RetroArch", "oss/raw/libretro--RetroArch--README.md"],
+      "type": "OSS architecture documentation",
+      "conditions": "RetroArch README describes cores as dynamic libraries using generic audio/video/input callbacks.",
+      "confidence": "high",
+      "limits": "The reference frontend and common Android host libraries reviewed here are GPL-3.0."
+    },
+    {
+      "id": "E06",
+      "claim": "Android GameActivity is suitable when most emulator runtime code is C/C++.",
+      "evidence": ["https://developer.android.com/games/agdk/game-activity", "platform-sources/game-activity.html"],
+      "type": "official platform documentation",
+      "conditions": "Android documentation says GameActivity passes lifecycle, input, and text input to native C/C++ code.",
+      "confidence": "high",
+      "limits": "A Kotlin UI shell may still prefer a conventional Activity plus JNI/SurfaceView."
+    },
+    {
+      "id": "E07",
+      "claim": "Low-latency Android audio should use Oboe/AAudio, low-latency mode, callbacks, the natural sample rate, and no blocking in callbacks.",
+      "evidence": ["https://developer.android.com/games/sdk/oboe/low-latency-audio", "platform-sources/oboe-low-latency-audio.html", "10.1016/j.jss.2019.03.013"],
+      "type": "official platform guidance plus academic paper",
+      "conditions": "Android guidance retrieved 2026-07-09; Balsini et al., Journal of Systems and Software, 2019.",
+      "confidence": "high",
+      "limits": "End-to-end latency must be measured on the target device matrix."
+    },
+    {
+      "id": "E08",
+      "claim": "Android frame presentation needs explicit pacing rather than an unconstrained render loop.",
+      "evidence": ["https://developer.android.com/games/sdk/frame-pacing", "platform-sources/frame-pacing.html"],
+      "type": "official platform documentation",
+      "conditions": "The Android Frame Pacing library targets smooth OpenGL/Vulkan rendering and correct frame pacing.",
+      "confidence": "high",
+      "limits": "A GBA core runs near 59.73 Hz, so emulator-specific audio/video synchronization still needs measurement."
+    },
+    {
+      "id": "E09",
+      "claim": "Controller support should classify Android input sources and map buttons, D-pad, and analog axes separately.",
+      "evidence": ["https://developer.android.com/games/sdk/game-controller/controller-input", "platform-sources/controller-input.html"],
+      "type": "official platform documentation",
+      "conditions": "Android documents SOURCE_GAMEPAD, SOURCE_DPAD, SOURCE_JOYSTICK, KeyEvent, and MotionEvent handling.",
+      "confidence": "high",
+      "limits": "Controller mapping quirks require physical-device testing."
+    },
+    {
+      "id": "E10",
+      "claim": "ROM selection should use Android's Storage Access Framework and retain user-granted document access rather than broad storage permission.",
+      "evidence": ["https://developer.android.com/training/data-storage/shared/documents-files", "platform-sources/storage-access-framework.html"],
+      "type": "official platform documentation",
+      "conditions": "ACTION_OPEN_DOCUMENT is appropriate for long-term access to a user-selected document.",
+      "confidence": "high",
+      "limits": "Native cores may require an fd bridge or a private cached copy."
+    },
+    {
+      "id": "E11",
+      "claim": "Cycle-accurate emulation and dynamic binary translation are feasible, but neither should be an MVP requirement without profiling.",
+      "evidence": ["10.1109/memcod.2014.6961858", "10.1109/acsd.2018.00019"],
+      "type": "academic transfer evidence",
+      "conditions": "Richie and Ross, MEMOCODE 2014, studied cycle-accurate 8080 emulation on ARM11 with DBT; Jebali and Potop-Butucaru, ACSD 2018, studied consistency between cycle-accurate and instruction-set simulators.",
+      "confidence": "medium",
+      "limits": "Neither study evaluates a GBA emulator on modern Android hardware."
+    },
+    {
+      "id": "E12",
+      "claim": "GBA correctness should be judged with conformance ROMs and difficult commercial titles, not only frame rate.",
+      "evidence": ["https://github.com/mgba-emu/suite", "https://github.com/jsmolka/gba-tests", "https://github.com/DenSinH/FuzzARM", "https://github.com/destoer/armwrestler-gba-fixed", "oss/raw/skylersaleh--SkyEmu--README.md", "oss/raw/nba-emu--NanoBoyAdvance--README.md"],
+      "type": "OSS test ecosystem",
+      "conditions": "SkyEmu and NanoBoyAdvance self-report passing multiple suites; test repositories were checked for license and activity.",
+      "confidence": "medium",
+      "limits": "Pass claims were not independently reproduced; armwrestler-gba-fixed had no detected license."
+    },
+    {
+      "id": "E13",
+      "claim": "Save states need atomic, versioned persistence tied to ROM and core identity.",
+      "evidence": ["10.1145/3411839", "oss/raw/mgba-emu--mgba--README.md"],
+      "type": "academic transfer evidence plus OSS feature evidence",
+      "conditions": "de Winkel et al., IMWUT 2020, demonstrate selective state tracking for power-failure-resilient Game Boy emulation; mGBA provides save states.",
+      "confidence": "medium",
+      "limits": "The paper targets intermittent battery-free hardware, not Android lifecycle semantics."
+    },
+    {
+      "id": "E14",
+      "claim": "Distribution must avoid unlicensed ROMs, BIOS files, trademarks, screenshots, and cover art.",
+      "evidence": ["https://support.google.com/googleplay/android-developer/answer/9888072", "10.2139/ssrn.2018883", "10.1108/rmj-10-2016-0037", "10.2218/ijdc.v9i2.294"],
+      "type": "platform policy and legal/preservation scholarship",
+      "conditions": "Google Play disallows IP infringement; scholarship documents copyright and preservation tensions.",
+      "confidence": "high for store-policy risk; low for jurisdiction-specific legality",
+      "limits": "Not legal advice; counsel must review target markets and product behavior."
+    }
+  ]
+}

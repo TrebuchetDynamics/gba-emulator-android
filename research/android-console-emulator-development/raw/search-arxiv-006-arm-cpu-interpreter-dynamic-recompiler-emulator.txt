@@ -1,0 +1,20 @@
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+	Pedipulate: Enabling Manipulation Skills using a Quadruped Robot's Leg
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+10.1126/scirobotics.ade9548	Scientific Exploration of Challenging Planetary Analog Environments with a Team of Legged Robots
+	Automatically Locating ARM Instructions Deviation between Real Devices and CPU Emulators
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+10.1007/s11433-025-2764-x	CSST Cosmological Emulator II: Generalized Accurate Halo Mass Function Emulation
+	The Mira-Titan Universe. III. Emulation of the Halo Mass Function
+10.1103/physrevd.103.123525	Matter Power Spectrum Emulator for f(R) Modified Gravity Cosmologies
+10.3847/1538-4357/aa86a9	The Mira-Titan Universe II: Matter Power Spectrum Emulation
+	Dark Quest II: A Wide-Coverage Neural Network Emulator of the Nonlinear Matter Power Spectrum Across Extended Cosmologies
+10.1007/s11433-025-2671-0	CSST Cosmological Emulator I: Matter Power Spectrum Emulation with one percent accuracy to k = 10 h/Mpc
+10.1063/5.0166887	High-performance state-vector emulator of a gate-based quantum processor implemented in the Rust programming language
+	Cosmic-Enu: An emulator for the non-linear neutrino power spectrum
+10.1093/mnras/stag382	Slow neutrinos: non-linearity and momentum-space emulation
+10.1088/0004-637x/768/2/123	Cosmic Emulation: The Concentration-Mass Relation for wCDM Universes
+	Perceptive Pedipulation with Local Obstacle Avoidance
+10.1051/0004-6361/202450193	The e-MANTIS emulator: fast and accurate predictions of the halo mass function in $f(R)$CDM and $w$CDM cosmologies
+	ARM: Role-Conditioned Neuron Transplantation for Training-Free Generalist LLM Agent Merging

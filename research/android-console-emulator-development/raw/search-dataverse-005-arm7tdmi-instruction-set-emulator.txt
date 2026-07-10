@@ -1,0 +1,20 @@
+10.7910/dvn/jdnni1	Messy Circus Route Data
+10.7910/dvn/lgy6lc	Self-Calibrated Measurement Sets
+10.7910/dvn/d74qmp	TTU (Transfer to Utility) R package - AQoL-6D vignette output
+10.7910/dvn/lybmb0	Synthetic (fake) dataset for hypothetical replication of study mapping psychological distress and functioning measures to AQoL-6D health utility
+10.7910/dvn/3r5ts3	Synthetic (fake) dataset for hypothetical replication of study mapping psychological distress and functioning measures to CHU-9D health utility
+10.7910/dvn/w95ked	ready4use R package vignette output
+10.7910/dvn/gw7zkc	Specific R Package - AQoL-6D Vignette Output
+10.7910/dvn/hjxykq	Synthetic (fake) youth mental health datasets and data dictionaries
+10.7910/dvn/rdg51y	Replication Data For Quality of Life Heterogeneity Analysis In A Clinical Youth Mental Health Sample
+10.7910/dvn/612hdc	TTU (Transfer to Utility) R package - EQ-5D vignette output
+10.7910/dvn/yqqslm	IRI Marketing Data Set
+10.7910/dvn/fymodj	Replication Data for: "Heterogeneity of Rules in Bayesian Reasoning: A Toolbox Analysis" (Study 4a-c)
+10.7910/dvn/xunap2	Defined 3K and 39K SNP Mixtures
+10.7910/dvn/hnuusj	PREDICTD PaRallel Epigenomics Data Imputation with Cloud-based Tensor Decomposition
+10.7910/dvn/qvee1n	Synoptic maps for Lagrangian L1 and L5 modeling
+10.7910/dvn/a49b7y	Sunspot field strengths
+10.7910/dvn/zlwdyg	Sun-as-a-star projects
+10.7910/dvn/vf5bmo	Composite disk-integrated Ca II K emission (EM) index of the Sun (1907-2016)
+10.7910/dvn/6rbev0	X-RAY RADIANCE AND MAGNETIC FLUX
+10.7910/dvn/e7v72m	Chirality of Chromospheric Filaments

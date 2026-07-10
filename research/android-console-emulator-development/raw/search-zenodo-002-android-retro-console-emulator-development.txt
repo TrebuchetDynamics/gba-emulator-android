@@ -1,0 +1,20 @@
+10.5281/zenodo.10224565	Retro console Amiga CD32
+10.5281/zenodo.14497828	AT Emulator
+10.5281/zenodo.7889579	Artifact for EdgeEmu - Emulator for Android Edge Devices (DAIS 2023)
+10.5281/zenodo.7665495	ObreusDroid
+10.5281/zenodo.1420449	Dataset of "Extinguishing Ransomware - A Hybrid Approach to Android Ransomware Detection"
+10.5281/zenodo.3673079	ComboDroid-Artifact
+10.5281/zenodo.1296278	DYNAMISM - Postprocessed Execution Traces Of Android Malware and Benign Apps
+10.5281/zenodo.14906360	Developing a framework for enhancing security testing of android applications
+10.5281/zenodo.20757534	ANDROID STUDIO MUHITI VA JAVA DASTURLASH TILINING AFZALLIKLARI
+10.5281/zenodo.2672954	prysm: A Python optics module
+10.5281/zenodo.18525656	AccessDroid: Detecting Screen Reader Accessibility Issues in Android Applications via Semantics Trees
+10.5281/zenodo.8070311	ConfFix: Repairing Configuration Compatibility Issues in Android Apps
+10.11591/ijeecs.v36.i1.pp174-187	Comparative study of wind turbine emulator control using an asynchronous motor: IRFOC and DTC
+10.5281/zenodo.17975807	Android App for Expense Tracker using Kotlin
+10.5281/zenodo.17172331	Emulador Solar Fotovoltaico basado en Modelo Simplificado con  Interfaz Inalámbrica
+10.5281/zenodo.17684575	AI on the Edge: An Automated Pipeline for PyTorch-to-Android Deployment and Benchmarking
+10.5281/zenodo.8013542	Android Permisos y Grupos de Permisos
+10.5281/zenodo.6795015	Investigation of Accessibility of Some Frequently Use Rapid Application, Development Environments
+10.21303/2613-5647.2020.001299	RETRO MARKETING – A PHENOMENON OF MODERN TIMES
+10.5281/zenodo.17161073	Revista CelerSMS

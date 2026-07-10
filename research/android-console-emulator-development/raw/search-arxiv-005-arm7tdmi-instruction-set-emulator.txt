@@ -1,0 +1,20 @@
+	CryptoEmu: An Instruction Set Emulator for Computation Over Ciphers
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+	Call graph discovery in binary programs from unknown instruction set architectures
+	LIMIT: Less Is More for Instruction Tuning Across Evaluation Paradigms
+	Vision-Flan: Scaling Human-Labeled Tasks in Visual Instruction Tuning
+	WizardLM: Empowering large pre-trained language models to follow complex instructions
+10.3847/1538-4357/aa86a9	The Mira-Titan Universe II: Matter Power Spectrum Emulation
+	FinGPT: Instruction Tuning Benchmark for Open-Source Large Language Models in Financial Datasets
+10.1007/s11433-025-2764-x	CSST Cosmological Emulator II: Generalized Accurate Halo Mass Function Emulation
+	Demystifying Instruction Mixing for Fine-tuning Large Language Models
+	The Mira-Titan Universe. III. Emulation of the Halo Mass Function
+	Automatic Construction of a Korean Toxic Instruction Dataset for Ethical Tuning of Large Language Models
+10.1103/physrevd.103.123525	Matter Power Spectrum Emulator for f(R) Modified Gravity Cosmologies
+	Dark Quest II: A Wide-Coverage Neural Network Emulator of the Nonlinear Matter Power Spectrum Across Extended Cosmologies
+10.1007/s11433-025-2671-0	CSST Cosmological Emulator I: Matter Power Spectrum Emulation with one percent accuracy to k = 10 h/Mpc
+10.1063/5.0166887	High-performance state-vector emulator of a gate-based quantum processor implemented in the Rust programming language
+	Releasing the CRaQAn (Coreference Resolution in Question-Answering): An open-source dataset and dataset creation methodology using instruction-following models

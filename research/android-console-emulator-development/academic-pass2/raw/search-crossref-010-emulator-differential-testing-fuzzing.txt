@@ -1,0 +1,13 @@
+10.2172/2480163	Hardware Fuzzing with An Emulator
+10.1145/3597926.3598039	Icicle: A Re-designed Emulator for Grey-Box Firmware Fuzzing
+10.14711/thesis-991013061528103412	Enhance fuzzing testing with static program analysis
+10.1109/sbft66712.2025.00014	Differential Performance Fuzzing of Configuration Options
+10.5220/0012137100003538	Enhancing ICS Security Diagnostics with Pseudo-Greybox Fuzzing During Maintenance Testing
+10.1109/itiotsc60379.2023.00043	Request Smuggling Via HTTP/2 Cleartext in the Wild: Empirical Testing with Differential Fuzzing
+10.1145/3663529.3663864	Evolutionary Generative Fuzzing for Differential Testing of the Kotlin Compiler
+10.1109/tdsc.2017.2763947	Exploiting Dissent: Towards Fuzzing-Based Differential Black-Box Testing of TLS Implementations
+10.1109/icst49551.2021.00009	Keynote Talk - Fuzzing, Symbolic Execution, and Synthesis for Testing
+10.37539/aug298.2021.94.77.007	FUZZING TESTING. CLASSIFICATION OF MODERN FUZZING TOOLS
+10.1145/3678722.3685536	Automated Feature Testing of Verilog Parsers using Fuzzing (Registered Report)
+10.21203/rs.3.rs-2315060/v1	Improve Model Testing by Integrating Bounded Model Checking and Coverage Guided Fuzzing
+10.1109/autest.2004.1436846	Using an IN-kernel emulator for TPS development and testing

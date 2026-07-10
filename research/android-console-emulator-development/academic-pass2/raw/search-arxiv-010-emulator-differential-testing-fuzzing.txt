@@ -1,0 +1,15 @@
+10.1145/3395363.3397376	Active Fuzzing for Testing and Securing Cyber-Physical Systems
+	Qualcomm Trusted Application Emulation for Fuzzing Testing
+10.1109/icstw55395.2022.00035	Testing Deep Learning Models: A First Comparative Study of Multiple Testing Techniques
+	Icicle: A Re-Designed Emulator for Grey-Box Firmware Fuzzing
+10.1145/3719027.3765125	Protocol-Aware Firmware Rehosting for Effective Fuzzing of Embedded Network Stacks
+	Service-Fingerprinting mittels Fuzzing
+	Type-Centric Kotlin Compiler Fuzzing: Preserving Test Program Correctness by Preserving Types
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+10.1145/3395351.3399360	BaseSAFE: Baseband SAnitized Fuzzing through Emulation
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+10.1109/tnsm.2019.2955790	Consistent SDNs through Network State Fuzzing
+	Kaizen: Metamorphic Fuzzing and Differential Testing for LLM-Translated HPC Applications
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+10.1007/s11433-025-2764-x	CSST Cosmological Emulator II: Generalized Accurate Halo Mass Function Emulation

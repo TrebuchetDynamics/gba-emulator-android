@@ -1,0 +1,15 @@
+	Stable Emulation of an Entire Suite of Model Physics in a State-of-the-Art GCM using a Neural Network
+	Study Paper on Test Case generation for GUI Based Testing
+10.1109/icstw55395.2022.00035	Testing Deep Learning Models: A First Comparative Study of Multiple Testing Techniques
+	A conformance relation and complete test suites for I/O systems
+10.1109/icstw58534.2023.00023	Towards Explainable Test Case Prioritisation with Learning-to-Rank Models
+	Automated Test Case Generation using Petri Nets
+10.1145/3395363.3397376	Active Fuzzing for Testing and Securing Cyber-Physical Systems
+10.1007/978-3-319-14358-3_14	Considering Polymorphism in Change-Based Test Suite Reduction
+10.1145/3278186.3278190	Goal-Oriented Mutation Testing with Focal Methods
+10.1088/0004-637x/713/2/1322	The Coyote Universe III: Simulation Suite and Precision Emulator for the Nonlinear Matter Power Spectrum
+	ROM: Real-time Overthinking Mitigation via Streaming Detection and Intervention
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+	Test Suites as a Source of Training Data for Static Analysis Alert Classifiers
+	Complete Test Suites for Automata in Monoidal Closed Categories
+	E-Test: E'er-Improving Test Suites

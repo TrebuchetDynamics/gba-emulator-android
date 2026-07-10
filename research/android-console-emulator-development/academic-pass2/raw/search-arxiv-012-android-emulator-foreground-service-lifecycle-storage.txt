@@ -1,0 +1,15 @@
+	Simple Spyware: Androids Invisible Foreground Services and How to (Ab)use Them
+10.5121/ijwsc	A Composite Design Pattern for Service Injection and Composition of Web Services for Peer-To-Peer Computing with Service Oriented Architecture
+10.1016/j.est.2026.120958	Privacy-Preserving Distributed Control for a Networked Battery Energy Storage System
+	A Constrained Shortest Path Scheme for Virtual Network Service Management
+10.1109/tnsm.2020.3033071	A Software-Defined Networking Solution for Transparent Session and Service Continuity in Dynamic Multi-Access Edge Computing
+	Quantum Software Development Lifecycle
+	SecComp: Towards Practically Defending Against Component Hijacking in Android Applications
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+	Ripple: Reflection Analysis for Android Apps in Incomplete Information Environments
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+10.1109/saner67736.2026.00053	Relocate and Emulate: Re-Hosting Android's Application Layer
+10.1109/access.2023.3296136	VeML: An End-to-End Machine Learning Lifecycle for Large-scale and High-dimensional Data
+10.13140/rg.2.1.1400.4729	Shesop Healthcare: Android application to monitor heart rate variance, display influenza and stress condition using Polar H7

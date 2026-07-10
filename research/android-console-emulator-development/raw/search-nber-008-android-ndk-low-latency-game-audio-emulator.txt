@@ -1,0 +1,19 @@
+10.3386/w33099	The GDPR and SDK Usage In Android Mobile Apps
+10.3386/w10012	Effects of Disease Type and Latency on the Value of Mortality Risk
+10.3386/w14593	Empathy and Emulation: Life Satisfaction and the Urban Geography of Comparison Groups
+10.3386/w18519	Games and Resources
+10.3386/w24914	Quadratic Games
+10.3386/w9307	Accountability , Ability and Disability: Gaming the System
+10.3386/w14712	The Credit Ratings Game
+10.3386/w15092	Identification in Matching Games
+10.3386/w24604	The Carbon Abatement Game
+10.3386/w15403	Banking Crises and the Rules of the Game
+10.3386/w27497	What Do Voters Learn from Foreign News? Emulation, Backlash, and Public Support for Trade Agreements
+10.3386/w31353	Gaming and Effort in Performance Pay
+10.3386/w8626	Estimation of a Dynamic Auction Game
+10.3386/w9726	Identification and Estimation of Dynamic Games
+10.3386/w12749	Coalition Formation in Political Games
+10.3386/w14382	Estimating Matching Games with Transfers
+10.3386/w32809	Looks and Gaming: Who and Why?
+10.3386/w19798	When Real Estate is the Only Game in Town
+10.3386/w18471	A Game Theoretic Foundation of Competitive Equilibria with Adverse Selection

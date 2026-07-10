@@ -1,0 +1,3 @@
+10.3929/ethz-b-000474088	ArmWrestling: efficient binary rewriting for ARM
+	Reducing hardware TCB in favor of certifiable virtual machine monitor.
+	Deterministic Fully-Static Whole-Binary Translation without Heuristics

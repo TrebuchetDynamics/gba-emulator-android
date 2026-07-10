@@ -1,0 +1,4 @@
+10.3390/s24030865	Smart Resource Allocation in Mobile Cloud Next-Generation Network (NGN) Orchestration with Context-Aware Data and Machine Learning for the Cost Optimization of Microservice Applications.
+10.5210/ojphi.v11i2.9998	On the Potential, Feasibility, and Effectiveness of Chat Bots in Public Health Research Going Forward.
+10.1007/s12083-023-01478-w	IoT malware: An attribute-based taxonomy, detection mechanisms and challenges.
+10.1016/j.fsisyn.2022.100313	Interpol review of digital evidence for 2019-2022.

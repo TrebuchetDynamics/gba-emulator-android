@@ -1,0 +1,2 @@
+10.1007/978-1-4842-7185-8	Ray Tracing Gems II
+10.58895/ksp/1000169488	Proceedings of the 10th bwHPC Symposium: HPC Activites in Baden-Württemberg

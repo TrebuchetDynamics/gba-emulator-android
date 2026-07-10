@@ -1,0 +1,20 @@
+	SpatialBench: Comparative benchmarking of high-resolution spatial transcriptomics platforms using immune reference tissue
+	SpatialBench (IST): Comparative benchmarking of high-resolution spatial transcriptomics platforms using immune reference tissue
+	Systematic Benchmarking of High-Throughput Subcellular Spatial Transcriptomics Platforms
+	Systematic benchmarking of imaging spatial transcriptomics platforms in FFPE tissues.
+	Benchmarking of the Oxford Nanopore MinION sequencing for quantitative and qualitative assessment of cDNA populations.
+	Spatial transcriptomic analysis of sex-biased gene expression in the adult mouse liver
+	Pol III ChIP-seq of liver cancer cell lines
+	Genome-scale analysis in blood progenitor and mast cells reveals how lineage-affiliated transcription factors control distinct regulatory programs
+	Altered Subcellular Localization of Transcription Factor TEAD4 Regulates First Mammalian Cell Lineage Commitment
+	H3K4me3 ChIPseq in chicken liver
+	Rapid reprogramming of epigenetic and transcriptional profiles in mammalian culture systems (hmeDIP-seq)
+	RNA-seq of one human cortex sample and one sample from the HAP1 cell line, used to illustrate the development and application of the JCC score
+	TNF induced gene expression in CD8 single positive thymocytes
+	The Spatial Atlas of Human Anatomy (SAHA): A Multimodal Subcellular-Resolution Reference Across Human Organs.
+	TMC-SNPdb: An Indian germline variant dataset derived from whole exome sequence
+	Chromatin immunoprecipitation of Zea mays chloroplast extracts prepared from wild type and PPR4-deficient tissue
+	High-throughput sequencing of WT and the yqhC mutant of Salmonella using Illumina Genome Analyzer II
+	RNA-Seq of Plasmodium chabaudi AS erythrocytic stages
+	Hordeum vulgare Transcriptome or Gene expression
+	RIP-seq to identify transcripts interacting with pluripotency factors in mouse embryonic stem cells

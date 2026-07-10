@@ -1,0 +1,15 @@
+10.3403/00867361	Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing
+10.3403/00281065	Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing
+10.3403/00281065u	Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing
+10.3403/00776156	Information technology. Open systems interconnection. Conformance testing methodology and framework
+10.3403/00252793u	Information technology. Open systems interconnection. Conformance testing methodology and framework
+10.3403/00252793	Information technology. Open systems interconnection. Conformance testing methodology and framework
+10.3403/00776156u	Information technology. Open systems interconnection. Conformance testing methodology and framework
+10.3403/01355985u	Information technology. Open systems interconnection. Conformance test suite for the session protocol
+10.3403/00309675	Information technology. Open systems interconnection. Conformance test suite for the FTAM protocol
+10.3403/00260790u	Information technology. Open systems interconnection. Conformance test suite for the ACSE protocol
+10.3403/01355985	Information technology. Open systems interconnection. Conformance test suite for the session protocol
+10.3403/00260790	Information technology. Open systems interconnection. Conformance test suite for the ACSE protocol
+10.3403/00309675u	Information technology. Open systems interconnection. Conformance test suite for the FTAM protocol
+10.3403/00317360u	Information technology. Open Systems Interconnection. Conformance test suite for the presentation layer
+10.3403/00268144	Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing

@@ -1,0 +1,2 @@
+10.1007/978-3-030-60910-8	Embedded System Design
+10.1007/978-3-658-33437-6	Eingebettete Systeme

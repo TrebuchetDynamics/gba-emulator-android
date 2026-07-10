@@ -1,0 +1,20 @@
+	A study of interactive robot architecture through the practical implementation of conversational android.
+	Android malware detection using hybrid ANFIS architecture with low computational cost convolutional layers
+	Controlled trial of balance training using a video game console in community-dwelling older adults.
+	User snowball effect: word-of-mouth communication mechanism on console games.
+	PermQRDroid: Android malware detection with novel attention layered mini-ResNet architecture over effective permission information image.
+	<i>RehaBEElitation</i>: the architecture and organization of a serious game to evaluate motor signs in Parkinson's disease.
+	Shortcomings of human-in-the-loop optimization of an ankle-foot prosthesis emulator: a case series.
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	Research on the brand image of iOS and Android smart phone operating systems based on mixed methods
+	Development of a Serious Game to Simulate Neonatal Intensive Care Unit Experiences: Collaborative Quasi-Experimental Study.
+	Development of Drug Release Model for Suspensions in ESCAR (Emulator of SubCutaneous Absorption and Release).
+	Investigating the Usability and Acute Effects of a Bedside Video Console to Prefrontal Cortical Activity Alterations: A Preclinical Study in Healthy Elderly.
+	Brian2Loihi: An emulator for the neuromorphic chip Loihi using the spiking neural network simulator Brian.
+	Bayesian Sensitivity Analysis of a Cardiac Cell Model Using a Gaussian Process Emulator.
+	ISAnWin: inductive generalized zero-shot learning using deep CNN for malware detection across windows and android platforms.
+	Android malware analysis in a nutshell.
+	Deep learning based emulator for predicting voltage behaviour in lithium ion batteries.
+	Data on Vulnerability Detection in Android.
+	A High-Performance and Cost-Effective Field Programmable Gate Array-Based Motor Drive Emulator
+	The effects of ankle stiffness on mechanics and energetics of walking with added loads: a prosthetic emulator study.

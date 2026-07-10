@@ -1,0 +1,20 @@
+10.1109/rsp53691.2021.9806255	Instruction Set Design Methodology for In-Memory Computing through QEMU-based System Emulator
+10.1007/978-1-4615-3930-8_3	Reduced-Instruction-Set, Writable-Instruction-Set and Very-Long-Instruction-Word Computers
+10.1007/springerreference_16586	instruction set
+10.1007/springerreference_27871	universal instruction set
+10.1007/springerreference_18217	machine instruction set
+10.1007/springerreference_16587	instruction-set computer
+10.1007/springerreference_10688	complex instruction set
+10.1109/cluster.2018.00082	Performing SVE Studies using the Arm Instruction Emulator
+10.1007/springerreference_10782	computer instruction set
+10.1007/springerreference_23171	reduced-instruction-set computer
+10.7717/peerj-cs.3412/supp-5	Supplemental Information 5: Core instruction set.
+10.1016/0141-9331(87)90275-4	Emulating a complex instruction set computer with a reduced instruction set computer
+10.1109/mm.1987.304939	Emulating a Complex Instruction Set Computer with a Reduced Instruction Set Computer
+10.17487/rfc9669	BPF Instruction Set Architecture (ISA)
+10.1201/9781439806111-7	The ARM7TDMI Programmer's Model
+10.1109/dac.2003.1219121	Instruction set compiled simulation: a technique for fast and flexible instruction set simulation
+10.70675/83115790zefbfz4b0dz994azb8a207b0be3d	Certification of an Instruction Set Simulator
+10.1016/0165-6074(88)90362-6	CRISC Configurable Reduced Instruction Set Computer or Complex Reconfigurable Instruction Set Computer
+10.1145/776024.776026	Instruction set compiled simulation
+10.4271/921706	Reduced Instruction Set Computers Versus Complex Instruction Set Computers for Gasket Finite Element Analysis

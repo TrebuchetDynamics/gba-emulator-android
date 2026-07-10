@@ -1,0 +1,20 @@
+	Project report Android Game (Dots Game)
+10.1117/12.2042498	Architecture for high performance stereoscopic game rendering on Android
+10.1145/3306307.3328164	Architecture challenges in the Android 3D graphics stack
+10.1109/icccnt51525.2021.9579618	Game Engine Architecture and Comparative Study of Different Game Engines
+	PEMBUATAN GAME “RUN IN CLOUD” MENGGUNAKAN CONSTRUCT 2 PADA ANDROID
+10.1145/3300061.3300122	Mobile Gaming on Personal Computers with Direct Android Emulation
+10.1145/3460120.3484774	Android on PC: On the Security of End-user Android Emulators
+10.1145/3300061.3343372	Demo: Mobile Gaming on Personal Computers with Direct Android Emulation
+	An Evolution of Android Operating System and Its Version
+	6502 emulator on FPGA
+10.5220/0003331300260035	Improvement of a Lecture Game Concept - Implementing Lecture Quiz 2.0
+10.1016/j.eswa.2012.02.151	Extensible architecture for context-aware mobile web applications
+10.12753/2066-026x-15-027	MINIGL: GAME AND LEARNING
+10.1201/b21811-213	Development of visual control interface for a mobile robot with a single camera
+10.1145/2503512.2503518	New directions and developments in mobile GPU design
+	Using Games Technology for Maritime Research : a Case Study
+	On using computer-games technology in architectural design education
+	The F . A . R . B . E . eLearning system
+	Overview of Immersive Technology: Terminology, State of the Art, and APL Efforts
+10.1109/mipro.2014.6859576	Children obesity treatment support with telemedicine

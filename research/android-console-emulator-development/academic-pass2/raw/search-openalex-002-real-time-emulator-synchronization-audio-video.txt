@@ -1,0 +1,15 @@
+10.2196/jmir.9897	Real-World Implementation of Video Outpatient Consultations at Macro, Meso, and Micro Levels: Mixed-Method Study
+10.3758/bf03200802	The Observer Video-Pro: New software for the collection, management, and presentation of time-structured data from videotapes and digital media files
+10.1109/access.2020.2970143	Digital Twin: Values, Challenges and Enablers From a Modeling Perspective
+10.70220/l2bp336n	Video Quality Measurement Techniques
+10.1007/s11276-006-6549-7	An adaptive delay and synchronization control scheme for Wi-Fi based audio/video conferencing
+10.3390/s17040854	homeSound: Real-Time Audio Event Detection Based on High Performance Computing for Behaviour and Surveillance Remote Monitoring
+10.1016/j.patter.2022.100616	Audio self-supervised learning: A survey
+10.1145/3592458	Listen, Denoise, Action! Audio-Driven Motion Synthesis with Diffusion Models
+10.20944/preprints202305.0443.v1	CICIoT2023: A real-time dataset and benchmark for large-scale attacks in IoT environment
+	Video Vortex reader: responses to YouTube
+10.1109/tim.2011.2178676	Use of Precision Time Protocol to Synchronize Sampled-Value Process Buses
+10.48550/arxiv.2404.10667	VASA-1: Lifelike Audio-Driven Talking Faces Generated in Real Time
+10.1186/s40537-014-0007-7	Deep learning applications and challenges in big data analytics
+10.1007/978-3-540-30080-9_7	A Tutorial on Uppaal
+10.1109/jiot.2020.2997047	The Internet of Audio Things: State of the Art, Vision, and Challenges

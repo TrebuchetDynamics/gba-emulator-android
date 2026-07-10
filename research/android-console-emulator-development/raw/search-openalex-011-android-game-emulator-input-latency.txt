@@ -1,0 +1,20 @@
+10.1109/access.2019.2918139	Constructing Features for Detecting Android Malicious Applications: Issues, Taxonomy and Directions
+10.1109/comst.2020.2970550	Convergence of Edge Computing and Deep Learning: A Comprehensive Survey
+10.1145/3300061.3300116	Edge Assisted Real-time Object Detection for Mobile Augmented Reality
+10.1109/access.2021.3123187	Recent Advances in Android Mobile Malware Detection: A Systematic Literature Review
+10.1109/twc.2020.3027963	LACO: A Latency-Driven Network Slicing Orchestration in Beyond-5G Networks
+10.1145/3410404.3414251	Can Children Emulate a Robotic Non-Player Character's Figural Creativity?
+10.3390/s21041387	Measuring Key Quality Indicators in Cloud Gaming: Framework and Assessment Over Wireless Networks
+10.20533/ijicr.2042.4655.2015.0079	Artificial User Emulator to Detect Intelligent Malware on Android
+10.3758/s13428-022-01925-1	To BYOD or not: Are device latencies important for bring-your-own-device (BYOD) smartphone cognitive testing?
+10.1145/2884781.2884854	MobiPlay
+10.1145/3512342	Image and Video Coding Techniques for Ultra-low Latency
+10.1111/bjop.12290	Why and how to use virtual reality to study human social interaction: The challenges of exploring a new research landscape
+10.1155/2021/4551067	Identifying Major Research Areas and Minor Research Themes of Android Malware Analysis and Detection Field Using LSA
+10.1007/978-1-4302-6131-5	Android on x86
+10.3390/app13053061	Chidroid: A Mobile Android Application for Log Collection and Security Analysis in Healthcare and IoMT
+10.18489/sacj.v29i1.435	A Mobile Augmented Reality Emulator for Android
+10.1007/bf00735340	Building brains for bodies
+10.4018/ijiit.329956	Android Malware Detection Approach Using Stacked AutoEncoder and Convolutional Neural Networks
+10.1109/access.2020.2966271	5G Technology: Towards Dynamic Spectrum Sharing Using Cognitive Radio Networks
+10.1145/3680551	Adaptive Cloud VR Gaming Optimized by Gamer QoE Models

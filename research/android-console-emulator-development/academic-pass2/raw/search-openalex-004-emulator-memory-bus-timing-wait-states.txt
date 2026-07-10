@@ -1,0 +1,15 @@
+10.3390/s20082364	Evaluation of CAN Bus Security Challenges
+10.1145/48022.48024	Efficient synchronization of multiprocessors with shared memory
+10.1109/sp.2015.43	Last-Level Cache Side-Channel Attacks are Practical
+10.1088/1748-0221/3/08/s08004	The CMS experiment at the CERN LHC
+10.1613/jair.2502	A Multiagent Approach to Autonomous Intersection Management
+	Performance Exploration of the Hybrid Memory Cube
+10.1007/978-3-540-30080-9_7	A Tutorial on Uppaal
+10.1145/36204.36199	Firefly: a multiprocessor workstation
+10.1145/800015.808203	Dynamic decentralized cache schemes for mimd parallel processors
+10.1109/tpami.2020.3008413	Event-Based Vision: A Survey
+10.6100/ir658012	Predictable and composable system-on-chip memory controllers
+10.1145/102792.102801	Understanding fault-tolerant distributed systems
+10.1007/978-3-319-10702-8_13	Randomised Testing of a Microprocessor Model Using SMT-Solver State Generation
+10.1145/3319535.3354252	ZombieLoad
+10.3390/ma12172745	Neuromorphic Spiking Neural Networks and Their Memristor-CMOS Hardware Implementations

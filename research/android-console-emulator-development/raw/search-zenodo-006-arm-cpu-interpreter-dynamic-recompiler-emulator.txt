@@ -1,0 +1,20 @@
+10.5281/zenodo.17678252	POWER MANAGEMENT IN EMBEDDED AI SYSTEMS: A MULTI-LAYERED APPROACH FOR EDGE COMPUTING APPLICATIONS
+10.5281/zenodo.6475224	QTechTheory/DissipativeRecompiler: v1
+10.5281/zenodo.5424844	Not So Fast: Understanding and Mitigating Negative Impacts of Compiler Optimizations on Code Reuse Gadget Sets
+10.31841/kjet.2022.22	Milad Scheduling Algorithm (MSA)
+10.5281/zenodo.1420449	Dataset of "Extinguishing Ransomware - A Hybrid Approach to Android Ransomware Detection"
+10.11591/ijeecs.v36.i1.pp174-187	Comparative study of wind turbine emulator control using an asynchronous motor: IRFOC and DTC
+10.5281/zenodo.14329053	Low Complexity Dynamic Obstacle Detection for Intelligent Road Infrastructure
+10.5281/zenodo.3970229	OI-DBT:  Fast OpenISA Binary Emulator
+10.5281/zenodo.5573751	Delta Dynamic Integrated Emulator Model
+10.1007/bf01381502	Ueber die betr�gerische F�rbung der Weine
+10.5281/zenodo.17949609	Adaptive Runtime Management for Workload Optimization on Heterogeneous Edge Devices
+10.5281/zenodo.1296278	DYNAMISM - Postprocessed Execution Traces Of Android Malware and Benign Apps
+10.5281/zenodo.1495530	Play is Hard Work: Using Integrated Play Therapy to Build Social Skills
+10.5281/zenodo.10420906	OVERCLOCK DE CPU UTILIZANDO ASSEMBLY X86
+10.5281/zenodo.19447258	CPU-Security/SSBench: SSBench: Automated Characterization of Memory Dependence Predictors on Modern CPUs
+10.5281/zenodo.10798662	RAM-SCB ROPE Dataset and Machine Learning Models with Code
+10.31142/ijtsrd23237	Dynamic Analysis of Bionic ARM
+10.11591/ijpeds.v17.i1.pp809-822	Design and implementation of a buck converter–based PV emulator using dynamic evolution control
+10.1186/s12859-021-04354-7	Emulating complex simulations by machine learning methods
+10.5281/zenodo.13619964	Mechanical behavior of silicone membranes for adipose tissue synthesis in clinical and theatrical prosthesis

@@ -1,0 +1,35 @@
+# OSS search plan: free open-source Game Boy Advance emulator core Android Play Store frontend architecture licensing
+
+- Codeberg (forge): https://codeberg.org/explore/repos?q=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing
+  Signals: stars, forks, activity, license
+  Gate: pattern-reference before dependency/integration
+- GitHub (forge): https://github.com/search?q=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing&type=repositories
+  Signals: stars, forks, recent commits, issues, license, topics
+  Gate: pattern-reference before dependency/integration
+- GitLab (forge): https://gitlab.com/search?search=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing&scope=projects
+  Signals: last activity, stars, forks, license, CI config
+  Gate: pattern-reference before dependency/integration
+- OpenSSF Scorecard (security): scorecard --repo <candidate-url>
+  Signals: branch protection, dependency update policy, CI tests, security policy
+  Gate: security review before integration
+- PyPI (package-registry): https://pypi.org/search/?q=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing
+  Signals: release cadence, project links, license, downloads
+  Gate: dependency approval before import
+- Software Heritage (archive): https://archive.softwareheritage.org/browse/search/?q=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing
+  Signals: archive presence, origin URLs, visit status
+  Gate: archive/reference only
+- SourceHut (forge): https://sr.ht/projects?search=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing
+  Signals: mailing-list activity, repository activity, license
+  Gate: pattern-reference before dependency/integration
+- Zenodo/GitHub links (research-archive): https://zenodo.org/search?q=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing
+  Signals: DOI, software release archive, license
+  Gate: citation/reference review
+- crates.io (package-registry): https://crates.io/search?q=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing
+  Signals: downloads, recent versions, repository, license
+  Gate: dependency approval before import
+- npm (package-registry): https://www.npmjs.com/search?q=free%20open-source%20Game%20Boy%20Advance%20emulator%20core%20Android%20Play%20Store%20frontend%20architecture%20licensing
+  Signals: weekly downloads, versions, maintainers, repository link
+  Gate: dependency approval before import
+- pkg.go.dev (package-registry): https://pkg.go.dev/search?q=free+open-source+Game+Boy+Advance+emulator+core+Android+Play+Store+frontend+architecture+licensing
+  Signals: import path, versions, licenses, dependents
+  Gate: dependency approval before import

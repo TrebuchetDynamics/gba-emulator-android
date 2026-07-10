@@ -1,0 +1,20 @@
+10.5281/zenodo.14497828	AT Emulator
+10.5281/zenodo.6348499	ARM7 Instruction Set, Programming
+10.5281/zenodo.2702427	DESIGN AND DEVELOPMENT OF WIND TURBINE EMULATOR TO OPERATE WITH 1.5KW INDUCTION GENERATOR
+10.5281/zenodo.5084114	Datset for 21cmVAE
+10.5281/zenodo.7415323	Material, Data Set and Analysis for unpublished study: "Safe Place - Emotion regulation with Detachment"
+10.5281/zenodo.7188144	Dual-IS: Instruction Set Modality for Efficient Instruction Level Parallelism
+10.5281/zenodo.12787826	Datas for Leveraging ecosystems responses to enhanced rock weathering in mitigation scenarios
+10.5281/zenodo.15574458	SIRANet - Core code for fast and scalable Air Quality neural emulator for high-resolution urban predictions on very large domains
+10.5281/zenodo.16741084	Models and Data for Reproducing the Result in "A Geographically Weighted Gaussian Process Regression Emulator of the GCHP 13.0.0 Global Air Quality Model"
+10.5281/zenodo.8070311	ConfFix: Repairing Configuration Compatibility Issues in Android Apps
+10.5281/zenodo.8218698	Clockhands Artifact (MICRO2023)
+10.5281/zenodo.13983238	GOES-16 ABI and collocated SNPP-VIIRS imagery for evaluating the emulation of daytime cloud products at night
+10.5281/zenodo.3478112	A machine learning approach to type II supernova spectroscopic analysis
+10.5281/zenodo.13903927	Paulinebonnet111/bonnet23_gmd_automatic_tuning_atm_paper: tuning scripts, Bonnet, Pastori et al., 2024
+10.5281/zenodo.17172331	Emulador Solar Fotovoltaico basado en Modelo Simplificado con  Interfaz Inalámbrica
+10.11591/ijece.v8i4.pp2595-2601	Instruction Set Extension of a Low-End Reconfigurable Microcontroller in Bit-Sorting Implementation
+10.1145/3419841	On Architectural Support for Instruction Set Randomization
+10.5281/zenodo.6671425	The Socioeconomic Impacts of the Upper Atmosphere Effects on LEO Satellites, Communication and Navigation Systems
+10.5281/zenodo.16687648	Artifact for WebView Tracer
+10.5281/zenodo.7992509	Flexible Instruction-Set Semantics via Abstract Monads - Artifact

@@ -1,0 +1,15 @@
+10.1109/ms.2021.3098116	Challenges for Inclusion in Software Engineering: The Case of the Emerging Papua New Guinean Society
+10.1007/s10664-021-10053-x	Developers Perception of Peer Code Review in Research Software Development
+10.1109/icse.2012.6227139	Semi-Automatically Extracting FAQs to Improve Accessibility of Software Development Knowledge
+10.1145/3709354	Morescient GAI for Software Engineering (Extended Version)
+10.1109/ms.2022.3176864	The Present and Future of Bots in Software Engineering
+	AI Techniques for Software Requirements Prioritization
+10.1109/tse.2018.2822270	How Do Static and Dynamic Test Case Prioritization Techniques Perform on Modern Software Systems? An Extensive Study on GitHub Projects
+	AIBugHunter: A Practical Tool for Predicting, Classifying and Repairing Software Vulnerabilities
+10.1109/tse.2018.2877759	Cognitive Biases in Software Engineering: A Systematic Mapping Study
+10.1145/3183519.3183549	We Don't Need Another Hero? The Impact of "Heroes" on Software Development
+10.1145/2896941.2896947	Enterprise Software Service Emulation: Constructing Large-Scale Testbeds
+10.1016/j.jss.2019.110394	How does Object-Oriented Code Refactoring Influence Software Quality? Research Landscape and Challenges
+10.1016/j.infsof.2024.107543	Automated Description Generation for Software Patches
+10.1109/icse-seis.2019.00013	Software Engineering in Civic Tech: A Case Study about Code for Ireland
+10.1145/3368089.3409697	Fairway: A Way to Build Fair ML Software

@@ -1,0 +1,20 @@
+10.21203/rs.3.rs-9887124/v1	Exploring wearable device use in relation to eating habits
+10.21203/rs.3.rs-9896185/v1	Assessment of the Economic Burden and Quality of Life in Patients With Chronic Obstructive Pulmonary Disease*
+10.21203/rs.3.rs-10158096/v1	GenoGlyph: Pan-cancer genomic mutation inference and risk stratification from diagnostic histopathology slides
+10.21203/rs.3.rs-8313268/v1	Defining and Quantifying “opportunity resources” as impact metrics for optimized CSU care in Germany
+10.21203/rs.3.rs-10153236/v1	Establishment and parameter calibration of double-layer bonded discrete element model for alfalfa stems at optimal harvest stage
+10.21203/rs.3.rs-10141939/v1	Pathological patterns of stillbirth placentas and related variables for both fresh and macerated stillbirth at Bugando Medical Center in Mwanza, Tanzania
+10.21203/rs.3.rs-9523610/v1	Artificial intelligence in learning management systems: enhancing computational thinking for primary school pupils
+10.21203/rs.3.rs-10017099/v1	Spatial and temporal use of New Jersey estuaries by sandbar sharks (Carcharhinus plumbeus)
+10.21203/rs.3.rs-9964212/v1	A Dynamic Huber-Weighted Adaptive EWMA Max-M Statistic for Simultaneous Multivariate Process Monitoring
+10.21203/rs.3.rs-9448131/v1	Dynamic Model of Hyper-Extension Pneumatic Actuator Considering Material Properties
+10.21203/rs.3.rs-9954384/v1	Interrelationship Between Desire to Learn, Mindful Learning, and Mind Wandering Among University Students in Egypt
+10.21203/rs.3.rs-9657083/v1	Evaluating TASK-BA (Task-shifting for Addressing depreSsion in Kidney failure- Behavioural Activation) Versus Enhanced Usual Care for Haemodialysis Patients with Depression in Pakistan; Protocol for a Randomised Controlled Feasibility Trial
+10.21203/rs.3.rs-9371063/v1	Biohydrogen production from lactic acid-enriched coffee mucilage: Performance of semi-continuous dark fermentation
+10.21203/rs.3.rs-9724827/v1	Quantifying the Effects of Bichectomy on the Middle and Lower Thirds of the Face: A Two-Dimensional Assessment
+10.21203/rs.3.rs-10132620/v1	E-Taste Signal Encoding and Classification via Multi- Attention Residual Networks Using sEMG Streams in Virtual Sensory Systems
+10.21203/rs.3.rs-10133242/v1	Lay concepts and perceptions of malaria among the Acholi in post-conflict Gulu District, Northern Uganda: A Qualitative Study
+10.21203/rs.3.rs-10225382/v1	Affect Intolerance as the Primary Transdiagnostic Process Linking Autistic and Attention-Deficit Hyperactivity Disorder (ADHD) Traits to Internalizing Symptoms
+10.21203/rs.3.rs-10021210/v1	When drugs speak: an exploratory convergent mixed-methods study of a first- person creative narrative activity for anti-seizure medication pharmacology in undergraduate medical education
+10.21203/rs.3.rs-10033796/v1	Mitigating Suppliers’ Environmental, Social, and Governance Greenwashing through Buyers’ Artificial Intelligence Application: Evidence from Listed Chinese Companies
+10.21203/rs.3.rs-8813136/v1	Enhancing Corrosion Protection of Porous Ceramic Oxide Coatings on AZ31 Mg Alloy Using Hybrid Chitosan Coatings

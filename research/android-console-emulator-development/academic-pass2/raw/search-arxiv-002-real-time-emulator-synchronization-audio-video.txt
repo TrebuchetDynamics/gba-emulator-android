@@ -1,0 +1,15 @@
+	Real time state monitoring and fault diagnosis system for motor based on LabVIEW
+	A study on audio synchronous steganography detection and distributed guide inference model based on sliding spectral features and intelligent inference drive
+10.17743/jaes.2022.0129	Diffusion-Based Audio Inpainting
+	Audio-Plane: Audio Factorization Plane Gaussian Splatting for Real-Time Talking Head Synthesis
+	Diffusion Models as Masked Audio-Video Learners
+	Audeo: Audio Generation for a Silent Performance Video
+10.1109/taslp.2020.3000593	Audio-visual Speech Enhancement Using Conditional Variational Auto-Encoders
+10.1109/rtss66672.2025.00023	Real-Time Service Subscription and Adaptive Offloading Control in Vehicular Edge Computing
+	A general-purpose deep learning approach to model time-varying audio effects
+10.1109/taslp.2024.3477291	Towards Improved Objective Perceptual Audio Quality Assessment -- Part 1: A Novel Data-Driven Cognitive Model
+	VQCPC-GAN: Variable-Length Adversarial Audio Synthesis Using Vector-Quantized Contrastive Predictive Coding
+10.1109/taslpro.2025.3626233	From Alignment to Advancement: Bootstrapping Audio-Language Alignment with Synthetic Data
+	Real-Time-Data Analytics in Raw Materials Handling
+	Space-time distributions
+	MOVA: Towards Scalable and Synchronized Video-Audio Generation

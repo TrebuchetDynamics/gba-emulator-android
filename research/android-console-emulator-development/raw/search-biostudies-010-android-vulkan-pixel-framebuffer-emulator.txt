@@ -1,0 +1,20 @@
+	Pixel 5 Versus Pixel 9 Pro XL-Are Android Devices Evolving Towards Better GNSS Performance?
+	Assembly of Biomolecular Gigastructures and Visualization with the Vulkan Graphics API.
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	Development of Drug Release Model for Suspensions in ESCAR (Emulator of SubCutaneous Absorption and Release).
+	Brian2Loihi: An emulator for the neuromorphic chip Loihi using the spiking neural network simulator Brian.
+	Bayesian Sensitivity Analysis of a Cardiac Cell Model Using a Gaussian Process Emulator.
+	Android malware analysis in a nutshell.
+	Deep learning based emulator for predicting voltage behaviour in lithium ion batteries.
+	Data on Vulnerability Detection in Android.
+	A High-Performance and Cost-Effective Field Programmable Gate Array-Based Motor Drive Emulator
+	The effects of ankle stiffness on mechanics and energetics of walking with added loads: a prosthetic emulator study.
+	PREDICTOR: A Physical emulatoR enabling safEty anD ergonomICs evaluation and Training of physical human-rObot collaboRation
+	Mentalistic attention orienting triggered by android eyes.
+	The rise of obfuscated Android malware and impacts on detection methods.
+	AndroDex: Android Dex Images of Obfuscated Malware.
+	Device Thrombogenicity Emulator (DTE)--design optimization methodology for cardiovascular devices: a study in two bileaflet MHV designs.
+	Asymmetric communication: cognitive models of humans toward an android robot.
+	Exploration of Mehrabian's communication model with an android.
+	Alignment of the attitude of teleoperators with that of a semi-autonomous android.
+	Almond consumption decreases android fat mass percentage in adults with high android subcutaneous adiposity but does not change HbA1c in a randomised controlled trial.

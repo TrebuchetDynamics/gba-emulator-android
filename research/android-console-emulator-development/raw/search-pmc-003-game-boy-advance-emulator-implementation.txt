@@ -1,0 +1,20 @@
+10.4329/wjr.v17.i11.114754	Large language models and large concept models in radiology: Present challenges, future directions, and critical perspectives.
+10.1080/1047840x.2019.1693866	Causal Inference in Generalizable Environments: Systematic Representative Design.
+10.1016/j.waojou.2025.101078	Artificial intelligence in allergy practice: Digital transformation and the future of clinical care.
+10.1016/j.bbih.2024.100766	Decision-making under stress: A psychological and neurobiological integrative model.
+10.1556/2006.2024.00061	Mainland China's 2021 restrictions on under-18s' video game time were imposed when older 2019 restrictions already applied: Omitting the historical regulatory context is misleading.
+10.1038/s41467-024-55461-x	Integrating artificial intelligence with mechanistic epidemiological modeling: a scoping review of opportunities and challenges.
+10.1016/j.dmd.2025.100188	Novel emerging cell and organoid systems for the study of drug metabolism and toxicity in humans.
+10.3389/fonc.2024.1509362	AI predicting recurrence in non-muscle-invasive bladder cancer: systematic review with study strengths and weaknesses.
+10.1002/wcs.63	Speech perception and production.
+10.1186/s12984-017-0321-3	How a diverse research ecosystem has generated new rehabilitation technologies: Review of NIDILRR's Rehabilitation Engineering Research Centers.
+10.3390/s26102971	A Lightweight Identity Authentication Protocol for Vehicle Ad Hoc Network Based on PUF-Obfuscation.
+10.1177/10711813251358264	Less can be More: Effects of a Forgetting Function on an AI-based Policy Capturing Tool Performance.
+10.1186/s13012-020-00985-1	Proceedings from the 12(th) Annual Conference on the Science of Dissemination and Implementation : Arlington, VA, USA. 4-6 December 2019.
+10.3389/frhs.2023.1198008	Scaling up delivery of HIV services in Africa through harnessing trends across global emerging innovations.
+10.1016/j.jhevol.2017.11.009	A computer simulation to investigate the association between gene-based gifting and pair-bonding in early hominins.
+10.3389/fnbot.2026.1761767	Trainable movement control using spikes and muscle-twitch dynamics.
+10.3390/s25226813	CATO: Wake-Up reCeiver-bAsed communicaTiOn for Batteryless Devices.
+10.3389/fspor.2024.1383723	Performance and healthcare analysis in elite sports teams using artificial intelligence: a scoping review.
+10.1186/s12889-020-09454-2	Preventing sexual violence in college men: a randomized-controlled trial of GlobalConsent.
+10.3390/cancers17132163	Exploring Experimental Models of Colorectal Cancer: A Critical Appraisal from 2D Cell Systems to Organoids, Humanized Mouse Avatars, Organ-on-Chip, CRISPR Engineering, and AI-Driven Platforms-Challenges and Opportunities for Translational Precision Oncology.

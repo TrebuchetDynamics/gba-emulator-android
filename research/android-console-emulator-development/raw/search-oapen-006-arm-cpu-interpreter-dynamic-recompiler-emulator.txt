@@ -1,0 +1,20 @@
+10.1007/978-1-4302-6131-5	Android on x86
+10.1007/978-1-4842-0100-8	Android Application Development for the Intel Platform
+10.1007/978-1-4842-9711-7	Database Performance at Scale
+10.25593/978-3-96147-571-1	Invasive Computing
+10.1007/978-1-4842-4932-1	Programming Persistent Memory
+10.1007/978-3-031-01761-2	The Datacenter as a Computer
+10.1515/9783110785944	Fundamentals
+10.1201/9781351255790	Real-Time Systems Development with RTEMS and Multicore Processors
+10.1007/978-3-319-74950-1	The Huawei and Snowden Questions: Can Electronic Equipment from Untrusted Vendors be Verified? Can an Untrusted Vendor Build Trust into Electronic Equipment?
+10.1007/978-3-319-74950-1	The Huawei and Snowden Questions
+10.1007/978-3-031-80268-3	Special Topics in Information Technology
+10.1007/978-1-4842-4398-5	Pro TBB
+10.1007/978-1-4842-7185-8	Ray Tracing Gems II
+10.1007/978-3-030-52017-5	Dependable Embedded Systems
+10.1007/978-3-030-47956-5	Software for Exascale Computing - SPPEXA 2016-2019
+10.1561/9781680836523	SpiNNaker - A Spiking Neural Network Architecture
+10.1007/978-3-031-90900-9	Fundamental Approaches to Software Engineering
+10.1007/978-3-030-78307-5	Technologies and Applications for Big Data Value
+10.5445/ksp/1000175307	Trustworthy Distributed Usage Control Enforcement in Heterogeneous Trusted Computing Environments
+10.1007/978-1-4302-6014-1	Sensor Technologies

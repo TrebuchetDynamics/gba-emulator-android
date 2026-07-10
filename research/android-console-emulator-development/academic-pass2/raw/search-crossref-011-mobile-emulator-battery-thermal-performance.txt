@@ -1,0 +1,15 @@
+10.12681/eadd/50416	Battery emulator operating in a power hardware-in-the-loop simulation
+10.2139/ssrn.6304895	Coupled Electro-Thermal Battery Emulator for Power Systems Testing
+10.2139/ssrn.5021738	Numerical and Experimental Thermal Performance of a Lattice-Based Battery Protection Packagenumerical and Experimental Thermal Performance of a Lattice-Based Battery Protection Package
+10.1109/apmc.2009.5384205	Spatial channel emulator for MIMO performance evaluation of mobile terminals
+10.3390/electronics11081215	Modular Battery Emulator for Development and Functional Testing of Battery Management Systems: The Cell Emulator
+10.35784/jcsi.644	Performance comparison of an emulator and physical Android mobile device based on chess algorithm
+10.21236/ada073856	Improved Thermal Battery Performance.
+10.2139/ssrn.4883733	Thermal Challenges in Lithium-Ion Battery Technology: Investigating Performance and Thermal Stability
+10.1109/isie.2011.5984312	Multi-cell battery emulator for advanced battery management system benchmarking
+10.2172/1651404	Mobile Sorption-based Thermal Battery for Harvesting Low-Temperature Geothermal Energy
+10.1007/978-3-540-24704-3_4	BCMP Performance Test with TTCN-3 Mobile Node Emulator
+10.4271/j3073_201605	Battery Thermal Management
+10.1002/eng2.70235/v2/review2	Review for "An Overview of the Impact of Vibrations on Li-Ion Battery Performance, Degradation, Battery Thermal Management System and Key Focus Areas"
+10.1002/eng2.70235/v3/review2	Review for "An Overview of the Impact of Vibrations on Li-Ion Battery Performance, Degradation, Battery Thermal Management System and Key Focus Areas"
+10.1002/eng2.70235/v1/review1	Review for "An Overview of the Impact of Vibrations on Li-Ion Battery Performance, Degradation, Battery Thermal Management System and Key Focus Areas"

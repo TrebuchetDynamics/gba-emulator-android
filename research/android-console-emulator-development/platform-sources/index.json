@@ -1,0 +1,75 @@
+[
+  {
+    "slug": "game-activity",
+    "url": "https://developer.android.com/games/agdk/game-activity",
+    "final_url": "https://developer.android.com/games/agdk/game-activity",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "GameActivity &nbsp;|&nbsp; Android game development &nbsp;|&nbsp; Android Developers",
+    "bytes": 354940
+  },
+  {
+    "slug": "oboe-low-latency-audio",
+    "url": "https://developer.android.com/games/sdk/oboe/low-latency-audio",
+    "final_url": "https://developer.android.com/games/sdk/oboe/low-latency-audio",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Low latency audio &nbsp;|&nbsp; Android game development &nbsp;|&nbsp; Android Developers",
+    "bytes": 353997
+  },
+  {
+    "slug": "frame-pacing",
+    "url": "https://developer.android.com/games/sdk/frame-pacing",
+    "final_url": "https://developer.android.com/games/sdk/frame-pacing",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Frame Pacing library &nbsp;|&nbsp; Android game development &nbsp;|&nbsp; Android Developers",
+    "bytes": 360943
+  },
+  {
+    "slug": "controller-input",
+    "url": "https://developer.android.com/develop/ui/views/touch-and-input/game-controllers/controller-input",
+    "final_url": "https://developer.android.com/games/sdk/game-controller/controller-input",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Handle controller actions &nbsp;|&nbsp; Android game development &nbsp;|&nbsp; Android Developers",
+    "bytes": 505426
+  },
+  {
+    "slug": "storage-access-framework",
+    "url": "https://developer.android.com/training/data-storage/shared/documents-files",
+    "final_url": "https://developer.android.com/training/data-storage/shared/documents-files",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "Access documents and other files from shared storage &nbsp;|&nbsp; App data and files &nbsp;|&nbsp; Android Developers",
+    "bytes": 383402
+  },
+  {
+    "slug": "play-intellectual-property",
+    "url": "https://support.google.com/googleplay/android-developer/answer/9888072",
+    "final_url": "https://support.google.com/googleplay/android-developer/answer/9888072",
+    "status": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "title": "Intellectual Property - Play Console Help",
+    "bytes": 1411615
+  },
+  {
+    "slug": "arm7tdmi-reference",
+    "url": "https://developer.arm.com/documentation/ddi0210/c/",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "slug": "gbatek",
+    "url": "https://problemkaputt.de/gbatek.htm",
+    "final_url": "https://problemkaputt.de/gbatek.htm",
+    "status": 200,
+    "content_type": "text/html",
+    "title": "GBATEK - GBA/NDS Technical Info",
+    "bytes": 5032449
+  },
+  {
+    "slug": "libretro-api",
+    "url": "https://docs.libretro.com/development/retroarch/architecture/",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

@@ -1,0 +1,20 @@
+10.1016/b978-193183631-9/50012-x	Nintendo Game Boy Advance
+10.7551/mitpress/12498.003.0013	Index
+10.7551/mitpress/12498.003.0011	Notes
+10.7551/mitpress/12498.003.0012	Bibliography
+10.7551/mitpress/12498.001.0001	Who Are You?
+10.7551/mitpress/12498.003.0010	Acknowledgments
+10.7551/mitpress/12498.003.0001	Series Foreword
+10.7551/mitpress/12498.003.0007	Platformizing Nostalgia
+10.7551/mitpress/12498.003.0014	[ Front Matter ]
+10.7551/mitpress/12498.003.0008	Residual Afterlives
+10.7551/mitpress/12498.003.0004	Expanding the Platform
+10.7551/mitpress/12498.003.0009	Conclusion: After Afterlives
+10.7551/mitpress/12498.003.0005	Written in Plastic
+10.7551/mitpress/12498.003.0002	Introduction: Who Are You?
+10.7551/mitpress/12498.003.0003	Console-Quality Gaming, Anywhere
+10.7551/mitpress/12498.003.0006	Let Me Show You My Pokemans
+10.26512/2018.tcc.21565	Porte do jogo Traveling Will para Nintendo Game Boy Advance
+10.1109/eh.2002.1029892	An immunochip architecture and its emulation
+10.1145/71302.71316	On hardware enhanced 80386 software emulation, compiled emulation, a program distribution language, and pack computers
+10.55277/researchhub.2jevlvwz.1	Read [Pdf]&gt; The Game Boy Encyclopedia: Every Game Released for the Nintendo Game Boy and Game Boy Color by Chris Scullion

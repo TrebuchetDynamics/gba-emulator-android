@@ -1,0 +1,20 @@
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	Executing native Java code in R: an approach based on a local server.
+	Deep learning based emulator for predicting voltage behaviour in lithium ion batteries.
+	Android malware analysis in a nutshell.
+	PREDICTOR: A Physical emulatoR enabling safEty anD ergonomICs evaluation and Training of physical human-rObot collaboRation
+	Device Thrombogenicity Emulator (DTE)--design optimization methodology for cardiovascular devices: a study in two bileaflet MHV designs.
+	The rise of obfuscated Android malware and impacts on detection methods.
+	ABrainVis: an android brain image visualization tool.
+	Development of Drug Release Model for Suspensions in ESCAR (Emulator of SubCutaneous Absorption and Release).
+	Brian2Loihi: An emulator for the neuromorphic chip Loihi using the spiking neural network simulator Brian.
+	Pixel 5 Versus Pixel 9 Pro XL-Are Android Devices Evolving Towards Better GNSS Performance?
+	AMDDLmodel: Android smartphones malware detection using deep learning model.
+	Bayesian Sensitivity Analysis of a Cardiac Cell Model Using a Gaussian Process Emulator.
+	Android malware classification based on random vector functional link and artificial Jellyfish Search optimizer.
+	Android malware detection method based on highly distinguishable static features and DenseNet.
+	AndroAnalyzer: android malicious software detection based on deep learning.
+	Shortcomings of human-in-the-loop optimization of an ankle-foot prosthesis emulator: a case series.
+	Data on Vulnerability Detection in Android.
+	A High-Performance and Cost-Effective Field Programmable Gate Array-Based Motor Drive Emulator
+	The effects of ankle stiffness on mechanics and energetics of walking with added loads: a prosthetic emulator study.

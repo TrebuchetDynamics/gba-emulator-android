@@ -1,0 +1,15 @@
+10.12681/eadd/32016	Novel techniques for hardware / software partitioning and emulation
+10.1007/s11416-017-0291-9	Anti-emulation trends in modern packers: a survey on the evolution of anti-emulation techniques in UPA packers
+10.1016/j.envsoft.2011.11.003	Emulation techniques for the reduction and sensitivity analysis of complex environmental models
+10.1016/s1474-6670(17)67474-3	Improved Techniques for Reliable Software Using Microprogrammed Diagnostic Emulation
+10.3724/sp.j.1001.2013.04387	Survey of RDF Query Processing Techniques
+10.21275/v4i12.nov152110	A Survey on Bug Triaging- Software Data Reduction Techniques
+10.21275/v4i12.nov152065	Survey on Bug Triage with Software Data Reduction Techniques
+10.5220/0010602903180323	Meeting Digital Preservation Requirements for Software through an Emulation Strategy
+10.5220/0010602900002992	Meeting Digital Preservation Requirements for Software through an Emulation Strategy
+10.4018/978-1-59904-013-4.ch007	Industry Software Reviews Survey Design
+10.14264/300445	The Zboard: cost reduction through software emulation
+10.4018/978-1-61520-809-8.ch001	Introduction
+10.4108/icst.simutools.2014.254796	Using Emulation Software to Predict the Performance of Algorithms on NVRAM
+10.4018/978-1-59904-013-4.ch008	Industry Software Reviews Survey Results and Findings
+10.1016/0950-5849(87)90308-9	IBM LU6.2 emulation software

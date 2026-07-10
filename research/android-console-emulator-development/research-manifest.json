@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-07-09T19:24:54-06:00",
+  "depth": "comprehensive",
+  "passes": [
+    {
+      "name": "broad academic discovery",
+      "query_file": "queries.txt",
+      "sources": "all",
+      "status": "10 queries complete, query 11 partial, then stopped",
+      "outputs": ["results.jsonl", "failures.jsonl", "raw/", "coverage-stats.log"],
+      "explicit_gap": "Queries not completed by this broad pass were replaced by the focused pass and official platform sources; all-preset connector failures remain in failures.jsonl."
+    },
+    {
+      "name": "focused academic completion",
+      "query_file": "queries-pass2.txt",
+      "sources": ["openalex", "crossref", "arxiv"],
+      "status": "15 queries complete, 0 failures",
+      "outputs": ["academic-pass2/manifest.json", "academic-pass2/results.jsonl", "academic-pass2/results-deduped.jsonl", "academic-pass2/raw/", "academic-pass2/coverage-stats.log"]
+    },
+    {
+      "name": "OSS study",
+      "query_plan": "oss-search-plan.txt",
+      "sources": ["GitHub API", "Software Heritage API"],
+      "status": "metadata/tree/release/license/archive-origin review complete; no cloning or integration",
+      "outputs": ["oss/repository-assessment.tsv", "oss/tree-signals.json", "oss/raw/"]
+    },
+    {
+      "name": "platform and technical documentation",
+      "sources": ["Android Developers", "Google Play policy", "GBATEK"],
+      "status": "retrieved except explicit errors in provenance.json",
+      "outputs": ["platform-sources/index.json", "platform-sources/excerpts.txt", "platform-sources/"]
+    }
+  ]
+}

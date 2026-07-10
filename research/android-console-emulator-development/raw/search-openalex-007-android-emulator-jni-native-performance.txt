@@ -1,0 +1,20 @@
+10.1145/3017427	The Evolution of Android Malware and Android Analysis Techniques
+10.14722/ndss.2015.23145	CopperDroid: Automatic Reconstruction of Android Malware Behaviors
+10.1145/2590296.2590325	Evading android runtime analysis via sandbox detection
+10.14722/ndss.2016.23384	Going Native: Using a Large-Scale Analysis of Android Apps to Create a Practical Native-Code Sandboxing Policy
+10.14722/ndss.2016.23118	IntelliDroid: A Targeted Input Generator for the Dynamic Analysis of Android Malware
+10.1109/trustcom.2011.162	Efficient Java Native Interface for Android Based Mobile Devices
+10.1109/access.2019.2918139	Constructing Features for Detecting Android Malicious Applications: Issues, Taxonomy and Directions
+10.1145/3533767.3534410	NCScope: hardware-assisted analyzer for native code in Android apps
+10.1145/2896921.2896932	Automated test generation for detection of leaks in Android applications
+10.1109/tse.2017.2730198	Enhancing the Description-to-Behavior Fidelity in Android Apps with Privacy Policy
+10.1109/tse.2021.3071193	A Survey of Performance Optimization for Mobile Applications
+10.1007/s42452-019-1124-x	The Android malware detection systems between hope and reality
+10.1109/access.2024.3390612	Dynamic Security Analysis on Android: A Systematic Literature Review
+10.1109/access.2024.3377658	Hybrid Android Malware Detection: A Review of Heuristic-Based Approach
+10.3390/info14070374	A Survey and Evaluation of Android-Based Malware Evasion Techniques and Detection Frameworks
+10.1016/j.cose.2021.102181	You Shall not Repackage! Demystifying Anti-Repackaging on Android
+10.3390/s150921204	vitisFlower®: Development and Testing of a Novel Android-Smartphone Application for Assessing the Number of Grapevine Flowers per Inflorescence Using Artificial Vision Techniques
+10.13052/jcsm2245-1439.1017	A Review on Android Malware: Attacks, Countermeasures and Challenges Ahead
+10.1145/3324884.3416637	Demystifying diehard Android apps
+10.1002/cpe.4286	Accelerating Linux and Android applications on low‐power devices through remote GPGPU offloading

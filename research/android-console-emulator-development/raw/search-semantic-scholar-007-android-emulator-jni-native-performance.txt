@@ -1,0 +1,20 @@
+10.1109/trustcom.2011.162	Efficient Java Native Interface for Android Based Mobile Devices
+10.1145/3712308	The Dark Side of Native Code on Android
+10.59431/jda.v4i1.659	D.P.F Delphi AndroidNative Components: A Framework for Native Android Development with Delphi XE5
+	Hercules Droidot and the murder on the JNI Express
+	Benchmarking Java application using JNI and native C application on Android
+10.1145/3696443.3708933	MTE4JNI: A Memory Tagging Method to Protect Java Heap Memory from Illicit Native Code Access
+10.1109/iccas.2010.5669738	Evaluating performance of Android platform using native C for embedded systems
+10.1109/dsn.2014.30	On Tracking Information Flows through JNI in Android Applications
+	File DB Android SDK Emulator QEMU Analysis Graphical User Interface Instr
+10.3991/ijim.v17i19.42575	Signature Verification Based on Dex CRC and Blake2 Algorithm to Prevent Reverse Engineering Attack in Android Application
+10.9728/dcs.2013.14.1.7	Performance Comparison of Implementation Technologies for Image Quality Enhancement Operations on Android Platforms
+10.1145/3300061.3300122	Mobile Gaming on Personal Computers with Direct Android Emulation
+10.1109/icawst.2011.6163105	Android programming techniques for improving performance
+10.1145/3293882.3338990	JNI program analysis with automatically extracted C semantic summary
+10.1109/icimtech67074.2025.11265602	A Comparative Study Between Kotlin and Dart in Making a Simple CRUD Mobile Application
+10.1109/icice49024.2019.9117398	PILDroid: A System for Detecting the Leakage of Privacy Information using the JNI
+	Performance and Energy Optimization for the Android Platform
+	Android Malware Detection Approaches in Combination with Static and Dynamic Features
+10.1109/euc53437.2021.00036	Detecting Privacy Leaks in Android Hybrid Applications Based on Dynamic Taint Tracking
+10.1145/3643029	Trinity: High-Performance and Reliable Mobile Emulation through Graphics Projection

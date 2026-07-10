@@ -1,0 +1,20 @@
+	Perceptions Toward an Attentional Bias Modification Mobile Game Among Individuals With Low Socioeconomic Status Who Smoke: Qualitative Study.
+	NDK Interacts with FtsZ and Converts GDP to GTP to Trigger FtsZ Polymerisation--A Novel Role for NDK.
+	Can You Hear Me Now? Audio and Visual Interactions That Change App Choices.
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	Synchronization of ear-EEG and audio streams in a portable research hearing device.
+	Android malware detection using hybrid ANFIS architecture with low computational cost convolutional layers
+	Development of Drug Release Model for Suspensions in ESCAR (Emulator of SubCutaneous Absorption and Release).
+	Development of a Serious Game to Simulate Neonatal Intensive Care Unit Experiences: Collaborative Quasi-Experimental Study.
+	Ndk, a novel host-responsive regulator, negatively regulates bacterial virulence through quorum sensing in Pseudomonas aeruginosa.
+	Brian2Loihi: An emulator for the neuromorphic chip Loihi using the spiking neural network simulator Brian.
+	Bayesian Sensitivity Analysis of a Cardiac Cell Model Using a Gaussian Process Emulator.
+	An efficient approach for low latency processing in stream data.
+	Multisensory GPS impact on spatial representation in an immersive virtual reality driving game.
+	Data of the interacting protein networks and nucleotide metabolism pathways related to NDK and NT5.
+	Why are some languages confused for others? Investigating data from the Great Language Game.
+	Android malware analysis in a nutshell.
+	Deep learning based emulator for predicting voltage behaviour in lithium ion batteries.
+	Data on Vulnerability Detection in Android.
+	A High-Performance and Cost-Effective Field Programmable Gate Array-Based Motor Drive Emulator
+	Negative impacts from latency masked by noise in simulated beamforming.

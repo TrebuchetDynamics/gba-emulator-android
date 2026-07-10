@@ -1,0 +1,20 @@
+10.1145/3241539.3241565	Flare
+10.1145/2464996.2464999	TEAPOT
+	Mobile map client API : design and implementation for Android
+10.1007/978-1-4302-6131-5	Android on x86
+10.1587/transinf.2016edp7435	Virtualizing Graphics Architecture of Android Mobile Platforms in KVM/ARM Environment
+	WeChat forensic artifacts: Android phone extraction and analysis
+10.1186/s12938-021-00909-0	ABrainVis: an android brain image visualization tool
+10.1109/ipas.2014.7043267	Image processing on mobile devices: An overview
+10.3390/s150716083	Providing IoT Services in Smart Cities through Dynamic Augmented Reality Markers
+10.1007/s41095-017-0093-5	Z <sup>2</sup> traversal order: An interleaving approach for VR stereo rendering on tile-based GPUs
+10.1007/978-1-4302-6131-5	Android on x86: An Introduction to Optimizing for Intel Architecture
+	Inter Process Communication in Android
+10.20533/jitst.2046.3723.2012.0008	Mobile Visualization of Biomedical Volume Datasets
+10.1016/j.envsoft.2018.05.012	Mobile Augmented Reality for Flood Visualisation
+10.1109/cns.2018.8433126	Fraus: Launching Cost-efficient and Scalable Mobile Click Fraud Has Never Been So Easy
+10.1109/jiot.2023.3316698	GPU and VPU Enabled Virtual Mobile Infrastructure for 3-D Image Rendering and its Application in Telemedicine
+	Android Hypovisors: Securing Mobile Devices through High-Performance, Light-Weight, Subsystem Isolation with Integrity Checking and Auditing Capabilities
+10.26599/tst.2022.9010028	Architecture of the Graphics System for Embedded Real-Time Operating Systems
+	Cross platform mobile application development : a comparison study of React Native Vs Flutter
+10.1109/tvcg.2021.3067757	Quality of Service Impact on Edge Physics Simulations for VR

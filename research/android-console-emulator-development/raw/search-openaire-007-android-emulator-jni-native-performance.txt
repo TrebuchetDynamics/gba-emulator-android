@@ -1,0 +1,1 @@
+10.1109/trustcom.2011.162	Efficient Java Native Interface for Android Based Mobile Devices

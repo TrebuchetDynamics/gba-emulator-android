@@ -1,0 +1,20 @@
+10.1007/978-1-4302-6548-1_11	The Android Native Development Kit (NDK)
+10.1007/978-1-4302-4828-6_2	Exploring the Android NDK
+10.1007/978-1-4842-0475-7_8	Working with Android NDK and RenderScript
+10.1007/978-1-4302-5831-5_10	Game Audio
+10.1002/9781119419310.ch11	Using Android NDK with Android Studio
+10.1007/978-1-4302-4828-6	Pro Android C++ with the NDK
+10.1007/978-1-4842-2259-1_8	Working with Android NDK and RenderScript
+10.1007/978-1-4302-4828-6_1	Getting Started with C++ on Android
+10.1007/978-1-4302-6323-4_8	Working with Android NDK and RenderScript
+10.1007/978-1-4302-4615-2_8	Working with Android NDK and Renderscript
+10.1007/978-1-4302-4828-6_7	Native Threads
+10.9728/dcs.2013.14.3.381	Porting and Implementation of a 3D Cube Game using Android NDK(Native Development Kit)
+10.1007/978-1-4302-4828-6_11	C++ Support
+10.1016/j.jss.2019.03.013	Energy-efficient low-latency audio on android
+10.1007/978-1-4302-4000-6_3	Advanced NDK
+10.1007/978-1-4302-4828-6_12	Native Graphics API
+10.1007/978-1-4302-4828-6_6	Bionic API Primer
+10.1007/978-1-4302-4828-6_13	Native Sound API
+10.1007/978-1-4302-4828-6_14	Profiling and NEON Optimization
+10.1007/978-1-4302-4828-6_9	POSIX Socket API: Connectionless Communication

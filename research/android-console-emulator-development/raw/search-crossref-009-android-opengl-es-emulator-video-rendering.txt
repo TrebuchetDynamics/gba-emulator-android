@@ -1,0 +1,20 @@
+10.1007/978-1-4302-4003-7_10	OpenGL ES 2, Shaders, and ...
+10.1109/telfor.2013.6716327	Rendering of digital video content through OpenGL ES on Smart TV
+10.1007/978-1-4302-4003-7	Pro OpenGL ES for Android
+10.1007/978-1-4302-3043-4_10	OpenGL ES: Going 3D
+10.1007/978-1-4302-4003-7_5	Textures
+10.1007/978-1-4302-3043-4_7	OpenGL ES: A Gentle Introduction
+10.1201/b16721-24	Eﬃcient Morph Target Animation Using OpenGL ES 3.0
+10.1201/b18805-37	3: ANGLE: Bringing OpenGL ES to the Desktop
+10.1007/978-1-4302-4678-7_7	OpenGL ES: A Gentle Introduction
+10.1201/b10648-28	Migration to OpenGL ES 2.0
+10.1007/978-1-4842-1718-4_6	OpenGL ES and Polygons
+10.1007/978-1-4302-4060-0_4	Efficient Graphics with OpenGL ES 2.0
+10.1007/978-1-4302-4003-7_6	Will It Blend?
+10.1007/978-1-4302-4678-7_10	OpenGL ES: Going 3D
+10.1007/978-1-4302-4003-7_9	Performance ‘n’ Stuff
+10.1007/978-1-4302-4003-7_7	Well-Rendered Miscellany
+10.1007/978-1-4302-4003-7_4	Turning On the Lights
+10.1007/978-1-4302-3043-4_9	Super Jumper: A 2D OpenGL ES Game
+10.1007/978-1-4302-3988-8_10	OpenGL ES: Going 3D
+10.1007/978-1-4302-6548-1_4	3D Graphics Using OpenGL ES 2.0

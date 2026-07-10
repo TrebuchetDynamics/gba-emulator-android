@@ -1,0 +1,20 @@
+10.7910/dvn/ue2pae	An Integrated Approach to Enterprise Architecture and Business Process Management at the USMEPCOM
+10.7910/dvn/vbovvw	van der Waals interfacial junction transistor
+10.7910/dvn/oqvbdf	Replication Data for: Crowdsourcing Architectural Beauty
+10.7910/dvn/1copoz	Gaming Stones morphological data
+10.7910/dvn/9x1q2p	Replication Data for: On the Origin of Sinter-Resistance and Catalyst Accessibility in Raspberry-Colloid-Templated Catalyst Design
+10.7910/dvn/uek4yh	Replication Data for: Multitask Machine Learning of Collective Variables for Enhanced Sampling of Rare Events
+10.7910/dvn/qvmfpz	Replication Data for: Machine Learning Prediction of H Adsorption Energies on Ag Alloys
+10.7910/dvn/rntdaz	Replication Data for: Exploiting the Liquid Phase to Enhance the Cross-Coupling of Alcohols over Nanoporous Gold Catalysts
+10.7910/dvn/ybavzf	Replication Data for: Probing Atomic Distributions in Mono- and Bimetallic Nanoparticles by Supervised Machine Learning
+10.7910/dvn/qityti	Replication Data for: Decoding reactive structures in dilute alloy catalysts
+10.7910/dvn/glea5f	Replication Data for: Facilitating hydrogen atom migration via a dense phase on palladium islands to a surrounding silver surface
+10.7910/dvn/ds5vjo	Replication Data for: Latent Representation Learning for Structural Characterization of Catalysts
+10.7910/dvn/2jbn2w	Replication Data for: Toward benchmarking theoretical computations of elementary rate constants on catalytic surfaces: formate decomposition on Au and Cu
+10.7910/dvn/6oieqe	Zelig Models for Testing Advanced Statistical Analysis
+10.7910/dvn/siadfy	AEMS 2019-2020
+10.7910/dvn/8n7elx	hillygus2
+10.7910/dvn/paqmdc	Hillygus - Wisonsin Ads Data
+10.7910/dvn/ildem0	Replication Data for: Study 2 (The Transmission Game: Testing behavioral interventions in a pandemic-like simulation)
+10.7910/dvn/rhr2a5	Replication Data for: Study 1 (The Transmission Game: Testing behavioral interventions in a pandemic-like simulation)
+10.7910/dvn/eaxi4k	Replication Data for: Reassessing the economic value of Advanced level Mathematics

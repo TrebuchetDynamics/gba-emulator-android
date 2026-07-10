@@ -1,0 +1,20 @@
+10.18517/ijaseit.9.3.7329	A New Native Video Filtering based on OpenGL ES for Mobile Platform
+10.1109/telfor.2013.6716327	Rendering of digital video content through OpenGL ES on Smart TV
+10.1088/1742-6596/1237/5/052016	3D Reservoir Modeling Based on Mobile Platform and OpenGL ES
+10.1109/intelcis.2015.7397213	Comparison between OpenGL ES and metal API in medical volume visualisation
+	Paravirtualizing OpenGL ES in Simics
+	Method and device for realizing 3D (3-Dimensional) screen rotation of desktop of Android operating system by using OpenGL ES (OpenGL for Embedded Systems)
+10.1109/sbgames.2014.9	Experimental Approach of the Asymptotic Computational Complexity of Shaders for Mobile Devices with OpenGL ES
+	Learn OpenGL ES: For Mobile Game and Graphics Development
+	“ INVESTIGATION OF RENDERING AND STREAMING VIDEO CONTENT OVER CLOUD USING VIDEO EMULATOR FOR ENHANCED USER EXPERIENCE ”
+	The OpenGL ES 2.0 programming guide
+10.1007/978-981-13-1056-0_14	A Simplified Emulation Scheme for OpenGL SC 2.0 Rendering over OpenGL Embedded Systems 2.0
+10.1007/978-1-4842-2472-4_15	Rendering OpenMAX to OpenGL on the Raspberry Pi
+10.2991/isci-15.2015.321	Display technique of mobile video monitor on android
+10.1145/3495243.3558269	A GPU-enabled mobile telemedicine training system for graphic rendering
+10.1117/12.2042498	Architecture for high performance stereoscopic game rendering on Android
+	Android NDK Graphics: Open GL ES Air Hockey Basis Application
+	Canvas element rendering method and device realized on Android system based on GPU (Graphic Processing Unit)
+10.1109/aeeca55500.2022.9919042	Design and Realization of Real-time Face Beauty System based on Android
+10.1038/s41598-026-50381-w	A remote Digital Twin interaction system based on virtual mobile infrastructure
+	Design of Remote Video Monitoring Based on Android Smart Phone

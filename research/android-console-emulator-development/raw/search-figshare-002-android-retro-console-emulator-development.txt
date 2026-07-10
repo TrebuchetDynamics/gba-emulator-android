@@ -1,0 +1,47 @@
+10.1021/acsapm.6c01687.s001	Temporally Programmed
+H<sub>2</sub>O<sub>2</sub> and
+H<sub>2</sub>S‑Releasing Hydrogel Dressing for Accelerated
+Infected Wound Healing
+10.1021/acs.joc.6c00731.s001	Solvents Promote
+Selective TEDA<sup>2+.</sup> Formation
+Driven through a Pnicogen Bond in Selectfluor
+10.1021/acsapm.6c00842.s001	Structurally Distinct
+Emissive 2D-Vinylene-Conjugated
+Microporous Polymers for Efficient Detection of Environmentally Harmful
+Nitrophenols and Cu(NO<sub>3</sub>)<sub>2</sub>
+10.25380/iastate.32288322.v1	Data for: A minimally destructive method for 2-dimensional soil and root mapping in row crops
+10.6084/m9.figshare.32952530.v1	<b>Curriculum-Induced Symbol Invention for Emergent Reasoning Primitives (CISI) – Hypothesis 2</b>
+10.6084/m9.figshare.32677605.v2	Supplementary document for Multipolar Optical Binding in Focus - 7916061.pdf
+10.6084/m9.figshare.32508264.v2	Supplementary document for Towards Community-owned Optical Detection of Priority Drinking Water Contaminants: A Review - 7917835.pdf
+10.6084/m9.figshare.32677647.v2	Supplementary document for VO2 as a Statistically Correlated Disordered random metasurface: A Complex-Valued Mixing Parameter Model for Correlated Phase Transitions - 7896752.pdf
+10.6084/m9.figshare.30656390.v2	Photogrammetry in OrtogOnBlender XP: The Story of an (R)Evolution
+10.1021/acsnano.6c00792.s001	Fully Suppressed
+Superconductivity in Nonferromagnetic
+Heavy Fermion/Superconductor Bilayers: Rocksalt-Type CeO/LaO
+10.1021/jacs.6c04291.s002	Benzoxaboroles Are
+Structurally Unique Binders of
+Eukaryotic Translation Initiation Factor 4E
+10.1021/jacs.6c04291.s001	Benzoxaboroles Are
+Structurally Unique Binders of
+Eukaryotic Translation Initiation Factor 4E
+10.1021/acs.jcim.6c00544.s002	Quantum Computing
+Calculations of Protein–Ligand
+Binding Energies Using Decomposition Methods on Simulated and Real
+Quantum Hardware
+10.1021/acs.jcim.6c00544.s001	Quantum Computing
+Calculations of Protein–Ligand
+Binding Energies Using Decomposition Methods on Simulated and Real
+Quantum Hardware
+10.1021/acsaenm.6c00574.s001	Nanoparticles-Mediated
+UV Shielding of Isothiazolinone
+in Waterborne Acrylic/Alkyd Resins Coatings for Long-Term Protection
+of Bamboo
+10.1021/acsapm.6c01475.s002	3D-Printed, High-Adhesion, Porous, and Breathable
+Hydrogel Patches for ECG Monitoring as Wearable Sensors
+10.1021/acsapm.6c01475.s001	3D-Printed, High-Adhesion, Porous, and Breathable
+Hydrogel Patches for ECG Monitoring as Wearable Sensors
+10.1021/acsomega.6c01040.s001	Toward Suppression
+of Polycyclic Aromatic Hydrocarbons
+Leaching from Creosote-Treated Wood
+10.6084/m9.figshare.32952458.v1	<b>Differentiable Latent Indexing inside Large Language Models (DLI-LLM) - Hypothesis 1</b>
+10.6084/m9.figshare.32952494.v1	Unveiling antioxidant and anti-inflammatory potentials of <i>Garcinia microphylla</i> Merr.: first report on metabolomics studies, <i>in vitro</i> and <i>in vivo</i> approaches

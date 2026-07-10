@@ -1,0 +1,15 @@
+10.1007/978-3-319-24018-3_12	How Current Android Malware Seeks to Evade Automated Code Analysis
+10.3390/app13053061	Chidroid: A Mobile Android Application for Log Collection and Security Analysis in Healthcare and IoMT
+10.1007/978-1-4302-3298-8	Beginning Android 3 [begin the journey toward your own successful Android 3 apps]
+10.1109/tse.2021.3071193	A Survey of Performance Optimization for Mobile Applications
+10.36227/techrxiv.21602706.v1	An ML-Based Recognizer of Exfiltration Attack over Android Platform: MLGuard
+	Inter Process Communication in Android
+10.1145/3332165.3347890	X-Droid
+	The Design and Implementation of a Mobile Game Engine for the Android Platform
+10.36227/techrxiv.173687667.70476692/v1	The OWApp Benchmark: an OWASP-compliant Vulnerable Android App Dataset
+10.14722/ndss.2018.23365	Removing Secrets from Android's TLS
+10.1145/3570361.3613259	Virtual Device Farms for Mobile App Testing at Scale: A Pursuit for Fidelity, Efficiency, and Accessibility
+10.12785/ijcds/090419	S3: A Study on the Efficiency of Current Power-Saving Approaches Used Among Android-Application Development and Usage Stages
+	Adding Energy Star Rating Schema to Android Applications on Google Play Store an Example of a Preventive Power Saving Model
+	A Framework for Measuring the Usability Issues and Criteria of Mobile Learning Applications
+10.19030/ijmis.v18i2.8494	How To Create An App

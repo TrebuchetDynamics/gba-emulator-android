@@ -1,0 +1,20 @@
+10.7551/mitpress/12498.001.0001	Who Are You?
+10.1007/s10270-021-00898-7	Cyber security threat modeling based on the MITRE Enterprise ATT&amp;CK Matrix
+10.19030/iber.v12i10.8136	The Impact Of Platform On Global Video Game Sales
+10.1145/3068281	GPU Virtualization and Scheduling Methods
+10.1109/access.2022.3219845	Healthcare in Metaverse: A Survey on Current Metaverse Applications in Healthcare
+10.23860/thesis-thibeaulty-christopher-2013	System for Video Game Enhancement Using Console Emulator State Information and Scene Recognition
+	“You’ve Seen the Movie, Now Play the Game”: Recoding the Cinematic in Digital Media and Virtual Culture
+10.1016/j.jksuci.2023.101846	The resurrection of digital triplet: A cognitive pillar of human-machine integration at the dawn of industry 5.0
+10.1186/s13321-020-0408-x	Towards reproducible computational drug discovery
+10.1007/s10703-019-00337-w	A survey of challenges for runtime verification from advanced application domains (beyond software)
+10.1145/3550304	AdaMICA
+	A History of Online Gatekeeping
+10.1071/as10019	Astrophysical Supercomputing with GPUs: Critical Decisions for Early Adopters
+10.7551/mitpress/14495.001.0001	The Stuff Games Are Made Of
+10.26530/oapen_458884	Collaborative Governance : A new era of public policy in Australia?
+10.1109/access.2024.3372990	MIMD Programs Execution Support on SIMD Machines: A Holistic Survey
+10.36227/techrxiv.17198702.v3	Quantum Computing for Healthcare: A Review
+	Re-curating the Accident: Speedrunning as Community and Practice
+10.1080/03007766.2021.1984023	(Dis)locating Democratization: Music Technologies in Practice
+10.1017/cbo9781139236706.005	Organizing the Electronic Century

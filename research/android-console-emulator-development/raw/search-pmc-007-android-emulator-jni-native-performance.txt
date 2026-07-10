@@ -1,0 +1,8 @@
+10.1155/2014/785434	Hybrid polylingual object model: an efficient and seamless integration of Java and native components on the Dalvik virtual machine.
+10.7717/peerj-cs.907	The rise of obfuscated Android malware and impacts on detection methods.
+10.3390/s24092679	Lightweight Crypto-Ransomware Detection in Android Based on Reactive Honeyfile Monitoring.
+10.3390/s21165671	An Analysis of Android Malware Classification Services.
+10.3390/s150921204	vitisFlower®: Development and Testing of a Novel Android-Smartphone Application for Assessing the Number of Grapevine Flowers per Inflorescence Using Artificial Vision Techniques.
+10.1371/journal.pone.0150077	SMARTbot: A Behavioral Analysis Framework Augmented with Machine Learning to Identify Mobile Botnet Applications.
+10.1016/j.fsisyn.2022.100313	Interpol review of digital evidence for 2019-2022.
+10.3390/s140814070	A cloud-based Internet of Things platform for ambient assisted living.

@@ -1,0 +1,20 @@
+	Carboxypeptidase U (CPU, TAFIa, CPB2) in Thromboembolic Disease: What Do We Know Three Decades after Its Discovery?
+	The crystal structure of thrombin-activable fibrinolysis inhibitor (TAFI) provides the structural basis for its intrinsic activity and the short half-life of TAFIa.
+	The roles of selected arginine and lysine residues of TAFI (Pro-CPU) in its activation to TAFIa by the thrombin-thrombomodulin complex.
+	Investigation of cofactor activities of endothelial microparticle-thrombomodulin with liposomal surrogate.
+	Activation of the Carboxypeptidase U (CPU, TAFIa, CPB2) System in Patients with SARS-CoV-2 Infection Could Contribute to COVID-19 Hypofibrinolytic State and Disease Severity Prognosis.
+	ProCPU Is Expressed by (Primary) Human Monocytes and Macrophages and Expression Differs between States of Differentiation and Activation.
+	Enhanced Production of ECM Proteins for Pharmaceutical Applications Using Mammalian Cells and Sodium Heparin Supplementation.
+	A Genome-wide Study of Common and Rare Genetic Variants Associated with Circulating Thrombin Activatable Fibrinolysis Inhibitor.
+	Sex-specific effect of CPB2 Ala147Thr but not Thr325Ile variants on the risk of venous thrombosis: A comprehensive meta-analysis.
+	Robotic goalie with 3 ms reaction time at 4% CPU load using event-based dynamic vision sensor.
+	Carboxypeptidase B2 and N play different roles in regulation of activated complements C3a and C5a in mice.
+	Carboxypeptidase B2 deficiency reveals opposite effects of complement C3a and C5a in a murine polymicrobial sepsis model.
+	In vivo regulation of plasminogen function by plasma carboxypeptidase B.
+	Evidence for natural horizontal transfer of the pcpB gene in the evolution of polychlorophenol-degrading sphingomonads.
+	Personal Cold Protection Behaviour and Its Associated Factors in 2016/17 Cold Days in Hong Kong: A Two-Year Cohort Telephone Survey Study.
+	The Catalytic Product of Pentachlorophenol 4-Monooxygenase is Tetra-chlorohydroquinone rather than Tetrachlorobenzoquinone.
+	Organization and regulation of pentachlorophenol-degrading genes in Sphingobium chlorophenolicum ATCC 39723.
+	Network topology-directed design of molecular CPU for cell-like dynamic information processing.
+	Identification of heparin interaction sites on thrombin-activatable fibrinolysis inhibitor that modulate plasmin-mediated activation, thermal stability, and antifibrinolytic potential.
+	Multi-core CPU or GPU-accelerated Multiscale Modeling for Biomolecular Complexes.

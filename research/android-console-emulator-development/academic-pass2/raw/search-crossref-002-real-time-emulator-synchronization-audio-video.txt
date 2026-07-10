@@ -1,0 +1,15 @@
+10.1109/icalip.2008.4589974	Using timestamp to realize audio-video synchronization in Real-Time streaming media transmission
+10.3403/30160465u	Guideline for synchronization of audio and video
+10.3403/30160465	Guideline for synchronization of audio and video
+10.3403/30355801	Guideline for synchronization of audio and video
+10.3403/30355801u	Guideline for synchronization of audio and video
+10.3403/30180651u	Guideline for synchronization of audio and video
+10.3403/30180651	Guideline for synchronization of audio and video
+10.3403/30355799	Guideline for synchronization of audio and video
+10.3403/30355799u	Guideline for synchronization of audio and video
+10.1109/wcsp.2012.6542984	Pre-synchronization of AVS audio-video based on Real-Time Transport Protocol
+10.3403/pdiects62312-1	Guideline for synchronization of audio and video
+10.3403/pdiects62312	Guideline for synchronization of audio and video
+10.5594/smpte.st2022-1.2007	Forward Error Correction for Real-Time Video/Audio Transport Over IP Networks
+10.5594/smpte.st2064-2.2015	Audio to Video Synchronization Measurement — Fingerprint Transport
+10.5594/smpte.st2064-1.2015	Audio to Video Synchronization Measurement — Fingerprint Generation

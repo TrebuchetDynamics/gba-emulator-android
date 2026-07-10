@@ -1,0 +1,15 @@
+10.1109/et59121.2023.10279800	Pipeline-accurate Instruction Cycle Measurements for Microprocessor Model Extraction
+10.1109/iscas45731.2020.9181021/video	Video for Accurate Emulation of Memristive Crossbar Arrays for In-Memory Computing
+10.1109/ares.2016.94	Towards Cycle-Accurate Emulation of Cortex-M Code to Detect Timing Side Channels
+10.2139/ssrn.5743774	A Neural Surrogate for Fast and Accurate Analog Circuit Emulation
+10.1109/dasip.2015.7367249	Fast and accurate power estimation for application-specific instruction set processors using FPGA emulation
+10.1109/memcod.2014.6961858	Cycle-accurate 8080 emulation using an ARM11 processor with dynamic binary translation
+10.1016/j.sysarc.2006.11.003	Ultra fast cycle-accurate compiled emulation of inorder pipelined architectures
+10.4028/www.scientific.net/amm.325-326.1766	PPSim: A Cycle-Accurate Simulator for PowerPC Instruction Set
+10.1109/iwia.2008.7	Register File Reliability Analysis Through Cycle-Accurate Thermal Emulation
+10.1002/essoar.10508510.1	Exploring pathways to more accurate machine learning emulation of atmospheric radiative transfer
+10.1109/acsd.2018.00019	Ensuring Consistency between Cycle-Accurate and Instruction Set Simulators
+10.1109/test.2010.5699267	A fast and highly accurate path delay emulation framework for logic-emulation of timing speculation
+10.1007/11512622_24	Ultra Fast Cycle-Accurate Compiled Emulation of Inorder Pipelined Architectures
+10.1109/hldvt.2011.6114161	Using SystemVerilog assertions to relate non-cycle-accurate to cycle-accurate designs
+10.1007/s11227-005-0218-y	Embedded Processor Validation Environment Using a Cycle-Accurate Retargetable Instruction-Set Simulator

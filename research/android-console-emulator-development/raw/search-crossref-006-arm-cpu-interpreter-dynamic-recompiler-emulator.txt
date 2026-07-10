@@ -1,0 +1,20 @@
+10.1201/9781482275698-11	Command Line Interpreter
+10.1109/aps.2013.6711752	BAN-OTA testing using a fading emulator with an arm-swinging dynamic phantom
+10.1109/vtdc.2006.2	A Virtual Machine Migration System Based on a CPU Emulator
+10.1587/transcom.e98.b.543	Rice Channel Realization for BAN Over-The-Air Testing Using a Fading Emulator with an Arm-Swinging Dynamic Phantom
+10.1109/cluster.2018.00082	Performing SVE Studies using the Arm Instruction Emulator
+10.4304/jcp.5.7.1133-1141	An Emulator for Executing IA-32 Applications on ARM-Based Systems
+10.23919/vlsicircuits52068.2021.9492415	Fugaku and A64FX: the First Exascale Supercomputer and its Innovative Arm CPU
+10.5194/acp-2016-535-rc2	comment on "Multi-model dynamic climate emulator for solar geoengineering" by MacMartin and Kravitz
+10.21275/v4i12.nov151814	Round Robin CPU Scheduling Using Dynamic Time Quantum with Multiple Queue
+10.1109/icecs.2011.6122235	X86-ARM binary hardware interpreter
+10.1109/trustcom/bigdatase/icess.2017.309	A Sample-Based Dynamic CPU and GPU LLC Bypassing Method for Heterogeneous CPU-GPU Architectures
+10.1109/hotchips.2012.7476502	X-Gene™: 64-bit ARM CPU and SoC
+10.2174/1874444301507011820	Design and Implement of the Arm JTAG Emulator
+10.1109/icomet.2018.8346319	Benchmarking 4x ARM Cortex-A7 CPU and 4x ARM Cortex-A53 for multimedia systems using JPEG compression
+10.11606/d.3.2019.tde-30012019-100044	Dynamic CPU frequency scaling using machine learning for NFV applications.
+10.1109/ares.2013.23	ARMORED: CPU-Bound Encryption for Android-Driven ARM Devices
+10.1109/hotchips.2013.7478307	A 50% lower power ARM Cortex CPU using DDC technology with body bias
+10.21236/ada498792	Experiences Constructing a Lightweight SPARC Interpreter for a Dynamic Binary Translator
+10.1049/cp.2012.0490	Arm based efficient interpreter for SIMATIC S7 statement list
+10.31224/6680	State Space Models as CPU-Native Neural Network Architectures

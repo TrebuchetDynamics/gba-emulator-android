@@ -1,0 +1,4 @@
+10.3390/s100706662	Wireless Multimedia Sensor Networks: current trends and future directions.
+10.3390/s121115801	Monitoring pest insect traps by means of low-power image sensor technologies.
+10.3390/s17122955	Anti-Runaway Prevention System with Wireless Sensors for Intelligent Track Skates at Railway Stations.
+10.3390/s110302282	Efficient smart CMOS camera based on FPGAs oriented to embedded image processing.

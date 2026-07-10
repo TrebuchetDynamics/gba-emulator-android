@@ -1,0 +1,92 @@
+{"source":"chemrxiv","query":"Android game console emulator architecture","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Android game console emulator architecture","error":"source HTTP status 404"}
+{"source":"lens","query":"Android game console emulator architecture","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Android game console emulator architecture","error":"source HTTP status 401"}
+{"source":"osti","query":"Android game console emulator architecture","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"Android game console emulator architecture","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Android game console emulator architecture","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Android game console emulator architecture","error":"source HTTP status 404"}
+{"source":"semantic-scholar","query":"Android retro console emulator development","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"chemrxiv","query":"Android retro console emulator development","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Android retro console emulator development","error":"source HTTP status 404"}
+{"source":"lens","query":"Android retro console emulator development","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Android retro console emulator development","error":"source HTTP status 401"}
+{"source":"osti","query":"Android retro console emulator development","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"Android retro console emulator development","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Android retro console emulator development","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Android retro console emulator development","error":"source HTTP status 404"}
+{"source":"semantic-scholar","query":"Game Boy Advance emulator implementation","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"chemrxiv","query":"Game Boy Advance emulator implementation","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Game Boy Advance emulator implementation","error":"source HTTP status 404"}
+{"source":"lens","query":"Game Boy Advance emulator implementation","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Game Boy Advance emulator implementation","error":"source HTTP status 401"}
+{"source":"osti","query":"Game Boy Advance emulator implementation","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"Game Boy Advance emulator implementation","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Game Boy Advance emulator implementation","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Game Boy Advance emulator implementation","error":"source HTTP status 404"}
+{"source":"semantic-scholar","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"chemrxiv","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 404"}
+{"source":"openaire","query":"Game Boy Advance hardware architecture emulation","error":"json: cannot unmarshal array into Go struct field openAIREResultData.response.results.result.metadata.oaf:entity.oaf:result.description of type sources.openAIRETextNode"}
+{"source":"core","query":"Game Boy Advance hardware architecture emulation","error":"json: cannot unmarshal number into Go struct field coreItem.results.id of type string"}
+{"source":"lens","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 401"}
+{"source":"osti","query":"Game Boy Advance hardware architecture emulation","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Game Boy Advance hardware architecture emulation","error":"source HTTP status 404"}
+{"source":"semantic-scholar","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"chemrxiv","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 403"}
+{"source":"opencitations","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 404"}
+{"source":"lens","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 401"}
+{"source":"osti","query":"ARM7TDMI instruction set emulator","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 404"}
+{"source":"dimensions","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 401"}
+{"source":"pubchem","query":"ARM7TDMI instruction set emulator","error":"source HTTP status 404"}
+{"source":"semantic-scholar","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"chemrxiv","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 403"}
+{"source":"opencitations","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 404"}
+{"source":"core","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"lens","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 401"}
+{"source":"osti","query":"ARM CPU interpreter dynamic recompiler emulator","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 404"}
+{"source":"dimensions","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 401"}
+{"source":"pubchem","query":"ARM CPU interpreter dynamic recompiler emulator","error":"source HTTP status 404"}
+{"source":"chemrxiv","query":"Android emulator JNI native performance","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Android emulator JNI native performance","error":"source HTTP status 404"}
+{"source":"core","query":"Android emulator JNI native performance","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"lens","query":"Android emulator JNI native performance","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Android emulator JNI native performance","error":"source HTTP status 401"}
+{"source":"osti","query":"Android emulator JNI native performance","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"Android emulator JNI native performance","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Android emulator JNI native performance","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Android emulator JNI native performance","error":"source HTTP status 404"}
+{"source":"semantic-scholar","query":"Android NDK low latency game audio emulator","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"chemrxiv","query":"Android NDK low latency game audio emulator","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Android NDK low latency game audio emulator","error":"source HTTP status 404"}
+{"source":"core","query":"Android NDK low latency game audio emulator","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"lens","query":"Android NDK low latency game audio emulator","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Android NDK low latency game audio emulator","error":"source HTTP status 401"}
+{"source":"zbmath","query":"Android NDK low latency game audio emulator","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Android NDK low latency game audio emulator","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Android NDK low latency game audio emulator","error":"source HTTP status 404"}
+{"source":"chemrxiv","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 404"}
+{"source":"core","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"lens","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 401"}
+{"source":"osti","query":"Android OpenGL ES emulator video rendering","error":"json: cannot unmarshal string into Go struct field ostiRecord.osti_id of type int"}
+{"source":"zbmath","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Android OpenGL ES emulator video rendering","error":"source HTTP status 404"}
+{"source":"semantic-scholar","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"chemrxiv","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 403"}
+{"source":"opencitations","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 404"}
+{"source":"core","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 429: rate limited; reduce request frequency, try again later, or configure an API key (check connector env vars)"}
+{"source":"lens","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 401"}
+{"source":"nasa-ads","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 401"}
+{"source":"zbmath","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 404"}
+{"source":"dimensions","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 401"}
+{"source":"pubchem","query":"Android Vulkan pixel framebuffer emulator","error":"source HTTP status 404"}

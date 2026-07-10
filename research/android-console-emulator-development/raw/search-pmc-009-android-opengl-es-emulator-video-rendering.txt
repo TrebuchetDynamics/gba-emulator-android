@@ -1,0 +1,3 @@
+10.1186/s12938-021-00909-0	ABrainVis: an android brain image visualization tool.
+10.3390/s150716083	Providing IoT Services in Smart Cities through Dynamic Augmented Reality Markers.
+10.1016/j.fsisyn.2022.100313	Interpol review of digital evidence for 2019-2022.

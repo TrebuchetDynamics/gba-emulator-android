@@ -1,0 +1,15 @@
+10.1093/mnras/stw879	An accurate and practical method for inference of weak gravitational lensing from galaxy images
+	Verisimilar Image Synthesis for Accurate Detection and Recognition of Texts in Scenes
+10.1007/978-3-031-31975-4_22	Deep Accurate Solver for the Geodesic Problem
+	SuperSCS: fast and accurate large-scale conic optimization
+10.1109/jstars.2018.2875330	Emulation as an Accurate Alternative to Interpolation in Sampling Radiative Transfer Codes
+10.1016/j.cpc.2013.10.006	Application of the G-JF Discrete-Time Thermostat for Fast and Accurate Molecular Simulations
+	A Shading-Guided Generative Implicit Model for Shape-Accurate 3D-Aware Image Synthesis
+	Fast and Accurate Emulation of Complex Dynamic Simulators
+	An accurate and flexible analog emulation of AdEx neuron dynamics in silicon
+10.1007/s11433-025-2764-x	CSST Cosmological Emulator II: Generalized Accurate Halo Mass Function Emulation
+	LIMIT: Less Is More for Instruction Tuning Across Evaluation Paradigms
+	Vision-Flan: Scaling Human-Labeled Tasks in Visual Instruction Tuning
+	FinGPT: Instruction Tuning Benchmark for Open-Source Large Language Models in Financial Datasets
+10.1016/j.physletb.2021.136608	Fast & accurate emulation of two-body scattering observables without wave functions
+	Demystifying Instruction Mixing for Fine-tuning Large Language Models

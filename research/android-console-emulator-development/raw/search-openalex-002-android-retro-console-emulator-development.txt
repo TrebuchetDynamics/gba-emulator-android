@@ -1,0 +1,20 @@
+10.26503/dl.v2012i1.623	Mario’s legacy and Sonic’s heritage: Replays and refunds of console gaming history
+10.2218/ijdc.v9i2.294	Video Game Preservation in the UK: A Survey of Records Management Practices
+	Independent game development – Developers’ reflections in postmortems
+10.55041/ijsrem34880	Retro-Plus Portable Gaming Console
+10.3390/jsan8010002	Design, Fabrication, and Testing of an Internet Connected Intravenous Drip Monitoring Device
+	An Industry of Indies: The New Cultural Economy of Digital Game Production
+10.3390/arts9040122	‘The Time Is out of Joint’: Interactivity and Player Agency in Videogame Adaptations of Hamlet
+10.5281/zenodo.7567346	ARCADE PI THEME: RETRO DIGITAL GAMES
+	Photorealism versus Non-Photorealism: Art styles in computer games and the default bias.
+	Extendiendo uAdventure con funcionalidades de geoposicionamiento
+	Hydra: loosely coupling the graphics pipeline to facilitate digital preservation.
+	Emulation and Virtualization as Preservation Strategies
+	Sight, sound, the chicken and the egg: Audio-visual co-dependency in music
+	Painting the Leaky Pipeline Pink: Girl Branded Media and the Promotion of STEM
+	The Importance of Play: Identification with Video Game Characters' Intersectional Effects on Bias
+10.20944/preprints202311.0956.v1	ZX Fusion: A ZX Spectrum Implementation on an FPGA With Modern Peripherals
+	A platform for automatic 3D object reconstruction through multi-view stereo techniques for mobile devices
+10.3390/electronics13020450	ZX Fusion: A ZX Spectrum Implementation on an FPGA with Modern Peripherals
+10.55248/gengpi.6.0625.2280	2D Unity Game (“Kailius”)
+10.26881/ehgs.2026.1.05	Preserving Wartime Video Games: Criteria and Methods in the Context of the War in Ukraine

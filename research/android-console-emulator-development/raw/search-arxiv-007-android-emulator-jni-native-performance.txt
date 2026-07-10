@@ -1,0 +1,20 @@
+	Performance comparison between Java and JNI for optimal implementation of computational micro-kernels
+	SecComp: Towards Practically Defending Against Component Hijacking in Android Applications
+10.1007/978-3-031-43185-2_16	Performance of Genetic Algorithms in the Context of Software Model Refactoring
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+	Automated Deobfuscation of Android Native Binary Code
+	Android-COCO: Android Malware Detection with Graph Neural Network for Byte- and Native-Code
+10.1109/mobilsoft59058.2023.00013	Native vs Web Apps: Comparing the Energy Consumption and Performance of Android Apps and their Web Counterparts
+10.1063/5.0166887	High-performance state-vector emulator of a gate-based quantum processor implemented in the Rust programming language
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+	Ripple: Reflection Analysis for Android Apps in Incomplete Information Environments
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+	Too Quiet in the Library: An Empirical Study of Security Updates in Android Apps' Native Code
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+10.1093/cybsec/tyae015	A Risk Estimation Study of Native Code Vulnerabilities in Android Applications
+	DroidNative: Semantic-Based Detection of Android Native Code Malware
+10.1145/3041008.3041010	EMULATOR vs REAL PHONE: Android Malware Detection Using Machine Learning
+10.13140/rg.2.1.1400.4729	Shesop Healthcare: Android application to monitor heart rate variance, display influenza and stress condition using Polar H7
+	Turkish Native Language Identification V2
+	ReuNify: A Step Towards Whole Program Analysis for React Native Android Apps
+	A Systematical Study on Application Performance Management Libraries for Apps

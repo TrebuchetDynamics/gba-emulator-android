@@ -1,0 +1,20 @@
+10.5281/zenodo.7684870	Battery-Free Game Boy - IMWUT/UbiComp 2020 Artifact
+10.5281/zenodo.10219099	Musée du Jeux Vidéo - GameBoy - Game Boy Color - Game Boy Advance
+10.5281/zenodo.7694237	RTCE: Real-Time Co-Emulation Framework for EMT-Based Power System and Communication Network on FPGA-MPSoC Hardware Architecture
+10.5281/zenodo.8328002	Complex valued trainable activation
+10.5281/zenodo.7671960	Prototyping of Nonlinear Time-Stepped Finite Element Simulation for Linear Induction Machines on Parallel Reconfigurable Hardware
+10.5281/zenodo.10365827	Game Boy
+10.5281/zenodo.7706940	Physics-Based Device-Level Power Electronic Circuit Hardware Emulation on FPGA
+10.5281/zenodo.7668454	Real-Time Digital Multi-Function Protection System on Reconfigurable Hardware
+10.5281/zenodo.20814655	HARDWARE EMULATION OF CONTINUOUS MANIFOLDS
+10.5281/zenodo.7707119	Multi-FPGA digital hardware design for detailed large-scale real-time electromagnetic transient simulation of power systems
+10.5281/zenodo.6535207	EQUAFL_docker
+10.1109/tvlsi.2010.2048224	A Flexible Parallel Hardware Architecture for AdaBoost-based Real-Time Object Detection
+10.5281/zenodo.7960635	Multi-Domain Device-Level Fuel-Cell Modeling and Real-Time Hardware Emulation for Marine Research Vessel Power System
+10.5281/zenodo.7670838	Nonlinear Magnetic Equivalent Circuit-Based Real-Time Sen Transformer Electromagnetic Transient Model on FPGA for HIL Emulation
+10.5281/zenodo.7662992	Faster-Than-Real-Time Hardware Emulation of Extensive Contingencies for Dynamic Security Analysis of Large-Scale Integrated AC/DC Grid
+10.5281/zenodo.7706947	A Real-Time Nonlinear Hysteretic Power Transformer Transient Model on FPGA
+10.5281/zenodo.7693420	Machine Learning Building Blocks for Real-Time Emulation of Advanced Transport Power Systems
+10.5281/zenodo.6580219	EQUAFL_artifact
+10.5281/zenodo.6580348	EQUAFL_artifact
+10.5281/zenodo.18240072	Preserving Our Born-Digital Cultural Heritage - it s EAASI! - Phase Two of The Australian Emulation Network (AusEAASI)

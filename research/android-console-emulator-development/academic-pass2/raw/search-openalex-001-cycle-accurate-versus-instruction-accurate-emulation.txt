@@ -1,0 +1,15 @@
+10.1145/263326.263382	Converting thread-level parallelism to instruction-level parallelism via simultaneous multithreading
+10.1145/1146909.1147068	A fast HW/SW FPGA-based thermal emulation framework for multi-processor system-on-chip
+	{HALucinator}: Firmware Re-hosting Through Abstraction Layer Emulation
+10.1016/j.jnca.2017.05.009	Ubiquitous sensor network simulation and emulation environments: A survey
+10.1145/223982.224445	Instruction fetching
+10.1038/s41534-023-00696-7	Towards practical and massively parallel quantum computing emulation for quantum chemistry
+10.1145/3365199	The Ideal Versus the Real: Revisiting the History of Virtual Machines and Containers
+10.1177/1362168817735543	Focus on language versus content in the pre-task: Effects of guided peer-video model observations on task performance
+10.1017/s0140525x12000477	Whatever next? Predictive brains, situated agents, and the future of cognitive science
+10.1080/02640414.2023.2240630	Effective practice and instruction: A skill acquisition framework for excellence
+10.1186/s40594-019-0192-1	Developing student 21st Century skills in selected exemplary inclusive STEM high schools
+10.1016/j.jphysparis.2015.02.003	How Kinesthetic Motor Imagery works: A predictive-processing theory of visualization in sports and motor expertise
+10.1016/s0921-8890(02)00372-x	A survey of socially interactive robots
+10.1145/2086696.2086715	On the simulation of large-scale architectures using multiple application abstraction levels
+10.4108/icst.simutools2009.5595	ns-2 Distributed Clients Emulation: Accuracy and Scalability

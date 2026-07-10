@@ -1,0 +1,20 @@
+10.7910/dvn/0nvmex	Interpreting Discrete Choice Models
+10.7910/dvn/q9m9ql	Replication Data for: Group A streptococcus dynamics in DLD
+10.7910/dvn/yslhgb	Replication Data for: Cluster dynamics in batch
+10.7910/dvn/pv6ozy	Videos of fluorescent-labelled bacteria and beads inside the DLD device
+10.7910/dvn/fvymkg	Replication Data for: Tracking the motion of group A streptococcus using fast imaging
+10.7910/dvn/sz8l0i	Microscopic images used for size-based analysis
+10.7910/dvn/q7cb1y	Replication Data for: time-lapse phagocytosis of group A streptococcus sorted by deterministic lateral displacement
+10.7910/dvn/1bnfj5	Excel_file_inluding_measured_values
+10.7910/dvn/d1sbip	Optimization of Dynamic Headspace Sampling Conditions for the Identification of Palaeolithic Adhesives
+10.7910/dvn/k0rst7	Image data files for project "Single-scan rest/stress imaging with 99mTc-Sestamibi and cadmium zinc telluride-based SPECT for hyperemic flow quantification: A feasibility study evaluated with cardiac magnetic resonance imaging"
+10.7910/dvn/qzmbvc	The Dream of the Three Orcas. An experiment on dream interpretation.
+10.7910/dvn/da75us	Final published paper, full transcript of class, plus audio-record of class, for "The dream of the six-legged dog"
+10.7910/dvn/i0ssao	MD simulation of gp45 from bacteriophage RB59  - Open model type 1
+10.7910/dvn/z0gmyu	MD simulation of gp45 from bacteriophage RB59  - Open model type 2
+10.7910/dvn/ttl2ka	MD simulation of gp45 from bacteriophage RB59  - Open model type 3
+10.7910/dvn/fvsyz8	MD simulation of PCNA from S. cerevisiae  - Open model type 1
+10.7910/dvn/o74ugk	MD simulation of PCNA from S. cerevisiae  - Open model type 3
+10.7910/dvn/ilehpf	MD trajectory of pol III beta from E. coli - Open model type 1
+10.7910/dvn/jnmffo	MD simulation of pol III beta from E. coli - Open model type 2
+10.7910/dvn/3dpz2g	MD simulation of pol III beta from E. coli - Open model type 3

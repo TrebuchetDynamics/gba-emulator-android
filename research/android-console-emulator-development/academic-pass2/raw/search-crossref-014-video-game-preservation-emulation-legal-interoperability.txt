@@ -1,0 +1,14 @@
+10.4324/9780203114261-12	Emulation
+10.4324/9780203114261.ch4	Emulation
+10.4324/9781003214977-5	Emulation
+10.26503/dl.v2005i1.204	Immersion in Game Atmospheres for the Video Game Heritage Preservation
+10.4324/9781003214977-8	Preservation
+10.1016/b978-159749256-0.00068-0	Video Game Publishing Agreement
+10.1109/infoteh68759.2026.11477622	Video Game Emulation: Using FPGA Technology with Open Source Tools
+10.1108/rmj-10-2016-0037	Metadata and video games emulation: an effective bond to achieve authentic preservation?
+10.5040/9798400678080.ch-004	Video Game Wars
+10.4467/20843860pk.25.004.21566	Video Game Preservation and Its Challenges
+10.1201/9781003646082-22	Financial, Legal, Regulatory and Compliance Risks
+10.1007/978-3-540-33640-2_4	Emulation
+10.4324/9781003467762-17	The Parallel Lives of Legal Persons and Video Game Avatars
+10.5220/0010602903180323	Meeting Digital Preservation Requirements for Software through an Emulation Strategy

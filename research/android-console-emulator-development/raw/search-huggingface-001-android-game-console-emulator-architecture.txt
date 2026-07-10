@@ -1,0 +1,20 @@
+10.48550/arxiv.2607.07708	Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep Native Structural Reasoning
+10.48550/arxiv.2607.07707	Co-LMLM: Continuous-Query Limited Memory Language Models
+10.48550/arxiv.2607.07683	ECGLight: Compute-Light Framework For Paper ECG Digitization and Myocardial Infarction Screening
+10.48550/arxiv.2607.07675	Scaling Mixture-of-Experts Video Pretraining for Embodied Intelligence
+10.48550/arxiv.2607.07674	Max Out GRPO Signal: Adaptive Trace Prefix Control for Hard Reasoning Problems
+10.48550/arxiv.2607.07670	Does Bielik Know What It Doesn't Know? Activation Dispersion Separates Entity Familiarity from Factual Reliability Across Model Scale
+10.48550/arxiv.2607.07663	Recursive Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops
+10.48550/arxiv.2607.07608	Dual Latent Memory in Vision-Language-Action Models for Robotic Manipulation
+10.48550/arxiv.2607.07534	Infinite Worlds with Versatile Interactions
+10.48550/arxiv.2607.07508	Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning
+10.48550/arxiv.2607.07500	TimEE: End-to-end Time Series Classification via In-Context Learning
+10.48550/arxiv.2607.07491	Smooth Operator: A Real-Time Sampling-Based Algorithm for Kinematic Hand Retargeting
+10.48550/arxiv.2607.07436	The Blind Curator: How a Biased Judge Silently Disables Skill Retirement in Self-Evolving Agents
+10.48550/arxiv.2607.07405	Reason Less, Verify More: Deterministic Gates Recover a Silent Policy-Violation Failure Mode in Tool-Using LLM Agents
+10.48550/arxiv.2607.07386	Sparse Delta Memory: Scaling the State of Linear RNNs through Sparsity
+10.48550/arxiv.2607.07321	From Atomic Actions to Standard Operating Procedures: Iterative Tool Optimization for Self-Evolving LLM Agents
+10.48550/arxiv.2607.07287	TouchWorld: A Predictive and Reactive Tactile Foundation Model for Dexterous Manipulation
+10.48550/arxiv.2607.07052	Progressive Crystallization: Turning Agent Exploration into Deterministic, Lower-Cost Workflows in Production
+10.48550/arxiv.2607.07001	Ego-Human Motion Prediction with 3D-Aware LLM
+10.48550/arxiv.2607.06988	WAM-TTT: Steering World-Action Models by Watching Human Play at Test Time

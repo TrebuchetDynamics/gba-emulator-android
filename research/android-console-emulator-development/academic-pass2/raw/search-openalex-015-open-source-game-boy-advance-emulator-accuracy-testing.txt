@@ -1,0 +1,15 @@
+10.1007/s40593-017-0152-1	Detecting and Addressing Frustration in a Serious Game for Military Training
+10.1007/s10894-020-00258-1	Advancing Fusion with Machine Learning Research Needs Workshop Report
+10.1016/j.ijhcs.2009.05.004	Mining meaning from Wikipedia
+10.1017/s0140525x12001495	An integrated theory of language production and comprehension
+10.1215/9781478090366	Respawn: Gamers, Hackers, and Technogenic Life
+10.23860/thesis-thibeaulty-christopher-2013	System for Video Game Enhancement Using Console Emulator State Information and Scene Recognition
+10.3390/s100706662	Wireless Multimedia Sensor Networks: Current Trends and Future Directions
+	A game of confidence : literary dialect, linguistics, and authenticity
+10.5962/bhl.title.31795	Savage Sudan; its wild tribes, big-game and bird-life
+10.3389/fpsyg.2021.669734	The Use of Analog and Digital Games for Autism Interventions
+10.1007/s40593-014-0029-5	AutoTutor and Family: A Review of 17 Years of Natural Language Tutoring
+10.11575/prism/13933	The invention of good games: understanding learning design in commercial video games
+10.1109/access.2022.3219845	Healthcare in Metaverse: A Survey on Current Metaverse Applications in Healthcare
+10.1017/s0140525x19001213	Thinking through other minds: A variational approach to cognition and culture
+10.1017/s0140525x16001837	Building machines that learn and think like people

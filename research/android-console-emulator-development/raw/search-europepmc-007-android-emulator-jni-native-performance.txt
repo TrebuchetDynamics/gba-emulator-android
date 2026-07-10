@@ -1,0 +1,3 @@
+10.7717/peerj-cs.907	The rise of obfuscated Android malware and impacts on detection methods.
+10.1155/2014/785434	Hybrid polylingual object model: an efficient and seamless integration of Java and native components on the Dalvik virtual machine.
+10.1016/j.fsisyn.2022.100313	Interpol review of digital evidence for 2019-2022.

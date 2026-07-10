@@ -1,0 +1,7 @@
+10.1111/cgf.14345	Rendering Point Clouds with Compute Shaders and Vertex Order Optimization
+10.48550/arxiv.2104.07526	Rendering Point Clouds with Compute Shaders and Vertex Order\n Optimization
+10.15476/elte.2024.295	Valós idejű grafika multi-platform .NET C# környezetben
+	Hydra: loosely coupling the graphics pipeline to facilitate digital preservation.
+10.5445/ksp/1000169488	Proceedings of the 10th bwHPC Symposium: HPC Activites in Baden-Württemberg
+	Irregular Packing for Mobile Game Texture Atlases
+	Epäsäännöllisten kappaleiden asemointi mobiilipelien pintakarttakokoelmia varten

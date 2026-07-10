@@ -1,0 +1,1 @@
+10.46610/joits.2021.v07i02.001	Design and Architecture of LPC2148 Microcontroller

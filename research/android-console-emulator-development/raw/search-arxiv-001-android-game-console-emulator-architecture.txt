@@ -1,0 +1,20 @@
+	Playing a 2D Game Indefinitely using NEAT and Reinforcement Learning
+10.1007/s00182-012-0345-7	Optimal strategies for a game on amenable semigroups
+10.21638/11701/spbu31.2022.26	Dynamic Structure in Four-strategy Game: Theory and Experiment
+10.3390/math10183338	Advanced Drone Swarm Security by Using Blockchain Governance Game
+10.1109/lca.2020.2988991	Architectural Implications of Graph Neural Networks
+	Forensics Analysis of Xbox One Game Console
+10.1109/hpca56546.2023.10071089	Dalorex: A Data-Local Program Execution and Architecture for Memory-bound Applications
+10.1007/s00182-025-00928-4	Specifying a Game-Theoretic Extensive Form as an Abstract 5-ary Relation
+10.1007/978-3-031-42592-9_9	Towards Assessing Spread in Sets of Software Architecture Designs
+10.1109/hpca61900.2025.00033	LSQCA: Resource-Efficient Load/Store Architecture for Limited-Scale Fault-Tolerant Quantum Computing
+	Evaluation of Game Templates to support Programming Activities in Schools
+	SecComp: Towards Practically Defending Against Component Hijacking in Android Applications
+	Parametric Open Source Games
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+	Graphical Potential Games
+10.1145/2490302.2490304	A Novel Reconfigurable Architecture of a DSP Processor for Efficient Mapping of DSP Functions using Field Programmable DSP Arrays
+	GAN-Based Content Generation of Maps for Strategy Games
+	Ripple: Reflection Analysis for Android Apps in Incomplete Information Environments
+	The Impact of Acquisition on Product Quality in the Console Gaming Industry
+10.1145/3695053.3731412	Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures

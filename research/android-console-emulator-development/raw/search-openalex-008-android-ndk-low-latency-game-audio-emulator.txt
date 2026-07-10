@@ -1,0 +1,15 @@
+10.1007/978-1-4302-6131-5	Android on x86
+10.1155/2018/8715294	MobiCOP: A Scalable and Reliable Mobile Code Offloading Solution
+10.1109/tse.2021.3071193	A Survey of Performance Optimization for Mobile Applications
+10.1007/978-1-4302-6131-5	Android on x86: An Introduction to Optimizing for Intel Architecture
+	Developing a Wireless Heart-Rate Monitor with MAX30100 and nRF51822
+10.1145/3570361.3592518	SWAM: Revisiting Swap and OOMK for Improving Application Responsiveness on Mobile Devices
+	Ensuring Users' Privacy and Security on Mobile Devices
+	User equipment based-computation offloading for real-time applications in the context of Cloud and edge networks
+	Tuning dynamic power management for mobile devices
+	Follow the Sound : Design of mobile spatial audio applications for pedestrian navigation
+	Evaluating cross-platform mobile app performance with video-based measurements
+	Energy Efficient Scheduling Manager for cloud-based mobile applications
+	Sensors on mobile devices for AAL
+10.5821/dissertation-2117-121038	Programming models for mobile environments
+	Power-Performance-Predictability: Managing the Three Cornerstones of Resource Constrained Real-Time System Design

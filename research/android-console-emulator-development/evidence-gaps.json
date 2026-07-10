@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-07-09T19:24:54-06:00",
+  "gaps": [
+    {
+      "priority": 1,
+      "gap": "No candidate was built or benchmarked on the intended Android device/API/ABI matrix.",
+      "next_action": "Run a one-device spike for SkyEmu and mGBA integration; record frame-time, underruns, input-to-photon latency, memory, battery, and thermal throttling."
+    },
+    {
+      "priority": 2,
+      "gap": "No owner decision on GPL-compatible open source versus closed-source/commercial distribution.",
+      "next_action": "Choose licensing posture before selecting Lemuroid/LibretroDroid/RetroArch or a permissive/MPL route."
+    },
+    {
+      "priority": 3,
+      "gap": "No independent reproduction of SkyEmu, NanoBoyAdvance, or mGBA accuracy claims.",
+      "next_action": "Run mGBA suite and MIT-licensed gba-tests against pinned core revisions; retain logs and hashes."
+    },
+    {
+      "priority": 4,
+      "gap": "Academic literature directly evaluating GBA emulator architecture on modern Android is sparse.",
+      "next_action": "Treat Android platform docs and maintained OSS implementations as primary engineering evidence; use academic work only for transferable principles."
+    },
+    {
+      "priority": 5,
+      "gap": "No legal review for ROM/BIOS handling, anti-circumvention, trademark, cover art, or store territories.",
+      "next_action": "Obtain counsel and Play policy review before distribution; default to user-supplied content and original app assets."
+    },
+    {
+      "priority": 6,
+      "gap": "Security posture is under-documented: only RetroArch among the main repositories exposed a root SECURITY.md in the retrieved tree.",
+      "next_action": "Audit native parsers, archive handling, JNI boundaries, dependency SBOM, and vulnerability response before integration."
+    },
+    {
+      "priority": 7,
+      "gap": "Full texts were not acquired and screening/extraction were not human-approved.",
+      "next_action": "If publication-grade conclusions are needed, complete human screening, approved full-text acquisition, extraction acceptance, and claim approval in an rforge project."
+    }
+  ]
+}

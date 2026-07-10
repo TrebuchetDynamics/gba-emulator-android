@@ -1,0 +1,20 @@
+	Development of Drug Release Model for Suspensions in ESCAR (Emulator of SubCutaneous Absorption and Release).
+	Intra-striatal AAV2.retro administration leads to extensive retrograde transport in the rhesus macaque brain: implications for disease modeling and therapeutic development.
+	Low-Rank Representation of Head Impact Kinematics: A Data-Driven Emulator.
+	Deep learning based emulator for predicting voltage behaviour in lithium ion batteries.
+	Retro nasal blockade reduces the neural processing of sucrose in the human brain.
+	PREDICTOR: A Physical emulatoR enabling safEty anD ergonomICs evaluation and Training of physical human-rObot collaboRation
+	G<sup>2</sup>Retro as a two-step graph generative models for retrosynthesis prediction.
+	Brian2Loihi: An emulator for the neuromorphic chip Loihi using the spiking neural network simulator Brian.
+	Bayesian Sensitivity Analysis of a Cardiac Cell Model Using a Gaussian Process Emulator.
+	Android malware analysis in a nutshell.
+	Retro Drug Design: From Target Properties to Molecular Structures.
+	Asymmetric communication: cognitive models of humans toward an android robot.
+	Data on Vulnerability Detection in Android.
+	A High-Performance and Cost-Effective Field Programmable Gate Array-Based Motor Drive Emulator
+	The effects of ankle stiffness on mechanics and energetics of walking with added loads: a prosthetic emulator study.
+	<i>retro</i>-Tango enables versatile retrograde circuit tracing in <i>Drosophila</i>.
+	Single Component Dye-Sensitized Solar Cells Enabled by Copper Chemistry: Introduction of the Retro Cell.
+	Differential associations between retro walking versus forward walking, axial motor features and body composition in Parkinson's disease.
+	Flexural bending of southern Tibet in a retro foreland setting.
+	Mentalistic attention orienting triggered by android eyes.

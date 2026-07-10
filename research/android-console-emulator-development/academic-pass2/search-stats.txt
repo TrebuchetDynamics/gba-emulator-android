@@ -1,0 +1,6 @@
+Search batch stats
+Queries: 15
+Sources: openalex,crossref,arxiv
+Records: 633
+Deduped records: 484
+Failures: 0

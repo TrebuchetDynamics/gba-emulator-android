@@ -1,0 +1,8 @@
+repo	license	stars	forks	last_push	latest_release	release_date	median_days_between_recent_releases	root_security_policy	software_heritage_origin	domain_fit
+mgba-emu/mgba	MPL-2.0	7165	1024	2026-07-06T07:35:53Z	0.10.5	2025-03-09T03:59:39Z	103.0	no	yes	Canonical mature GBA core; direct C/C++ integration; no first-party Android frontend
+libretro/mgba	MPL-2.0	90	92	2026-04-03T21:23:50Z				no	yes	Libretro mirror/core packaging of mGBA; use only with libretro host
+skylersaleh/SkyEmu	MIT	1212	93	2026-06-26T12:34:27Z	v5	2026-02-12T05:46:32Z	219.3	no	yes	MIT multi-system emulator with working Android build; fastest permissive fork
+nba-emu/NanoBoyAdvance	GPL-3.0	1304	74	2026-06-21T12:22:20Z	v1.8.3	2026-05-10T04:39:49Z	224.9	no	yes	Accuracy/reference implementation; desktop Qt/SDL, no Android app; development moved to Codeberg
+Swordfish90/Lemuroid	GPL-3.0	4057	299	2026-07-08T12:37:45Z	1.17.0	2026-04-21T08:52:05Z	63.6	no	yes	Production Android libretro frontend using mGBA; best open GPL reference/fork
+Swordfish90/LibretroDroid	GPL-3.0	111	39	2026-05-24T08:47:16Z	0.14.0	2026-05-24T08:47:16Z	91.0	no	yes	Android libretro host library used by Lemuroid; GPL integration layer
+libretro/RetroArch	GPL-3.0	13332	2149	2026-07-09T21:59:09Z	v1.22.2	2025-11-20T03:12:17Z	69.5	yes	yes	Feature-rich reference libretro frontend with Android port; broad and complex GPL base

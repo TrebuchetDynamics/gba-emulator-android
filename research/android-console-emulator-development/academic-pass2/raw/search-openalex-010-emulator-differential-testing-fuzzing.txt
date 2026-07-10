@@ -1,0 +1,15 @@
+10.1145/2737924.2737986	Many-core compiler fuzzing
+10.14722/ndss.2018.23159	IoTFuzzer: Discovering Memory Corruptions in IoT Through App-based Fuzzing
+10.1145/2813885.2737986	Many-core compiler fuzzing
+10.1145/3213846.3213848	Compiler fuzzing through deep learning
+10.1109/tse.2019.2946563	The Art, Science, and Engineering of Fuzzing: A Survey
+10.1145/3341301.3359662	Finding semantic bugs in file systems with an extensible fuzzing framework
+10.1109/sp54263.2024.00137	SoK: Prudent Evaluation Practices for Fuzzing
+10.1109/sp40001.2021.00066	Diane: Identifying Fuzzing Triggers in Apps to Generate Under-constrained Inputs for IoT Devices
+10.1145/3360581	Compiler fuzzing: how much does it matter?
+10.1186/s42400-022-00123-y	Embedded fuzzing: a review of challenges, tools, and solutions
+10.1145/3368089.3409763	Detecting critical bugs in SMT solvers using blackbox mutational fuzzing
+10.1016/j.cosrev.2020.100270	A survey of safety and trustworthiness of deep neural networks: Verification, testing, adversarial attack and defence, and interpretability
+10.14722/ndss.2019.23525	Life after Speech Recognition: Fuzzing Semantic Misinterpretation for Voice Assistant Applications
+10.1145/3540250.3549164	RoboFuzz: fuzzing robotic systems over robot operating system (ROS) for finding correctness bugs
+10.1145/3485832.3488028	ICS3Fuzzer: A Framework for Discovering Protocol Implementation Bugs in ICS Supervisory Software by Fuzzing

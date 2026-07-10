@@ -1,0 +1,15 @@
+10.1007/978-1-4302-2420-4_16	Handling Activity Lifecycle Events
+10.1007/978-1-4842-4953-6_11	Lifecycle, ViewModel, LiveData, and Room
+10.1007/978-1-4302-3298-8_18	Handling Activity Lifecycle Events
+10.1007/978-1-4302-3985-7_18	Handling Activity Lifecycle Events
+10.1109/telfor.2016.7818873	TLB maintenance optimization in android emulator for MIPS platform
+10.1109/telfor.2016.7818883	TLB maintenance optimization in android emulator for mips platform
+10.18489/sacj.v29i1.435	A Mobile Augmented Reality Emulator for Android
+10.2307/j.ctt5hh5wb.9	THE SERVICE LIFECYCLE
+10.3390/en19092177	Comparative Lifecycle Economic Assessment of Shared Energy Storage Under Multi-Service Revenue Scenarios
+10.1109/compsac.2015.267	Analyzing Lifecycle Behavior of Android Application Components
+10.1109/iccsce.2013.6719997	Card Emulator for Door Access Using Android Platform
+10.37544/1436-4980-2016-07-08-11	Smart Service Lifecycle Management*/Smart Service Lifecycle Management - A framework for manufacturing firms
+10.1201/9781003286325-10	Android Native Databases as Persistent Storage
+10.1093/acprof:oso/9780199539796.003.0006	Foreground
+10.1109/pdgc.2012.6449897	Cloudtarun Application deployed over GAE and android emulator

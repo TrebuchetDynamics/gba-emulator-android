@@ -1,0 +1,19 @@
+10.1007/978-1-4302-5765-3_5	Reading Player Input
+10.1007/978-1-4842-1718-4_8	Reading User Input
+10.1007/978-1-4302-3820-1_5	Event Handling and User Input
+10.1007/978-1-4842-9237-2_3	Initial game setup
+10.1007/979-8-8688-2353-4_4	Populating the game screen
+10.1007/978-1-4842-9864-0_2	Creating the game design
+10.1007/978-1-4842-9237-2_4	Continue with the game setup
+10.1007/979-8-8688-2353-4_1	Creating the design of the game
+10.15368/theses.2011.93	Active Pen Input and the Android Input Framework
+10.1007/978-1-4842-9237-2	Memory Game in Android Studio
+10.1007/979-8-8688-2353-4	How to Create a Quiz Game in Android Studio
+10.1007/978-1-4842-9237-2_5	Setting up the game tile clicks
+10.1007/978-1-4842-9864-0	Create War Card Game in Android Studio
+10.1007/979-8-8688-0184-6	Create Bulls Cows Game in Android Studio
+10.1007/979-8-8688-0184-6_5	Run the game and fixing bugs
+10.1007/978-1-4842-9237-2_7	Adding the players and finishing the game
+10.1007/979-8-8688-0184-6_1	Creating the design of the game
+10.1007/978-1-4842-9237-2_2	Creating the design and UI of the game
+10.1007/978-1-4302-5831-5_2	An Introduction to the Android Game Development Ecosystem

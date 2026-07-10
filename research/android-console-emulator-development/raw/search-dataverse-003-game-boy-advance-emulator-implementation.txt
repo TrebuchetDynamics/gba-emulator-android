@@ -1,0 +1,20 @@
+10.7910/dvn/c0j8fs	Supplementary files for Thinking beyond the model: understanding the spectrum of benefits, facilitators, and future needs of participatory systems science methods for public health and implementation research
+10.7910/dvn/vozu4t	Replication Data for: Feasibility, safety, and impact of the RTS,S/AS01E malaria vaccine when implemented through national immunisation programmes: evaluation of cluster-randomised introduction of the vaccine in Ghana, Kenya, and Malawi
+10.7910/dvn/pxvn6w	Data for: The Malaria Vaccine Pilot Evaluation (MVPE) studies (2019-2023)
+10.7910/dvn/1copoz	Gaming Stones morphological data
+10.7910/dvn/congvg	Replication Data for: The impact of introducing the RTS,S/AS01E malaria vaccine delivered through routine immunization programmes on mortality in young children: 46-month evaluation of cluster-randomized deployment of the vaccine in Ghana, Kenya and Malawi
+10.7910/dvn/ipelms	Implementation of Paired Promotion of Colorectal Cancer Prevention and Social Needs Screening
+10.7910/dvn/l4fskf	Considerations for Measuring Implementation and Intervention Activity Costs in Community Health Centers
+10.7910/dvn/cktazx	SBIR - STTR Data and Code for Collecting Wrangling and Using It
+10.7910/dvn/6oieqe	Zelig Models for Testing Advanced Statistical Analysis
+10.7910/dvn/sfxw7h	Partner and Equity Data-Driven Implementation (PEDDI) to Improve Cancer Screening Equity
+10.7910/dvn/siadfy	AEMS 2019-2020
+10.7910/dvn/8n7elx	hillygus2
+10.7910/dvn/paqmdc	Hillygus - Wisonsin Ads Data
+10.7910/dvn/s4u2v0	Practical Considerations and Strategies for Collecting Data on Implementation Determinants in Low Resource Healthcare Settings
+10.7910/dvn/zfagjp	Replication Data for: "When choice matters: the asymmetric effects of precommitment implementation on healthy food choice"
+10.7910/dvn/buewdm	Community Advisory Boards as Implementation Strategies to Strengthen Clinical-Community Partnerships and Promote Cancer Prevention
+10.7910/dvn/iynf3m	Behavioral Tracking Survey (FSW & High risk MSM) - 2010 (By HLFPPT)
+10.7910/dvn/fsd3sk	Behavioral Tracking Survey (FSW & High risk MSM)- I - 2010 (By Alliance)
+10.7910/dvn/ildem0	Replication Data for: Study 2 (The Transmission Game: Testing behavioral interventions in a pandemic-like simulation)
+10.7910/dvn/rhr2a5	Replication Data for: Study 1 (The Transmission Game: Testing behavioral interventions in a pandemic-like simulation)

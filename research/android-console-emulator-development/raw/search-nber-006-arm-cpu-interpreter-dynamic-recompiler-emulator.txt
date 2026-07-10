@@ -1,0 +1,19 @@
+10.3386/w13355	Detecting Illegal Arms Trade
+10.3386/w14593	Empathy and Emulation: Life Satisfaction and the Urban Geography of Comparison Groups
+10.3386/w19148	Inflation Dynamics and Time-Varying Volatility: New Evidence and an Ss Interpretation
+10.3386/w19043	Two-Armed Restless Bandits with Imperfect Information: Stochastic Control and Indexability
+10.3386/w21123	Are Immigrants a Shot in the Arm for the Local Economy?
+10.3386/w29011	Quantifying the High-Frequency Trading "Arms Race"
+10.3386/w9383	Interpretable Asset Markets?
+10.3386/w2568	Interpreting Cointegrated Models
+10.3386/w10094	On the Writing and the Interpretation of Contracts
+10.3386/w29250	Herding, Armed Conflict, and a Culture of Honor: Global Evidence
+10.3386/w27497	What Do Voters Learn from Foreign News? Emulation, Backlash, and Public Support for Trade Agreements
+10.3386/w13147	Inflation Dynamics
+10.3386/w8948	Economic Interpretations of Intergenerational Correlations
+10.3386/w18085	Slow Recoveries: A Structural Interpretation
+10.3386/w33669	How Good is AI at Twisting Arms? Experiments in Debt Collection
+10.3386/w30267	A New Interpretation of Productivity Growth Dynamics in the Pre-Pandemic and Pandemic Era U.S. Economy, 1950-2022
+10.3386/w2290	Pricing Mortgages: An Interpretation of the Models and Results
+10.3386/w10359	Interpreting the Predictions of Prediction Markets
+10.3386/w33228	A Market Interpretation of Treatment Effects

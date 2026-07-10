@@ -1,0 +1,20 @@
+10.5281/zenodo.7684870	Battery-Free Game Boy - IMWUT/UbiComp 2020 Artifact
+10.5281/zenodo.10219099	Musée du Jeux Vidéo - GameBoy - Game Boy Color - Game Boy Advance
+10.5281/zenodo.10365827	Game Boy
+10.5281/zenodo.10228031	Game Boy - Nintendo + Tetris
+10.5281/zenodo.15284203	DIRIJYORLIK SAN'ATINING PEDAGOGIK ASOSLARI VA YOSH ISTE'DODLARNI TAYYORLASHDAGI ROLI
+10.5281/zenodo.15530003	MUSIQA DARSLARIDA VOKAL-XOR MALAKALARINI  SHAKLLANTIRISH USTIDA ISHLASH YO'LLARINING ILMIY NAZARIY  ASOSLARI
+10.5281/zenodo.10242775	Game Boy GBC - Duke Nukem
+10.5281/zenodo.7696289	Implementation of an FPGA-Based Online Hardware-in-the-Loop Emulator Using High-Level Synthesis Tools for Resonant Power Converters Applied to Induction Heating Appliances
+10.5281/zenodo.7763069	Electronic Scrolling Text Display Using Arduino
+10.11591/ijpeds.v16.i1.pp448-456	Design and implementation of PV emulator based on synchronous buck converter using Arduino Nano microcontroller
+10.1109/tia.2018.2866451	Energy Analyzer Emulator for Microgrid Implementation and Demonstration and Respective Gateway
+10.5281/zenodo.13364005	PyTorch implementation of Emulator-based Component Analysis
+10.1186/s12859-021-04354-7	Emulating complex simulations by machine learning methods
+10.5281/zenodo.17312516	c-nicomar/AWES-test-bench-emulator: Version 1.0 – initial public release
+10.5281/zenodo.10266074	Game Boy GBC - Wario Land 2 - Wario
+10.5281/zenodo.8332898	Glacier catalogue for IGM physics-informed deep-learning emulator pretraining
+10.5281/zenodo.4739173	Memory-efficient emulation of physical tabular data using quadtree decomposition dataset
+10.5281/zenodo.15242211	O'QUVCHILARGA ESTETIK TARBIYA BERISHDA O'ZBEK MUSIQA FOLKLORINING AHAMIYATI
+10.11591/ijpeds.v12.i3.pp1390-1404	Real time emulator for parallel connected dual-PMSM sensorless control
+10.5281/zenodo.17512442	Health Data Science Black Internship Programme Review

@@ -1,0 +1,15 @@
+10.1145/3087801.3087835	Adding Concurrency to Smart Contracts
+10.1017/s1471068411000494	SWI-Prolog
+10.1109/sp40001.2021.00066	Diane: Identifying Fuzzing Triggers in Apps to Generate Under-constrained Inputs for IoT Devices
+	{HALucinator}: Firmware Re-hosting Through Abstraction Layer Emulation
+10.1145/1755913.1755946	Execution synthesis
+10.1145/3445814.3446714	Benchmarking, analysis, and optimization of serverless function snapshots
+10.1145/1629575.1629591	Operating System Transactions
+10.1007/978-3-540-78474-6_7	On-Chip COMA Cache-Coherence Protocol for Microgrids of Microthreaded Cores
+10.4230/lipics.ecoop.2018.18	ThingsMigrate: Platform-Independent Migration of Stateful JavaScript IoT Applications
+10.1109/tmc.2018.2793859	WizHaul: On the Centralization Degree of Cloud RAN Next Generation Fronthaul
+10.1145/3395042	Fine-grained Code Coverage Measurement in Automated Black-box Android Testing
+10.1145/3133956.3134045	RAIN
+	Fragmented Mythologies: Soviet TV Mini-Series of the 1970s
+	Performance Exploration of the Hybrid Memory Cube
+10.1109/tnsm.2020.2973925	DASON: Dependability Assessment Framework for Imperfect Distributed SDN Implementations

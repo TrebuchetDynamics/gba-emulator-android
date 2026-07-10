@@ -1,0 +1,488 @@
+# Search batch results
+
+Deduped records: 484
+
+- Converting thread-level parallelism to instruction-level parallelism via simultaneous multithreading — DOI: `10.1145/263326.263382`
+- A fast HW/SW FPGA-based thermal emulation framework for multi-processor system-on-chip — DOI: `10.1145/1146909.1147068`
+- {HALucinator}: Firmware Re-hosting Through Abstraction Layer Emulation
+- Ubiquitous sensor network simulation and emulation environments: A survey — DOI: `10.1016/j.jnca.2017.05.009`
+- Instruction fetching — DOI: `10.1145/223982.224445`
+- Towards practical and massively parallel quantum computing emulation for quantum chemistry — DOI: `10.1038/s41534-023-00696-7`
+- The Ideal Versus the Real: Revisiting the History of Virtual Machines and Containers — DOI: `10.1145/3365199`
+- Focus on language versus content in the pre-task: Effects of guided peer-video model observations on task performance — DOI: `10.1177/1362168817735543`
+- Whatever next? Predictive brains, situated agents, and the future of cognitive science — DOI: `10.1017/s0140525x12000477`
+- Effective practice and instruction: A skill acquisition framework for excellence — DOI: `10.1080/02640414.2023.2240630`
+- Developing student 21st Century skills in selected exemplary inclusive STEM high schools — DOI: `10.1186/s40594-019-0192-1`
+- How Kinesthetic Motor Imagery works: A predictive-processing theory of visualization in sports and motor expertise — DOI: `10.1016/j.jphysparis.2015.02.003`
+- A survey of socially interactive robots — DOI: `10.1016/s0921-8890(02)00372-x`
+- On the simulation of large-scale architectures using multiple application abstraction levels — DOI: `10.1145/2086696.2086715`
+- ns-2 Distributed Clients Emulation: Accuracy and Scalability — DOI: `10.4108/icst.simutools2009.5595`
+- Pipeline-accurate Instruction Cycle Measurements for Microprocessor Model Extraction — DOI: `10.1109/et59121.2023.10279800`
+- Video for Accurate Emulation of Memristive Crossbar Arrays for In-Memory Computing — DOI: `10.1109/iscas45731.2020.9181021/video`
+- Towards Cycle-Accurate Emulation of Cortex-M Code to Detect Timing Side Channels — DOI: `10.1109/ares.2016.94`
+- A Neural Surrogate for Fast and Accurate Analog Circuit Emulation — DOI: `10.2139/ssrn.5743774`
+- Fast and accurate power estimation for application-specific instruction set processors using FPGA emulation — DOI: `10.1109/dasip.2015.7367249`
+- Cycle-accurate 8080 emulation using an ARM11 processor with dynamic binary translation — DOI: `10.1109/memcod.2014.6961858`
+- Ultra fast cycle-accurate compiled emulation of inorder pipelined architectures — DOI: `10.1016/j.sysarc.2006.11.003`
+- PPSim: A Cycle-Accurate Simulator for PowerPC Instruction Set — DOI: `10.4028/www.scientific.net/amm.325-326.1766`
+- Register File Reliability Analysis Through Cycle-Accurate Thermal Emulation — DOI: `10.1109/iwia.2008.7`
+- Exploring pathways to more accurate machine learning emulation of atmospheric radiative transfer — DOI: `10.1002/essoar.10508510.1`
+- Ensuring Consistency between Cycle-Accurate and Instruction Set Simulators — DOI: `10.1109/acsd.2018.00019`
+- A fast and highly accurate path delay emulation framework for logic-emulation of timing speculation — DOI: `10.1109/test.2010.5699267`
+- Ultra Fast Cycle-Accurate Compiled Emulation of Inorder Pipelined Architectures — DOI: `10.1007/11512622_24`
+- Using SystemVerilog assertions to relate non-cycle-accurate to cycle-accurate designs — DOI: `10.1109/hldvt.2011.6114161`
+- Embedded Processor Validation Environment Using a Cycle-Accurate Retargetable Instruction-Set Simulator — DOI: `10.1007/s11227-005-0218-y`
+- An accurate and practical method for inference of weak gravitational lensing from galaxy images — DOI: `10.1093/mnras/stw879`
+- Verisimilar Image Synthesis for Accurate Detection and Recognition of Texts in Scenes
+- Deep Accurate Solver for the Geodesic Problem — DOI: `10.1007/978-3-031-31975-4_22`
+- SuperSCS: fast and accurate large-scale conic optimization
+- Emulation as an Accurate Alternative to Interpolation in Sampling Radiative Transfer Codes — DOI: `10.1109/jstars.2018.2875330`
+- Application of the G-JF Discrete-Time Thermostat for Fast and Accurate Molecular Simulations — DOI: `10.1016/j.cpc.2013.10.006`
+- A Shading-Guided Generative Implicit Model for Shape-Accurate 3D-Aware Image Synthesis
+- Fast and Accurate Emulation of Complex Dynamic Simulators
+- An accurate and flexible analog emulation of AdEx neuron dynamics in silicon
+- CSST Cosmological Emulator II: Generalized Accurate Halo Mass Function Emulation — DOI: `10.1007/s11433-025-2764-x`
+- LIMIT: Less Is More for Instruction Tuning Across Evaluation Paradigms
+- Vision-Flan: Scaling Human-Labeled Tasks in Visual Instruction Tuning
+- FinGPT: Instruction Tuning Benchmark for Open-Source Large Language Models in Financial Datasets
+- Fast & accurate emulation of two-body scattering observables without wave functions — DOI: `10.1016/j.physletb.2021.136608`
+- Demystifying Instruction Mixing for Fine-tuning Large Language Models
+- Real-World Implementation of Video Outpatient Consultations at Macro, Meso, and Micro Levels: Mixed-Method Study — DOI: `10.2196/jmir.9897`
+- The Observer Video-Pro: New software for the collection, management, and presentation of time-structured data from videotapes and digital media files — DOI: `10.3758/bf03200802`
+- Digital Twin: Values, Challenges and Enablers From a Modeling Perspective — DOI: `10.1109/access.2020.2970143`
+- Video Quality Measurement Techniques — DOI: `10.70220/l2bp336n`
+- An adaptive delay and synchronization control scheme for Wi-Fi based audio/video conferencing — DOI: `10.1007/s11276-006-6549-7`
+- homeSound: Real-Time Audio Event Detection Based on High Performance Computing for Behaviour and Surveillance Remote Monitoring — DOI: `10.3390/s17040854`
+- Audio self-supervised learning: A survey — DOI: `10.1016/j.patter.2022.100616`
+- Listen, Denoise, Action! Audio-Driven Motion Synthesis with Diffusion Models — DOI: `10.1145/3592458`
+- CICIoT2023: A real-time dataset and benchmark for large-scale attacks in IoT environment — DOI: `10.20944/preprints202305.0443.v1`
+- Video Vortex reader: responses to YouTube
+- Use of Precision Time Protocol to Synchronize Sampled-Value Process Buses — DOI: `10.1109/tim.2011.2178676`
+- VASA-1: Lifelike Audio-Driven Talking Faces Generated in Real Time — DOI: `10.48550/arxiv.2404.10667`
+- Deep learning applications and challenges in big data analytics — DOI: `10.1186/s40537-014-0007-7`
+- A Tutorial on Uppaal — DOI: `10.1007/978-3-540-30080-9_7`
+- The Internet of Audio Things: State of the Art, Vision, and Challenges — DOI: `10.1109/jiot.2020.2997047`
+- Using timestamp to realize audio-video synchronization in Real-Time streaming media transmission — DOI: `10.1109/icalip.2008.4589974`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30160465u`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30160465`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30355801`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30355801u`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30180651u`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30180651`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30355799`
+- Guideline for synchronization of audio and video — DOI: `10.3403/30355799u`
+- Pre-synchronization of AVS audio-video based on Real-Time Transport Protocol — DOI: `10.1109/wcsp.2012.6542984`
+- Guideline for synchronization of audio and video — DOI: `10.3403/pdiects62312-1`
+- Guideline for synchronization of audio and video — DOI: `10.3403/pdiects62312`
+- Forward Error Correction for Real-Time Video/Audio Transport Over IP Networks — DOI: `10.5594/smpte.st2022-1.2007`
+- Audio to Video Synchronization Measurement — Fingerprint Transport — DOI: `10.5594/smpte.st2064-2.2015`
+- Audio to Video Synchronization Measurement — Fingerprint Generation — DOI: `10.5594/smpte.st2064-1.2015`
+- Real time state monitoring and fault diagnosis system for motor based on LabVIEW
+- A study on audio synchronous steganography detection and distributed guide inference model based on sliding spectral features and intelligent inference drive
+- Diffusion-Based Audio Inpainting — DOI: `10.17743/jaes.2022.0129`
+- Audio-Plane: Audio Factorization Plane Gaussian Splatting for Real-Time Talking Head Synthesis
+- Diffusion Models as Masked Audio-Video Learners
+- Audeo: Audio Generation for a Silent Performance Video
+- Audio-visual Speech Enhancement Using Conditional Variational Auto-Encoders — DOI: `10.1109/taslp.2020.3000593`
+- Real-Time Service Subscription and Adaptive Offloading Control in Vehicular Edge Computing — DOI: `10.1109/rtss66672.2025.00023`
+- A general-purpose deep learning approach to model time-varying audio effects
+- Towards Improved Objective Perceptual Audio Quality Assessment -- Part 1: A Novel Data-Driven Cognitive Model — DOI: `10.1109/taslp.2024.3477291`
+- VQCPC-GAN: Variable-Length Adversarial Audio Synthesis Using Vector-Quantized Contrastive Predictive Coding
+- From Alignment to Advancement: Bootstrapping Audio-Language Alignment with Synthetic Data — DOI: `10.1109/taslpro.2025.3626233`
+- Real-Time-Data Analytics in Raw Materials Handling
+- Space-time distributions
+- MOVA: Towards Scalable and Synchronized Video-Audio Generation
+- Adding Concurrency to Smart Contracts — DOI: `10.1145/3087801.3087835`
+- SWI-Prolog — DOI: `10.1017/s1471068411000494`
+- Diane: Identifying Fuzzing Triggers in Apps to Generate Under-constrained Inputs for IoT Devices — DOI: `10.1109/sp40001.2021.00066`
+- Execution synthesis — DOI: `10.1145/1755913.1755946`
+- Benchmarking, analysis, and optimization of serverless function snapshots — DOI: `10.1145/3445814.3446714`
+- Operating System Transactions — DOI: `10.1145/1629575.1629591`
+- On-Chip COMA Cache-Coherence Protocol for Microgrids of Microthreaded Cores — DOI: `10.1007/978-3-540-78474-6_7`
+- ThingsMigrate: Platform-Independent Migration of Stateful JavaScript IoT Applications — DOI: `10.4230/lipics.ecoop.2018.18`
+- WizHaul: On the Centralization Degree of Cloud RAN Next Generation Fronthaul — DOI: `10.1109/tmc.2018.2793859`
+- Fine-grained Code Coverage Measurement in Automated Black-box Android Testing — DOI: `10.1145/3395042`
+- RAIN — DOI: `10.1145/3133956.3134045`
+- Fragmented Mythologies: Soviet TV Mini-Series of the 1970s
+- Performance Exploration of the Hybrid Memory Cube
+- DASON: Dependability Assessment Framework for Imperfect Distributed SDN Implementations — DOI: `10.1109/tnsm.2020.2973925`
+- Determinism and Despair — DOI: `10.2307/j.ctvp7d4qp.4`
+- 1. Determinism and Despair — DOI: `10.1515/9780691200934-002`
+- Determinism and state; Statistical determinism — DOI: `10.1090/chel/360/08`
+- Technological Determinism and Debates about State Formation in Early Modern Europe — DOI: `10.1332/policypress/9781529213409.003.0002`
+- sakura: Extension to R Serialization — DOI: `10.32614/cran.package.sakura`
+- System for Video Game Enhancement Using Console Emulator State Information and Scene Recognition — DOI: `10.23860/thesis-thibeaulty-christopher-2013`
+- serialization — DOI: `10.1007/springerreference_24439`
+- Technological Determinism and Debates about State Formation in Early Modern Europe — DOI: `10.46692/9781529213430.002`
+- The Melodrama of Television Serialization — DOI: `10.5040/9798216432432.ch-2`
+- Technological Determinism and Debates about State Formation in Early Modern Europe — DOI: `10.2307/jj.5274083.4`
+- Figure 5: Time comparison of MEL to Boost Serialization Library for File Read/Write on a single node, to a within node Solid State Drive. — DOI: `10.7717/peerj-cs.95/fig-5`
+- Skipping Breakfast to Save the Nation: A Different Kind of Dietary Determinism in Early Twentieth-Century China — DOI: `10.1080/20549547.2018.1450002`
+- The limits of verb serialization — DOI: `10.1093/oso/9780198791263.003.0005`
+- Serialization — DOI: `10.32388/74ce73`
+- serialization, n. — DOI: `10.1093/oed/1121346765`
+- Human in the Loop: Interactive Passive Automata Learning via Evidence-Driven State-Merging Algorithms
+- Incorporating Astrochemistry into Molecular Line Modelling via Emulation — DOI: `10.1051/0004-6361/201935973`
+- High-performance state-vector emulator of a gate-based quantum processor implemented in the Rust programming language — DOI: `10.1063/5.0166887`
+- FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator — DOI: `10.1093/mnras/stac1091`
+- Intelligent Design: On the Emulation of Cosmological Simulations — DOI: `10.1088/0004-637x/728/2/137`
+- Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum — DOI: `10.1088/0004-637x/810/1/35`
+- MQLV: Optimal Policy of Money Management in Retail Banking with Q-Learning
+- The Mira-Titan Universe II: Matter Power Spectrum Emulation — DOI: `10.3847/1538-4357/aa86a9`
+- CSST Cosmological Emulator I: Matter Power Spectrum Emulation with one percent accuracy to k = 10 h/Mpc — DOI: `10.1007/s11433-025-2671-0`
+- Matter Power Spectrum Emulator for f(R) Modified Gravity Cosmologies — DOI: `10.1103/physrevd.103.123525`
+- The Mira-Titan Universe. III. Emulation of the Halo Mass Function
+- Dark Quest II: A Wide-Coverage Neural Network Emulator of the Nonlinear Matter Power Spectrum Across Extended Cosmologies
+- Cosmic Emulation: The Concentration-Mass Relation for wCDM Universes — DOI: `10.1088/0004-637x/768/2/123`
+- Cosmic-Enu: An emulator for the non-linear neutrino power spectrum
+- Evaluation of CAN Bus Security Challenges — DOI: `10.3390/s20082364`
+- Efficient synchronization of multiprocessors with shared memory — DOI: `10.1145/48022.48024`
+- Last-Level Cache Side-Channel Attacks are Practical — DOI: `10.1109/sp.2015.43`
+- The CMS experiment at the CERN LHC — DOI: `10.1088/1748-0221/3/08/s08004`
+- A Multiagent Approach to Autonomous Intersection Management — DOI: `10.1613/jair.2502`
+- Firefly: a multiprocessor workstation — DOI: `10.1145/36204.36199`
+- Dynamic decentralized cache schemes for mimd parallel processors — DOI: `10.1145/800015.808203`
+- Event-Based Vision: A Survey — DOI: `10.1109/tpami.2020.3008413`
+- Predictable and composable system-on-chip memory controllers — DOI: `10.6100/ir658012`
+- Understanding fault-tolerant distributed systems — DOI: `10.1145/102792.102801`
+- Randomised Testing of a Microprocessor Model Using SMT-Solver State Generation — DOI: `10.1007/978-3-319-10702-8_13`
+- ZombieLoad — DOI: `10.1145/3319535.3354252`
+- Neuromorphic Spiking Neural Networks and Their Memristor-CMOS Hardware Implementations — DOI: `10.3390/ma12172745`
+- General Timing Games with Multiple Players — DOI: `10.2139/ssrn.5120452`
+- In-Memory OLTP–Related Wait Types — DOI: `10.1007/978-1-4842-1139-7_12`
+- CAN bus analyzer and emulator — DOI: `10.1109/idt.2009.5404142`
+- Optimizing wait-states in the synthesis of memory references with unpredictable latencies — DOI: `10.1109/samos.2011.6045471`
+- General Timing Games with Multiple Players — DOI: `10.2139/ssrn.4090339`
+- Innovation in a Generalized Timing Game — DOI: `10.2139/ssrn.2314722`
+- Predicting Acceptable Wait Times for Patrons at Transit Bus Stops by Time of Day — DOI: `10.31979/mti.2019.1801`
+- A multicore emulator with a profiling infrastructure for transactional memory on FPGA — DOI: `10.5821/dissertation-2117-104207`
+- The Timing of Liver Transplantation Following Downstaging: Wait of Not to Wait? — DOI: `10.1007/s12029-020-00491-z`
+- Blocking in a Timing Game with Asymmetric Players — DOI: `10.2139/ssrn.3254683`
+- Bus Signal Timing and Input/Output Timing — DOI: `10.1007/978-1-349-06978-1_4`
+- 16-Channel timing card with Q-BUS interface — DOI: `10.2172/1157427`
+- Introduction: Sometimes the Bus Does Wait — DOI: `10.1093/acprof:oso/9780195130027.003.0001`
+- Timing of Appendectomy for Acute Appendicitis: Can Surgery Wait? — DOI: `10.1007/978-3-030-15006-8_10`
+- In-Memory OLTP–Related Wait Types — DOI: `10.1007/978-1-4842-4916-1_13`
+- Fast SAM 3D Body: Accelerating SAM 3D Body for Real-Time Full-Body Human Mesh Recovery
+- Can bus bunching reduce waiting time?
+- Information free quantum bus for generating stabiliser states — DOI: `10.1007/s11128-007-0055-4`
+- Bus Frequency Optimization: When Waiting Time Matters in User Satisfaction — DOI: `10.1007/978-3-030-59416-9_12`
+- BusTr: Predicting Bus Travel Times from Real-Time Traffic — DOI: `10.1145/3394486.3403376`
+- Distilling Feedback into Memory-as-a-Tool
+- Nintendo Game Boy Advance — DOI: `10.1016/b978-193183631-9/50012-x`
+- Index — DOI: `10.7551/mitpress/12498.003.0013`
+- Notes — DOI: `10.7551/mitpress/12498.003.0011`
+- Bibliography — DOI: `10.7551/mitpress/12498.003.0012`
+- Who Are You? — DOI: `10.7551/mitpress/12498.001.0001`
+- Acknowledgments — DOI: `10.7551/mitpress/12498.003.0010`
+- Series Foreword — DOI: `10.7551/mitpress/12498.003.0001`
+- Platformizing Nostalgia — DOI: `10.7551/mitpress/12498.003.0007`
+- Residual Afterlives — DOI: `10.7551/mitpress/12498.003.0008`
+- [ Front Matter ] — DOI: `10.7551/mitpress/12498.003.0014`
+- Expanding the Platform — DOI: `10.7551/mitpress/12498.003.0004`
+- Conclusion: After Afterlives — DOI: `10.7551/mitpress/12498.003.0009`
+- Written in Plastic — DOI: `10.7551/mitpress/12498.003.0005`
+- Introduction: Who Are You? — DOI: `10.7551/mitpress/12498.003.0002`
+- Console-Quality Gaming, Anywhere — DOI: `10.7551/mitpress/12498.003.0003`
+- Playing a 2D Game Indefinitely using NEAT and Reinforcement Learning
+- Optimal strategies for a game on amenable semigroups — DOI: `10.1007/s00182-012-0345-7`
+- Advanced Drone Swarm Security by Using Blockchain Governance Game — DOI: `10.3390/math10183338`
+- Dynamic Structure in Four-strategy Game: Theory and Experiment — DOI: `10.21638/11701/spbu31.2022.26`
+- Specifying a Game-Theoretic Extensive Form as an Abstract 5-ary Relation — DOI: `10.1007/s00182-025-00928-4`
+- Computational Complexity of Game Boy Games
+- Flip the Cloud: Cyber-Physical Signaling Games in the Presence of Advanced Persistent Threats — DOI: `10.13140/rg.2.1.3128.9446`
+- Evaluation of Game Templates to support Programming Activities in Schools
+- Evolutive Rendering Models
+- Parametric Open Source Games
+- Graphical Potential Games
+- GAN-Based Content Generation of Maps for Strategy Games
+- Using Game Theory to maximize the chance of victory in two-player sports
+- Rank Reduction in Bimatrix Games
+- Additive Security Games: Structure and Optimization
+- Understanding Game Scoring: Software Programming, Aleatoric Composition and Mimetic Music Technology
+- Creating a method for video game subtitle analysis and presenting a demonstrative case study on Trine 2’s Finnish subtitles
+- Unified Cross-modal Translation of Score Images, Symbolic Music, and Performance Audio — DOI: `10.1109/taslpro.2025.3648794`
+- dCoNNear: An Artifact-Free Neural Network Architecture for Closed-loop Audio Signal Processing — DOI: `10.1109/taslpro.2025.3622985`
+- PSLA: Improving Audio Tagging with Pretraining, Sampling, Labeling, and Aggregation — DOI: `10.1109/taslp.2021.3120633`
+- Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models
+- Zero-shot audio captioning with audio-language model guidance and audio context keywords
+- Audio Content Analysis
+- Research, Rhetoric, and the Cinematic Events of Cecil B. DeMille
+- Υλοποίηση E-book reader με τη βοήθεια προηγμένου ενσωματωμένου συστήματος υλικού/λογισμικού
+- Kinematical Signatures of Disc Instabilities and Secular Evolution in the MUSE TIMER Survey — DOI: `10.1017/s1743921319008585`
+- DICE: Automatic Emulation of DMA Input Channels for Dynamic Firmware Analysis
+- The Biology and Evolution of the Three Psychological Tendencies to Anthropomorphize Biology and Evolution — DOI: `10.3389/fpsyg.2018.01839`
+- GPU Virtualization and Scheduling Methods — DOI: `10.1145/3068281`
+- Eye Tracking in Virtual Reality: a Broad Review of Applications and Challenges — DOI: `10.1007/s10055-022-00738-z`
+- Academia in the 21st century: an analysis of trends and perspectives in higher education and research
+- Raspberry Pi Retro Gaming — DOI: `10.1007/978-1-4842-5153-9`
+- “It’s selling like hotcakes”: deconstructing social media influencer marketing in long-form video content on youtube via social influence heuristics — DOI: `10.1108/ejm-06-2019-0530`
+- Reflections on Human Nature — DOI: `10.1353/book.72149`
+- The Study of Life History: Gandhi — DOI: `10.1086/201318`
+- Towards reproducible computational drug discovery — DOI: `10.1186/s13321-020-0408-x`
+- Truth, Lies, and Automation: How Language Models Could Change Disinformation — DOI: `10.51593/2021ca003`
+- The resurrection of digital triplet: A cognitive pillar of human-machine integration at the dawn of industry 5.0 — DOI: `10.1016/j.jksuci.2023.101846`
+- Collaborative Governance : A new era of public policy in Australia? — DOI: `10.26530/oapen_458884`
+- The Active Inference Approach to Ecological Perception: General Information Dynamics for Natural and Artificial Embodied Cognition — DOI: `10.3389/frobt.2018.00021`
+- Political dynamics promoting the incremental regulation of secondhand smoke: a case study of New South Wales, Australia — DOI: `10.1186/1471-2458-6-192`
+- "To sense" or "not to sense" in energy-efficient power control games
+- Reconciling Rationality and Stochasticity: Rich Behavioral Models in Two-Player Games
+- Advanced Engineering Testing — DOI: `10.5772/intechopen.74186`
+- On closures for reduced order models—A spectrum of first-principle to machine-learned avenues — DOI: `10.1063/5.0061577`
+- Information technology measurement and testing activities at NIST — DOI: `10.6028/jres.106.013`
+- Myriad Genetics: In the eye of the policy storm — DOI: `10.1097/gim.0b013e3181d72661`
+- A Coastal Ocean Forecast System for U.S. Mid-Atlantic Bight and Gulf of Maine — DOI: `10.17125/gov2018.ch21`
+- Technological innovations in the recreational fishing sector: implications for fisheries management and policy — DOI: `10.1007/s11160-021-09643-1`
+- Machine Learning With Data Assimilation and Uncertainty Quantification for Dynamical Systems: A Review — DOI: `10.1109/jas.2023.123537`
+- Quantifying Topological Uncertainty in Fractured Systems using Graph Theory and Machine Learning — DOI: `10.1038/s41598-018-30117-1`
+- Guidelines on PDA forensics — DOI: `10.6028/nist.sp.800-72`
+- Guidelines on Cell Phone and PDA Security — DOI: `10.6028/nist.sp.800-124`
+- A Flexible Experimental Laboratory for Distributed Generation Networks Based on Power Inverters — DOI: `10.3390/en10101589`
+- Embedded System Design — DOI: `10.1007/978-3-030-60910-8`
+- A robustness testing approach for RESTful Web Services
+- Automatic non-functional testing and tuning of configurable generators
+- Synthesis, properties, and biological activity of boranophosphate analogs of the mRNA cap: versatile tools for manipulation of therapeutically relevant cap-dependent processes — DOI: `10.1093/nar/gku757`
+- Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing — DOI: `10.3403/00867361`
+- Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing — DOI: `10.3403/00281065`
+- Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing — DOI: `10.3403/00281065u`
+- Information technology. Open systems interconnection. Conformance testing methodology and framework — DOI: `10.3403/00776156`
+- Information technology. Open systems interconnection. Conformance testing methodology and framework — DOI: `10.3403/00252793u`
+- Information technology. Open systems interconnection. Conformance testing methodology and framework — DOI: `10.3403/00252793`
+- Information technology. Open systems interconnection. Conformance testing methodology and framework — DOI: `10.3403/00776156u`
+- Information technology. Open systems interconnection. Conformance test suite for the session protocol — DOI: `10.3403/01355985u`
+- Information technology. Open systems interconnection. Conformance test suite for the FTAM protocol — DOI: `10.3403/00309675`
+- Information technology. Open systems interconnection. Conformance test suite for the ACSE protocol — DOI: `10.3403/00260790u`
+- Information technology. Open systems interconnection. Conformance test suite for the session protocol — DOI: `10.3403/01355985`
+- Information technology. Open systems interconnection. Conformance test suite for the ACSE protocol — DOI: `10.3403/00260790`
+- Information technology. Open systems interconnection. Conformance test suite for the FTAM protocol — DOI: `10.3403/00309675u`
+- Information technology. Open Systems Interconnection. Conformance test suite for the presentation layer — DOI: `10.3403/00317360u`
+- Information technology. Telecommunications and information exchange between systems. X.25-DTE conformance testing — DOI: `10.3403/00268144`
+- Stable Emulation of an Entire Suite of Model Physics in a State-of-the-Art GCM using a Neural Network
+- Study Paper on Test Case generation for GUI Based Testing
+- Testing Deep Learning Models: A First Comparative Study of Multiple Testing Techniques — DOI: `10.1109/icstw55395.2022.00035`
+- A conformance relation and complete test suites for I/O systems
+- Towards Explainable Test Case Prioritisation with Learning-to-Rank Models — DOI: `10.1109/icstw58534.2023.00023`
+- Automated Test Case Generation using Petri Nets
+- Active Fuzzing for Testing and Securing Cyber-Physical Systems — DOI: `10.1145/3395363.3397376`
+- Considering Polymorphism in Change-Based Test Suite Reduction — DOI: `10.1007/978-3-319-14358-3_14`
+- Goal-Oriented Mutation Testing with Focal Methods — DOI: `10.1145/3278186.3278190`
+- The Coyote Universe III: Simulation Suite and Precision Emulator for the Nonlinear Matter Power Spectrum — DOI: `10.1088/0004-637x/713/2/1322`
+- ROM: Real-time Overthinking Mitigation via Streaming Detection and Intervention
+- Test Suites as a Source of Training Data for Static Analysis Alert Classifiers
+- Complete Test Suites for Automata in Monoidal Closed Categories
+- E-Test: E'er-Improving Test Suites
+- Many-core compiler fuzzing — DOI: `10.1145/2737924.2737986`
+- IoTFuzzer: Discovering Memory Corruptions in IoT Through App-based Fuzzing — DOI: `10.14722/ndss.2018.23159`
+- Many-core compiler fuzzing — DOI: `10.1145/2813885.2737986`
+- Compiler fuzzing through deep learning — DOI: `10.1145/3213846.3213848`
+- The Art, Science, and Engineering of Fuzzing: A Survey — DOI: `10.1109/tse.2019.2946563`
+- Finding semantic bugs in file systems with an extensible fuzzing framework — DOI: `10.1145/3341301.3359662`
+- SoK: Prudent Evaluation Practices for Fuzzing — DOI: `10.1109/sp54263.2024.00137`
+- Compiler fuzzing: how much does it matter? — DOI: `10.1145/3360581`
+- Embedded fuzzing: a review of challenges, tools, and solutions — DOI: `10.1186/s42400-022-00123-y`
+- Detecting critical bugs in SMT solvers using blackbox mutational fuzzing — DOI: `10.1145/3368089.3409763`
+- A survey of safety and trustworthiness of deep neural networks: Verification, testing, adversarial attack and defence, and interpretability — DOI: `10.1016/j.cosrev.2020.100270`
+- Life after Speech Recognition: Fuzzing Semantic Misinterpretation for Voice Assistant Applications — DOI: `10.14722/ndss.2019.23525`
+- RoboFuzz: fuzzing robotic systems over robot operating system (ROS) for finding correctness bugs — DOI: `10.1145/3540250.3549164`
+- ICS3Fuzzer: A Framework for Discovering Protocol Implementation Bugs in ICS Supervisory Software by Fuzzing — DOI: `10.1145/3485832.3488028`
+- Hardware Fuzzing with An Emulator — DOI: `10.2172/2480163`
+- Icicle: A Re-designed Emulator for Grey-Box Firmware Fuzzing — DOI: `10.1145/3597926.3598039`
+- Enhance fuzzing testing with static program analysis — DOI: `10.14711/thesis-991013061528103412`
+- Differential Performance Fuzzing of Configuration Options — DOI: `10.1109/sbft66712.2025.00014`
+- Enhancing ICS Security Diagnostics with Pseudo-Greybox Fuzzing During Maintenance Testing — DOI: `10.5220/0012137100003538`
+- Request Smuggling Via HTTP/2 Cleartext in the Wild: Empirical Testing with Differential Fuzzing — DOI: `10.1109/itiotsc60379.2023.00043`
+- Evolutionary Generative Fuzzing for Differential Testing of the Kotlin Compiler — DOI: `10.1145/3663529.3663864`
+- Exploiting Dissent: Towards Fuzzing-Based Differential Black-Box Testing of TLS Implementations — DOI: `10.1109/tdsc.2017.2763947`
+- Keynote Talk - Fuzzing, Symbolic Execution, and Synthesis for Testing — DOI: `10.1109/icst49551.2021.00009`
+- FUZZING TESTING. CLASSIFICATION OF MODERN FUZZING TOOLS — DOI: `10.37539/aug298.2021.94.77.007`
+- Automated Feature Testing of Verilog Parsers using Fuzzing (Registered Report) — DOI: `10.1145/3678722.3685536`
+- Improve Model Testing by Integrating Bounded Model Checking and Coverage Guided Fuzzing — DOI: `10.21203/rs.3.rs-2315060/v1`
+- Using an IN-kernel emulator for TPS development and testing — DOI: `10.1109/autest.2004.1436846`
+- Qualcomm Trusted Application Emulation for Fuzzing Testing
+- Icicle: A Re-Designed Emulator for Grey-Box Firmware Fuzzing
+- Protocol-Aware Firmware Rehosting for Effective Fuzzing of Embedded Network Stacks — DOI: `10.1145/3719027.3765125`
+- Service-Fingerprinting mittels Fuzzing
+- Type-Centric Kotlin Compiler Fuzzing: Preserving Test Program Correctness by Preserving Types
+- BaseSAFE: Baseband SAnitized Fuzzing through Emulation — DOI: `10.1145/3395351.3399360`
+- Consistent SDNs through Network State Fuzzing — DOI: `10.1109/tnsm.2019.2955790`
+- Kaizen: Metamorphic Fuzzing and Differential Testing for LLM-Translated HPC Applications
+- Review of Battery Management Systems (BMS) Development and Industrial Standards — DOI: `10.3390/technologies9020028`
+- Wireless and battery-free technologies for neuroengineering — DOI: `10.1038/s41551-021-00683-3`
+- Aqueous lithium‐ion batteries — DOI: `10.1002/cey2.106`
+- <i>In situ</i> polymerization process: an essential design tool for lithium polymer batteries — DOI: `10.1039/d0ee03527k`
+- Battery-Free Game Boy — DOI: `10.1145/3411839`
+- Nano-enhanced Phase Change Material for thermal management of BICPV — DOI: `10.1016/j.apenergy.2017.09.076`
+- Review—Meta-Review of Fire Safety of Lithium-Ion Batteries: Industry Challenges and Research Contributions — DOI: `10.1149/1945-7111/aba8b9`
+- A Review of SOH Prediction of Li-Ion Batteries Based on Data-Driven Algorithms — DOI: `10.3390/en16073167`
+- Wireless Communications and Applications Above 100 GHz: Opportunities and Challenges for 6G and Beyond — DOI: `10.1109/access.2019.2921522`
+- A Comprehensive Review on Second-Life Batteries: Current State, Manufacturing Considerations, Applications, Impacts, Barriers &amp; Potential Solutions, Business Strategies, and Policies — DOI: `10.1109/access.2019.2917859`
+- Internal short circuit detection in Li-ion batteries using supervised machine learning — DOI: `10.1038/s41598-020-58021-7`
+- Advanced Lead–Acid Batteries and the Development of Grid-Scale Energy Storage Systems — DOI: `10.1109/jproc.2014.2316823`
+- Design and Optimization of a Novel Microchannel Battery Thermal Management System Based on Digital Twin — DOI: `10.3390/en15041421`
+- Optimal sizing of PV and battery-based energy storage in an off-grid nanogrid supplying batteries to a battery swapping station — DOI: `10.1007/s40565-018-0428-y`
+- A deep learning framework to emulate density functional theory — DOI: `10.1038/s41524-023-01115-3`
+- Battery emulator operating in a power hardware-in-the-loop simulation — DOI: `10.12681/eadd/50416`
+- Coupled Electro-Thermal Battery Emulator for Power Systems Testing — DOI: `10.2139/ssrn.6304895`
+- Numerical and Experimental Thermal Performance of a Lattice-Based Battery Protection Packagenumerical and Experimental Thermal Performance of a Lattice-Based Battery Protection Package — DOI: `10.2139/ssrn.5021738`
+- Spatial channel emulator for MIMO performance evaluation of mobile terminals — DOI: `10.1109/apmc.2009.5384205`
+- Modular Battery Emulator for Development and Functional Testing of Battery Management Systems: The Cell Emulator — DOI: `10.3390/electronics11081215`
+- Performance comparison of an emulator and physical Android mobile device based on chess algorithm — DOI: `10.35784/jcsi.644`
+- Improved Thermal Battery Performance. — DOI: `10.21236/ada073856`
+- Thermal Challenges in Lithium-Ion Battery Technology: Investigating Performance and Thermal Stability — DOI: `10.2139/ssrn.4883733`
+- Multi-cell battery emulator for advanced battery management system benchmarking — DOI: `10.1109/isie.2011.5984312`
+- Mobile Sorption-based Thermal Battery for Harvesting Low-Temperature Geothermal Energy — DOI: `10.2172/1651404`
+- BCMP Performance Test with TTCN-3 Mobile Node Emulator — DOI: `10.1007/978-3-540-24704-3_4`
+- Battery Thermal Management — DOI: `10.4271/j3073_201605`
+- Review for "An Overview of the Impact of Vibrations on Li-Ion Battery Performance, Degradation, Battery Thermal Management System and Key Focus Areas" — DOI: `10.1002/eng2.70235/v2/review2`
+- Review for "An Overview of the Impact of Vibrations on Li-Ion Battery Performance, Degradation, Battery Thermal Management System and Key Focus Areas" — DOI: `10.1002/eng2.70235/v3/review2`
+- Review for "An Overview of the Impact of Vibrations on Li-Ion Battery Performance, Degradation, Battery Thermal Management System and Key Focus Areas" — DOI: `10.1002/eng2.70235/v1/review1`
+- Comprehensive Analysis of Thermal Dissipation in Lithium-Ion Battery Packs
+- ARMrayan Multimedia Mobile CMS: a Simplified Approach towards Content-Oriented Mobile Application Designing
+- LEAP: TrustZone Based Developer-Friendly TEE for Intelligent Mobile Apps — DOI: `10.1109/tmc.2022.3207745`
+- Energy Harvesting Communications Using Dual Alternating Batteries
+- Thermal Model of an Omnimagnet for Performance Assessment and Temperature Control — DOI: `10.1115/1.4049869`
+- Performance of Genetic Algorithms in the Context of Software Model Refactoring — DOI: `10.1007/978-3-031-43185-2_16`
+- Coherently Driven Quantum Harmonic Oscillator Battery
+- A Low-Energy Fast Cyber Foraging Mechanism for Mobile Devices — DOI: `10.5121/ijwmn.2011.3516`
+- Modeling Object Attention in Mobile AR for Intrinsic Cognitive Security — DOI: `10.1145/3704413.3765308`
+- A Mobile Application for Smart House Remote Control System
+- Quantum battery with non-Hermitian charging — DOI: `10.1103/physreva.109.042207`
+- Beneficial and detrimental entanglement for quantum battery charging — DOI: `10.1116/5.0184903`
+- On the Performance Evaluation and Analysis of the Hybridised Bittorrent Protocol with Partial Mobility Characteristics
+- How Current Android Malware Seeks to Evade Automated Code Analysis — DOI: `10.1007/978-3-319-24018-3_12`
+- Chidroid: A Mobile Android Application for Log Collection and Security Analysis in Healthcare and IoMT — DOI: `10.3390/app13053061`
+- Beginning Android 3 [begin the journey toward your own successful Android 3 apps] — DOI: `10.1007/978-1-4302-3298-8`
+- A Survey of Performance Optimization for Mobile Applications — DOI: `10.1109/tse.2021.3071193`
+- An ML-Based Recognizer of Exfiltration Attack over Android Platform: MLGuard — DOI: `10.36227/techrxiv.21602706.v1`
+- Inter Process Communication in Android
+- X-Droid — DOI: `10.1145/3332165.3347890`
+- The Design and Implementation of a Mobile Game Engine for the Android Platform
+- The OWApp Benchmark: an OWASP-compliant Vulnerable Android App Dataset — DOI: `10.36227/techrxiv.173687667.70476692/v1`
+- Removing Secrets from Android's TLS — DOI: `10.14722/ndss.2018.23365`
+- Virtual Device Farms for Mobile App Testing at Scale: A Pursuit for Fidelity, Efficiency, and Accessibility — DOI: `10.1145/3570361.3613259`
+- S3: A Study on the Efficiency of Current Power-Saving Approaches Used Among Android-Application Development and Usage Stages — DOI: `10.12785/ijcds/090419`
+- Adding Energy Star Rating Schema to Android Applications on Google Play Store an Example of a Preventive Power Saving Model
+- A Framework for Measuring the Usability Issues and Criteria of Mobile Learning Applications
+- How To Create An App — DOI: `10.19030/ijmis.v18i2.8494`
+- Handling Activity Lifecycle Events — DOI: `10.1007/978-1-4302-2420-4_16`
+- Lifecycle, ViewModel, LiveData, and Room — DOI: `10.1007/978-1-4842-4953-6_11`
+- Handling Activity Lifecycle Events — DOI: `10.1007/978-1-4302-3298-8_18`
+- Handling Activity Lifecycle Events — DOI: `10.1007/978-1-4302-3985-7_18`
+- TLB maintenance optimization in android emulator for MIPS platform — DOI: `10.1109/telfor.2016.7818873`
+- TLB maintenance optimization in android emulator for mips platform — DOI: `10.1109/telfor.2016.7818883`
+- A Mobile Augmented Reality Emulator for Android — DOI: `10.18489/sacj.v29i1.435`
+- THE SERVICE LIFECYCLE — DOI: `10.2307/j.ctt5hh5wb.9`
+- Comparative Lifecycle Economic Assessment of Shared Energy Storage Under Multi-Service Revenue Scenarios — DOI: `10.3390/en19092177`
+- Analyzing Lifecycle Behavior of Android Application Components — DOI: `10.1109/compsac.2015.267`
+- Card Emulator for Door Access Using Android Platform — DOI: `10.1109/iccsce.2013.6719997`
+- Smart Service Lifecycle Management*/Smart Service Lifecycle Management - A framework for manufacturing firms — DOI: `10.37544/1436-4980-2016-07-08-11`
+- Android Native Databases as Persistent Storage — DOI: `10.1201/9781003286325-10`
+- Foreground — DOI: `10.1093/acprof:oso/9780199539796.003.0006`
+- Cloudtarun Application deployed over GAE and android emulator — DOI: `10.1109/pdgc.2012.6449897`
+- Simple Spyware: Androids Invisible Foreground Services and How to (Ab)use Them
+- A Composite Design Pattern for Service Injection and Composition of Web Services for Peer-To-Peer Computing with Service Oriented Architecture — DOI: `10.5121/ijwsc`
+- Privacy-Preserving Distributed Control for a Networked Battery Energy Storage System — DOI: `10.1016/j.est.2026.120958`
+- A Constrained Shortest Path Scheme for Virtual Network Service Management
+- A Software-Defined Networking Solution for Transparent Session and Service Continuity in Dynamic Multi-Access Edge Computing — DOI: `10.1109/tnsm.2020.3033071`
+- Quantum Software Development Lifecycle
+- SecComp: Towards Practically Defending Against Component Hijacking in Android Applications
+- Ripple: Reflection Analysis for Android Apps in Incomplete Information Environments
+- Relocate and Emulate: Re-Hosting Android's Application Layer — DOI: `10.1109/saner67736.2026.00053`
+- VeML: An End-to-End Machine Learning Lifecycle for Large-scale and High-dimensional Data — DOI: `10.1109/access.2023.3296136`
+- Shesop Healthcare: Android application to monitor heart rate variance, display influenza and stress condition using Polar H7 — DOI: `10.13140/rg.2.1.1400.4729`
+- Survey of intrusion detection systems: techniques, datasets and challenges — DOI: `10.1186/s42400-019-0038-7`
+- A Survey of Techniques for Approximate Computing — DOI: `10.1145/2893356`
+- A Survey of Program Slicing Techniques.
+- Network Slicing and Softwarization: A Survey on Principles, Enabling Technologies, and Solutions — DOI: `10.1109/comst.2018.2815638`
+- A Survey on Fault Injection Techniques
+- A Comparative Survey of VANET Clustering Techniques — DOI: `10.1109/comst.2016.2611524`
+- Security Aspects in Software Defined Radio and Cognitive Radio Networks: A Survey and A Way Ahead — DOI: `10.1109/surv.2011.032511.00097`
+- A Survey on Digital Twin: Definitions, Characteristics, Applications, and Design Implications — DOI: `10.1109/access.2019.2953499`
+- Satellite Communications in the New Space Era: A Survey and Future Challenges — DOI: `10.1109/comst.2020.3028247`
+- Survey on human–robot collaboration in industrial settings: Safety, intuitive interfaces and applications — DOI: `10.1016/j.mechatronics.2018.02.009`
+- Contemporary Concepts of Microprogramming and Emulation — DOI: `10.1145/356556.356559`
+- Emulation as a Digital Preservation Strategy — DOI: `10.1045/october2000-granger`
+- Novel techniques for hardware / software partitioning and emulation — DOI: `10.12681/eadd/32016`
+- Anti-emulation trends in modern packers: a survey on the evolution of anti-emulation techniques in UPA packers — DOI: `10.1007/s11416-017-0291-9`
+- Emulation techniques for the reduction and sensitivity analysis of complex environmental models — DOI: `10.1016/j.envsoft.2011.11.003`
+- Improved Techniques for Reliable Software Using Microprogrammed Diagnostic Emulation — DOI: `10.1016/s1474-6670(17)67474-3`
+- Survey of RDF Query Processing Techniques — DOI: `10.3724/sp.j.1001.2013.04387`
+- A Survey on Bug Triaging- Software Data Reduction Techniques — DOI: `10.21275/v4i12.nov152110`
+- Survey on Bug Triage with Software Data Reduction Techniques — DOI: `10.21275/v4i12.nov152065`
+- Meeting Digital Preservation Requirements for Software through an Emulation Strategy — DOI: `10.5220/0010602903180323`
+- Meeting Digital Preservation Requirements for Software through an Emulation Strategy — DOI: `10.5220/0010602900002992`
+- Industry Software Reviews Survey Design — DOI: `10.4018/978-1-59904-013-4.ch007`
+- The Zboard: cost reduction through software emulation — DOI: `10.14264/300445`
+- Introduction — DOI: `10.4018/978-1-61520-809-8.ch001`
+- Using Emulation Software to Predict the Performance of Algorithms on NVRAM — DOI: `10.4108/icst.simutools.2014.254796`
+- Industry Software Reviews Survey Results and Findings — DOI: `10.4018/978-1-59904-013-4.ch008`
+- IBM LU6.2 emulation software — DOI: `10.1016/0950-5849(87)90308-9`
+- Challenges for Inclusion in Software Engineering: The Case of the Emerging Papua New Guinean Society — DOI: `10.1109/ms.2021.3098116`
+- Developers Perception of Peer Code Review in Research Software Development — DOI: `10.1007/s10664-021-10053-x`
+- Semi-Automatically Extracting FAQs to Improve Accessibility of Software Development Knowledge — DOI: `10.1109/icse.2012.6227139`
+- Morescient GAI for Software Engineering (Extended Version) — DOI: `10.1145/3709354`
+- The Present and Future of Bots in Software Engineering — DOI: `10.1109/ms.2022.3176864`
+- AI Techniques for Software Requirements Prioritization
+- How Do Static and Dynamic Test Case Prioritization Techniques Perform on Modern Software Systems? An Extensive Study on GitHub Projects — DOI: `10.1109/tse.2018.2822270`
+- AIBugHunter: A Practical Tool for Predicting, Classifying and Repairing Software Vulnerabilities
+- Cognitive Biases in Software Engineering: A Systematic Mapping Study — DOI: `10.1109/tse.2018.2877759`
+- We Don't Need Another Hero? The Impact of "Heroes" on Software Development — DOI: `10.1145/3183519.3183549`
+- Enterprise Software Service Emulation: Constructing Large-Scale Testbeds — DOI: `10.1145/2896941.2896947`
+- How does Object-Oriented Code Refactoring Influence Software Quality? Research Landscape and Challenges — DOI: `10.1016/j.jss.2019.110394`
+- Automated Description Generation for Software Patches — DOI: `10.1016/j.infsof.2024.107543`
+- Software Engineering in Civic Tech: A Case Study about Code for Ireland — DOI: `10.1109/icse-seis.2019.00013`
+- Fairway: A Way to Build Fair ML Software — DOI: `10.1145/3368089.3409697`
+- Digital Forensics and Preservation — DOI: `10.7207/twr12-03`
+- The preservation of digital heritage: epistemological and legal reflections
+- Curation as “Interoperability With the Future”: Preserving Scholarly Research Software in Academic Libraries — DOI: `10.1002/asi.24244`
+- Knowledge Accessibility and Preservation Policy for the Digital Age
+- Metaverse for Healthcare: A Survey on Potential Applications, Challenges and Future Directions — DOI: `10.1109/access.2023.3241628`
+- Legal Protection of Technological Measures Protecting Works of Authorship: International Obligations and the US Experience — DOI: `10.2139/ssrn.785945`
+- ‘Emulation is the Most Sincere Form of Flattery: Retro Videogames, Rom Distribution and Copyright’ — DOI: `10.2139/ssrn.2018883`
+- Digital Curation and Preservation Bibliography 2010 — DOI: `10.5281/zenodo.5260033`
+- Supporting Virtual Reality and 3D in Academic Libraries: Defining Preservation and Curation Challenges — DOI: `10.17605/osf.io/6xj32`
+- Preserving The Emerging: Virtual Reality And 360-Degree Video, An Internship Research Report — DOI: `10.5281/zenodo.1472637`
+- Digital Preservation Sound and Vision: Policy, Standards and Procedures
+- Preserving digital entities: A framework for choosing and testing preservation strategies
+- The battle to define the future of the book in the digital world — DOI: `10.5210/fm.v6i6.864`
+- Digital Curation Bibliography: Preservation and Stewardship of Scholarly Works — DOI: `10.5281/zenodo.5539935`
+- Digital Twins and Enabling Technologies in Museums and Cultural Heritage: An Overview — DOI: `10.3390/s23031583`
+- Emulation — DOI: `10.4324/9780203114261-12`
+- Emulation — DOI: `10.4324/9780203114261.ch4`
+- Emulation — DOI: `10.4324/9781003214977-5`
+- Immersion in Game Atmospheres for the Video Game Heritage Preservation — DOI: `10.26503/dl.v2005i1.204`
+- Preservation — DOI: `10.4324/9781003214977-8`
+- Video Game Publishing Agreement — DOI: `10.1016/b978-159749256-0.00068-0`
+- Video Game Emulation: Using FPGA Technology with Open Source Tools — DOI: `10.1109/infoteh68759.2026.11477622`
+- Metadata and video games emulation: an effective bond to achieve authentic preservation? — DOI: `10.1108/rmj-10-2016-0037`
+- Video Game Wars — DOI: `10.5040/9798400678080.ch-004`
+- Video Game Preservation and Its Challenges — DOI: `10.4467/20843860pk.25.004.21566`
+- Financial, Legal, Regulatory and Compliance Risks — DOI: `10.1201/9781003646082-22`
+- Emulation — DOI: `10.1007/978-3-540-33640-2_4`
+- The Parallel Lives of Legal Persons and Video Game Avatars — DOI: `10.4324/9781003467762-17`
+- PersonaMatrix: A Recipe for Persona-Aware Evaluation of Legal Summarization — DOI: `10.3233/faia251585`
+- Enhancing Pre-Trained Language Models with Sentence Position Embeddings for Rhetorical Roles Recognition in Legal Opinions
+- Automata Quest: NCAs as a Video Game Life Mechanic
+- Segmentation and Processing of German Court Decisions from Open Legal Data — DOI: `10.3233/faia251597`
+- Benchmarking End-to-End Behavioural Cloning on Video Games
+- Assessing Visual Quality of Omnidirectional Videos — DOI: `10.1109/tcsvt.2018.2886277`
+- Evault for legal records
+- LeMAJ (Legal LLM-as-a-Judge): Bridging Legal Reasoning and LLM Evaluation
+- CiteCaseLAW: Citation Worthiness Detection in Caselaw for Legal Assistive Writing
+- Beyond Logic Programming for Legal Reasoning
+- Detecting and Addressing Frustration in a Serious Game for Military Training — DOI: `10.1007/s40593-017-0152-1`
+- Advancing Fusion with Machine Learning Research Needs Workshop Report — DOI: `10.1007/s10894-020-00258-1`
+- Mining meaning from Wikipedia — DOI: `10.1016/j.ijhcs.2009.05.004`
+- An integrated theory of language production and comprehension — DOI: `10.1017/s0140525x12001495`
+- Respawn: Gamers, Hackers, and Technogenic Life — DOI: `10.1215/9781478090366`
+- Wireless Multimedia Sensor Networks: Current Trends and Future Directions — DOI: `10.3390/s100706662`
+- A game of confidence : literary dialect, linguistics, and authenticity
+- Savage Sudan; its wild tribes, big-game and bird-life — DOI: `10.5962/bhl.title.31795`
+- The Use of Analog and Digital Games for Autism Interventions — DOI: `10.3389/fpsyg.2021.669734`
+- AutoTutor and Family: A Review of 17 Years of Natural Language Tutoring — DOI: `10.1007/s40593-014-0029-5`
+- The invention of good games: understanding learning design in commercial video games — DOI: `10.11575/prism/13933`
+- Healthcare in Metaverse: A Survey on Current Metaverse Applications in Healthcare — DOI: `10.1109/access.2022.3219845`
+- Thinking through other minds: A variational approach to cognition and culture — DOI: `10.1017/s0140525x19001213`
+- Building machines that learn and think like people — DOI: `10.1017/s0140525x16001837`
+- Open Gimbal: A 3 Degrees of Freedom Open Source Sensing and Testing Platform for Nano and Micro UAVs — DOI: `10.1109/lsens.2023.3307121`
+- A neural network emulator of the Advanced LIGO and Advanced Virgo selection function — DOI: `10.1103/physrevd.110.123041`

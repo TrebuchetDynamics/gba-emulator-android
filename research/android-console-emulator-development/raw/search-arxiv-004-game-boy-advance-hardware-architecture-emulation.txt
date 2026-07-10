@@ -1,0 +1,20 @@
+	Playing a 2D Game Indefinitely using NEAT and Reinforcement Learning
+10.1145/3695053.3731412	Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures
+10.1007/s00182-012-0345-7	Optimal strategies for a game on amenable semigroups
+10.3390/math10183338	Advanced Drone Swarm Security by Using Blockchain Governance Game
+10.1109/hpca56546.2023.10071089	Dalorex: A Data-Local Program Execution and Architecture for Memory-bound Applications
+10.21638/11701/spbu31.2022.26	Dynamic Structure in Four-strategy Game: Theory and Experiment
+10.1109/lca.2020.2988991	Architectural Implications of Graph Neural Networks
+	Analyzing and Improving Hardware Modeling of Accel-Sim
+	Medha: Microcoded Hardware Accelerator for computing on Encrypted Data
+10.1007/s00182-025-00928-4	Specifying a Game-Theoretic Extensive Form as an Abstract 5-ary Relation
+10.14778/3236187.3236188	In-RDBMS Hardware Acceleration of Advanced Analytics
+	FPGA Based Emulation Environment for Neuromorphic Architectures
+	Computational Complexity of Game Boy Games
+	SAPA: Self-Aware Polymorphic Architecture
+10.13140/rg.2.1.3128.9446	Flip the Cloud: Cyber-Physical Signaling Games in the Presence of Advanced Persistent Threats
+10.1109/hpca61900.2025.00033	LSQCA: Resource-Efficient Load/Store Architecture for Limited-Scale Fault-Tolerant Quantum Computing
+	Neuromorphic hardware as a self-organizing computing system
+10.1007/978-3-031-42592-9_9	Towards Assessing Spread in Sets of Software Architecture Designs
+	Evaluation of Game Templates to support Programming Activities in Schools
+10.5334/joh.48	SnapperGPS: Open Hardware for Energy-Efficient, Low-Cost Wildlife Location Tracking with Snapshot GNSS

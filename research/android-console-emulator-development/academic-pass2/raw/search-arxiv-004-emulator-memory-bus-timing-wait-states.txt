@@ -1,0 +1,15 @@
+	Fast SAM 3D Body: Accelerating SAM 3D Body for Real-Time Full-Body Human Mesh Recovery
+	Can bus bunching reduce waiting time?
+10.1007/s11128-007-0055-4	Information free quantum bus for generating stabiliser states
+10.1051/0004-6361/201935973	Incorporating Astrochemistry into Molecular Line Modelling via Emulation
+10.1088/0004-637x/728/2/137	Intelligent Design: On the Emulation of Cosmological Simulations
+10.1063/5.0166887	High-performance state-vector emulator of a gate-based quantum processor implemented in the Rust programming language
+10.1093/mnras/stac1091	FORGE -- the f(R) gravity cosmic emulator project I: Introduction and matter power spectrum emulator
+10.1007/978-3-030-59416-9_12	Bus Frequency Optimization: When Waiting Time Matters in User Satisfaction
+10.1145/3394486.3403376	BusTr: Predicting Bus Travel Times from Real-Time Traffic
+10.1088/0004-637x/810/1/35	Cosmic Emulation: Fast Predictions for the Galaxy Power Spectrum
+	Distilling Feedback into Memory-as-a-Tool
+10.1007/s11433-025-2764-x	CSST Cosmological Emulator II: Generalized Accurate Halo Mass Function Emulation
+10.1103/physrevd.103.123525	Matter Power Spectrum Emulator for f(R) Modified Gravity Cosmologies
+10.3847/1538-4357/aa86a9	The Mira-Titan Universe II: Matter Power Spectrum Emulation
+	The Mira-Titan Universe. III. Emulation of the Halo Mass Function

@@ -1,0 +1,15 @@
+10.3390/technologies9020028	Review of Battery Management Systems (BMS) Development and Industrial Standards
+10.1038/s41551-021-00683-3	Wireless and battery-free technologies for neuroengineering
+10.1002/cey2.106	Aqueous lithium‐ion batteries
+10.1039/d0ee03527k	<i>In situ</i> polymerization process: an essential design tool for lithium polymer batteries
+10.1145/3411839	Battery-Free Game Boy
+10.1016/j.apenergy.2017.09.076	Nano-enhanced Phase Change Material for thermal management of BICPV
+10.1149/1945-7111/aba8b9	Review—Meta-Review of Fire Safety of Lithium-Ion Batteries: Industry Challenges and Research Contributions
+10.3390/en16073167	A Review of SOH Prediction of Li-Ion Batteries Based on Data-Driven Algorithms
+10.1109/access.2019.2921522	Wireless Communications and Applications Above 100 GHz: Opportunities and Challenges for 6G and Beyond
+10.1109/access.2019.2917859	A Comprehensive Review on Second-Life Batteries: Current State, Manufacturing Considerations, Applications, Impacts, Barriers &amp; Potential Solutions, Business Strategies, and Policies
+10.1038/s41598-020-58021-7	Internal short circuit detection in Li-ion batteries using supervised machine learning
+10.1109/jproc.2014.2316823	Advanced Lead–Acid Batteries and the Development of Grid-Scale Energy Storage Systems
+10.3390/en15041421	Design and Optimization of a Novel Microchannel Battery Thermal Management System Based on Digital Twin
+10.1007/s40565-018-0428-y	Optimal sizing of PV and battery-based energy storage in an off-grid nanogrid supplying batteries to a battery swapping station
+10.1038/s41524-023-01115-3	A deep learning framework to emulate density functional theory

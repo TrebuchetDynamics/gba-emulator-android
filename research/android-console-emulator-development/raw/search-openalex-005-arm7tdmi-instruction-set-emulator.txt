@@ -1,0 +1,20 @@
+10.1109/sp.2015.44	On Subnormal Floating Point and Abnormal Timing
+10.1109/jiot.2019.2958788	From Pre-Quantum to Post-Quantum IoT Security: A Survey on Quantum-Resistant Cryptosystems for the Internet of Things
+10.3390/s100706662	Wireless Multimedia Sensor Networks: Current Trends and Future Directions
+10.1145/2629335	A Retargetable Static Binary Translator for the ARM Architecture
+10.5772/57201	Power consumption Assessment in Wireless Sensor Networks
+10.1007/978-3-030-60910-8	Embedded System Design
+10.4230/oasics.wcet.2013.1	Evaluation of resource arbitration methods for multi-core real-time systems
+10.1145/309847.310003	ICEBERG
+10.1145/2086696.2086702	Compiler mitigations for time attacks on modern x86 processors
+10.1145/344166.344518	A recursive algorithm for low-power memory partitioning
+10.1007/978-3-662-45611-8_12	Simulatable Leakage: Analysis, Pitfalls, and New Constructions
+10.46610/joits.2021.v07i02.001	Design and Architecture of LPC2148 Microcontroller
+10.26083/tuprints-00004622	Code-Reuse Attacks and Defenses
+10.1504/ijes.2007.016035	Energy-aware compilation and hardware design for VLIW embedded systems
+10.3390/s110302282	Efficient Smart CMOS Camera Based on FPGAs Oriented to Embedded Image Processing
+10.14722/bar.2021.23004	Polypyus – The Firmware Historian
+	SSDExplorer: a Virtual Platform for Fine-Grained Design Space Exploration of Solid State Drives
+	System models in wireless sensor networks
+10.1109/jiot.2022.3224649	<i>HALE-IoT</i>: Hardening Legacy Internet of Things Devices by Retrofitting Defensive Firmware Modifications and Implants
+	Design of programmable matter

@@ -1,0 +1,20 @@
+10.1145/2491411.2491450	Dynodroid: an input generation system for Android apps
+10.1057/s41265-016-0033-3	The Digital Platform: A Research Agenda
+10.1155/2012/103710	A Guideline for Game Development-Based Learning: A Literature Review
+10.3390/network1030015	A Network Analysis on Cloud Gaming: Stadia, GeForce Now and PSNow
+10.1145/1882362.1882443	Software engineering issues for mobile application development
+10.3390/s21041387	Measuring Key Quality Indicators in Cloud Gaming: Framework and Assessment Over Wireless Networks
+10.25300/misq/2015/39.1.10	Distributed Tuning of Boundary Resources: The Case of Apple’s iOS Service System1
+10.1145/2818000.2818036	BareDroid
+10.1007/978-1-4302-6131-5	Android on x86
+10.3390/su12145706	Deep Reinforcement Learning for the Management of Software-Defined Networks and Network Function Virtualization in an Edge-IoT Architecture
+10.1007/978-1-4302-6131-5	Android on x86: An Introduction to Optimizing for Intel Architecture
+	Developing Android Applications with Arctis
+10.3991/ijim.v16i21.36063	Developing an Android-Based Mobile App to Solve Transportation Issues
+10.1109/sp.2013.31	A Scanner Darkly: Protecting User Privacy from Perceptual Applications
+	Security evaluation of Android Keystore
+	AndroSAT: Security Analysis Tool for Android Applications
+10.5121/ijcsit.2020.12103	Study of an Application Development Environment Based on Unity Game Engine
+10.14279/depositonce-6406	Quality-influencing factors in mobile gaming
+	The Design and Implementation of a Mobile Game Engine for the Android Platform
+	{HALucinator}: Firmware Re-hosting Through Abstraction Layer Emulation
