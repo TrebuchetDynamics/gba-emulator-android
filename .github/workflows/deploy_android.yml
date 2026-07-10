@@ -1,30 +1,57 @@
-name: Build Android
-on: [push,pull_request]
+name: Build Android MVP
+
+on:
+  push:
+  pull_request:
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1 
-      - name: Setup Ninja 
-        uses: seanmiddleditch/gha-setup-ninja@master
-      - name: Setup Java
-        uses: actions/setup-java@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2.0.10
-      - name: Build Release apk
+          submodules: recursive
+
+      - name: Set up Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Lint and build debug APK
+        working-directory: tools/android_project
+        run: ./gradlew lintDebug assembleDebug
+
+      - name: Test mGBA core lifecycle on host
         run: |
-          cd tools/android_project/
-          ./gradlew assembleRelease
-          ls app/build/outputs/apk/release/
-      - name: GH Release 🚀
-        # You may pin to the exact commit or the version.
+          cmake -S mgba-android/smoke -B build/mgba-smoke -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build/mgba-smoke
+          ctest --test-dir build/mgba-smoke --output-on-failure
+
+      - name: Build custom mGBA app and core
+        run: tools/android_project/gradlew -p mgba-android lintDebug :app:assembleDebug :core:assembleDebug
+
+      - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-           name: AndroidRelease
-           path: tools/android_project/app/build/outputs/apk/release/com.sky.SkyEmu-*-release.apk
-        
- 
+          name: android-mvp
+          path: tools/android_project/app/build/outputs/apk/debug/*.apk
+
+      - name: Upload custom mGBA APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: mgba-custom-android
+          path: mgba-android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload mGBA core AAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: mgba-android-core
+          path: mgba-android/core/build/outputs/aar/core-debug.aar
