@@ -1,5 +1,7 @@
 package com.trebuchetdynamics.emulator.mgba;
 
+import java.io.File;
+
 /**
  * Product-owned, single-threaded session boundary around an mGBA GBA core.
  *
@@ -12,6 +14,7 @@ public final class MgbaSession implements AutoCloseable {
     public static final int FRAME_PIXELS = VIDEO_WIDTH * VIDEO_HEIGHT;
     public static final int AUDIO_SAMPLE_RATE = 48_000;
     public static final int MIN_AUDIO_BUFFER_SAMPLES = 2_048;
+    private static final long MAX_GBA_ROM_BYTES = 32L * 1024 * 1024;
 
     public static final int KEY_A = 1 << 0;
     public static final int KEY_B = 1 << 1;
@@ -49,6 +52,21 @@ public final class MgbaSession implements AutoCloseable {
         }
         if (!nativeLoadRom(handle, rom)) {
             throw new IllegalArgumentException("mGBA rejected the ROM data");
+        }
+        loaded = true;
+    }
+
+    /** Loads one GBA ROM from a private, seekable file without copying it into the Java heap. */
+    public synchronized void loadRom(File rom) {
+        requireOpen();
+        if (loaded) {
+            throw new IllegalStateException("A ROM is already loaded");
+        }
+        if (rom == null || !rom.isFile() || rom.length() <= 0 || rom.length() > MAX_GBA_ROM_BYTES) {
+            throw new IllegalArgumentException("ROM file is missing, empty, or too large");
+        }
+        if (!nativeLoadRomFile(handle, rom.getAbsolutePath())) {
+            throw new IllegalArgumentException("mGBA rejected the ROM file");
         }
         loaded = true;
     }
@@ -131,6 +149,7 @@ public final class MgbaSession implements AutoCloseable {
 
     private static native long nativeCreate();
     private static native boolean nativeLoadRom(long handle, byte[] rom);
+    private static native boolean nativeLoadRomFile(long handle, String path);
     private static native int nativeRunFrame(long handle, int keys, int[] pixels, short[] audio);
     private static native long nativeFrameCounter(long handle);
     private static native byte[] nativeSaveState(long handle);

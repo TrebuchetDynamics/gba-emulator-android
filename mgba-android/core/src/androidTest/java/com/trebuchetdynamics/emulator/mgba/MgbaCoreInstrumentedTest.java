@@ -15,6 +15,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -58,6 +60,21 @@ public class MgbaCoreInstrumentedTest {
             session.loadState(state);
             assertEquals(savedFrame, session.frameCounter());
             assertNotNull(session.copySavedata());
+        }
+    }
+
+    @Test
+    public void sessionRunsMitLicensedRomFromPrivateFile() throws Exception {
+        File rom = copyAssetToCache("hello.gba");
+        int[] pixels = new int[MgbaSession.FRAME_PIXELS];
+        short[] audio = new short[MgbaSession.MIN_AUDIO_BUFFER_SAMPLES];
+
+        try (MgbaSession session = new MgbaSession()) {
+            session.loadRom(rom);
+            session.runFrame(0, pixels, audio);
+            assertEquals(1, session.frameCounter());
+        } finally {
+            assertTrue(rom.delete() || !rom.exists());
         }
     }
 
@@ -107,5 +124,19 @@ public class MgbaCoreInstrumentedTest {
             }
             return output.toByteArray();
         }
+    }
+
+    private static File copyAssetToCache(String name) throws IOException {
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        File destination = new File(context.getCacheDir(), "mgba-path-" + name);
+        try (InputStream input = context.getAssets().open(name);
+             FileOutputStream output = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[4096];
+            int count;
+            while ((count = input.read(buffer)) != -1) {
+                output.write(buffer, 0, count);
+            }
+        }
+        return destination;
     }
 }

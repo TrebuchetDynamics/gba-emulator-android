@@ -1,5 +1,6 @@
 /* MIT-licensed product adapter. mGBA remains licensed under MPL-2.0. */
 #include <jni.h>
+#include <fcntl.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -136,6 +137,65 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeLoadRom(
     }
     if (!session->core->loadROM(session->core, romFile)) {
         romFile->close(romFile);
+        free(romData);
+        return JNI_FALSE;
+    }
+
+    session->romData = romData;
+    session->romSize = (size_t) romSize;
+    session->loaded = true;
+    session->core->reset(session->core);
+    return JNI_TRUE;
+}
+
+JNIEXPORT jboolean JNICALL
+Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeLoadRomFile(
+        JNIEnv* env, jclass clazz, jlong handle, jstring path) {
+    (void) clazz;
+    struct MgbaSession* session = sessionFromHandle(handle);
+    if (!session || !session->core || session->loaded || !path) {
+        return JNI_FALSE;
+    }
+
+    const char* filePath = (*env)->GetStringUTFChars(env, path, NULL);
+    if (!filePath) {
+        return JNI_FALSE;
+    }
+    struct VFile* romFile = VFileOpen(filePath, O_RDONLY);
+    (*env)->ReleaseStringUTFChars(env, path, filePath);
+    if (!romFile) {
+        return JNI_FALSE;
+    }
+
+    off_t romSize = romFile->size(romFile);
+    if (romSize <= 0 || romSize > MAX_GBA_ROM_SIZE) {
+        romFile->close(romFile);
+        return JNI_FALSE;
+    }
+
+    void* romData = malloc((size_t) romSize);
+    if (!romData) {
+        romFile->close(romFile);
+        return JNI_FALSE;
+    }
+    size_t offset = 0;
+    while (offset < (size_t) romSize) {
+        ssize_t count = romFile->read(romFile, (uint8_t*) romData + offset,
+                                      (size_t) romSize - offset);
+        if (count <= 0) {
+            romFile->close(romFile);
+            free(romData);
+            return JNI_FALSE;
+        }
+        offset += (size_t) count;
+    }
+    romFile->close(romFile);
+
+    struct VFile* memoryFile = VFileFromMemory(romData, (size_t) romSize);
+    if (!memoryFile || !session->core->loadROM(session->core, memoryFile)) {
+        if (memoryFile) {
+            memoryFile->close(memoryFile);
+        }
         free(romData);
         return JNI_FALSE;
     }
