@@ -47,16 +47,26 @@ screen (screenshot not committed — it contains copyrighted game art).
 First `MgbaPerf` windows on the instrumented benchmark build:
 
 ```
-frames=599 avg_us=3407 max_us=56964 late=2 underruns=0
-frames=598 avg_us=2879 max_us=13915 late=0 underruns=0
+frames=599 avg_us=3670 max_us=18306 late=1 underruns=8
+frames=598 avg_us=3199 max_us=10865 late=0 underruns=0
+frames=598 avg_us=3086 max_us=9977  late=0 underruns=0
+frames=598 avg_us=3018 max_us=10513 late=0 underruns=0
 ```
 
-Frame *work* time averages 2.9–3.4 ms against the 16.743 ms budget
-(~5× headroom); windows hold ~598 frames, i.e. full 59.7 fps speed; zero
-`AudioTrack` underruns. The 56.9 ms max in the first window is the
-startup transient (ROM load + first frame), not steady state — the second
-window's max is 13.9 ms, still inside budget. This is a strong preliminary
-signal but does NOT satisfy the sustained-session gate below.
+Frame *work* time settles at 3.0–3.2 ms against the 16.743 ms budget
+(~5× headroom); windows hold ~598 frames, i.e. full 59.7 fps speed. The
+first window carries the startup transient (ROM load and AudioTrack
+warm-up): one late frame, an 18.3 ms max, and 8 audio underruns. Steady
+state that follows is clean — no late frames, no underruns, maxima around
+10 ms, comfortably inside budget.
+
+Those underruns are the first real exercise of the per-window underrun
+delta fixed in `a57dc16b`; the earlier cumulative reading would have
+reported `underruns=8` in every subsequent window and falsely implied
+continuous audio glitching.
+
+This is a strong preliminary signal but does NOT satisfy the
+sustained-session gate below.
 
 ## Defects found during smoke testing
 
