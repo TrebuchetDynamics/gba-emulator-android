@@ -19,6 +19,8 @@ final class EmulatorView extends View {
     private final RectF gameRect = new RectF();
     private final Runnable requestRom;
 
+    private ControlLayout layout = ControlLayout.of(1, 1);
+
     private volatile int touchKeys;
     private volatile int hardwareKeys;
     private volatile boolean hasFrame;
@@ -68,20 +70,16 @@ final class EmulatorView extends View {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        layout = ControlLayout.of(w, h);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float width = getWidth();
-        float height = getHeight();
-        float margin = width * 0.025f;
-        float gameWidth = width - margin * 2;
-        float gameHeight = gameWidth * MgbaSession.VIDEO_HEIGHT / MgbaSession.VIDEO_WIDTH;
-        if (gameHeight > height * 0.5f) {
-            gameHeight = height * 0.5f;
-            gameWidth = gameHeight * MgbaSession.VIDEO_WIDTH / MgbaSession.VIDEO_HEIGHT;
-        }
-        float gameLeft = (width - gameWidth) / 2;
-        float gameTop = margin;
-        gameRect.set(gameLeft, gameTop, gameLeft + gameWidth, gameTop + gameHeight);
+        layout = ControlLayout.of(getWidth(), getHeight());
+        gameRect.set(layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom);
 
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);
@@ -93,42 +91,34 @@ final class EmulatorView extends View {
         } else {
             paint.setColor(Color.WHITE);
             paint.setTextAlign(Paint.Align.CENTER);
-            paint.setTextSize(Math.max(32, width * 0.045f));
-            canvas.drawText(status, width / 2, gameRect.centerY(), paint);
+            paint.setTextSize(Math.max(32, getWidth() * 0.045f));
+            canvas.drawText(status, gameRect.centerX(), gameRect.centerY(), paint);
         }
+
         paint.setColor(0xCC262A31);
-        float loadWidth = width * 0.18f;
-        float loadHeight = Math.max(54, width * 0.075f);
-        canvas.drawRoundRect(gameRect.right - loadWidth - 12, gameRect.top + 12,
-                gameRect.right - 12, gameRect.top + 12 + loadHeight, 12, 12, paint);
+        canvas.drawRoundRect(layout.loadLeft, layout.loadTop, layout.loadRight, layout.loadBottom,
+                12, 12, paint);
         paint.setColor(Color.WHITE);
         paint.setTextAlign(Paint.Align.CENTER);
+        float loadHeight = layout.loadBottom - layout.loadTop;
         paint.setTextSize(loadHeight * 0.42f);
-        canvas.drawText("LOAD", gameRect.right - loadWidth / 2 - 12,
-                gameRect.top + 12 + loadHeight * 0.66f, paint);
+        canvas.drawText("LOAD", (layout.loadLeft + layout.loadRight) / 2,
+                layout.loadTop + loadHeight * 0.66f, paint);
 
-        float controlsTop = gameRect.bottom + margin;
-        float controlsHeight = height - controlsTop;
-        float shoulderY = controlsTop + controlsHeight * 0.10f;
-        drawPill(canvas, width * 0.16f, shoulderY, width * 0.22f, "L", MgbaSession.KEY_L);
-        drawPill(canvas, width * 0.84f, shoulderY, width * 0.22f, "R", MgbaSession.KEY_R);
-        float dpadX = width * 0.24f;
-        float dpadY = controlsTop + controlsHeight * 0.42f;
-        float dpadRadius = Math.min(width, controlsHeight) * 0.17f;
-        drawDpad(canvas, dpadX, dpadY, dpadRadius);
-
-        float buttonRadius = Math.min(width, controlsHeight) * 0.09f;
-        float buttonY = controlsTop + controlsHeight * 0.39f;
-        drawButton(canvas, width * 0.80f, buttonY - buttonRadius * 0.45f,
-                buttonRadius, "A", MgbaSession.KEY_A);
-        drawButton(canvas, width * 0.65f, buttonY + buttonRadius * 0.45f,
-                buttonRadius, "B", MgbaSession.KEY_B);
-
-        float smallY = controlsTop + controlsHeight * 0.78f;
-        drawPill(canvas, width * 0.39f, smallY, width * 0.15f, "SELECT",
-                MgbaSession.KEY_SELECT);
-        drawPill(canvas, width * 0.61f, smallY, width * 0.15f, "START",
-                MgbaSession.KEY_START);
+        for (ControlLayout.Control control : layout.controls) {
+            switch (control.shape) {
+                case DPAD:
+                    drawDpad(canvas, control.cx, control.cy, control.halfWidth);
+                    break;
+                case CIRCLE:
+                    drawButton(canvas, control.cx, control.cy, control.halfWidth,
+                            control.label, control.key);
+                    break;
+                case PILL:
+                    drawPill(canvas, control);
+                    break;
+            }
+        }
     }
 
     private void drawDpad(Canvas canvas, float cx, float cy, float radius) {
@@ -156,21 +146,23 @@ final class EmulatorView extends View {
         canvas.drawText(label, cx, cy + radius * 0.25f, paint);
     }
 
-    private void drawPill(Canvas canvas, float cx, float cy, float width, String label, int key) {
-        float pillHeight = width * 0.34f;
-        paint.setColor((keys() & key) != 0 ? Color.rgb(113, 153, 222) : Color.rgb(62, 66, 74));
-        canvas.drawRoundRect(cx - width / 2, cy - pillHeight / 2,
-                cx + width / 2, cy + pillHeight / 2, pillHeight / 2, pillHeight / 2, paint);
+    private void drawPill(Canvas canvas, ControlLayout.Control control) {
+        float left = control.cx - control.halfWidth;
+        float right = control.cx + control.halfWidth;
+        float top = control.cy - control.halfHeight;
+        float bottom = control.cy + control.halfHeight;
+        paint.setColor((keys() & control.key) != 0 ? Color.rgb(113, 153, 222) : Color.rgb(62, 66, 74));
+        canvas.drawRoundRect(left, top, right, bottom, control.halfHeight, control.halfHeight, paint);
         paint.setColor(Color.WHITE);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(pillHeight * 0.45f);
-        canvas.drawText(label, cx, cy + pillHeight * 0.16f, paint);
+        paint.setTextSize(control.halfHeight * 0.9f);
+        canvas.drawText(control.label, control.cx, control.cy + control.halfHeight * 0.32f, paint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getActionMasked() == MotionEvent.ACTION_UP
-                && (!hasFrame || isLoadHit(event.getX(), event.getY()))) {
+                && (!hasFrame || layout.isLoadHit(event.getX(), event.getY()))) {
             touchKeys = 0;
             performClick();
             return true;
@@ -180,7 +172,7 @@ final class EmulatorView extends View {
         if (event.getActionMasked() != MotionEvent.ACTION_UP
                 && event.getActionMasked() != MotionEvent.ACTION_CANCEL) {
             for (int i = 0; i < event.getPointerCount(); ++i) {
-                keys |= keysAt(event.getX(i), event.getY(i));
+                keys |= layout.keysAt(event.getX(i), event.getY(i));
             }
         }
         touchKeys = keys;
@@ -193,61 +185,5 @@ final class EmulatorView extends View {
         super.performClick();
         requestRom.run();
         return true;
-    }
-
-    private boolean isLoadHit(float x, float y) {
-        float loadWidth = getWidth() * 0.18f;
-        float loadHeight = Math.max(54, getWidth() * 0.075f);
-        return x >= gameRect.right - loadWidth - 24 && x <= gameRect.right
-                && y >= gameRect.top && y <= gameRect.top + loadHeight + 24;
-    }
-
-    private int keysAt(float x, float y) {
-        float width = getWidth();
-        float controlsTop = gameRect.bottom + width * 0.025f;
-        float controlsHeight = getHeight() - controlsTop;
-        float shoulderY = controlsTop + controlsHeight * 0.10f;
-        int keys = 0;
-        if (Math.abs(y - shoulderY) < width * 0.07f) {
-            if (Math.abs(x - width * 0.16f) < width * 0.13f) keys |= MgbaSession.KEY_L;
-            if (Math.abs(x - width * 0.84f) < width * 0.13f) keys |= MgbaSession.KEY_R;
-        }
-
-        float dpadX = width * 0.24f;
-        float dpadY = controlsTop + controlsHeight * 0.42f;
-        float dpadRadius = Math.min(width, controlsHeight) * 0.19f;
-        float dx = x - dpadX;
-        float dy = y - dpadY;
-        if (Math.abs(dx) <= dpadRadius && Math.abs(dy) <= dpadRadius) {
-            float dead = dpadRadius * 0.18f;
-            if (dx < -dead) keys |= MgbaSession.KEY_LEFT;
-            if (dx > dead) keys |= MgbaSession.KEY_RIGHT;
-            if (dy < -dead) keys |= MgbaSession.KEY_UP;
-            if (dy > dead) keys |= MgbaSession.KEY_DOWN;
-        }
-
-        float buttonRadius = Math.min(width, controlsHeight) * 0.12f;
-        float buttonY = controlsTop + controlsHeight * 0.39f;
-        if (distanceSquared(x, y, width * 0.80f, buttonY - buttonRadius * 0.34f)
-                < buttonRadius * buttonRadius) {
-            keys |= MgbaSession.KEY_A;
-        }
-        if (distanceSquared(x, y, width * 0.65f, buttonY + buttonRadius * 0.34f)
-                < buttonRadius * buttonRadius) {
-            keys |= MgbaSession.KEY_B;
-        }
-
-        float smallY = controlsTop + controlsHeight * 0.78f;
-        if (Math.abs(y - smallY) < width * 0.06f) {
-            if (Math.abs(x - width * 0.39f) < width * 0.10f) keys |= MgbaSession.KEY_SELECT;
-            if (Math.abs(x - width * 0.61f) < width * 0.10f) keys |= MgbaSession.KEY_START;
-        }
-        return keys;
-    }
-
-    private static float distanceSquared(float x1, float y1, float x2, float y2) {
-        float dx = x1 - x2;
-        float dy = y1 - y2;
-        return dx * dx + dy * dy;
     }
 }
