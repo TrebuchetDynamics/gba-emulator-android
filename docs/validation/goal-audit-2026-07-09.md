@@ -17,13 +17,13 @@
 | SkyEmu runtime MVP | API 34 x86_64 AVD; Android DocumentsUI; MIT `gba-tests/ppu/hello.gba`; logcat; screenshot | Installs, stays alive, imports to private storage, and renders “Hello world!” with touch controls | Covered |
 | Use canonical mGBA | `.gitmodules`; `vendor/mgba`; submodule status | mGBA `0.10.5` pinned at `26b7884bc25a5933960f3cdcd98bac1ae14d42e2` | Covered |
 | MPL-2.0 compliance boundary | mGBA remains unmodified submodule; `META-INF/LICENSE-mGBA`; APK/AAR archive inspection | MPL license is packaged in reusable AAR and final custom APK | Covered |
-| Product-owned mGBA core API | `MgbaCore.java`, `MgbaSession.java`, `mgba_android.c` | Owns ROM loading, frame/audio output, all GBA keys, frame counter, save states, cartridge savedata, and lifecycle | Covered |
-| Custom Android product | `mgba-android/app`; package `com.trebuchetdynamics.mgba`; 4.3 MB APK | Own UI and host use mGBA only; SAF import, Canvas rendering, 48 kHz `AudioTrack`, touch/gamepad controls, lifecycle restart, atomic private saves | Covered |
+| Product-owned mGBA core API | `MgbaCore.java`, `MgbaSession.java`, `mgba_android.c` | Owns memory/private-file ROM loading, frame/audio output, all GBA keys, frame counter, save states, cartridge savedata, and lifecycle | Covered |
+| Custom Android product | `mgba-android/app`; package `com.trebuchetdynamics.mgba`; optimized benchmark APK | Own UI and host use mGBA only; atomic SAF-to-private-file import without a retained Java ROM copy, Canvas rendering, 48 kHz `AudioTrack`, touch/gamepad controls, lifecycle restart, atomic private saves | Covered |
 | No bundled proprietary content | App APK inspection; test-asset notice | Runtime app bundles no ROM/BIOS; only androidTest APK uses two MIT test ROMs with source commit and hashes | Covered |
 | Core host test | `mgba-android/smoke`; CTest output | Create/init/destroy and 240×160 dimensions pass without ROM content | Covered |
-| Android core regression suite | Instrumentation XML and source | 4 tests, 0 failures/errors/skips: lifecycle/version, ROM/frame/audio/input/state, SRAM savedata round trip, closed session | Covered |
+| Android core regression suite | Instrumentation XML and source | 5 tests, 0 failures/errors/skips: lifecycle/version, memory/file ROM execution, frame/audio/input/state, SRAM savedata round trip, closed session | Covered |
 | Custom app runtime | API 34 x86_64 AVD; DocumentsUI; MIT hello ROM; background/hot-resume; screenshot/logcat | App loads and renders with owned touch UI, remains alive, and resumes without fatal Java/native logs | Covered |
-| Reproducible automation | `.github/workflows/deploy_android.yml`; YAML parse; local mirror commands | CI defines SkyEmu APK, mGBA host test, custom APK, core AAR, lint, and artifact upload; remote CI has not yet run | Covered locally; remote run pending delivery |
+| Reproducible automation | `.github/workflows/deploy_android.yml`; YAML parse; local mirror commands; GitHub Actions run `29068441658` | CI defines SkyEmu APK, mGBA host test, optimized custom APK/core AAR, lint, and artifact upload; the benchmark baseline completed remotely | Covered |
 | Documentation | `MVP.md`, `mgba-android/README.md`, ADR 0001, validation receipts | Build commands, pins, licenses, architecture isolation, outputs, evidence, and remaining release gates documented | Covered |
 
 ## Scope distinction

@@ -4,6 +4,11 @@ This repository contains a local SkyEmu fork and an isolated custom Android prod
 
 ## Build the installable SkyEmu MVP
 
+The SkyEmu fork is feature-frozen: it is kept buildable exactly as documented
+below and receives no further product work. All product development continues
+in the custom mGBA app (see
+`docs/superpowers/specs/2026-07-13-mgba-product-roadmap-design.md`).
+
 Requirements: JDK 17, Android SDK 35, NDK `22.1.7171670`, and CMake `3.18.1`.
 
 ```sh
@@ -39,7 +44,7 @@ Outputs:
 
 The installable benchmark APK uses `-O2` native code and an Android debug key; it is for performance testing, not production distribution.
 
-The custom app loads user-selected GBA ROMs, renders mGBA frames, streams audio, maps touch/gamepad input, and persists cartridge saves. See `mgba-android/README.md` and `docs/adr/0001-dual-core-strategy.md`.
+The custom app atomically imports user-selected GBA ROMs to private files without retaining a Java ROM copy, renders mGBA frames, streams audio, maps touch/gamepad input, and persists cartridge saves. See `mgba-android/README.md` and `docs/adr/0001-dual-core-strategy.md`.
 
 ## Upstreams and licenses
 

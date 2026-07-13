@@ -24,10 +24,10 @@ Observed clean-build artifact sizes:
 
 | Variant | Native optimization | APK size |
 |---|---:|---:|
-| `debug` | `-O0` | 2,884,656 bytes |
-| `benchmark` | `-O2` | 2,301,100 bytes |
+| `debug` | `-O0` | 2,901,824 bytes |
+| `benchmark` | `-O2` | 2,301,660 bytes |
 
-The optimized APK is 583,556 bytes (20.2%) smaller.
+The optimized APK is 600,164 bytes (20.7%) smaller.
 
 ## Reproducible core measurement
 
@@ -56,15 +56,27 @@ Two alternating host samples produced:
 
 Host load caused substantial absolute variance, but the optimized core was 2.7–3.1× faster in paired runs. An API 34 x86_64 AVD process-CPU sample also moved in the expected direction, but repeat variance was too high to claim a reliable Android percentage. Emulator graphics frame statistics were unstable and are intentionally not used as proof of smoother presentation.
 
+## Follow-up implemented: remove duplicate Java ROM residency
+
+The original host retained each ROM twice during gameplay: up to 32 MiB in `MainActivity.romData`, then another native allocation made by `nativeLoadRom`. It also re-hashed the entire Java array whenever an emulation session restarted.
+
+The app now streams the selected document through a 64 KiB buffer into an atomic, SHA-256-named private file. `MgbaSession.loadRom(File)` reads that file directly into the one native allocation owned by the session. The Java layer retains only `File` and hash objects, removing up to one full ROM size (32 MiB) from the live Java heap and eliminating JNI array import plus repeated resume-time hashing.
+
+Evidence:
+
+- the new public file-loading test runs the MIT ROM through mGBA on Android;
+- instrumentation now reports 5 tests with 0 failures/errors/skips;
+- manual API 34 validation created one exact 1,300-byte hash-named private file and rendered the ROM;
+- three background/resume cycles kept one private file, resumed rendering, and left no stale file mappings or fatal/ANR logs.
+
 ## Next measured candidates
 
 Ranked by likely leverage, not yet implemented:
 
 1. **Profile on physical arm64 hardware.** Capture Perfetto/simpleperf CPU samples, frame-time distribution, audio underruns, memory, battery, and thermal throttling over sustained gameplay. The AVD cannot verify these release properties.
 2. **Remove the frame-copy pipeline.** `nativeRunFrame` converts 38,400 pixels into a Java `int[]`; `EmulatorView.publishFrame` then copies that array into a `Bitmap`. Two 153,600-byte transfers at 59.737 Hz are at least 18.3 MB/s before any JNI pin/copy overhead. Measure a direct buffer plus `SurfaceView`/texture path before replacing the simple Canvas host.
-3. **Remove duplicate ROM residency.** `MainActivity` retains up to 32 MiB in `romData`, while `nativeLoadRom` allocates and copies the same ROM. A private file descriptor or mmap-backed VFile could reduce peak memory by roughly one ROM size and avoid the JNI import copy.
-4. **Use audio as the pacing clock.** The current loop performs blocking `AudioTrack.write` and then separately sleeps against a fixed frame deadline. Instrument underruns and drift before moving to a low-latency callback/ring-buffer design.
-5. **Measure bitmap lock contention.** The emulation and UI threads serialize around `Bitmap.setPixels`/`drawBitmap`. Confirm contention with Perfetto before adding double/triple buffering.
+3. **Use audio as the pacing clock.** The current loop performs blocking `AudioTrack.write` and then separately sleeps against a fixed frame deadline. Instrument underruns and drift before moving to a low-latency callback/ring-buffer design.
+4. **Measure bitmap lock contention.** The emulation and UI threads serialize around `Bitmap.setPixels`/`drawBitmap`. Confirm contention with Perfetto before adding double/triple buffering.
 
 ## Prompt-to-artifact audit
 
@@ -72,7 +84,8 @@ Ranked by likely leverage, not yet implemented:
 |---|---|---|
 | Find performance improvements from current code | Build flags, JNI frame path, ROM import path, audio/frame loop, and Canvas lock inspected | Covered |
 | Make one concrete improvement | Installable `benchmark` app/core variants use `RelWithDebInfo`/`-O2` | Covered |
+| Continue with the next evidenced bottleneck | Private-file import and `loadRom(File)` remove the retained Java ROM copy and repeated hashing; RED compile failure then 5-test GREEN instrumentation receipt | Covered |
 | Provide reproducible evidence | Host benchmark source, commands, paired output, compile commands, APK sizes | Covered |
 | Avoid proxy-only completion | Actual MIT ROM execution measured; noisy AVD graphics results rejected rather than treated as proof | Covered |
-| Preserve correctness | Debug and RelWithDebInfo host CTest pass 1/1; Android instrumentation reports 4 tests with 0 failures/errors/skips; final benchmark APK loaded and rendered MIT `hello.gba` without fatal/ANR logs | Covered |
+| Preserve correctness | Debug and RelWithDebInfo host CTest pass 1/1; Android instrumentation reports 5 tests with 0 failures/errors/skips; final app loaded and resumed MIT `hello.gba` without fatal/ANR logs | Covered |
 | Identify uncertainty | Physical arm64 performance/audio/frame pacing/thermal behavior explicitly remains unverified | Covered |
