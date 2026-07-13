@@ -6,6 +6,7 @@ import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.SystemClock;
+import android.util.Log;
 
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 
@@ -21,6 +22,8 @@ final class EmulationRunner implements Runnable {
     }
 
     private static final long FRAME_NANOS = 16_743_000L;
+    private static final String PERF_TAG = "MgbaPerf";
+    private static final long PERF_LOG_INTERVAL_NANOS = 10_000_000_000L;
 
     private final Context context;
     private final EmulatorView view;
@@ -69,8 +72,12 @@ final class EmulationRunner implements Runnable {
 
             int[] pixels = new int[MgbaSession.FRAME_PIXELS];
             short[] audio = new short[MgbaSession.MIN_AUDIO_BUFFER_SAMPLES];
+            FrameStats stats = new FrameStats(FRAME_NANOS);
+            long nextPerfLog = SystemClock.elapsedRealtimeNanos()
+                    + PERF_LOG_INTERVAL_NANOS;
             long nextFrame = SystemClock.elapsedRealtimeNanos();
             while (running) {
+                long frameStart = SystemClock.elapsedRealtimeNanos();
                 int audioFrames = session.runFrame(view.keys(), pixels, audio);
                 if (audioFrames < 0) {
                     throw new IllegalStateException("mGBA failed to run a frame");
@@ -79,6 +86,14 @@ final class EmulationRunner implements Runnable {
                     audioTrack.write(audio, 0, audioFrames * 2, AudioTrack.WRITE_BLOCKING);
                 }
                 view.publishFrame(pixels);
+                long now = SystemClock.elapsedRealtimeNanos();
+                stats.record(now - frameStart);
+                if (now >= nextPerfLog && stats.hasFrames()) {
+                    int underruns = audioTrack == null
+                            ? 0 : audioTrack.getUnderrunCount();
+                    Log.i(PERF_TAG, stats.summarizeAndReset(underruns));
+                    nextPerfLog = now + PERF_LOG_INTERVAL_NANOS;
+                }
 
                 nextFrame += FRAME_NANOS;
                 long wait = nextFrame - SystemClock.elapsedRealtimeNanos();
