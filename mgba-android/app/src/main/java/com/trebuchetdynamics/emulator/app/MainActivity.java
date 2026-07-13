@@ -140,7 +140,7 @@ public final class MainActivity extends Activity {
                         startRunner();
                     }
                 });
-            } catch (IOException | SecurityException e) {
+            } catch (IOException | RuntimeException e) {
                 runOnUiThread(() -> {
                     if (generation == loadGeneration) {
                         importing = false;
