@@ -70,13 +70,19 @@ sustained-session gate below.
 
 ## Defects found during smoke testing
 
-1. **Landscape touch layout is broken** (severity: blocks a good 1.0).
-   In landscape the L and R shoulder buttons render as oversized pills
-   dominating both sides, A and B are tiny circles placed near the middle,
-   and the D-pad is small and tucked under the L button. The emulated
-   screen stays small and centered. The layout is unusable for real play.
-   Owner: M5 (settings and input) at the latest; the layout work may be
-   worth pulling earlier since it affects every play session.
+1. **Landscape touch layout is broken** — FIXED (`9ce30ab0`), pulled
+   forward from M5 at the tester's request. Three real causes, all fixed:
+   control sizes derived from `width` (the long edge in landscape, so
+   shoulders ballooned while face buttons shrank); a portrait-only
+   arrangement; and geometry duplicated between `onDraw` and `keysAt` with
+   *different* constants, so touch targets never matched the drawn buttons.
+   `ControlLayout` now computes both arrangements once as pure,
+   android-free, unit-tested geometry that drawing and hit-testing share.
+   Verified on device: the landscape layout renders correctly (game centred,
+   D-pad left, A/B diagonal right, shoulders in the corners, SELECT/START
+   bottom-centre), and holding the drawn START button both highlights it and
+   advances the game — hit-testing and rendering now agree. Emulation
+   performance is unaffected (`avg_us` 2576/2903, 0 late, 0 underruns).
 2. **Zip-packaged ROMs are not supported.** The picker's `*/*` filter lets
    the user select a `.zip`, which the core then rejects (it loads raw
    `.gba` bytes only). The user must extract manually first. Owner: M4
