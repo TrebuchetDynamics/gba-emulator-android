@@ -11,9 +11,12 @@ import android.widget.Toast;
 
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public final class MainActivity extends Activity {
     private static final int OPEN_ROM = 100;
@@ -23,8 +26,10 @@ public final class MainActivity extends Activity {
     private EmulatorView emulatorView;
     private EmulationRunner runner;
     private Uri romUri;
-    private byte[] romData;
+    private File romFile;
+    private String romId;
     private boolean resumed;
+    private boolean importing;
     private int loadGeneration;
 
     @Override
@@ -57,10 +62,10 @@ public final class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         resumed = true;
-        if (romData != null) {
+        if (romFile != null && romFile.isFile()) {
             startRunner();
-        } else if (romUri != null) {
-            readRom(romUri);
+        } else if (romUri != null && !importing) {
+            importRomAsync(romUri);
         }
     }
 
@@ -109,24 +114,28 @@ public final class MainActivity extends Activity {
             getContentResolver().takePersistableUriPermission(
                     selected, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } catch (SecurityException ignored) {
-            // The temporary grant is sufficient for the immediate private-memory import.
+            // The temporary grant is sufficient for the immediate private-file import.
         }
         romUri = selected;
-        romData = null;
-        readRom(selected);
+        romFile = null;
+        romId = null;
+        importRomAsync(selected);
     }
 
-    private void readRom(Uri uri) {
+    private void importRomAsync(Uri uri) {
         final int generation = ++loadGeneration;
-        emulatorView.setStatus("Reading ROM…");
+        importing = true;
+        emulatorView.setStatus("Importing ROM…");
         new Thread(() -> {
             try {
-                byte[] bytes = readBytes(uri);
+                ImportedRom imported = importRom(uri);
                 runOnUiThread(() -> {
                     if (generation != loadGeneration || isFinishing()) {
                         return;
                     }
-                    romData = bytes;
+                    importing = false;
+                    romFile = imported.file;
+                    romId = imported.id;
                     if (resumed) {
                         startRunner();
                     }
@@ -134,46 +143,71 @@ public final class MainActivity extends Activity {
             } catch (IOException | SecurityException e) {
                 runOnUiThread(() -> {
                     if (generation == loadGeneration) {
+                        importing = false;
                         romUri = null;
-                        emulatorView.setStatus("Could not read ROM — tap to retry");
-                        Toast.makeText(this, "Could not read the selected ROM", Toast.LENGTH_LONG).show();
+                        romFile = null;
+                        romId = null;
+                        emulatorView.setStatus("Could not import ROM — tap to retry");
+                        Toast.makeText(this, "Could not import the selected ROM", Toast.LENGTH_LONG).show();
                     }
                 });
             }
         }, "rom-import").start();
     }
 
-    private byte[] readBytes(Uri uri) throws IOException {
+    private ImportedRom importRom(Uri uri) throws IOException {
+        File directory = new File(getFilesDir(), "roms");
+        if (!directory.isDirectory() && !directory.mkdirs()) {
+            throw new IOException("Could not create private ROM directory");
+        }
+        File temporary = File.createTempFile("import-", ".tmp", directory);
+        MessageDigest digest = sha256();
+        int total = 0;
         try (InputStream input = getContentResolver().openInputStream(uri);
-             ByteArrayOutputStream output = new ByteArrayOutputStream()) {
+             FileOutputStream output = new FileOutputStream(temporary)) {
             if (input == null) {
                 throw new IOException("Content provider returned no data");
             }
             byte[] buffer = new byte[64 * 1024];
             int count;
-            int total = 0;
             while ((count = input.read(buffer)) != -1) {
                 total += count;
                 if (total > MAX_ROM_BYTES) {
                     throw new IOException("ROM exceeds the GBA cartridge limit");
                 }
+                digest.update(buffer, 0, count);
                 output.write(buffer, 0, count);
             }
-            if (total == 0) {
-                throw new IOException("ROM is empty");
-            }
-            return output.toByteArray();
+            output.getFD().sync();
+        } catch (IOException | RuntimeException e) {
+            temporary.delete();
+            throw e;
         }
+        if (total == 0) {
+            temporary.delete();
+            throw new IOException("ROM is empty");
+        }
+
+        String id = hex(digest.digest());
+        File destination = new File(directory, id + ".gba");
+        if (destination.isFile()) {
+            temporary.delete();
+        } else if (!temporary.renameTo(destination)) {
+            temporary.delete();
+            throw new IOException("Could not finish private ROM import");
+        }
+        return new ImportedRom(destination, id);
     }
 
     private void startRunner() {
-        if (!resumed || romData == null || runner != null) {
+        if (!resumed || romFile == null || romId == null || runner != null) {
             return;
         }
-        runner = new EmulationRunner(this, emulatorView, romData, message ->
+        runner = new EmulationRunner(this, emulatorView, romFile, romId, message ->
                 runOnUiThread(() -> {
                     runner = null;
-                    romData = null;
+                    romFile = null;
+                    romId = null;
                     romUri = null;
                     emulatorView.setStatus(message + " — tap to choose another ROM");
                     Toast.makeText(this, message, Toast.LENGTH_LONG).show();
@@ -197,6 +231,34 @@ public final class MainActivity extends Activity {
             return true;
         }
         return super.dispatchKeyEvent(event);
+    }
+
+    private static MessageDigest sha256() {
+        try {
+            return MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException impossible) {
+            throw new AssertionError(impossible);
+        }
+    }
+
+    private static String hex(byte[] bytes) {
+        char[] digits = "0123456789abcdef".toCharArray();
+        char[] result = new char[bytes.length * 2];
+        for (int i = 0; i < bytes.length; ++i) {
+            result[i * 2] = digits[(bytes[i] >>> 4) & 0xF];
+            result[i * 2 + 1] = digits[bytes[i] & 0xF];
+        }
+        return new String(result);
+    }
+
+    private static final class ImportedRom {
+        final File file;
+        final String id;
+
+        ImportedRom(File file, String id) {
+            this.file = file;
+            this.id = id;
+        }
     }
 
     private static int mapKey(int keyCode) {

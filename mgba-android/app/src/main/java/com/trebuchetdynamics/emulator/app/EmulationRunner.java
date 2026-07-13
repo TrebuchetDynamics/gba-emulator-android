@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.locks.LockSupport;
 
 final class EmulationRunner implements Runnable {
@@ -26,15 +24,18 @@ final class EmulationRunner implements Runnable {
 
     private final Context context;
     private final EmulatorView view;
-    private final byte[] rom;
+    private final File rom;
+    private final String romId;
     private final ErrorListener errors;
     private final Thread thread;
     private volatile boolean running = true;
 
-    EmulationRunner(Context context, EmulatorView view, byte[] rom, ErrorListener errors) {
+    EmulationRunner(Context context, EmulatorView view, File rom, String romId,
+                    ErrorListener errors) {
         this.context = context.getApplicationContext();
         this.view = view;
         this.rom = rom;
+        this.romId = romId;
         this.errors = errors;
         thread = new Thread(this, "mgba-emulation");
     }
@@ -131,7 +132,7 @@ final class EmulationRunner implements Runnable {
         if (!directory.exists()) {
             directory.mkdirs();
         }
-        return new File(directory, sha256(rom) + ".sav");
+        return new File(directory, romId + ".sav");
     }
 
     private static void restoreSavedata(MgbaSession session, File file) {
@@ -171,16 +172,4 @@ final class EmulationRunner implements Runnable {
         }
     }
 
-    private static String sha256(byte[] value) {
-        try {
-            byte[] digest = MessageDigest.getInstance("SHA-256").digest(value);
-            StringBuilder result = new StringBuilder(digest.length * 2);
-            for (byte b : digest) {
-                result.append(String.format("%02x", b & 0xFF));
-            }
-            return result.toString();
-        } catch (NoSuchAlgorithmException impossible) {
-            throw new AssertionError(impossible);
-        }
-    }
 }
