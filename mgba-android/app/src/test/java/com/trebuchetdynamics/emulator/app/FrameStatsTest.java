@@ -30,4 +30,29 @@ public class FrameStatsTest {
         assertEquals("frames=1 avg_us=1000 max_us=1000 late=0 underruns=7",
                 stats.summarizeAndReset(7));
     }
+
+    @Test
+    public void reportsUnderrunsAsPerWindowDeltaOfCumulativeCount() {
+        // AudioTrack.getUnderrunCount() is cumulative since track creation; each
+        // window must log only the increase since the previous window, not the
+        // running total, or a single glitch would falsely flag every later window.
+        FrameStats stats = new FrameStats(BUDGET_NANOS);
+        stats.record(10_000_000L);
+        assertEquals("frames=1 avg_us=10000 max_us=10000 late=0 underruns=5",
+                stats.summarizeAndReset(5));
+
+        stats.record(10_000_000L);
+        assertEquals("frames=1 avg_us=10000 max_us=10000 late=0 underruns=2",
+                stats.summarizeAndReset(7));
+
+        stats.record(10_000_000L);
+        assertEquals("frames=1 avg_us=10000 max_us=10000 late=0 underruns=0",
+                stats.summarizeAndReset(7));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void summarizeAndResetRequiresFrames() {
+        FrameStats stats = new FrameStats(BUDGET_NANOS);
+        stats.summarizeAndReset(0);
+    }
 }

@@ -9,6 +9,7 @@ final class FrameStats {
     private long lateFrames;
     private long totalNanos;
     private long maxNanos;
+    private int lastCumulativeUnderruns;
 
     FrameStats(long budgetNanos) {
         this.budgetNanos = budgetNanos;
@@ -29,12 +30,23 @@ final class FrameStats {
         return frames > 0;
     }
 
-    /** Formats one summary line for the window and resets it. Requires hasFrames(). */
-    String summarizeAndReset(int underruns) {
+    /**
+     * Formats one summary line for the window and resets it. Requires hasFrames().
+     *
+     * @param cumulativeUnderruns the total underrun count since AudioTrack creation
+     *     (e.g. from {@code AudioTrack.getUnderrunCount()}). This method derives the
+     *     per-window delta itself by tracking the last cumulative value seen.
+     */
+    String summarizeAndReset(int cumulativeUnderruns) {
+        if (frames == 0) {
+            throw new IllegalStateException("summarizeAndReset() requires hasFrames()");
+        }
+        int windowUnderruns = cumulativeUnderruns - lastCumulativeUnderruns;
+        lastCumulativeUnderruns = cumulativeUnderruns;
         String line = String.format(Locale.US,
                 "frames=%d avg_us=%d max_us=%d late=%d underruns=%d",
                 frames, totalNanos / frames / 1_000, maxNanos / 1_000,
-                lateFrames, underruns);
+                lateFrames, windowUnderruns);
         frames = 0;
         lateFrames = 0;
         totalNanos = 0;

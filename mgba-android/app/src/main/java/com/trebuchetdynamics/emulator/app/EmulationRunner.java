@@ -89,9 +89,9 @@ final class EmulationRunner implements Runnable {
                 long now = SystemClock.elapsedRealtimeNanos();
                 stats.record(now - frameStart);
                 if (now >= nextPerfLog && stats.hasFrames()) {
-                    int underruns = audioTrack == null
+                    int cumulativeUnderruns = audioTrack == null
                             ? 0 : audioTrack.getUnderrunCount();
-                    Log.i(PERF_TAG, stats.summarizeAndReset(underruns));
+                    Log.i(PERF_TAG, stats.summarizeAndReset(cumulativeUnderruns));
                     nextPerfLog = now + PERF_LOG_INTERVAL_NANOS;
                 }
 
