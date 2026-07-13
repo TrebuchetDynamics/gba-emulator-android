@@ -36,14 +36,50 @@ control overlay (screenshot: `mgba-arm64-device-hello.png`, captured with
 `FATAL|ANR in com.trebuchetdynamics`: 0 entries for this app today (one
 unrelated third-party app crash from 07-10 present in the ring buffer).
 
-Observation for the roadmap: a zip-packaged ROM is selectable in the
-picker (`*/*` filter) but rejected by the core, which loads raw `.gba`
-bytes only. Zip import is recorded as an M4 (ROM library) candidate
-feature.
+## Demanding-title first light
+
+Test content: *The Legend of Zelda: The Minish Cap* (USA), 16.78 MB,
+dumped by the tester from a cartridge they own (tester attestation; the
+ROM is not committed to this repository and lives only on the device).
+
+The title imported through the document picker and rendered its title
+screen (screenshot not committed — it contains copyrighted game art).
+First `MgbaPerf` windows on the instrumented benchmark build:
+
+```
+frames=599 avg_us=3407 max_us=56964 late=2 underruns=0
+frames=598 avg_us=2879 max_us=13915 late=0 underruns=0
+```
+
+Frame *work* time averages 2.9–3.4 ms against the 16.743 ms budget
+(~5× headroom); windows hold ~598 frames, i.e. full 59.7 fps speed; zero
+`AudioTrack` underruns. The 56.9 ms max in the first window is the
+startup transient (ROM load + first frame), not steady state — the second
+window's max is 13.9 ms, still inside budget. This is a strong preliminary
+signal but does NOT satisfy the sustained-session gate below.
+
+## Defects found during smoke testing
+
+1. **Landscape touch layout is broken** (severity: blocks a good 1.0).
+   In landscape the L and R shoulder buttons render as oversized pills
+   dominating both sides, A and B are tiny circles placed near the middle,
+   and the D-pad is small and tucked under the L button. The emulated
+   screen stays small and centered. The layout is unusable for real play.
+   Owner: M5 (settings and input) at the latest; the layout work may be
+   worth pulling earlier since it affects every play session.
+2. **Zip-packaged ROMs are not supported.** The picker's `*/*` filter lets
+   the user select a `.zip`, which the core then rejects (it loads raw
+   `.gba` bytes only). The user must extract manually first. Owner: M4
+   (ROM library) — either filter the picker or transparently unzip.
 
 ## Sustained gameplay measurements
 
-Pending (Task 7).
+Pending (Task 7) — **blocked on device battery state.** The gate requires
+30–60 min unplugged (battery/thermal figures are invalid while charging).
+At the time of this session the device sat at 17% battery, and USB power
+barely offset the emulator's own draw (charge current oscillated around
+±200 mA under load). The session must be re-run from a high charge level
+over wireless debugging.
 
 ## Interaction and integrity checks
 
