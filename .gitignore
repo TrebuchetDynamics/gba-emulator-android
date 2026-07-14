@@ -45,6 +45,8 @@
 *.hprof
 *.jks
 *.keystore
+*.p12
+keystore.properties
 local.properties
 captures/
 .externalNativeBuild/
