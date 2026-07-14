@@ -83,10 +83,27 @@ sustained-session gate below.
    bottom-centre), and holding the drawn START button both highlights it and
    advances the game — hit-testing and rendering now agree. Emulation
    performance is unaffected (`avg_us` 2576/2903, 0 late, 0 underruns).
-2. **Zip-packaged ROMs are not supported.** The picker's `*/*` filter lets
-   the user select a `.zip`, which the core then rejects (it loads raw
-   `.gba` bytes only). The user must extract manually first. Owner: M4
-   (ROM library) — either filter the picker or transparently unzip.
+2. **Zip-packaged ROMs are not supported** — FIXED (`005b53a8`), pulled
+   forward from M4 at the tester's request. `RomArchive` (pure, android-free,
+   10 JVM tests) detects an archive by its `PK\x03\x04` magic bytes rather
+   than by name or MIME, streams out the single `.gba` entry, rejects
+   archives holding zero or several ROMs, and caps the *decompressed* size
+   so a zip bomb cannot exceed the cartridge limit (`ZipEntry.getSize()` is
+   attacker-controlled and is not trusted). Entry names are never used as
+   paths, so the extractor cannot be made to write outside its temp file.
+
+   The SHA-256 is taken over the extracted ROM, never the archive. This is
+   load-bearing: the private ROM file and the `.sav` file are both named from
+   that hash, so hashing the archive would have silently split one game's
+   saves between its zipped and raw imports.
+
+   Verified on device with a real 7.25 MB archive of a 16.78 MB ROM: the zip
+   imported and the game booted, and the private ROM directory afterwards held
+   exactly ONE file —
+   `bedc74df62755f705398273de8ed3bc59be610cf55760d0b9aa277f1f5035e73.gba` —
+   whose name equals `sha256sum` of the separately-extracted `.gba`. The zip
+   import reproduced the ROM byte-for-byte and deduped onto the file the
+   earlier raw import had created, so the two import routes share one save.
 
 ## Sustained gameplay measurements
 
