@@ -1,6 +1,7 @@
 package com.trebuchetdynamics.emulator.app;
 
 import java.io.BufferedInputStream;
+import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -26,7 +27,15 @@ final class RomArchive {
     private RomArchive() {
     }
 
-    /** SHA-256 of the ROM bytes written to {@code out}. */
+    /**
+     * SHA-256 of the ROM bytes written to {@code out}.
+     *
+     * <p>Note: on failure (a thrown {@link IOException}) {@code out} may already
+     * hold partial bytes — e.g. a first matched {@code .gba} entry that was fully
+     * streamed before a second entry triggered the duplicate-ROM rejection.
+     * Callers must discard the destination on exception rather than trust it as a
+     * complete import; {@code MainActivity} already does this unconditionally.
+     */
     static byte[] extractRom(InputStream in, OutputStream out, long maxBytes) throws IOException {
         BufferedInputStream buffered = new BufferedInputStream(in, BUFFER_SIZE);
         MessageDigest digest = sha256();
@@ -75,7 +84,12 @@ final class RomArchive {
     // bytes to `out`; only if a second .gba entry name turns up do we abort.
     private static long extractFromZip(InputStream in, OutputStream out, long maxBytes) throws IOException {
         long total = -1;
-        try (ZipInputStream zis = new ZipInputStream(in)) {
+        // `in` is borrowed from extractRom's caller, which owns closing it. Wrap it
+        // in a non-closing shim before handing it to ZipInputStream's
+        // try-with-resources, so the inflater is still released deterministically
+        // without ZipInputStream#close() cascading a second close onto the caller's
+        // stream (see the raw path below, which never closes `in` either).
+        try (ZipInputStream zis = new ZipInputStream(new NonClosingInputStream(in))) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 if (entry.isDirectory() || !isRomEntry(entry.getName())) {
@@ -91,6 +105,18 @@ final class RomArchive {
             throw new IOException("Archive contains no .gba ROM");
         }
         return total;
+    }
+
+    /** Blocks {@link #close()} from cascading onto a borrowed, caller-owned stream. */
+    private static final class NonClosingInputStream extends FilterInputStream {
+        NonClosingInputStream(InputStream in) {
+            super(in);
+        }
+
+        @Override
+        public void close() {
+            // No-op: `in` belongs to extractRom's caller, not to this stream.
+        }
     }
 
     private static boolean isRomEntry(String name) {

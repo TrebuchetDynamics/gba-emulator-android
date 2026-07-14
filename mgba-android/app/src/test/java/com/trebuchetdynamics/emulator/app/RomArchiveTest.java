@@ -2,6 +2,7 @@ package com.trebuchetdynamics.emulator.app;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
@@ -9,7 +10,9 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FilterInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -149,6 +152,48 @@ public class RomArchiveTest {
         RomArchive.extractRom(new ByteArrayInputStream(zip), out, CAP);
 
         assertArrayEquals(rom, out.toByteArray());
+    }
+
+    @Test
+    public void extractRomDoesNotCloseTheCallersStreamForZip() throws IOException {
+        // The caller (MainActivity) owns the InputStream it passes in and closes it
+        // itself via its own try-with-resources. extractRom must only ever borrow it.
+        byte[] rom = romBytes(4096);
+        byte[] zip = zipOf(entries("game.gba", rom));
+        CloseTrackingInputStream tracked = new CloseTrackingInputStream(new ByteArrayInputStream(zip));
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        RomArchive.extractRom(tracked, out, CAP);
+
+        assertFalse("extractRom must not close the caller's InputStream on the zip path — "
+                        + "ZipInputStream.close() must not cascade to the borrowed stream",
+                tracked.closed);
+    }
+
+    @Test
+    public void extractRomDoesNotCloseTheCallersStreamForRaw() throws IOException {
+        byte[] rom = romBytes(4096);
+        CloseTrackingInputStream tracked = new CloseTrackingInputStream(new ByteArrayInputStream(rom));
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        RomArchive.extractRom(tracked, out, CAP);
+
+        assertFalse("extractRom must not close the caller's InputStream on the raw path",
+                tracked.closed);
+    }
+
+    private static final class CloseTrackingInputStream extends FilterInputStream {
+        boolean closed;
+
+        CloseTrackingInputStream(InputStream in) {
+            super(in);
+        }
+
+        @Override
+        public void close() throws IOException {
+            closed = true;
+            super.close();
+        }
     }
 
     private static Map<String, byte[]> entries(String name, byte[] content) {
