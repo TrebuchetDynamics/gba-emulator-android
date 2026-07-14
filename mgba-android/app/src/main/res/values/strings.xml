@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Garnacha Boy</string>
+    <string name="notices_title">Open source notices</string>
+    <string name="notices_button">Notices</string>
+    <string name="status_no_rom">Tap to load a GBA ROM</string>
+</resources>

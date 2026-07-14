@@ -8,7 +8,7 @@ android {
     buildToolsVersion '35.0.0'
 
     defaultConfig {
-        applicationId 'com.trebuchetdynamics.mgba'
+        applicationId 'com.trebuchetdynamics.garnacha'
         minSdk 24
         targetSdk 35
         versionCode 1

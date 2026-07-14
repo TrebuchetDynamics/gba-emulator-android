@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- cartridge body -->
+    <path
+        android:fillColor="#F5C542"
+        android:pathData="M36,26h36a4,4 0 0 1 4,4v48a4,4 0 0 1 -4,4h-36a4,4 0 0 1 -4,-4v-48a4,4 0 0 1 4,-4z" />
+    <!-- label -->
+    <path
+        android:fillColor="#2B2118"
+        android:pathData="M41,34h26v20h-26z" />
+    <!-- contacts -->
+    <path
+        android:fillColor="#2B2118"
+        android:pathData="M44,64h20v4h-20z M44,71h20v4h-20z" />
+</vector>
