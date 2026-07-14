@@ -55,6 +55,13 @@ Test content: MIT `gba-tests` ROMs plus demanding homebrew; other content only f
 
 Scope is set entirely by M1's verdict. Expected candidates: Canvas → `SurfaceView`/OpenGL rendering with Choreographer-driven frame pacing; audio buffer tuning or a low-latency AAudio path. If M1 passes outright, this milestone collapses to nothing.
 
+*Early signal (2026-07-13/14, Galaxy S24 Ultra, commercial title):* frame work
+measures 2.2–3.4 ms against the 16.743 ms budget — roughly 5–7× headroom — with
+full-speed 598-frame windows, no late frames, and no audio underruns after
+startup warm-up. On this hardware the existing Canvas + `AudioTrack` path looks
+release-viable, and this milestone may collapse to nothing. Not yet the verdict:
+the sustained session under thermal load is the gate that decides it.
+
 **Exit criteria:** M1's measurement suite re-run on the physical device, passing with headroom.
 
 ### M3 — Release plumbing and v0.1 (first public tag)
@@ -71,11 +78,22 @@ Scope is set entirely by M1's verdict. Expected candidates: Canvas → `SurfaceV
 
 Library screen replacing the single-ROM flow: list of imported ROMs, SAF import, delete, last-played ordering, resume. No cover-art metadata (post-1.0 backlog).
 
+*Already delivered early (2026-07-14):* transparent zip import (`RomArchive`,
+commits `005b53a8`/`ec884e83`) — device testing showed users naturally pick the
+archive a ROM ships in, and the core rejected it.
+
 **Exit criteria:** multi-ROM daily-driver usable; tag v0.2.
 
 ### M5 — Settings and input (v0.3)
 
 Settings screen; touch-layout adjustment; gamepad remapping; screen scaling and orientation options; fast-forward; multiple save-state slots with UI; auto-save-state on exit. Completes the standard-emulator 1.0 feature set.
+
+*Already delivered early (2026-07-13):* a correct default landscape touch
+layout (`ControlLayout`, commit `9ce30ab0`). This was not cosmetic — controls
+were sized off the screen's long edge, and drawing and hit-testing computed
+conflicting geometry, so touch targets did not match the drawn buttons. The
+geometry is now single-sourced and unit-tested, which is also the foundation the
+remaining M5 layout-adjustment work builds on.
 
 **Exit criteria:** 1.0 feature-complete; tag v0.3.
 
