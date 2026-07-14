@@ -61,10 +61,15 @@ final class ControlLayout {
     final float loadTop;
     final float loadRight;
     final float loadBottom;
+    final float noticesLeft;
+    final float noticesTop;
+    final float noticesRight;
+    final float noticesBottom;
     final List<Control> controls;
 
     private ControlLayout(float gameLeft, float gameTop, float gameRight, float gameBottom,
             float loadLeft, float loadTop, float loadRight, float loadBottom,
+            float noticesLeft, float noticesTop, float noticesRight, float noticesBottom,
             List<Control> controls) {
         this.gameLeft = gameLeft;
         this.gameTop = gameTop;
@@ -74,6 +79,10 @@ final class ControlLayout {
         this.loadTop = loadTop;
         this.loadRight = loadRight;
         this.loadBottom = loadBottom;
+        this.noticesLeft = noticesLeft;
+        this.noticesTop = noticesTop;
+        this.noticesRight = noticesRight;
+        this.noticesBottom = noticesBottom;
         this.controls = Collections.unmodifiableList(controls);
     }
 
@@ -86,10 +95,17 @@ final class ControlLayout {
      * sized off {@code unit = min(width, height)} so it shares one sizing
      * rule with {@link #landscape}. In portrait {@code unit == width}
      * always, so these constants reproduce the pre-fix pixel values exactly.
+     *
+     * <p>The LOAD/NOTICES chips sit in a header band above the game rect
+     * (not overlaid on it), anchored to the game's right edge.
      */
     private static ControlLayout portrait(float width, float height) {
         float unit = Math.min(width, height);
         float margin = unit * 0.025f;
+
+        float chipHeight = Math.max(54, unit * 0.075f);
+        float chipGap = unit * 0.02f;
+        float headerHeight = chipHeight + chipGap * 2;
 
         float gameWidth = width - margin * 2;
         float gameHeight = gameWidth * MgbaSession.VIDEO_HEIGHT / MgbaSession.VIDEO_WIDTH;
@@ -98,16 +114,21 @@ final class ControlLayout {
             gameWidth = gameHeight * MgbaSession.VIDEO_WIDTH / MgbaSession.VIDEO_HEIGHT;
         }
         float gameLeft = (width - gameWidth) / 2;
-        float gameTop = margin;
+        float gameTop = headerHeight;
         float gameRight = gameLeft + gameWidth;
         float gameBottom = gameTop + gameHeight;
 
         float loadWidth = unit * 0.18f;
-        float loadHeight = Math.max(54, unit * 0.075f);
         float loadRight = gameRight - 12;
         float loadLeft = loadRight - loadWidth;
-        float loadTop = gameTop + 12;
-        float loadBottom = loadTop + loadHeight;
+        float loadTop = chipGap;
+        float loadBottom = loadTop + chipHeight;
+
+        float noticesWidth = unit * 0.28f;
+        float noticesRight = loadLeft - 12;
+        float noticesLeft = noticesRight - noticesWidth;
+        float noticesTop = chipGap;
+        float noticesBottom = noticesTop + chipHeight;
 
         float controlsTop = gameBottom + margin;
         float controlsHeight = height - controlsTop;
@@ -143,7 +164,8 @@ final class ControlLayout {
                 width * 0.61f, smallY, smallHalfWidth, smallHalfHeight));
 
         return new ControlLayout(gameLeft, gameTop, gameRight, gameBottom,
-                loadLeft, loadTop, loadRight, loadBottom, controls);
+                loadLeft, loadTop, loadRight, loadBottom,
+                noticesLeft, noticesTop, noticesRight, noticesBottom, controls);
     }
 
     /**
@@ -152,6 +174,9 @@ final class ControlLayout {
      * bottom-centre. The game rect is sized as large as fits within ~92% of
      * height at the console's 3:2 aspect ratio, then clamped so it never
      * reaches into either gutter.
+     *
+     * <p>The LOAD/NOTICES chips sit in a header band above the game rect
+     * (not overlaid on it), anchored to the game's right edge.
      */
     private static ControlLayout landscape(float width, float height) {
         float unit = Math.min(width, height);
@@ -167,7 +192,9 @@ final class ControlLayout {
         float rightClusterHalfExtent = abRadius + abOffset + clusterMargin;
         float gutterWidth = 2f * Math.max(leftClusterHalfExtent, rightClusterHalfExtent);
 
-        float topMargin = unit * 0.04f;
+        float chipHeight = Math.max(54, unit * 0.075f);
+        float chipGap = unit * 0.02f;
+        float topMargin = chipHeight + chipGap * 2;
         float bottomMargin = unit * 0.02f;
         float selectStartHalfHeight = unit * 0.035f;
         float bottomReserve = selectStartHalfHeight * 2f + bottomMargin * 2f;
@@ -185,11 +212,16 @@ final class ControlLayout {
         float gameBottom = gameTop + gameHeight;
 
         float loadWidth = unit * 0.18f;
-        float loadHeight = Math.max(54, unit * 0.075f);
         float loadRight = gameRight - 12;
         float loadLeft = loadRight - loadWidth;
-        float loadTop = gameTop + 12;
-        float loadBottom = loadTop + loadHeight;
+        float loadTop = chipGap;
+        float loadBottom = loadTop + chipHeight;
+
+        float noticesWidth = unit * 0.28f;
+        float noticesRight = loadLeft - 12;
+        float noticesLeft = noticesRight - noticesWidth;
+        float noticesTop = chipGap;
+        float noticesBottom = noticesTop + chipHeight;
 
         List<Control> controls = new ArrayList<>();
 
@@ -224,7 +256,8 @@ final class ControlLayout {
                 width / 2f + smallHalfWidth + smallGap / 2f, smallY, smallHalfWidth, smallHalfHeight));
 
         return new ControlLayout(gameLeft, gameTop, gameRight, gameBottom,
-                loadLeft, loadTop, loadRight, loadBottom, controls);
+                loadLeft, loadTop, loadRight, loadBottom,
+                noticesLeft, noticesTop, noticesRight, noticesBottom, controls);
     }
 
     /**
@@ -256,5 +289,11 @@ final class ControlLayout {
         float pad = 12f;
         return x >= loadLeft - pad && x <= loadRight + pad
                 && y >= loadTop - pad && y <= loadBottom + pad * 2f;
+    }
+
+    boolean isNoticesHit(float x, float y) {
+        float pad = 12f;
+        return x >= noticesLeft - pad && x <= noticesRight + pad
+                && y >= noticesTop - pad && y <= noticesBottom + pad * 2f;
     }
 }

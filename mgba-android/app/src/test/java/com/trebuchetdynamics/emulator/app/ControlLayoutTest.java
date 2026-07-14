@@ -131,6 +131,27 @@ public class ControlLayoutTest {
     }
 
     @Test
+    public void loadAndNoticesChipsDoNotOverlapEachOtherOrTheGameScreen() {
+        assertChipsDoNotOverlap(ControlLayout.of(LANDSCAPE_WIDTH, LANDSCAPE_HEIGHT));
+        assertChipsDoNotOverlap(ControlLayout.of(PORTRAIT_WIDTH, PORTRAIT_HEIGHT));
+    }
+
+    private void assertChipsDoNotOverlap(ControlLayout layout) {
+        assertTrue("LOAD and NOTICES chips overlap each other",
+                !intersects(
+                        layout.loadLeft, layout.loadTop, layout.loadRight, layout.loadBottom,
+                        layout.noticesLeft, layout.noticesTop, layout.noticesRight, layout.noticesBottom));
+        assertTrue("LOAD chip overlaps the game screen",
+                !intersects(
+                        layout.loadLeft, layout.loadTop, layout.loadRight, layout.loadBottom,
+                        layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom));
+        assertTrue("NOTICES chip overlaps the game screen",
+                !intersects(
+                        layout.noticesLeft, layout.noticesTop, layout.noticesRight, layout.noticesBottom,
+                        layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom));
+    }
+
+    @Test
     public void portraitKeepsGameAboveControls() {
         ControlLayout layout = ControlLayout.of(PORTRAIT_WIDTH, PORTRAIT_HEIGHT);
         for (ControlLayout.Control control : layout.controls) {

@@ -18,6 +18,7 @@ final class EmulatorView extends View {
     private final Object frameLock = new Object();
     private final RectF gameRect = new RectF();
     private final Runnable requestRom;
+    private final Runnable requestNotices;
 
     private ControlLayout layout = ControlLayout.of(1, 1);
 
@@ -27,12 +28,13 @@ final class EmulatorView extends View {
     private volatile String status = "Tap to load a GBA ROM";
 
     public EmulatorView(Context context) {
-        this(context, () -> {});
+        this(context, () -> {}, () -> {});
     }
 
-    EmulatorView(Context context, Runnable requestRom) {
+    EmulatorView(Context context, Runnable requestRom, Runnable requestNotices) {
         super(context);
         this.requestRom = requestRom;
+        this.requestNotices = requestNotices;
         setBackgroundColor(Color.rgb(14, 16, 20));
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -105,6 +107,16 @@ final class EmulatorView extends View {
         canvas.drawText("LOAD", (layout.loadLeft + layout.loadRight) / 2,
                 layout.loadTop + loadHeight * 0.66f, paint);
 
+        paint.setColor(0xCC262A31);
+        canvas.drawRoundRect(layout.noticesLeft, layout.noticesTop,
+                layout.noticesRight, layout.noticesBottom, 12, 12, paint);
+        paint.setColor(Color.WHITE);
+        paint.setTextAlign(Paint.Align.CENTER);
+        float noticesHeight = layout.noticesBottom - layout.noticesTop;
+        paint.setTextSize(noticesHeight * 0.34f);
+        canvas.drawText("NOTICES", (layout.noticesLeft + layout.noticesRight) / 2,
+                layout.noticesTop + noticesHeight * 0.66f, paint);
+
         for (ControlLayout.Control control : layout.controls) {
             switch (control.shape) {
                 case DPAD:
@@ -161,10 +173,13 @@ final class EmulatorView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getActionMasked() == MotionEvent.ACTION_UP
-                && (!hasFrame || layout.isLoadHit(event.getX(), event.getY()))) {
+        if (event.getActionMasked() == MotionEvent.ACTION_UP) {
             touchKeys = 0;
-            performClick();
+            if (layout.isNoticesHit(event.getX(), event.getY())) {
+                requestNotices.run();
+            } else if (!hasFrame || layout.isLoadHit(event.getX(), event.getY())) {
+                performClick();
+            }
             return true;
         }
 

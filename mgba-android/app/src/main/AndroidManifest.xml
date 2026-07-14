@@ -18,5 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NoticesActivity"
+            android:exported="false"
+            android:label="@string/notices_title" />
     </application>
 </manifest>

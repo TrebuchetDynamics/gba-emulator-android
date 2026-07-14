@@ -44,7 +44,7 @@ public final class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 
-        emulatorView = new EmulatorView(this, this::openRomPicker);
+        emulatorView = new EmulatorView(this, this::openRomPicker, this::openNotices);
         setContentView(emulatorView);
         emulatorView.requestFocus();
 
@@ -87,6 +87,10 @@ public final class MainActivity extends Activity {
         if (romUri != null) {
             state.putString(STATE_ROM_URI, romUri.toString());
         }
+    }
+
+    private void openNotices() {
+        startActivity(new Intent(this, NoticesActivity.class));
     }
 
     private void openRomPicker() {
