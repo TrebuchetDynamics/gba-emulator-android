@@ -71,9 +71,19 @@ Evidence:
 
 ## Next measured candidates
 
+> **Superseded 2026-07-14 by `mgba-arm64-device-2026-07-13.md`.** Candidate 1 is
+> done. Candidates 2–4 are **measured to be unnecessary**: on a Snapdragon 8
+> Gen 3, 25 minutes of continuous commercial-game emulation used a worst-case
+> 2,469 µs of the 16,743 µs frame budget, with 0 late frames in 90,896, 0 janky
+> frames, and no underruns after startup. Each remaining candidate was
+> predicated on a bottleneck that does not exist on this hardware, so they are
+> struck rather than carried as debt. Revisit only if low-end device testing
+> (M6) shows a tighter budget.
+
 Ranked by likely leverage, not yet implemented:
 
-1. **Profile on physical arm64 hardware.** Capture Perfetto/simpleperf CPU samples, frame-time distribution, audio underruns, memory, battery, and thermal throttling over sustained gameplay. The AVD cannot verify these release properties.
+1. **Profile on physical arm64 hardware.** DONE — see
+   `docs/validation/mgba-arm64-device-2026-07-13.md`.
 2. **Remove the frame-copy pipeline.** `nativeRunFrame` converts 38,400 pixels into a Java `int[]`; `EmulatorView.publishFrame` then copies that array into a `Bitmap`. Two 153,600-byte transfers at 59.737 Hz are at least 18.3 MB/s before any JNI pin/copy overhead. Measure a direct buffer plus `SurfaceView`/texture path before replacing the simple Canvas host.
 3. **Use audio as the pacing clock.** The current loop performs blocking `AudioTrack.write` and then separately sleeps against a fixed frame deadline. Instrument underruns and drift before moving to a low-latency callback/ring-buffer design.
 4. **Measure bitmap lock contention.** The emulation and UI threads serialize around `Bitmap.setPixels`/`drawBitmap`. Confirm contention with Perfetto before adding double/triple buffering.

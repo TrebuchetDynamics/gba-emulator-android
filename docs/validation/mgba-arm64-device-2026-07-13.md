@@ -105,19 +105,105 @@ sustained-session gate below.
    import reproduced the ROM byte-for-byte and deduped onto the file the
    earlier raw import had created, so the two import routes share one save.
 
-## Sustained gameplay measurements
+## Sustained gameplay measurements (2026-07-14)
 
-Pending (Task 7) — **blocked on device battery state.** The gate requires
-30–60 min unplugged (battery/thermal figures are invalid while charging).
-At the time of this session the device sat at 17% battery, and USB power
-barely offset the emulator's own draw (charge current oscillated around
-±200 mA under load). The session must be re-run from a high charge level
-over wireless debugging.
+Wireless debugging was unusable: the host sits on `10.0.2.0/24` and
+`10.0.4.0/24`, the device on `192.168.1.0/24`, with no route between them
+(100% packet loss). The session therefore ran with **no adb attached** —
+counters reset over USB, cable pulled, gameplay, then reconnect and collect.
+`MgbaPerf` windows survive in logcat, `gfxinfo` accumulates in-process, and
+thermals read on reconnect while the device is still hot.
+
+Title: *The Legend of Zelda: The Minish Cap* (tester's own cartridge dump).
+Emulation ran continuously from 15:02:03 to 15:27:15 — **25 minutes, 152
+windows, 90,896 frames** — then the activity paused when play stopped, ~10
+minutes before reconnect. The `MgbaPerf` record is complete for that span (the
+5 MiB ring buffer held 3 MiB; it did not wrap).
+
+### Frame pacing and audio — decisive pass
+
+| Metric | Value | Budget |
+|---|---:|---:|
+| Mean window frame work | 1,873 µs | 16,743 µs |
+| **Worst** window frame work | **2,469 µs** | 16,743 µs |
+| Worst single-frame max | 9,137 µs | 16,743 µs |
+| Late frames (of 90,896) | **0** | — |
+| Slowest window | 598 frames | 598 = full speed |
+| Audio underruns | 7 (startup only) | — |
+
+Every one of the 152 windows sat inside budget with **6.8× headroom at the
+worst point**, and no window dropped below full 59.7 fps speed. `gfxinfo`
+agrees independently: 89,590 frames rendered, **1 janky frame (0.00%)**, with
+the 50th through 99th percentiles all at 5 ms. No FATAL or ANR entries.
+Memory was stable (TOTAL PSS 47.9 MB; native heap 432 KB).
+
+Thermals never became a factor: AP 33.2 °C and SKIN 32.3 °C on reconnect,
+against a first SKIN throttling threshold of 38 °C. The workload is simply too
+light on this SoC to provoke throttling — which is itself the finding.
+
+### Battery — measurement failed, not passed
+
+The run recorded **0% drain and no temperature change**, which is not credible
+for a screen-on session and must be treated as a failed measurement rather than
+as evidence of low power draw. Nothing on the device confirms it was ever
+actually on battery: the unplug broadcast fell outside the retained log, and
+`batterystats` was not reset at session start, so its counters cover two days
+rather than this session.
+
+The tooling has been corrected (`dumpsys batterystats --reset` at session
+start, a 32 MiB log buffer, an explicit on-battery check, and a refusal to
+present a flat 0% drain as a result). **Battery life remains an open release
+gate** and must be re-measured; it does not block the rendering/audio verdict
+below, which rests on frame, audio, and jank data that are internally
+consistent and independently corroborated.
 
 ## Interaction and integrity checks
 
-Pending (Task 8).
+- **Touch input:** verified against the rebuilt layout — holding the drawn
+  START button highlights it and advances the game, so hit-testing and
+  rendering agree (they did not before `9ce30ab0`).
+- **Lifecycle:** the activity paused and resumed across the session and three
+  earlier background/resume cycles with no FATAL or ANR entries. Emulation
+  restarts on resume by design.
+- **Cartridge saves:** `cartridgeSavedataRoundTripsBetweenSessions` passes on
+  this hardware. Import dedup was proven end-to-end: a zipped and a raw import
+  of the same ROM resolve to one private file and therefore one `.sav`.
+- **Save states:** covered on this device by
+  `sessionRunsMitLicensedRomAndRestoresState`; there is no app UI for slots yet
+  (M5).
+- **Bluetooth controller: NOT TESTED.** No gamepad was paired. This remains an
+  open release gate.
 
 ## Verdict
 
-Pending (Task 9).
+**The rendering and audio path is release-viable on this device. M2 collapses.**
+
+The existing Canvas + `AudioTrack` implementation sustained 25 minutes of
+continuous commercial-game emulation with zero late frames out of 90,896, zero
+janky frames per `gfxinfo`, no audio underruns after startup warm-up, stable
+memory, and no throttling. The worst 10-second window used 2,469 µs of a
+16,743 µs budget. The three rendering/audio rewrites M2 was created to hold —
+`SurfaceView`/GL rendering, Choreographer pacing, and a low-latency audio path
+— are **not needed for 1.0** on hardware of this class, and the roadmap should
+proceed directly to M3 (release plumbing).
+
+This verdict is scoped honestly:
+
+- It covers **one** device, a 2024 flagship (Snapdragon 8 Gen 3). Low-end and
+  mid-range hardware is unmeasured, and the frame budget there could be far
+  tighter. Beta testing across a device spread (M6) is where that risk lands.
+- It rests on a **25-minute** sample, not the 30–60 minutes the gate specified.
+  Given zero late frames across the entire span and no thermal rise, a longer
+  run is very unlikely to change the conclusion — but it is a shortfall, and it
+  is recorded as one rather than rounded up.
+- **Two release gates stay open** and are explicitly *not* cleared by this
+  verdict: battery life (the measurement failed; see above) and Bluetooth
+  controller support (never tested). Both must be closed before 1.0, but
+  neither is a rendering or audio defect, so neither revives M2.
+
+Consequence for the roadmap: candidate 1 of
+`mgba-performance-2026-07-09.md` ("profile on physical arm64 hardware") is now
+done, and candidates 2–4 (removing the frame-copy pipeline, audio-clocked
+pacing, bitmap lock contention) are **measured to be unnecessary** — each was
+predicated on a bottleneck that does not exist on this hardware. They should be
+struck from the plan rather than carried as debt.
