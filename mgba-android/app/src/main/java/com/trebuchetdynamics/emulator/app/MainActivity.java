@@ -15,8 +15,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public final class MainActivity extends Activity {
     private static final int OPEN_ROM = 100;
@@ -161,34 +159,20 @@ public final class MainActivity extends Activity {
             throw new IOException("Could not create private ROM directory");
         }
         File temporary = File.createTempFile("import-", ".tmp", directory);
-        MessageDigest digest = sha256();
-        int total = 0;
+        byte[] hash;
         try (InputStream input = getContentResolver().openInputStream(uri);
              FileOutputStream output = new FileOutputStream(temporary)) {
             if (input == null) {
                 throw new IOException("Content provider returned no data");
             }
-            byte[] buffer = new byte[64 * 1024];
-            int count;
-            while ((count = input.read(buffer)) != -1) {
-                total += count;
-                if (total > MAX_ROM_BYTES) {
-                    throw new IOException("ROM exceeds the GBA cartridge limit");
-                }
-                digest.update(buffer, 0, count);
-                output.write(buffer, 0, count);
-            }
+            hash = RomArchive.extractRom(input, output, MAX_ROM_BYTES);
             output.getFD().sync();
         } catch (IOException | RuntimeException e) {
             temporary.delete();
             throw e;
         }
-        if (total == 0) {
-            temporary.delete();
-            throw new IOException("ROM is empty");
-        }
 
-        String id = hex(digest.digest());
+        String id = hex(hash);
         File destination = new File(directory, id + ".gba");
         if (destination.isFile()) {
             temporary.delete();
@@ -231,14 +215,6 @@ public final class MainActivity extends Activity {
             return true;
         }
         return super.dispatchKeyEvent(event);
-    }
-
-    private static MessageDigest sha256() {
-        try {
-            return MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException impossible) {
-            throw new AssertionError(impossible);
-        }
     }
 
     private static String hex(byte[] bytes) {
