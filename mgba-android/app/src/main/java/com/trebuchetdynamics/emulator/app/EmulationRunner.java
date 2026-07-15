@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.LockSupport;
 
 final class EmulationRunner implements Runnable {
@@ -21,7 +23,25 @@ final class EmulationRunner implements Runnable {
         void onError(String message);
     }
 
+    interface StateListener {
+        void onStateSaved(int slot);
+        void onStateLoaded(int slot);
+        void onStateError(String message);
+    }
+
+    private enum CommandType { SAVE, LOAD, RESET }
+
+    private static final class Command {
+        final CommandType type;
+        final int slot;
+        Command(CommandType type, int slot) {
+            this.type = type;
+            this.slot = slot;
+        }
+    }
+
     private static final long FRAME_NANOS = 16_743_000L;
+    private static final int FAST_FORWARD_SPEED = 4;
     private static final String PERF_TAG = "MgbaPerf";
     private static final long PERF_LOG_INTERVAL_NANOS = 10_000_000_000L;
 
@@ -32,14 +52,21 @@ final class EmulationRunner implements Runnable {
     private final ErrorListener errors;
     private final Thread thread;
     private volatile boolean running = true;
+    private final SaveStateStore states;
+    private final StateListener stateListener;
+    private final Queue<Command> commands = new ConcurrentLinkedQueue<>();
+    private volatile boolean fastForward;
 
     EmulationRunner(Context context, EmulatorView view, File rom, String romId,
-                    ErrorListener errors) {
+                    SaveStateStore states, ErrorListener errors,
+                    StateListener stateListener) {
         this.context = context.getApplicationContext();
         this.view = view;
         this.rom = rom;
         this.romId = romId;
+        this.states = states;
         this.errors = errors;
+        this.stateListener = stateListener;
         thread = new Thread(this, "mgba-emulation");
     }
 
@@ -55,6 +82,30 @@ final class EmulationRunner implements Runnable {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+
+    void postSaveState(int slot) {
+        commands.add(new Command(CommandType.SAVE, slot));
+    }
+
+    void postLoadState(int slot) {
+        commands.add(new Command(CommandType.LOAD, slot));
+    }
+
+    void postReset() {
+        commands.add(new Command(CommandType.RESET, 0));
+    }
+
+    void setFastForward(boolean on) {
+        fastForward = on;
+    }
+
+    boolean isFastForward() {
+        return fastForward;
+    }
+
+    static long frameBudgetNanos(boolean fastForward) {
+        return fastForward ? FRAME_NANOS / FAST_FORWARD_SPEED : FRAME_NANOS;
     }
 
     @Override
@@ -77,12 +128,15 @@ final class EmulationRunner implements Runnable {
                     + PERF_LOG_INTERVAL_NANOS;
             long nextFrame = SystemClock.elapsedRealtimeNanos();
             while (running) {
+                applyCommands(session);
+                boolean ff = fastForward;
+                long budget = frameBudgetNanos(ff);
                 long frameStart = SystemClock.elapsedRealtimeNanos();
                 int audioFrames = session.runFrame(view.keys(), pixels, audio);
                 if (audioFrames < 0) {
                     throw new IllegalStateException("mGBA failed to run a frame");
                 }
-                if (audioTrack != null && audioFrames > 0) {
+                if (!ff && audioTrack != null && audioFrames > 0) {
                     audioTrack.write(audio, 0, audioFrames * 2, AudioTrack.WRITE_BLOCKING);
                 }
                 view.publishFrame(pixels);
@@ -95,11 +149,11 @@ final class EmulationRunner implements Runnable {
                     nextPerfLog = now + PERF_LOG_INTERVAL_NANOS;
                 }
 
-                nextFrame += FRAME_NANOS;
+                nextFrame += budget;
                 long wait = nextFrame - SystemClock.elapsedRealtimeNanos();
                 if (wait > 0) {
                     LockSupport.parkNanos(wait);
-                } else if (wait < -FRAME_NANOS * 4) {
+                } else if (wait < -budget * 4) {
                     nextFrame = SystemClock.elapsedRealtimeNanos();
                 }
             }
@@ -111,6 +165,36 @@ final class EmulationRunner implements Runnable {
                 audioTrack.pause();
                 audioTrack.flush();
                 audioTrack.release();
+            }
+        }
+    }
+
+    private void applyCommands(MgbaSession session) {
+        Command command;
+        while ((command = commands.poll()) != null) {
+            try {
+                switch (command.type) {
+                    case SAVE:
+                        states.write(command.slot, session.saveState());
+                        stateListener.onStateSaved(command.slot);
+                        break;
+                    case LOAD:
+                        byte[] state = states.read(command.slot);
+                        if (state == null) {
+                            stateListener.onStateError("Slot " + command.slot + " is empty");
+                        } else {
+                            session.loadState(state);
+                            stateListener.onStateLoaded(command.slot);
+                        }
+                        break;
+                    case RESET:
+                        session.reset();
+                        break;
+                }
+            } catch (IOException | RuntimeException e) {
+                // A bad state must never kill the emulation loop.
+                stateListener.onStateError(e.getMessage() == null
+                        ? "Save-state operation failed" : e.getMessage());
             }
         }
     }
