@@ -113,6 +113,23 @@ public class MgbaCoreInstrumentedTest {
         }
     }
 
+    @Test
+    public void resetReturnsTheCoreToPowerOn() throws Exception {
+        try (MgbaSession session = new MgbaSession()) {
+            session.loadRom(readAsset("hello.gba"));
+            int[] pixels = new int[MgbaSession.FRAME_PIXELS];
+            short[] audio = new short[MgbaSession.MIN_AUDIO_BUFFER_SAMPLES];
+            for (int i = 0; i < 30; i++) {
+                session.runFrame(0, pixels, audio);
+            }
+            long before = session.frameCounter();
+            assertTrue("frames should have advanced", before >= 30);
+            session.reset();
+            assertTrue("reset should return the frame counter toward power-on",
+                    session.frameCounter() < before);
+        }
+    }
+
     private static byte[] readAsset(String name) throws IOException {
         Context context = InstrumentationRegistry.getInstrumentation().getContext();
         try (InputStream input = context.getAssets().open(name);

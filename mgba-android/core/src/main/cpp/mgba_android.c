@@ -318,6 +318,19 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeLoadState(
     return loaded ? JNI_TRUE : JNI_FALSE;
 }
 
+JNIEXPORT jboolean JNICALL
+Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeReset(
+        JNIEnv* env, jclass clazz, jlong handle) {
+    (void) env;
+    (void) clazz;
+    struct MgbaSession* session = sessionFromHandle(handle);
+    if (!session || !session->core || !session->loaded) {
+        return JNI_FALSE;
+    }
+    session->core->reset(session->core);
+    return JNI_TRUE;
+}
+
 JNIEXPORT jbyteArray JNICALL
 Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeCopySavedata(
         JNIEnv* env, jclass clazz, jlong handle) {

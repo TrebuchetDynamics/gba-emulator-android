@@ -111,6 +111,14 @@ public final class MgbaSession implements AutoCloseable {
         }
     }
 
+    /** Soft-resets the loaded core to its power-on state. Cartridge save data persists. */
+    public synchronized void reset() {
+        requireLoaded();
+        if (!nativeReset(handle)) {
+            throw new IllegalStateException("mGBA could not reset the core");
+        }
+    }
+
     /** Returns the current cartridge save data, or an empty array when the ROM has none. */
     public synchronized byte[] copySavedata() {
         requireLoaded();
@@ -154,6 +162,7 @@ public final class MgbaSession implements AutoCloseable {
     private static native long nativeFrameCounter(long handle);
     private static native byte[] nativeSaveState(long handle);
     private static native boolean nativeLoadState(long handle, byte[] state);
+    private static native boolean nativeReset(long handle);
     private static native byte[] nativeCopySavedata(long handle);
     private static native boolean nativeRestoreSavedata(long handle, byte[] data);
     private static native void nativeDestroy(long handle);
