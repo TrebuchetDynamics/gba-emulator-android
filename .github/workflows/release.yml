@@ -31,7 +31,9 @@ jobs:
           submodules: recursive
 
       - name: Set up Ninja
-        uses: seanmiddleditch/gha-setup-ninja@master
+        # pinned to a commit SHA: this job handles signing secrets, so a
+        # mutable @master ref would be a supply-chain foothold on the runner.
+        uses: seanmiddleditch/gha-setup-ninja@7e868db0f3406270dd46e1dac26c65f621456723 # master @ 2026-07-14
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -40,7 +42,7 @@ jobs:
           java-version: "17"
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
 
       - name: Install the pinned native toolchain
         run: sdkmanager "cmake;3.18.1" "ndk;22.1.7171670"
@@ -53,10 +55,12 @@ jobs:
           KEY_PASSWORD: ${{ secrets.GARNACHA_KEY_PASSWORD }}
         run: |
           set -euo pipefail
-          if [ -z "${KEYSTORE_BASE64}" ]; then
-            echo "::error::GARNACHA_KEYSTORE_BASE64 is not set — cannot sign a release."
-            exit 1
-          fi
+          for name in KEYSTORE_BASE64 STORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+            if [ -z "${!name}" ]; then
+              echo "::error::GARNACHA_${name} secret is not set — cannot sign a release."
+              exit 1
+            fi
+          done
           echo "${KEYSTORE_BASE64}" | base64 -d > "${RUNNER_TEMP}/garnacha-release.jks"
           test -s "${RUNNER_TEMP}/garnacha-release.jks"
           # build.gradle reads mgba-android/app/keystore.properties (gitignored);
@@ -78,14 +82,32 @@ jobs:
             lintDebug :app:testDebugUnitTest :app:assembleRelease
 
       - name: Verify the APK is signed with the expected key
+        env:
+          KEY_ALIAS: ${{ secrets.GARNACHA_KEY_ALIAS }}
+          STORE_PASSWORD: ${{ secrets.GARNACHA_KEYSTORE_PASSWORD }}
         run: |
           set -euo pipefail
           APK=mgba-android/app/build/outputs/apk/release/app-release.apk
           if [ ! -f "${APK}" ]; then
-            echo "::error::release APK missing — the build did not produce a signed artifact."
+            echo "::error::release APK missing — the build did not produce a signed, release-key artifact."
             exit 1
           fi
-          "${ANDROID_HOME}/build-tools/35.0.0/apksigner" verify --print-certs "${APK}"
+          APKSIGNER="${ANDROID_HOME}/build-tools/35.0.0/apksigner"
+          # Confirm the APK carries a valid signature at all.
+          "${APKSIGNER}" verify "${APK}"
+          # Then confirm it is OUR key, not merely some valid key: compare the
+          # APK's signing-cert SHA-256 against the restored keystore's cert.
+          apk_fp=$("${APKSIGNER}" verify --print-certs "${APK}" \
+            | grep -i "SHA-256 digest" | head -1 | grep -oiE "[0-9a-f]{64}")
+          key_fp=$(keytool -list -v \
+            -keystore "${RUNNER_TEMP}/garnacha-release.jks" \
+            -alias "${KEY_ALIAS}" -storepass "${STORE_PASSWORD}" 2>/dev/null \
+            | grep -i "SHA256:" | head -1 | tr -dc "0-9A-Fa-f" | tr "A-F" "a-f")
+          if [ -z "${apk_fp}" ] || [ "${apk_fp}" != "${key_fp}" ]; then
+            echo "::error::APK signing cert does not match the Garnacha release key."
+            exit 1
+          fi
+          echo "Signing cert verified against the Garnacha release key."
           mv "${APK}" "garnacha-boy-${GITHUB_REF_NAME}.apk"
 
       - name: Shred the signing material
@@ -95,7 +117,7 @@ jobs:
           shred -u mgba-android/app/keystore.properties 2>/dev/null || true
 
       - name: Publish the draft release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
           files: garnacha-boy-*.apk
           body_path: CHANGELOG.md
