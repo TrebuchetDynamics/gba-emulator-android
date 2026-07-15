@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.SystemClock;
+import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -31,6 +32,7 @@ final class EmulatorView extends View {
 
     private volatile int touchKeys;
     private volatile int hardwareKeys;
+    private int previousTouchKeys;
     private volatile boolean hasFrame;
     private volatile String status = "Tap to load a GBA ROM";
     private long lastInputMs = SystemClock.uptimeMillis();
@@ -224,6 +226,7 @@ final class EmulatorView extends View {
         lastInputMs = SystemClock.uptimeMillis();
         if (event.getActionMasked() == MotionEvent.ACTION_UP) {
             touchKeys = 0;
+            previousTouchKeys = 0;
             if (layout.isMenuHit(event.getX(), event.getY())) {
                 requestMenu.run();
             } else if (layout.isNoticesHit(event.getX(), event.getY())) {
@@ -241,6 +244,11 @@ final class EmulatorView extends View {
                 keys |= layout.keysAt(event.getX(i), event.getY(i));
             }
         }
+        if (FeelMath.introducesNewPress(previousTouchKeys, keys)) {
+            performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY,
+                    HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
+        }
+        previousTouchKeys = keys;
         touchKeys = keys;
         invalidate();
         return true;
