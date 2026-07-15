@@ -1,0 +1,24 @@
+# Maestro study flow: tour Lemuroid's UI to capture its UX conventions.
+# Requires the device to be physically unlocked first (adb cannot dismiss the
+# Samsung swipe keyguard). Run:
+#   ANDROID_SERIAL=<serial> maestro test mgba-android/tools/ui-study/lemuroid-tour.yaml
+# Screenshots land in ~/.maestro/tests/<timestamp>/ and are the study artifacts.
+appId: com.swordfish.lemuroid
+---
+- launchApp
+- takeScreenshot: 01-home-portrait
+# open the navigation / systems view
+- swipe:
+    start: "10%, 50%"
+    end: "60%, 50%"
+- takeScreenshot: 02-nav-drawer
+- pressKey: Back
+# settings tree
+- tapOn:
+    id: ".*settings.*"
+    optional: true
+- takeScreenshot: 03-settings-root
+- scroll
+- takeScreenshot: 04-settings-scrolled
+- pressKey: Back
+- takeScreenshot: 05-home-again
