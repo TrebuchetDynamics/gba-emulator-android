@@ -1,0 +1,103 @@
+name: Release
+
+# Builds, signs, and publishes a Garnacha Boy release APK when a v* tag is
+# pushed. The signing key never lives in the repo: it is restored from a base64
+# secret into a runner-temp file, referenced by a keystore.properties that this
+# job writes at build time (the same file build.gradle reads locally), then both
+# are shredded. The release is published as a DRAFT prerelease so a bad build
+# can never auto-publish — a human reviews and un-drafts it.
+#
+# Required repository secrets:
+#   GARNACHA_KEYSTORE_BASE64    base64 of garnacha-release.jks (base64 -w0)
+#   GARNACHA_KEYSTORE_PASSWORD  keystore password
+#   GARNACHA_KEY_ALIAS          key alias (garnacha)
+#   GARNACHA_KEY_PASSWORD       key password
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install the pinned native toolchain
+        run: sdkmanager "cmake;3.18.1" "ndk;22.1.7171670"
+
+      - name: Restore the signing key and credentials
+        env:
+          KEYSTORE_BASE64: ${{ secrets.GARNACHA_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.GARNACHA_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.GARNACHA_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.GARNACHA_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${KEYSTORE_BASE64}" ]; then
+            echo "::error::GARNACHA_KEYSTORE_BASE64 is not set — cannot sign a release."
+            exit 1
+          fi
+          echo "${KEYSTORE_BASE64}" | base64 -d > "${RUNNER_TEMP}/garnacha-release.jks"
+          test -s "${RUNNER_TEMP}/garnacha-release.jks"
+          # build.gradle reads mgba-android/app/keystore.properties (gitignored);
+          # write the CI copy pointing at the restored key.
+          {
+            echo "storeFile=${RUNNER_TEMP}/garnacha-release.jks"
+            echo "storePassword=${STORE_PASSWORD}"
+            echo "keyAlias=${KEY_ALIAS}"
+            echo "keyPassword=${KEY_PASSWORD}"
+          } > mgba-android/app/keystore.properties
+
+      - name: Build the signed release APK
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          GARNACHA_VERSION_NAME="${VERSION}" \
+          GARNACHA_VERSION_CODE="${GITHUB_RUN_NUMBER}" \
+          tools/android_project/gradlew -p mgba-android \
+            lintDebug :app:testDebugUnitTest :app:assembleRelease
+
+      - name: Verify the APK is signed with the expected key
+        run: |
+          set -euo pipefail
+          APK=mgba-android/app/build/outputs/apk/release/app-release.apk
+          if [ ! -f "${APK}" ]; then
+            echo "::error::release APK missing — the build did not produce a signed artifact."
+            exit 1
+          fi
+          "${ANDROID_HOME}/build-tools/35.0.0/apksigner" verify --print-certs "${APK}"
+          mv "${APK}" "garnacha-boy-${GITHUB_REF_NAME}.apk"
+
+      - name: Shred the signing material
+        if: always()
+        run: |
+          shred -u "${RUNNER_TEMP}/garnacha-release.jks" 2>/dev/null || true
+          shred -u mgba-android/app/keystore.properties 2>/dev/null || true
+
+      - name: Publish the draft release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: garnacha-boy-*.apk
+          body_path: CHANGELOG.md
+          draft: true
+          prerelease: true
