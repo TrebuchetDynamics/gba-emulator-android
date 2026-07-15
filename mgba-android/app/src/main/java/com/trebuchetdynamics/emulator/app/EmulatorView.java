@@ -19,6 +19,7 @@ final class EmulatorView extends View {
     private final RectF gameRect = new RectF();
     private final Runnable requestRom;
     private final Runnable requestNotices;
+    private final Runnable requestMenu;
 
     private ControlLayout layout = ControlLayout.of(1, 1);
 
@@ -28,13 +29,14 @@ final class EmulatorView extends View {
     private volatile String status = "Tap to load a GBA ROM";
 
     public EmulatorView(Context context) {
-        this(context, () -> {}, () -> {});
+        this(context, () -> {}, () -> {}, () -> {});
     }
 
-    EmulatorView(Context context, Runnable requestRom, Runnable requestNotices) {
+    EmulatorView(Context context, Runnable requestRom, Runnable requestNotices, Runnable requestMenu) {
         super(context);
         this.requestRom = requestRom;
         this.requestNotices = requestNotices;
+        this.requestMenu = requestMenu;
         setBackgroundColor(Color.rgb(14, 16, 20));
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -117,6 +119,16 @@ final class EmulatorView extends View {
         canvas.drawText("NOTICES", (layout.noticesLeft + layout.noticesRight) / 2,
                 layout.noticesTop + noticesHeight * 0.66f, paint);
 
+        paint.setColor(0xCC262A31);
+        canvas.drawRoundRect(layout.menuLeft, layout.menuTop,
+                layout.menuRight, layout.menuBottom, 12, 12, paint);
+        paint.setColor(Color.WHITE);
+        paint.setTextAlign(Paint.Align.CENTER);
+        float menuHeight = layout.menuBottom - layout.menuTop;
+        paint.setTextSize(menuHeight * 0.42f);
+        canvas.drawText("MENU", (layout.menuLeft + layout.menuRight) / 2,
+                layout.menuTop + menuHeight * 0.66f, paint);
+
         for (ControlLayout.Control control : layout.controls) {
             switch (control.shape) {
                 case DPAD:
@@ -175,7 +187,9 @@ final class EmulatorView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getActionMasked() == MotionEvent.ACTION_UP) {
             touchKeys = 0;
-            if (layout.isNoticesHit(event.getX(), event.getY())) {
+            if (layout.isMenuHit(event.getX(), event.getY())) {
+                requestMenu.run();
+            } else if (layout.isNoticesHit(event.getX(), event.getY())) {
                 requestNotices.run();
             } else if (!hasFrame || layout.isLoadHit(event.getX(), event.getY())) {
                 performClick();

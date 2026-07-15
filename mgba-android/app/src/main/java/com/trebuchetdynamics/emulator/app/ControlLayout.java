@@ -65,11 +65,16 @@ final class ControlLayout {
     final float noticesTop;
     final float noticesRight;
     final float noticesBottom;
+    final float menuLeft;
+    final float menuTop;
+    final float menuRight;
+    final float menuBottom;
     final List<Control> controls;
 
     private ControlLayout(float gameLeft, float gameTop, float gameRight, float gameBottom,
             float loadLeft, float loadTop, float loadRight, float loadBottom,
             float noticesLeft, float noticesTop, float noticesRight, float noticesBottom,
+            float menuLeft, float menuTop, float menuRight, float menuBottom,
             List<Control> controls) {
         this.gameLeft = gameLeft;
         this.gameTop = gameTop;
@@ -83,6 +88,10 @@ final class ControlLayout {
         this.noticesTop = noticesTop;
         this.noticesRight = noticesRight;
         this.noticesBottom = noticesBottom;
+        this.menuLeft = menuLeft;
+        this.menuTop = menuTop;
+        this.menuRight = menuRight;
+        this.menuBottom = menuBottom;
         this.controls = Collections.unmodifiableList(controls);
     }
 
@@ -130,6 +139,12 @@ final class ControlLayout {
         float noticesTop = chipGap;
         float noticesBottom = noticesTop + chipHeight;
 
+        float menuWidth = unit * 0.22f;
+        float menuRight = noticesLeft - 12;
+        float menuLeft = menuRight - menuWidth;
+        float menuTop = chipGap;
+        float menuBottom = menuTop + chipHeight;
+
         float controlsTop = gameBottom + margin;
         float controlsHeight = height - controlsTop;
 
@@ -165,7 +180,8 @@ final class ControlLayout {
 
         return new ControlLayout(gameLeft, gameTop, gameRight, gameBottom,
                 loadLeft, loadTop, loadRight, loadBottom,
-                noticesLeft, noticesTop, noticesRight, noticesBottom, controls);
+                noticesLeft, noticesTop, noticesRight, noticesBottom,
+                menuLeft, menuTop, menuRight, menuBottom, controls);
     }
 
     /**
@@ -223,6 +239,12 @@ final class ControlLayout {
         float noticesTop = chipGap;
         float noticesBottom = noticesTop + chipHeight;
 
+        float menuWidth = unit * 0.22f;
+        float menuRight = noticesLeft - 12;
+        float menuLeft = menuRight - menuWidth;
+        float menuTop = chipGap;
+        float menuBottom = menuTop + chipHeight;
+
         List<Control> controls = new ArrayList<>();
 
         float dpadX = gameLeft / 2f;
@@ -257,7 +279,8 @@ final class ControlLayout {
 
         return new ControlLayout(gameLeft, gameTop, gameRight, gameBottom,
                 loadLeft, loadTop, loadRight, loadBottom,
-                noticesLeft, noticesTop, noticesRight, noticesBottom, controls);
+                noticesLeft, noticesTop, noticesRight, noticesBottom,
+                menuLeft, menuTop, menuRight, menuBottom, controls);
     }
 
     /**
@@ -295,5 +318,11 @@ final class ControlLayout {
         float pad = 12f;
         return x >= noticesLeft - pad && x <= noticesRight + pad
                 && y >= noticesTop - pad && y <= noticesBottom + pad * 2f;
+    }
+
+    boolean isMenuHit(float x, float y) {
+        float pad = 12f;
+        return x >= menuLeft - pad && x <= menuRight + pad
+                && y >= menuTop - pad && y <= menuBottom + pad * 2f;
     }
 }

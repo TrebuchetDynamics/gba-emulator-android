@@ -1,6 +1,7 @@
 package com.trebuchetdynamics.emulator.app;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
@@ -149,6 +150,23 @@ public class ControlLayoutTest {
                 !intersects(
                         layout.noticesLeft, layout.noticesTop, layout.noticesRight, layout.noticesBottom,
                         layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom));
+    }
+
+    @Test
+    public void menuChipDoesNotOverlapOtherChipsOrTheGameScreen() {
+        for (ControlLayout l : new ControlLayout[] {
+                ControlLayout.of(LANDSCAPE_WIDTH, LANDSCAPE_HEIGHT),
+                ControlLayout.of(PORTRAIT_WIDTH, PORTRAIT_HEIGHT) }) {
+            assertFalse(intersects(
+                    l.menuLeft, l.menuTop, l.menuRight, l.menuBottom,
+                    l.gameLeft, l.gameTop, l.gameRight, l.gameBottom));
+            assertFalse(intersects(
+                    l.menuLeft, l.menuTop, l.menuRight, l.menuBottom,
+                    l.noticesLeft, l.noticesTop, l.noticesRight, l.noticesBottom));
+            assertFalse(intersects(
+                    l.menuLeft, l.menuTop, l.menuRight, l.menuBottom,
+                    l.loadLeft, l.loadTop, l.loadRight, l.loadBottom));
+        }
     }
 
     @Test
