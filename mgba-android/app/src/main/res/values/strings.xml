@@ -4,4 +4,12 @@
     <string name="notices_title">Open source notices</string>
     <string name="notices_button">Notices</string>
     <string name="status_no_rom">Tap to load a GBA ROM</string>
+    <string name="menu_save">Save state</string>
+    <string name="menu_load">Load state</string>
+    <string name="menu_fast_forward">Fast-forward</string>
+    <string name="menu_reset">Reset</string>
+    <string name="menu_settings">Settings (coming soon)</string>
+    <string name="menu_close">Close</string>
+    <string name="menu_slot_empty">Slot %1$d · empty</string>
+    <string name="menu_slot_filled">Slot %1$d · saved</string>
 </resources>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
@@ -22,6 +23,9 @@ public final class MainActivity extends Activity {
     private static final String STATE_ROM_URI = "romUri";
 
     private EmulatorView emulatorView;
+    private FrameLayout root;
+    private InGameMenuView menu;
+    private SaveStateStore states;
     private EmulationRunner runner;
     private Uri romUri;
     private File romFile;
@@ -44,8 +48,35 @@ public final class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 
-        emulatorView = new EmulatorView(this, this::openRomPicker, this::openNotices);
-        setContentView(emulatorView);
+        emulatorView = new EmulatorView(this, this::openRomPicker, this::openNotices, this::openMenu);
+        root = new FrameLayout(this);
+        root.addView(emulatorView);
+        menu = new InGameMenuView(this, new InGameMenuView.Listener() {
+            @Override public void onSaveSlot(int slot) {
+                if (runner != null) runner.postSaveState(slot);
+            }
+            @Override public void onLoadSlot(int slot) {
+                if (runner != null) runner.postLoadState(slot);
+            }
+            @Override public void onToggleFastForward() {
+                if (runner != null) {
+                    runner.setFastForward(!runner.isFastForward());
+                    refreshMenu();
+                }
+            }
+            @Override public void onReset() {
+                if (runner != null) runner.postReset();
+                closeMenu();
+            }
+            @Override public void onClose() {
+                closeMenu();
+            }
+        });
+        menu.setVisibility(View.GONE);
+        root.addView(menu, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));
+        setContentView(root);
         emulatorView.requestFocus();
 
         if (state != null) {
@@ -91,6 +122,24 @@ public final class MainActivity extends Activity {
 
     private void openNotices() {
         startActivity(new Intent(this, NoticesActivity.class));
+    }
+
+    private void openMenu() {
+        if (runner == null || states == null) {
+            return;
+        }
+        refreshMenu();
+        menu.setVisibility(View.VISIBLE);
+    }
+
+    private void closeMenu() {
+        menu.setVisibility(View.GONE);
+    }
+
+    private void refreshMenu() {
+        if (states != null && runner != null) {
+            menu.bind(states, runner.isFastForward());
+        }
     }
 
     private void openRomPicker() {
@@ -191,24 +240,56 @@ public final class MainActivity extends Activity {
         if (!resumed || romFile == null || romId == null || runner != null) {
             return;
         }
-        runner = new EmulationRunner(this, emulatorView, romFile, romId, message ->
-                runOnUiThread(() -> {
+        states = new SaveStateStore(new File(getFilesDir(), "states"), romId);
+        runner = new EmulationRunner(this, emulatorView, romFile, romId, states,
+                message -> runOnUiThread(() -> {
                     runner = null;
                     romFile = null;
                     romId = null;
                     romUri = null;
+                    closeMenu();
                     emulatorView.setStatus(message + " — tap to choose another ROM");
                     Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-                }));
+                }),
+                new EmulationRunner.StateListener() {
+                    @Override public void onStateSaved(int slot) {
+                        runOnUiThread(() -> {
+                            refreshMenu();
+                            Toast.makeText(MainActivity.this,
+                                    "Saved to slot " + slot, Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                    @Override public void onStateLoaded(int slot) {
+                        runOnUiThread(() -> {
+                            closeMenu();
+                            Toast.makeText(MainActivity.this,
+                                    "Loaded slot " + slot, Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                    @Override public void onStateError(String message) {
+                        runOnUiThread(() -> Toast.makeText(MainActivity.this,
+                                message, Toast.LENGTH_SHORT).show());
+                    }
+                });
         runner.start();
     }
 
     private void stopRunner() {
         if (runner != null) {
+            closeMenu();
             EmulationRunner active = runner;
             runner = null;
             active.stop();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (menu.getVisibility() == View.VISIBLE) {
+            closeMenu();
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override
