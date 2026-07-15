@@ -6,12 +6,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 
 final class EmulatorView extends View {
+    private static final int HOLD_MS = 1500;
+    private static final int FADE_MS = 500;
+    private static final int MIN_ALPHA = 60;
+
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Bitmap frame = Bitmap.createBitmap(
             MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT, Bitmap.Config.ARGB_8888);
@@ -28,6 +33,7 @@ final class EmulatorView extends View {
     private volatile int hardwareKeys;
     private volatile boolean hasFrame;
     private volatile String status = "Tap to load a GBA ROM";
+    private long lastInputMs = SystemClock.uptimeMillis();
 
     public EmulatorView(Context context) {
         this(context, () -> {}, () -> {}, () -> {});
@@ -49,6 +55,7 @@ final class EmulatorView extends View {
     }
 
     void setHardwareKey(int key, boolean pressed) {
+        lastInputMs = SystemClock.uptimeMillis();
         if (pressed) {
             hardwareKeys |= key;
         } else {
@@ -87,6 +94,11 @@ final class EmulatorView extends View {
         layout = ControlLayout.of(getWidth(), getHeight());
         gameRect.set(layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom);
 
+        int controlAlpha = hasFrame
+                ? FeelMath.controlAlpha(SystemClock.uptimeMillis(), lastInputMs,
+                        HOLD_MS, FADE_MS, MIN_ALPHA, 255)
+                : 255;
+
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);
         canvas.drawRoundRect(gameRect, 14, 14, paint); // letterbox backdrop
@@ -106,9 +118,11 @@ final class EmulatorView extends View {
         }
 
         paint.setColor(0xCC262A31);
+        paint.setAlpha(chipAlpha(controlAlpha));
         canvas.drawRoundRect(layout.loadLeft, layout.loadTop, layout.loadRight, layout.loadBottom,
                 12, 12, paint);
         paint.setColor(Color.WHITE);
+        paint.setAlpha(controlAlpha);
         paint.setTextAlign(Paint.Align.CENTER);
         float loadHeight = layout.loadBottom - layout.loadTop;
         paint.setTextSize(loadHeight * 0.42f);
@@ -116,9 +130,11 @@ final class EmulatorView extends View {
                 layout.loadTop + loadHeight * 0.66f, paint);
 
         paint.setColor(0xCC262A31);
+        paint.setAlpha(chipAlpha(controlAlpha));
         canvas.drawRoundRect(layout.noticesLeft, layout.noticesTop,
                 layout.noticesRight, layout.noticesBottom, 12, 12, paint);
         paint.setColor(Color.WHITE);
+        paint.setAlpha(controlAlpha);
         paint.setTextAlign(Paint.Align.CENTER);
         float noticesHeight = layout.noticesBottom - layout.noticesTop;
         paint.setTextSize(noticesHeight * 0.34f);
@@ -126,9 +142,11 @@ final class EmulatorView extends View {
                 layout.noticesTop + noticesHeight * 0.66f, paint);
 
         paint.setColor(0xCC262A31);
+        paint.setAlpha(chipAlpha(controlAlpha));
         canvas.drawRoundRect(layout.menuLeft, layout.menuTop,
                 layout.menuRight, layout.menuBottom, 12, 12, paint);
         paint.setColor(Color.WHITE);
+        paint.setAlpha(controlAlpha);
         paint.setTextAlign(Paint.Align.CENTER);
         float menuHeight = layout.menuBottom - layout.menuTop;
         paint.setTextSize(menuHeight * 0.42f);
@@ -138,26 +156,33 @@ final class EmulatorView extends View {
         for (ControlLayout.Control control : layout.controls) {
             switch (control.shape) {
                 case DPAD:
-                    drawDpad(canvas, control.cx, control.cy, control.halfWidth);
+                    drawDpad(canvas, control.cx, control.cy, control.halfWidth, controlAlpha);
                     break;
                 case CIRCLE:
                     drawButton(canvas, control.cx, control.cy, control.halfWidth,
-                            control.label, control.key);
+                            control.label, control.key, controlAlpha);
                     break;
                 case PILL:
-                    drawPill(canvas, control);
+                    drawPill(canvas, control, controlAlpha);
                     break;
             }
         }
     }
 
-    private void drawDpad(Canvas canvas, float cx, float cy, float radius) {
+    // Chips are already ~80% opaque (0xCC); scale that base by the fade factor.
+    private static int chipAlpha(int controlAlpha) {
+        return 0xCC * controlAlpha / 255;
+    }
+
+    private void drawDpad(Canvas canvas, float cx, float cy, float radius, int alpha) {
         paint.setColor(Color.rgb(62, 66, 74));
+        paint.setAlpha(alpha);
         paint.setStyle(Paint.Style.FILL);
         float arm = radius * 0.42f;
         canvas.drawRoundRect(cx - arm, cy - radius, cx + arm, cy + radius, 14, 14, paint);
         canvas.drawRoundRect(cx - radius, cy - arm, cx + radius, cy + arm, 14, 14, paint);
         paint.setColor(Color.rgb(120, 126, 138));
+        paint.setAlpha(alpha);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(radius * 0.38f);
         canvas.drawText("▲", cx, cy - radius * 0.48f, paint);
@@ -166,24 +191,29 @@ final class EmulatorView extends View {
         canvas.drawText("▶", cx + radius * 0.62f, cy + radius * 0.13f, paint);
     }
 
-    private void drawButton(Canvas canvas, float cx, float cy, float radius, String label, int key) {
+    private void drawButton(Canvas canvas, float cx, float cy, float radius, String label, int key,
+            int alpha) {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor((keys() & key) != 0 ? Color.rgb(113, 153, 222) : Color.rgb(62, 66, 74));
+        paint.setAlpha(alpha);
         canvas.drawCircle(cx, cy, radius, paint);
         paint.setColor(Color.WHITE);
+        paint.setAlpha(alpha);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(radius * 0.72f);
         canvas.drawText(label, cx, cy + radius * 0.25f, paint);
     }
 
-    private void drawPill(Canvas canvas, ControlLayout.Control control) {
+    private void drawPill(Canvas canvas, ControlLayout.Control control, int alpha) {
         float left = control.cx - control.halfWidth;
         float right = control.cx + control.halfWidth;
         float top = control.cy - control.halfHeight;
         float bottom = control.cy + control.halfHeight;
         paint.setColor((keys() & control.key) != 0 ? Color.rgb(113, 153, 222) : Color.rgb(62, 66, 74));
+        paint.setAlpha(alpha);
         canvas.drawRoundRect(left, top, right, bottom, control.halfHeight, control.halfHeight, paint);
         paint.setColor(Color.WHITE);
+        paint.setAlpha(alpha);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(control.halfHeight * 0.9f);
         canvas.drawText(control.label, control.cx, control.cy + control.halfHeight * 0.32f, paint);
@@ -191,6 +221,7 @@ final class EmulatorView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        lastInputMs = SystemClock.uptimeMillis();
         if (event.getActionMasked() == MotionEvent.ACTION_UP) {
             touchKeys = 0;
             if (layout.isMenuHit(event.getX(), event.getY())) {
