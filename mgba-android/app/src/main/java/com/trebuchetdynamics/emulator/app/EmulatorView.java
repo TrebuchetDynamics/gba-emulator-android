@@ -17,6 +17,7 @@ final class EmulatorView extends View {
             MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT, Bitmap.Config.ARGB_8888);
     private final Object frameLock = new Object();
     private final RectF gameRect = new RectF();
+    private final RectF frameDst = new RectF();
     private final Runnable requestRom;
     private final Runnable requestNotices;
     private final Runnable requestMenu;
@@ -38,6 +39,7 @@ final class EmulatorView extends View {
         this.requestNotices = requestNotices;
         this.requestMenu = requestMenu;
         setBackgroundColor(Color.rgb(14, 16, 20));
+        paint.setFilterBitmap(false); // crisp GBA pixels, no bilinear smoothing
         setFocusable(true);
         setFocusableInTouchMode(true);
     }
@@ -87,10 +89,14 @@ final class EmulatorView extends View {
 
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);
-        canvas.drawRoundRect(gameRect, 14, 14, paint);
+        canvas.drawRoundRect(gameRect, 14, 14, paint); // letterbox backdrop
         if (hasFrame) {
+            FeelMath.Box draw = FeelMath.integerScale(
+                    gameRect.left, gameRect.top, gameRect.right, gameRect.bottom,
+                    MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT);
+            frameDst.set(draw.left, draw.top, draw.right, draw.bottom);
             synchronized (frameLock) {
-                canvas.drawBitmap(frame, null, gameRect, paint);
+                canvas.drawBitmap(frame, null, frameDst, paint);
             }
         } else {
             paint.setColor(Color.WHITE);
