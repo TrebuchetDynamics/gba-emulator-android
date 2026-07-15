@@ -1,9 +1,9 @@
 package com.trebuchetdynamics.emulator.app;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 
 /**
  * Per-ROM save-state slots on disk. Pure java.io so it unit-tests on the JVM.
@@ -12,6 +12,7 @@ import java.nio.file.Files;
  */
 final class SaveStateStore {
     static final int SLOT_COUNT = 4;
+    private static final long MAX_STATE_BYTES = 16L * 1024 * 1024;
 
     private final File romDir;
 
@@ -52,7 +53,22 @@ final class SaveStateStore {
         if (!file.isFile()) {
             return null;
         }
-        return Files.readAllBytes(file.toPath());
+        long length = file.length();
+        if (length <= 0 || length > MAX_STATE_BYTES) {
+            throw new IOException("Save state is missing, empty, or too large");
+        }
+        byte[] data = new byte[(int) length];
+        try (FileInputStream in = new FileInputStream(file)) {
+            int offset = 0;
+            while (offset < data.length) {
+                int count = in.read(data, offset, data.length - offset);
+                if (count < 0) {
+                    throw new IOException("Truncated save state");
+                }
+                offset += count;
+            }
+        }
+        return data;
     }
 
     boolean exists(int slot) {
