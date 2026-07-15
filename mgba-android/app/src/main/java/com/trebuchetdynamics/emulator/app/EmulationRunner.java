@@ -136,6 +136,9 @@ final class EmulationRunner implements Runnable {
                 if (audioFrames < 0) {
                     throw new IllegalStateException("mGBA failed to run a frame");
                 }
+                // Audio is intentionally skipped during fast-forward, which starves the
+                // AudioTrack; expect getUnderrunCount() below to climb during FF — a
+                // reading artifact, not a real glitch.
                 if (!ff && audioTrack != null && audioFrames > 0) {
                     audioTrack.write(audio, 0, audioFrames * 2, AudioTrack.WRITE_BLOCKING);
                 }

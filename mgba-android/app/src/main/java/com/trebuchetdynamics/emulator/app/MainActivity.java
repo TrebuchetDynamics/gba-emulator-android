@@ -294,6 +294,11 @@ public final class MainActivity extends Activity {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
+        // While the menu overlay is open, let the view hierarchy handle keys
+        // (gamepad navigation of the menu); do not drive the game underneath.
+        if (menu != null && menu.getVisibility() == View.VISIBLE) {
+            return super.dispatchKeyEvent(event);
+        }
         int key = mapKey(event.getKeyCode());
         if (key != 0) {
             emulatorView.setHardwareKey(key, event.getAction() == KeyEvent.ACTION_DOWN);

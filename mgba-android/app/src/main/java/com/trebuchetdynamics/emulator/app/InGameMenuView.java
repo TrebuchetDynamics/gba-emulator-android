@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.IOException;
-
 /** Translucent in-game menu drawn over the running game. Built in code. */
 final class InGameMenuView extends LinearLayout {
     interface Listener {
