@@ -69,4 +69,14 @@ public class SaveStateStoreTest {
         assertThrows(IllegalArgumentException.class,
                 () -> s.write(SaveStateStore.SLOT_COUNT + 1, new byte[] {1}));
     }
+
+    @Test
+    public void unsafeRomIdsAreRejected() throws IOException {
+        File root = Files.createTempDirectory("states").toFile();
+        root.deleteOnExit();
+        assertThrows(IllegalArgumentException.class,
+                () -> new SaveStateStore(root, "../evil"));
+        assertThrows(IllegalArgumentException.class,
+                () -> new SaveStateStore(root, ".."));
+    }
 }

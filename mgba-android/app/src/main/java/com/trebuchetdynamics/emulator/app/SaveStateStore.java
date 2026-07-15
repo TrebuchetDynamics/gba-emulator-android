@@ -16,6 +16,10 @@ final class SaveStateStore {
     private final File romDir;
 
     SaveStateStore(File statesRoot, String romId) {
+        if (romId == null || !romId.matches("[A-Za-z0-9._-]+")
+                || romId.equals(".") || romId.equals("..")) {
+            throw new IllegalArgumentException("Unsafe ROM id");
+        }
         this.romDir = new File(statesRoot, romId);
     }
 
