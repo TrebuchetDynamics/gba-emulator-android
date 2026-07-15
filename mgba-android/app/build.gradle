@@ -11,8 +11,10 @@ android {
         applicationId 'com.trebuchetdynamics.garnacha'
         minSdk 24
         targetSdk 35
-        versionCode 1
-        versionName '0.1.0'
+        // A tag push (refs/tags/v0.1.0) sets these in CI. Local builds fall
+        // back to a dev marker so they can never be mistaken for a release.
+        versionCode Integer.parseInt(System.getenv('GARNACHA_VERSION_CODE') ?: '1')
+        versionName System.getenv('GARNACHA_VERSION_NAME') ?: '0.1.0-dev'
     }
 
     buildTypes {
