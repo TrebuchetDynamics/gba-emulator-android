@@ -72,6 +72,10 @@ public final class MainActivity extends Activity {
                 if (runner != null) runner.postReset();
                 closeMenu();
             }
+            @Override public void onSettings() {
+                startActivity(new android.content.Intent(MainActivity.this, SettingsActivity.class));
+                closeMenu();
+            }
             @Override public void onClose() {
                 closeMenu();
             }

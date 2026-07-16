@@ -8,7 +8,7 @@
     <string name="menu_load">Load state</string>
     <string name="menu_fast_forward">Fast-forward</string>
     <string name="menu_reset">Reset</string>
-    <string name="menu_settings">Settings (coming soon)</string>
+    <string name="menu_settings">Settings</string>
     <string name="menu_close">Close</string>
     <string name="menu_slot_empty">Slot %1$d · empty</string>
     <string name="menu_slot_filled">Slot %1$d · saved</string>
@@ -22,4 +22,22 @@
     <string name="library_delete_message">This removes %1$s and its saves and save states. This cannot be undone.</string>
     <string name="library_delete_confirm">Delete</string>
     <string name="library_cancel">Cancel</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_open">Settings</string>
+    <string name="settings_group_video">Video</string>
+    <string name="settings_group_audio">Audio</string>
+    <string name="settings_group_controls">Controls</string>
+    <string name="settings_group_emulation">Emulation</string>
+    <string name="settings_orientation">Orientation</string>
+    <string name="settings_orientation_auto">Automatic</string>
+    <string name="settings_orientation_portrait">Portrait</string>
+    <string name="settings_orientation_landscape">Landscape</string>
+    <string name="settings_scale">Scaling</string>
+    <string name="settings_scale_integer">Integer (crisp)</string>
+    <string name="settings_scale_fill">Fill screen</string>
+    <string name="settings_audio_enabled">Sound</string>
+    <string name="settings_volume">Volume</string>
+    <string name="settings_haptics">Vibrate on touch</string>
+    <string name="settings_opacity">Control opacity when idle</string>
+    <string name="settings_ff_speed">Fast-forward speed</string>
 </resources>

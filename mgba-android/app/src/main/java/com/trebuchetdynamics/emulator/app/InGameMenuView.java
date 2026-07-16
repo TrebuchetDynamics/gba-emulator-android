@@ -15,6 +15,7 @@ final class InGameMenuView extends LinearLayout {
         void onLoadSlot(int slot);
         void onToggleFastForward();
         void onReset();
+        void onSettings();
         void onClose();
     }
 
@@ -43,9 +44,7 @@ final class InGameMenuView extends LinearLayout {
                 v -> listener.onToggleFastForward());
         addView(fastForwardButton);
         addView(wideButton(context.getString(R.string.menu_reset), v -> listener.onReset()));
-        Button settings = wideButton(context.getString(R.string.menu_settings), null);
-        settings.setEnabled(false); // Phase 4 wires the settings screen.
-        addView(settings);
+        addView(wideButton(context.getString(R.string.menu_settings), v -> listener.onSettings()));
         addView(wideButton(context.getString(R.string.menu_close), v -> listener.onClose()));
     }
 

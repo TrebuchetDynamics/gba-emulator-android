@@ -26,5 +26,9 @@
             android:name=".NoticesActivity"
             android:exported="false"
             android:label="@string/notices_title" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings_title" />
     </application>
 </manifest>

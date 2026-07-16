@@ -55,6 +55,12 @@ public final class LibraryActivity extends Activity {
         importButton.setAllCaps(false);
         importButton.setOnClickListener(v -> openRomPicker());
         header.addView(importButton);
+        android.widget.Button settingsButton = new android.widget.Button(this);
+        settingsButton.setText(R.string.settings_open);
+        settingsButton.setAllCaps(false);
+        settingsButton.setOnClickListener(v ->
+                startActivity(new android.content.Intent(this, SettingsActivity.class)));
+        header.addView(settingsButton);
         root.addView(header);
 
         emptyView = new TextView(this);
