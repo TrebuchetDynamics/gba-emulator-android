@@ -55,10 +55,14 @@ final class EmulationRunner implements Runnable {
     private final StateListener stateListener;
     private final Queue<Command> commands = new ConcurrentLinkedQueue<>();
     private volatile boolean fastForward;
+    private final boolean audioEnabled;
+    private final float audioVolume; // 0f..1f
+    private final int fastForwardSpeed;
 
     EmulationRunner(Context context, EmulatorView view, File rom, String romId,
                     SaveStateStore states, ErrorListener errors,
-                    StateListener stateListener) {
+                    StateListener stateListener,
+                    boolean audioEnabled, float audioVolume, int fastForwardSpeed) {
         this.context = context.getApplicationContext();
         this.view = view;
         this.rom = rom;
@@ -66,6 +70,9 @@ final class EmulationRunner implements Runnable {
         this.states = states;
         this.errors = errors;
         this.stateListener = stateListener;
+        this.audioEnabled = audioEnabled;
+        this.audioVolume = audioVolume;
+        this.fastForwardSpeed = fastForwardSpeed;
         thread = new Thread(this, "mgba-emulation");
     }
 
@@ -115,7 +122,9 @@ final class EmulationRunner implements Runnable {
             session.loadRom(rom);
             File saveFile = saveFile();
             restoreSavedata(session, saveFile);
-            audioTrack = createAudioTrack();
+            if (audioEnabled) {
+                audioTrack = createAudioTrack();
+            }
             if (audioTrack != null) {
                 audioTrack.play();
             }
@@ -129,7 +138,7 @@ final class EmulationRunner implements Runnable {
             while (running) {
                 applyCommands(session);
                 boolean ff = fastForward;
-                long budget = frameBudgetNanos(ff, 4);
+                long budget = frameBudgetNanos(ff, fastForwardSpeed);
                 long frameStart = SystemClock.elapsedRealtimeNanos();
                 int audioFrames = session.runFrame(view.keys(), pixels, audio);
                 if (audioFrames < 0) {
@@ -225,6 +234,7 @@ final class EmulationRunner implements Runnable {
             track.release();
             return null;
         }
+        track.setVolume(audioVolume);
         return track;
     }
 

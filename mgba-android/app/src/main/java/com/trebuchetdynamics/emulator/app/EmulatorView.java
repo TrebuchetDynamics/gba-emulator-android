@@ -16,7 +16,10 @@ import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 final class EmulatorView extends View {
     private static final int HOLD_MS = 1500;
     private static final int FADE_MS = 500;
-    private static final int MIN_ALPHA = 60;
+
+    private int minAlpha = 60;              // was MIN_ALPHA constant
+    private boolean hapticsEnabled = true;
+    private boolean integerScale = true;    // false = fill
 
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Bitmap frame = Bitmap.createBitmap(
@@ -66,6 +69,20 @@ final class EmulatorView extends View {
         invalidate();
     }
 
+    void setHapticsEnabled(boolean enabled) {
+        hapticsEnabled = enabled;
+    }
+
+    void setIdleOpacityAlpha(int alpha) {
+        minAlpha = Math.max(0, Math.min(255, alpha));
+        invalidate();
+    }
+
+    void setIntegerScale(boolean integer) {
+        integerScale = integer;
+        invalidate();
+    }
+
     void setStatus(String value) {
         status = value;
         if (!"Running".equals(value)) {
@@ -98,16 +115,18 @@ final class EmulatorView extends View {
 
         int controlAlpha = hasFrame
                 ? FeelMath.controlAlpha(SystemClock.uptimeMillis(), lastInputMs,
-                        HOLD_MS, FADE_MS, MIN_ALPHA, 255)
+                        HOLD_MS, FADE_MS, minAlpha, 255)
                 : 255;
 
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);
         canvas.drawRoundRect(gameRect, 14, 14, paint); // letterbox backdrop
         if (hasFrame) {
-            FeelMath.Box draw = FeelMath.integerScale(
-                    gameRect.left, gameRect.top, gameRect.right, gameRect.bottom,
-                    MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT);
+            FeelMath.Box draw = integerScale
+                    ? FeelMath.integerScale(gameRect.left, gameRect.top, gameRect.right,
+                            gameRect.bottom, MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT)
+                    : FeelMath.fitScale(gameRect.left, gameRect.top, gameRect.right,
+                            gameRect.bottom, MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT);
             frameDst.set(draw.left, draw.top, draw.right, draw.bottom);
             synchronized (frameLock) {
                 canvas.drawBitmap(frame, null, frameDst, paint);
@@ -244,7 +263,7 @@ final class EmulatorView extends View {
                 keys |= layout.keysAt(event.getX(i), event.getY(i));
             }
         }
-        if (FeelMath.introducesNewPress(previousTouchKeys, keys)) {
+        if (hapticsEnabled && FeelMath.introducesNewPress(previousTouchKeys, keys)) {
             performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY,
                     HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
         }

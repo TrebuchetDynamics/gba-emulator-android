@@ -26,10 +26,13 @@ public final class MainActivity extends Activity {
     private File romFile;
     private String romId;
     private boolean resumed;
+    private Settings settings;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+        settings = new Settings(this);
+        applyOrientation();
         library = new RomLibrary(getFilesDir());
         String requestedRomId = getIntent().getStringExtra(EXTRA_ROM_ID);
         if (requestedRomId != null && library.exists(requestedRomId)) {
@@ -96,8 +99,25 @@ public final class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         resumed = true;
+        applyOrientation();
+        emulatorView.setHapticsEnabled(settings.haptics());
+        emulatorView.setIdleOpacityAlpha(Settings.opacityPercentToAlpha(settings.controlOpacityPercent()));
+        emulatorView.setIntegerScale(settings.scaleMode() == Settings.ScaleMode.INTEGER);
         if (romFile != null && romFile.isFile()) {
             startRunner();
+        }
+    }
+
+    private void applyOrientation() {
+        switch (settings.orientation()) {
+            case PORTRAIT:
+                setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                break;
+            case LANDSCAPE:
+                setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                break;
+            default:
+                setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         }
     }
 
@@ -173,7 +193,10 @@ public final class MainActivity extends Activity {
                         runOnUiThread(() -> Toast.makeText(MainActivity.this,
                                 message, Toast.LENGTH_SHORT).show());
                     }
-                });
+                },
+                settings.audioEnabled(),
+                settings.audioVolumePercent() / 100f,
+                settings.fastForwardSpeed());
         runner.start();
     }
 
