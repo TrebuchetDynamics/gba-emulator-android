@@ -13,13 +13,10 @@ import android.widget.Toast;
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public final class MainActivity extends Activity {
     private static final int OPEN_ROM = 100;
-    private static final int MAX_ROM_BYTES = 32 * 1024 * 1024;
     private static final String STATE_ROM_URI = "romUri";
 
     private EmulatorView emulatorView;
@@ -27,6 +24,7 @@ public final class MainActivity extends Activity {
     private InGameMenuView menu;
     private SaveStateStore states;
     private EmulationRunner runner;
+    private RomLibrary library;
     private Uri romUri;
     private File romFile;
     private String romId;
@@ -37,6 +35,7 @@ public final class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+        library = new RomLibrary(getFilesDir());
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setStatusBarColor(0xFF0E1014);
         getWindow().setNavigationBarColor(0xFF0E1014);
@@ -179,14 +178,14 @@ public final class MainActivity extends Activity {
         emulatorView.setStatus("Importing ROM…");
         new Thread(() -> {
             try {
-                ImportedRom imported = importRom(uri);
+                RomImporter.Result imported = new RomImporter(this, library).importRom(uri);
                 runOnUiThread(() -> {
                     if (generation != loadGeneration || isFinishing()) {
                         return;
                     }
                     importing = false;
-                    romFile = imported.file;
-                    romId = imported.id;
+                    romFile = imported.romFile;
+                    romId = imported.romId;
                     if (resumed) {
                         startRunner();
                     }
@@ -204,36 +203,6 @@ public final class MainActivity extends Activity {
                 });
             }
         }, "rom-import").start();
-    }
-
-    private ImportedRom importRom(Uri uri) throws IOException {
-        File directory = new File(getFilesDir(), "roms");
-        if (!directory.isDirectory() && !directory.mkdirs()) {
-            throw new IOException("Could not create private ROM directory");
-        }
-        File temporary = File.createTempFile("import-", ".tmp", directory);
-        byte[] hash;
-        try (InputStream input = getContentResolver().openInputStream(uri);
-             FileOutputStream output = new FileOutputStream(temporary)) {
-            if (input == null) {
-                throw new IOException("Content provider returned no data");
-            }
-            hash = RomArchive.extractRom(input, output, MAX_ROM_BYTES);
-            output.getFD().sync();
-        } catch (IOException | RuntimeException e) {
-            temporary.delete();
-            throw e;
-        }
-
-        String id = hex(hash);
-        File destination = new File(directory, id + ".gba");
-        if (destination.isFile()) {
-            temporary.delete();
-        } else if (!temporary.renameTo(destination)) {
-            temporary.delete();
-            throw new IOException("Could not finish private ROM import");
-        }
-        return new ImportedRom(destination, id);
     }
 
     private void startRunner() {
@@ -305,26 +274,6 @@ public final class MainActivity extends Activity {
             return true;
         }
         return super.dispatchKeyEvent(event);
-    }
-
-    private static String hex(byte[] bytes) {
-        char[] digits = "0123456789abcdef".toCharArray();
-        char[] result = new char[bytes.length * 2];
-        for (int i = 0; i < bytes.length; ++i) {
-            result[i * 2] = digits[(bytes[i] >>> 4) & 0xF];
-            result[i * 2 + 1] = digits[bytes[i] & 0xF];
-        }
-        return new String(result);
-    }
-
-    private static final class ImportedRom {
-        final File file;
-        final String id;
-
-        ImportedRom(File file, String id) {
-            this.file = file;
-            this.id = id;
-        }
     }
 
     private static int mapKey(int keyCode) {
