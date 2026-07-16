@@ -44,7 +44,7 @@ final class RomLibrary {
     }
 
     /** Imported ROMs, most-recently-played first (case-insensitive name tie-break). */
-    List<Entry> list() {
+    synchronized List<Entry> list() {
         Properties meta = loadMeta();
         List<Entry> entries = new ArrayList<>();
         File[] files = romsDir.listFiles();
@@ -70,14 +70,14 @@ final class RomLibrary {
         return entries;
     }
 
-    void record(String romId, String displayName, long nowMs) throws IOException {
+    synchronized void record(String romId, String displayName, long nowMs) throws IOException {
         Properties meta = loadMeta();
         meta.setProperty(romId + ".name", displayName);
         meta.setProperty(romId + ".played", Long.toString(nowMs));
         storeMeta(meta);
     }
 
-    void touch(String romId, long nowMs) throws IOException {
+    synchronized void touch(String romId, long nowMs) throws IOException {
         Properties meta = loadMeta();
         meta.setProperty(romId + ".played", Long.toString(nowMs));
         storeMeta(meta);
@@ -87,7 +87,7 @@ final class RomLibrary {
         return new File(romsDir, romId + ".gba").isFile();
     }
 
-    void delete(String romId) throws IOException {
+    synchronized void delete(String romId) throws IOException {
         new File(romsDir, romId + ".gba").delete();
         new File(savesDir, romId + ".sav").delete();
         new File(savesDir, romId + ".sav.tmp").delete();
@@ -115,14 +115,24 @@ final class RomLibrary {
         if (dir != null && !dir.isDirectory()) {
             dir.mkdirs();
         }
-        File temp = new File(metaFile.getPath() + ".tmp");
-        try (FileOutputStream out = new FileOutputStream(temp)) {
-            meta.store(out, "Garnacha Boy library");
-            out.getFD().sync();
-        }
-        if (!temp.renameTo(metaFile)) {
-            temp.delete();
-            throw new IOException("Could not save the library index");
+        // A unique temp file per write means two concurrent writers never share a
+        // path, so one store() can never clobber another mid-write. The rename onto
+        // metaFile is still atomic on the Android/Linux target.
+        File temp = File.createTempFile("library-", ".tmp", dir);
+        boolean renamed = false;
+        try {
+            try (FileOutputStream out = new FileOutputStream(temp)) {
+                meta.store(out, "Garnacha Boy library");
+                out.getFD().sync();
+            }
+            if (!temp.renameTo(metaFile)) {
+                throw new IOException("Could not save the library index");
+            }
+            renamed = true;
+        } finally {
+            if (!renamed) {
+                temp.delete();
+            }
         }
     }
 

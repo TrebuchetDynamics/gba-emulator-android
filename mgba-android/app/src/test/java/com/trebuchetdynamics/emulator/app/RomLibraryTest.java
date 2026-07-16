@@ -118,4 +118,37 @@ public class RomLibraryTest {
         assertEquals(1, entries.size());
         assertEquals("good", entries.get(0).romId);
     }
+
+    @Test
+    public void concurrentRecordsDoNotLoseEntries() throws Exception {
+        final RomLibrary lib = new RomLibrary(filesDir);
+        int n = 20;
+        Thread[] threads = new Thread[n];
+        for (int i = 0; i < n; i++) {
+            final int idx = i;
+            threads[i] = new Thread(() -> {
+                try {
+                    writeRom("rom" + idx);
+                    lib.record("rom" + idx, "Name" + idx, idx);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+        for (Thread t : threads) t.start();
+        for (Thread t : threads) t.join();
+
+        List<RomLibrary.Entry> entries = lib.list();
+        assertEquals(n, entries.size());
+        for (int i = 0; i < n; i++) {
+            boolean found = false;
+            for (RomLibrary.Entry e : entries) {
+                if (("rom" + i).equals(e.romId)) {
+                    found = true;
+                    break;
+                }
+            }
+            assertTrue("missing rom" + i, found);
+        }
+    }
 }
