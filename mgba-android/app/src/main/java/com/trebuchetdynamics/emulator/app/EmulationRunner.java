@@ -41,7 +41,6 @@ final class EmulationRunner implements Runnable {
     }
 
     private static final long FRAME_NANOS = 16_743_000L;
-    private static final int FAST_FORWARD_SPEED = 4;
     private static final String PERF_TAG = "MgbaPerf";
     private static final long PERF_LOG_INTERVAL_NANOS = 10_000_000_000L;
 
@@ -104,8 +103,8 @@ final class EmulationRunner implements Runnable {
         return fastForward;
     }
 
-    static long frameBudgetNanos(boolean fastForward) {
-        return fastForward ? FRAME_NANOS / FAST_FORWARD_SPEED : FRAME_NANOS;
+    static long frameBudgetNanos(boolean fastForward, int fastForwardSpeed) {
+        return fastForward ? FRAME_NANOS / fastForwardSpeed : FRAME_NANOS;
     }
 
     @Override
@@ -130,7 +129,7 @@ final class EmulationRunner implements Runnable {
             while (running) {
                 applyCommands(session);
                 boolean ff = fastForward;
-                long budget = frameBudgetNanos(ff);
+                long budget = frameBudgetNanos(ff, 4);
                 long frameStart = SystemClock.elapsedRealtimeNanos();
                 int audioFrames = session.runFrame(view.keys(), pixels, audio);
                 if (audioFrames < 0) {

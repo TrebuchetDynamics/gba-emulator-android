@@ -10,13 +10,13 @@ public class EmulationRunnerTest {
 
     @Test
     public void normalSpeedUsesTheFullFrameBudget() {
-        assertEquals(FRAME_NANOS, EmulationRunner.frameBudgetNanos(false));
+        assertEquals(FRAME_NANOS, EmulationRunner.frameBudgetNanos(false, 4));
     }
 
     @Test
-    public void fastForwardShrinksTheBudget() {
-        long ff = EmulationRunner.frameBudgetNanos(true);
-        assertTrue("fast-forward budget must be smaller", ff < FRAME_NANOS);
-        assertEquals(FRAME_NANOS / 4, ff);
+    public void fastForwardDividesTheBudgetBySpeed() {
+        assertEquals(FRAME_NANOS / 4, EmulationRunner.frameBudgetNanos(true, 4));
+        assertEquals(FRAME_NANOS / 2, EmulationRunner.frameBudgetNanos(true, 2));
+        assertEquals(FRAME_NANOS / 3, EmulationRunner.frameBudgetNanos(true, 3));
     }
 }

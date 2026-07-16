@@ -63,4 +63,23 @@ public class FeelMathTest {
         assertFalse(FeelMath.introducesNewPress(3, 1));     // release B, no new press
         assertFalse(FeelMath.introducesNewPress(1, 0));     // release A
     }
+
+    @Test
+    public void fitScaleFillsAndPreservesAspect() {
+        // box 1200x840 at origin, src 240x160 (3:2). Aspect-fit scale = min(1200/240, 840/160)
+        // = min(5.0, 5.25) = 5.0 -> 1200x800, centred: top padded (840-800)/2 = 20.
+        FeelMath.Box b = FeelMath.fitScale(0, 0, 1200, 840, 240, 160);
+        assertEquals(0f, b.left, 0.001f);
+        assertEquals(20f, b.top, 0.001f);
+        assertEquals(1200f, b.right, 0.001f);
+        assertEquals(820f, b.bottom, 0.001f);
+    }
+
+    @Test
+    public void fitScaleIsNonIntegerWhenIntegerWouldWaste() {
+        // box exactly 1260x840: fit scale 5.25 -> 1260x840 (fills), vs integerScale would give 5x=1200x800.
+        FeelMath.Box b = FeelMath.fitScale(0, 0, 1260, 840, 240, 160);
+        assertEquals(1260f, b.right - b.left, 0.001f);
+        assertEquals(840f, b.bottom - b.top, 0.001f);
+    }
 }
