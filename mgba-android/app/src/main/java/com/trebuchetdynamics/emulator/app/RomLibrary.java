@@ -103,8 +103,8 @@ final class RomLibrary {
         if (metaFile.isFile()) {
             try (FileInputStream in = new FileInputStream(metaFile)) {
                 p.load(in);
-            } catch (IOException ignored) {
-                // A corrupt index must not break enumeration.
+            } catch (IOException | RuntimeException ignored) {
+                // A corrupt or malformed index must not break enumeration.
             }
         }
         return p;

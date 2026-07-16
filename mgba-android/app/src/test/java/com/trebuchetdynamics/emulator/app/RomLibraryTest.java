@@ -108,4 +108,14 @@ public class RomLibraryTest {
         assertFalse(states.exists());
         assertTrue(lib.list().isEmpty()); // index entry gone too
     }
+
+    @Test
+    public void corruptIndexDoesNotBreakEnumeration() throws IOException {
+        writeRom("good");
+        Files.write(new File(filesDir, "library.properties").toPath(),
+                "bad=\\uZZZZ\n".getBytes());
+        List<RomLibrary.Entry> entries = new RomLibrary(filesDir).list();
+        assertEquals(1, entries.size());
+        assertEquals("good", entries.get(0).romId);
+    }
 }
