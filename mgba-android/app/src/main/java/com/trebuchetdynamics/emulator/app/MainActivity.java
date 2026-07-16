@@ -2,7 +2,6 @@ package com.trebuchetdynamics.emulator.app;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,8 +15,6 @@ import java.io.File;
 import java.io.IOException;
 
 public final class MainActivity extends Activity {
-    private static final int OPEN_ROM = 100;
-    private static final String STATE_ROM_URI = "romUri";
     public static final String EXTRA_ROM_ID = "com.trebuchetdynamics.garnacha.ROM_ID";
 
     private EmulatorView emulatorView;
@@ -26,12 +23,9 @@ public final class MainActivity extends Activity {
     private SaveStateStore states;
     private EmulationRunner runner;
     private RomLibrary library;
-    private Uri romUri;
     private File romFile;
     private String romId;
     private boolean resumed;
-    private boolean importing;
-    private int loadGeneration;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -89,11 +83,8 @@ public final class MainActivity extends Activity {
         setContentView(root);
         emulatorView.requestFocus();
 
-        if (state != null) {
-            String savedUri = state.getString(STATE_ROM_URI);
-            if (savedUri != null) {
-                romUri = Uri.parse(savedUri);
-            }
+        if (romFile == null) {
+            finish();
         }
     }
 
@@ -103,8 +94,6 @@ public final class MainActivity extends Activity {
         resumed = true;
         if (romFile != null && romFile.isFile()) {
             startRunner();
-        } else if (romUri != null && !importing) {
-            importRomAsync(romUri);
         }
     }
 
@@ -117,17 +106,8 @@ public final class MainActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        ++loadGeneration;
         stopRunner();
         super.onDestroy();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle state) {
-        super.onSaveInstanceState(state);
-        if (romUri != null) {
-            state.putString(STATE_ROM_URI, romUri.toString());
-        }
     }
 
     private void openNotices() {
@@ -153,67 +133,7 @@ public final class MainActivity extends Activity {
     }
 
     private void openRomPicker() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
-                | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-        startActivityForResult(intent, OPEN_ROM);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode != OPEN_ROM || resultCode != RESULT_OK || data == null) {
-            return;
-        }
-        Uri selected = data.getData();
-        if (selected == null) {
-            return;
-        }
-        try {
-            getContentResolver().takePersistableUriPermission(
-                    selected, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        } catch (SecurityException ignored) {
-            // The temporary grant is sufficient for the immediate private-file import.
-        }
-        romUri = selected;
-        romFile = null;
-        romId = null;
-        importRomAsync(selected);
-    }
-
-    private void importRomAsync(Uri uri) {
-        final int generation = ++loadGeneration;
-        importing = true;
-        emulatorView.setStatus("Importing ROM…");
-        new Thread(() -> {
-            try {
-                RomImporter.Result imported = new RomImporter(this, library).importRom(uri);
-                runOnUiThread(() -> {
-                    if (generation != loadGeneration || isFinishing()) {
-                        return;
-                    }
-                    importing = false;
-                    romFile = imported.romFile;
-                    romId = imported.romId;
-                    if (resumed) {
-                        startRunner();
-                    }
-                });
-            } catch (IOException | RuntimeException e) {
-                runOnUiThread(() -> {
-                    if (generation == loadGeneration) {
-                        importing = false;
-                        romUri = null;
-                        romFile = null;
-                        romId = null;
-                        emulatorView.setStatus("Could not import ROM — tap to retry");
-                        Toast.makeText(this, "Could not import the selected ROM", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        }, "rom-import").start();
+        finish(); // return to the library to choose or import a ROM
     }
 
     private void startRunner() {
@@ -226,7 +146,6 @@ public final class MainActivity extends Activity {
                     runner = null;
                     romFile = null;
                     romId = null;
-                    romUri = null;
                     closeMenu();
                     emulatorView.setStatus(message + " — tap to choose another ROM");
                     Toast.makeText(this, message, Toast.LENGTH_LONG).show();

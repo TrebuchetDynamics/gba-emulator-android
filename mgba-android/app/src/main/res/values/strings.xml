@@ -12,4 +12,14 @@
     <string name="menu_close">Close</string>
     <string name="menu_slot_empty">Slot %1$d · empty</string>
     <string name="menu_slot_filled">Slot %1$d · saved</string>
+    <string name="library_title">Garnacha Boy</string>
+    <string name="library_import">Import ROM</string>
+    <string name="library_empty">No games yet.\nTap Import to add a GBA ROM.</string>
+    <string name="library_never">never played</string>
+    <string name="library_importing">Importing…</string>
+    <string name="library_import_failed">Could not import the selected ROM</string>
+    <string name="library_delete_title">Delete game?</string>
+    <string name="library_delete_message">This removes %1$s and its saves and save states. This cannot be undone.</string>
+    <string name="library_delete_confirm">Delete</string>
+    <string name="library_cancel">Cancel</string>
 </resources>
