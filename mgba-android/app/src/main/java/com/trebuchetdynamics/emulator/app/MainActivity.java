@@ -18,6 +18,7 @@ import java.io.IOException;
 public final class MainActivity extends Activity {
     private static final int OPEN_ROM = 100;
     private static final String STATE_ROM_URI = "romUri";
+    public static final String EXTRA_ROM_ID = "com.trebuchetdynamics.garnacha.ROM_ID";
 
     private EmulatorView emulatorView;
     private FrameLayout root;
@@ -36,6 +37,16 @@ public final class MainActivity extends Activity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         library = new RomLibrary(getFilesDir());
+        String requestedRomId = getIntent().getStringExtra(EXTRA_ROM_ID);
+        if (requestedRomId != null && library.exists(requestedRomId)) {
+            romId = requestedRomId;
+            romFile = new File(new File(getFilesDir(), "roms"), requestedRomId + ".gba");
+            try {
+                library.touch(requestedRomId, System.currentTimeMillis());
+            } catch (IOException ignored) {
+                // Non-fatal: last-played ordering is best-effort.
+            }
+        }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().setStatusBarColor(0xFF0E1014);
         getWindow().setNavigationBarColor(0xFF0E1014);
