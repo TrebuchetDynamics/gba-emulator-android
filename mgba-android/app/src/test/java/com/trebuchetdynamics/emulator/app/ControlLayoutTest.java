@@ -179,6 +179,88 @@ public class ControlLayoutTest {
         }
     }
 
+    @Test
+    public void overrideMovesAndScalesTheNamedControlOnly() {
+        float w = 1080f, h = 2340f;
+        ControlLayout base = ControlLayout.of(w, h);
+        ControlOverrides o = new ControlOverrides();
+        o.put(MgbaSession.KEY_A, 0.5f, 0.5f, 2f); // move A to center, double size
+        ControlLayout moved = ControlLayout.of(w, h, o);
+
+        ControlLayout.Control baseA = control(base, MgbaSession.KEY_A);
+        ControlLayout.Control movedA = control(moved, MgbaSession.KEY_A);
+        assertEquals(0.5f * w, movedA.cx, 0.5f);
+        assertEquals(0.5f * h, movedA.cy, 0.5f);
+        assertEquals(baseA.halfWidth * 2f, movedA.halfWidth, 0.5f);
+        assertEquals(baseA.halfHeight * 2f, movedA.halfHeight, 0.5f);
+
+        // Un-overridden controls are unchanged.
+        ControlLayout.Control baseB = control(base, MgbaSession.KEY_B);
+        ControlLayout.Control movedB = control(moved, MgbaSession.KEY_B);
+        assertEquals(baseB.cx, movedB.cx, 1e-3f);
+        assertEquals(baseB.cy, movedB.cy, 1e-3f);
+        assertEquals(baseB.halfWidth, movedB.halfWidth, 1e-3f);
+    }
+
+    @Test
+    public void keysAtFollowsTheOverriddenControl() {
+        float w = 1080f, h = 2340f;
+        ControlOverrides o = new ControlOverrides();
+        o.put(MgbaSession.KEY_A, 0.5f, 0.5f, 1f);
+        ControlLayout moved = ControlLayout.of(w, h, o);
+        // Hit-test at the new drawn center -> KEY_A bit set.
+        assertTrue((moved.keysAt(0.5f * w, 0.5f * h) & MgbaSession.KEY_A) != 0);
+        // The old default A location no longer reports KEY_A.
+        ControlLayout base = ControlLayout.of(w, h);
+        ControlLayout.Control baseA = control(base, MgbaSession.KEY_A);
+        assertEquals(0, moved.keysAt(baseA.cx, baseA.cy) & MgbaSession.KEY_A);
+    }
+
+    @Test
+    public void overrideClampsControlFullyOnScreen() {
+        float w = 1080f, h = 2340f;
+        ControlOverrides o = new ControlOverrides();
+        o.put(MgbaSession.KEY_START, 1f, 1f, 2f); // push to bottom-right corner, big
+        ControlLayout.Control c = control(ControlLayout.of(w, h, o), MgbaSession.KEY_START);
+        assertTrue(c.cx + c.halfWidth <= w + 1e-3f);
+        assertTrue(c.cy + c.halfHeight <= h + 1e-3f);
+        assertTrue(c.cx - c.halfWidth >= -1e-3f);
+        assertTrue(c.cy - c.halfHeight >= -1e-3f);
+    }
+
+    @Test
+    public void movedDpadStillDecomposesIntoDirections() {
+        float w = 2340f, h = 1080f;
+        ControlOverrides o = new ControlOverrides();
+        o.put(0, 0.5f, 0.5f, 1f); // move D-pad (key 0) to center
+        ControlLayout moved = ControlLayout.of(w, h, o);
+        ControlLayout.Control d = control(moved, 0);
+        // A point clearly left of center within the D-pad box -> LEFT bit.
+        assertTrue((moved.keysAt(d.cx - d.halfWidth * 0.8f, d.cy) & MgbaSession.KEY_LEFT) != 0);
+    }
+
+    @Test
+    public void defaultOverloadEqualsEmptyOverrides() {
+        float w = 1080f, h = 2340f;
+        ControlLayout a = ControlLayout.of(w, h);
+        ControlLayout b = ControlLayout.of(w, h, ControlOverrides.EMPTY);
+        assertEquals(a.controls.size(), b.controls.size());
+        for (int i = 0; i < a.controls.size(); i++) {
+            assertEquals(a.controls.get(i).cx, b.controls.get(i).cx, 1e-4f);
+            assertEquals(a.controls.get(i).cy, b.controls.get(i).cy, 1e-4f);
+            assertEquals(a.controls.get(i).halfWidth, b.controls.get(i).halfWidth, 1e-4f);
+        }
+    }
+
+    private static ControlLayout.Control control(ControlLayout layout, int key) {
+        for (ControlLayout.Control c : layout.controls) {
+            if (c.key == key) {
+                return c;
+            }
+        }
+        throw new IllegalArgumentException("no control key=" + key);
+    }
+
     private static ControlLayout.Control findDpad(ControlLayout layout) {
         for (ControlLayout.Control control : layout.controls) {
             if (control.shape == ControlLayout.Shape.DPAD) {

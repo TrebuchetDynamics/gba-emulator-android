@@ -96,7 +96,50 @@ final class ControlLayout {
     }
 
     static ControlLayout of(float width, float height) {
-        return width > height ? landscape(width, height) : portrait(width, height);
+        return of(width, height, ControlOverrides.EMPTY);
+    }
+
+    static ControlLayout of(float width, float height, ControlOverrides overrides) {
+        ControlLayout base = width > height ? landscape(width, height) : portrait(width, height);
+        if (overrides == null || overrides == ControlOverrides.EMPTY) {
+            return base;
+        }
+        List<Control> applied = new ArrayList<>(base.controls.size());
+        boolean changed = false;
+        for (Control c : base.controls) {
+            if (overrides.has(c.key)) {
+                applied.add(applyOverride(c, overrides, width, height));
+                changed = true;
+            } else {
+                applied.add(c);
+            }
+        }
+        if (!changed) {
+            return base;
+        }
+        return new ControlLayout(base.gameLeft, base.gameTop, base.gameRight, base.gameBottom,
+                base.loadLeft, base.loadTop, base.loadRight, base.loadBottom,
+                base.noticesLeft, base.noticesTop, base.noticesRight, base.noticesBottom,
+                base.menuLeft, base.menuTop, base.menuRight, base.menuBottom, applied);
+    }
+
+    private static Control applyOverride(Control c, ControlOverrides o, float w, float h) {
+        float halfWidth = c.halfWidth * o.scale(c.key);
+        float halfHeight = c.halfHeight * o.scale(c.key);
+        float cx = clampCenter(o.normCx(c.key) * w, halfWidth, w);
+        float cy = clampCenter(o.normCy(c.key) * h, halfHeight, h);
+        return new Control(c.key, c.label, c.shape, cx, cy, halfWidth, halfHeight);
+    }
+
+    /** Keep a control's box fully within [0, extent]; center it if it cannot fit. */
+    private static float clampCenter(float center, float half, float extent) {
+        if (half * 2f >= extent) {
+            return extent / 2f;
+        }
+        if (center < half) {
+            return half;
+        }
+        return Math.min(center, extent - half);
     }
 
     /**
