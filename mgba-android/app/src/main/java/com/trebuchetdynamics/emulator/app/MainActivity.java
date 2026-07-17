@@ -9,8 +9,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.trebuchetdynamics.emulator.mgba.MgbaSession;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -27,11 +25,13 @@ public final class MainActivity extends Activity {
     private String romId;
     private boolean resumed;
     private Settings settings;
+    private KeyBindings bindings;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         settings = new Settings(this);
+        bindings = settings.gamepadBindings(GamepadDefaults.map());
         applyOrientation();
         library = new RomLibrary(getFilesDir());
         String requestedRomId = getIntent().getStringExtra(EXTRA_ROM_ID);
@@ -100,6 +100,7 @@ public final class MainActivity extends Activity {
         super.onResume();
         resumed = true;
         applyOrientation();
+        bindings = settings.gamepadBindings(GamepadDefaults.map());
         emulatorView.setHapticsEnabled(settings.haptics());
         emulatorView.setIdleOpacityAlpha(Settings.opacityPercentToAlpha(settings.controlOpacityPercent()));
         emulatorView.setIntegerScale(settings.scaleMode() == Settings.ScaleMode.INTEGER);
@@ -225,42 +226,11 @@ public final class MainActivity extends Activity {
         if (menu != null && menu.getVisibility() == View.VISIBLE) {
             return super.dispatchKeyEvent(event);
         }
-        int key = mapKey(event.getKeyCode());
+        int key = bindings == null ? 0 : bindings.gbaKeyFor(event.getKeyCode());
         if (key != 0) {
             emulatorView.setHardwareKey(key, event.getAction() == KeyEvent.ACTION_DOWN);
             return true;
         }
         return super.dispatchKeyEvent(event);
-    }
-
-    private static int mapKey(int keyCode) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BUTTON_A:
-            case KeyEvent.KEYCODE_X:
-                return MgbaSession.KEY_A;
-            case KeyEvent.KEYCODE_BUTTON_B:
-            case KeyEvent.KEYCODE_Z:
-                return MgbaSession.KEY_B;
-            case KeyEvent.KEYCODE_BUTTON_START:
-            case KeyEvent.KEYCODE_ENTER:
-                return MgbaSession.KEY_START;
-            case KeyEvent.KEYCODE_BUTTON_SELECT:
-            case KeyEvent.KEYCODE_DEL:
-                return MgbaSession.KEY_SELECT;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                return MgbaSession.KEY_UP;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                return MgbaSession.KEY_DOWN;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                return MgbaSession.KEY_LEFT;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                return MgbaSession.KEY_RIGHT;
-            case KeyEvent.KEYCODE_BUTTON_L1:
-                return MgbaSession.KEY_L;
-            case KeyEvent.KEYCODE_BUTTON_R1:
-                return MgbaSession.KEY_R;
-            default:
-                return 0;
-        }
     }
 }
