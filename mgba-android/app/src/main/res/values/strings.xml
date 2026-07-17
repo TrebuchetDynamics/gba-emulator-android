@@ -40,4 +40,6 @@
     <string name="settings_haptics">Vibrate on touch</string>
     <string name="settings_opacity">Control opacity when idle</string>
     <string name="settings_ff_speed">Fast-forward speed</string>
+    <string name="settings_frameskip">Frameskip</string>
+    <string name="settings_frameskip_off">Off</string>
 </resources>

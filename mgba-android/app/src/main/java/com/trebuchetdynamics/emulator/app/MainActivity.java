@@ -196,7 +196,7 @@ public final class MainActivity extends Activity {
                 },
                 settings.audioEnabled(),
                 settings.audioVolumePercent() / 100f,
-                settings.fastForwardSpeed());
+                settings.fastForwardSpeed(), settings.frameskip());
         runner.start();
     }
 

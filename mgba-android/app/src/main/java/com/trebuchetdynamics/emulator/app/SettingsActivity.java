@@ -51,6 +51,8 @@ public final class SettingsActivity extends Activity {
         content.addView(header(getString(R.string.settings_group_emulation)));
         content.addView(choiceRow(getString(R.string.settings_ff_speed),
                 settings.fastForwardSpeed() + "×", v -> pickFastForward()));
+        content.addView(choiceRow(getString(R.string.settings_frameskip),
+                frameskipLabel(), v -> pickFrameskip()));
 
         ScrollView scroll = new ScrollView(this);
         scroll.addView(content);
@@ -180,6 +182,23 @@ public final class SettingsActivity extends Activity {
                 .setTitle(R.string.settings_ff_speed)
                 .setSingleChoiceItems(labels, current, (d, which) -> {
                     settings.setFastForwardSpeed(which + 2);
+                    d.dismiss();
+                    recreate();
+                })
+                .show();
+    }
+
+    private String frameskipLabel() {
+        int f = settings.frameskip();
+        return f == 0 ? getString(R.string.settings_frameskip_off) : String.valueOf(f);
+    }
+
+    private void pickFrameskip() {
+        String[] labels = {getString(R.string.settings_frameskip_off), "1", "2", "3"};
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.settings_frameskip)
+                .setSingleChoiceItems(labels, settings.frameskip(), (d, which) -> {
+                    settings.setFrameskip(which);
                     d.dismiss();
                     recreate();
                 })

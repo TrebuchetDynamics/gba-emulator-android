@@ -58,11 +58,13 @@ final class EmulationRunner implements Runnable {
     private final boolean audioEnabled;
     private final float audioVolume; // 0f..1f
     private final int fastForwardSpeed;
+    private final int frameskip;
 
     EmulationRunner(Context context, EmulatorView view, File rom, String romId,
                     SaveStateStore states, ErrorListener errors,
                     StateListener stateListener,
-                    boolean audioEnabled, float audioVolume, int fastForwardSpeed) {
+                    boolean audioEnabled, float audioVolume, int fastForwardSpeed,
+                    int frameskip) {
         this.context = context.getApplicationContext();
         this.view = view;
         this.rom = rom;
@@ -73,6 +75,7 @@ final class EmulationRunner implements Runnable {
         this.audioEnabled = audioEnabled;
         this.audioVolume = audioVolume;
         this.fastForwardSpeed = fastForwardSpeed;
+        this.frameskip = Math.max(0, frameskip);
         thread = new Thread(this, "mgba-emulation");
     }
 
@@ -114,6 +117,11 @@ final class EmulationRunner implements Runnable {
         return fastForward ? FRAME_NANOS / fastForwardSpeed : FRAME_NANOS;
     }
 
+    /** True when frame {@code frameIndex} should be blitted under {@code frameskip}. */
+    static boolean shouldRenderFrame(long frameIndex, int frameskip) {
+        return frameIndex % (frameskip + 1) == 0;
+    }
+
     @Override
     public void run() {
         AudioTrack audioTrack = null;
@@ -135,6 +143,7 @@ final class EmulationRunner implements Runnable {
             long nextPerfLog = SystemClock.elapsedRealtimeNanos()
                     + PERF_LOG_INTERVAL_NANOS;
             long nextFrame = SystemClock.elapsedRealtimeNanos();
+            long frameIndex = 0;
             while (running) {
                 applyCommands(session);
                 boolean ff = fastForward;
@@ -150,7 +159,10 @@ final class EmulationRunner implements Runnable {
                 if (!ff && audioTrack != null && audioFrames > 0) {
                     audioTrack.write(audio, 0, audioFrames * 2, AudioTrack.WRITE_BLOCKING);
                 }
-                view.publishFrame(pixels);
+                if (shouldRenderFrame(frameIndex, frameskip)) {
+                    view.publishFrame(pixels);
+                }
+                frameIndex++;
                 long now = SystemClock.elapsedRealtimeNanos();
                 stats.record(now - frameStart);
                 if (now >= nextPerfLog && stats.hasFrames()) {
