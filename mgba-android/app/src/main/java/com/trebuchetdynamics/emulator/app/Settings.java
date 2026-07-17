@@ -21,6 +21,8 @@ final class Settings {
     private static final String K_FF_SPEED = "fastForwardSpeed";
     private static final String K_FRAMESKIP = "frameskip";
     private static final String K_GAMEPAD = "gamepadBindings";
+    private static final String K_LAYOUT_PORTRAIT = "layoutOverridesPortrait";
+    private static final String K_LAYOUT_LANDSCAPE = "layoutOverridesLandscape";
 
     private final SharedPreferences prefs;
 
@@ -99,6 +101,17 @@ final class Settings {
 
     void setGamepadBindings(KeyBindings bindings) {
         prefs.edit().putString(K_GAMEPAD, bindings.serialize()).apply();
+    }
+
+    ControlOverrides controlOverrides(boolean landscape) {
+        String stored = prefs.getString(landscape ? K_LAYOUT_LANDSCAPE : K_LAYOUT_PORTRAIT, "");
+        return ControlOverrides.parse(stored);
+    }
+
+    void setControlOverrides(boolean landscape, ControlOverrides overrides) {
+        prefs.edit()
+                .putString(landscape ? K_LAYOUT_LANDSCAPE : K_LAYOUT_PORTRAIT, overrides.serialize())
+                .apply();
     }
 
     static int clampPercent(int value) {

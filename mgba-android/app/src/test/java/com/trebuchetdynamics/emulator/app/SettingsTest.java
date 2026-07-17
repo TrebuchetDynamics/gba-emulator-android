@@ -34,4 +34,15 @@ public class SettingsTest {
         assertEquals(3, Settings.clampFrameskip(3));
         assertEquals(3, Settings.clampFrameskip(9));
     }
+
+    // controlOverrides(boolean)/setControlOverrides persist per orientation via
+    // ControlOverrides serialize/parse (covered by ControlOverridesTest); the
+    // two-key orientation split is exercised on-device in the touch-layout pass.
+    @Test
+    public void controlOverridesSerdeContractHolds() {
+        ControlOverrides o = new ControlOverrides();
+        o.put(1, 0.2f, 0.3f, 1.5f);
+        ControlOverrides back = ControlOverrides.parse(o.serialize());
+        assertEquals(0.2f, back.normCx(1), 1e-3f);
+    }
 }
