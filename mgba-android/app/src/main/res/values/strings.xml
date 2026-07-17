@@ -42,4 +42,10 @@
     <string name="settings_ff_speed">Fast-forward speed</string>
     <string name="settings_frameskip">Frameskip</string>
     <string name="settings_frameskip_off">Off</string>
+    <string name="settings_gamepad">Gamepad buttons</string>
+    <string name="settings_gamepad_sub">Remap a connected controller</string>
+    <string name="gamepad_title">Gamepad buttons</string>
+    <string name="gamepad_press">Press a button…</string>
+    <string name="gamepad_unbound">Not set</string>
+    <string name="gamepad_reset">Reset to defaults</string>
 </resources>

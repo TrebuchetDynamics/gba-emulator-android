@@ -47,6 +47,9 @@ public final class SettingsActivity extends Activity {
                 settings.haptics(), (b, on) -> settings.setHaptics(on)));
         content.addView(sliderRow(getString(R.string.settings_opacity), 10, 100,
                 settings.controlOpacityPercent(), settings::setControlOpacityPercent));
+        content.addView(choiceRow(getString(R.string.settings_gamepad),
+                getString(R.string.settings_gamepad_sub),
+                v -> startActivity(new android.content.Intent(this, GamepadSettingsActivity.class))));
 
         content.addView(header(getString(R.string.settings_group_emulation)));
         content.addView(choiceRow(getString(R.string.settings_ff_speed),
