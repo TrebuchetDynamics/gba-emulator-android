@@ -101,10 +101,27 @@ public final class LibraryActivity extends Activity {
         row.setPadding(p, p, p, p);
         row.setClickable(true);
 
+        LinearLayout titleRow = new LinearLayout(this);
+        titleRow.setOrientation(LinearLayout.HORIZONTAL);
+        titleRow.setGravity(Gravity.CENTER_VERTICAL);
+
         TextView name = new TextView(this);
         name.setText(entry.displayName);
         name.setTextColor(Color.WHITE);
         name.setTextSize(18);
+        name.setLayoutParams(new LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+
+        TextView badge = new TextView(this);
+        badge.setText(entry.system.badge());
+        badge.setTextColor(0xFF0E1014);
+        badge.setBackgroundColor(0xFF9AA0AA);
+        badge.setTextSize(11);
+        int badgePad = dp(4);
+        badge.setPadding(dp(6), badgePad, dp(6), badgePad);
+
+        titleRow.addView(name);
+        titleRow.addView(badge);
 
         TextView sub = new TextView(this);
         sub.setText(entry.lastPlayedMs > 0
@@ -113,7 +130,7 @@ public final class LibraryActivity extends Activity {
         sub.setTextColor(0xFF9AA0AA);
         sub.setTextSize(13);
 
-        row.addView(name);
+        row.addView(titleRow);
         row.addView(sub);
 
         row.setOnClickListener(v -> play(entry.romId));

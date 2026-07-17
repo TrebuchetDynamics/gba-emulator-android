@@ -37,13 +37,43 @@ public class RomLibraryTest {
     public void recordThenListReturnsNamedEntry() throws IOException {
         writeRom("aaa1");
         RomLibrary lib = new RomLibrary(filesDir);
-        lib.record("aaa1", "Zelda", 5000L);
+        lib.record("aaa1", "Zelda", RomSystem.GBA, 5000L);
         List<RomLibrary.Entry> entries = lib.list();
         assertEquals(1, entries.size());
         assertEquals("aaa1", entries.get(0).romId);
         assertEquals("Zelda", entries.get(0).displayName);
         assertEquals(5000L, entries.get(0).lastPlayedMs);
         assertTrue(entries.get(0).romFile.isFile());
+        assertEquals(RomSystem.GBA, entries.get(0).system);
+    }
+
+    @Test
+    public void recordedSystemRoundTripsThroughList() throws IOException {
+        writeRom("gbc1");
+        RomLibrary lib = new RomLibrary(filesDir);
+        lib.record("gbc1", "Pokemon Gold", RomSystem.GBC, 1000L);
+        List<RomLibrary.Entry> entries = lib.list();
+        assertEquals(1, entries.size());
+        assertEquals(RomSystem.GBC, entries.get(0).system);
+    }
+
+    @Test
+    public void missingStoredSystemDefaultsToGba() throws IOException {
+        // Simulates a pre-existing entry recorded before system tracking existed:
+        // name + played are present, but no ".system" key.
+        writeRom("legacy");
+        File roms = new File(filesDir, "roms");
+        roms.mkdirs();
+        java.util.Properties p = new java.util.Properties();
+        p.setProperty("legacy.name", "Legacy Game");
+        p.setProperty("legacy.played", "1000");
+        try (java.io.FileOutputStream out = new java.io.FileOutputStream(
+                new File(filesDir, "library.properties"))) {
+            p.store(out, null);
+        }
+        List<RomLibrary.Entry> entries = new RomLibrary(filesDir).list();
+        assertEquals(1, entries.size());
+        assertEquals(RomSystem.GBA, entries.get(0).system);
     }
 
     @Test
@@ -51,8 +81,8 @@ public class RomLibraryTest {
         writeRom("older");
         writeRom("newer");
         RomLibrary lib = new RomLibrary(filesDir);
-        lib.record("older", "Older", 1000L);
-        lib.record("newer", "Newer", 2000L);
+        lib.record("older", "Older", RomSystem.GBA, 1000L);
+        lib.record("newer", "Newer", RomSystem.GBA, 2000L);
         List<RomLibrary.Entry> entries = lib.list();
         assertEquals("newer", entries.get(0).romId);
         assertEquals("older", entries.get(1).romId);
@@ -63,10 +93,22 @@ public class RomLibraryTest {
         writeRom("a");
         writeRom("b");
         RomLibrary lib = new RomLibrary(filesDir);
-        lib.record("a", "A", 1000L);
-        lib.record("b", "B", 2000L);
+        lib.record("a", "A", RomSystem.GBA, 1000L);
+        lib.record("b", "B", RomSystem.GBA, 2000L);
         lib.touch("a", 3000L); // a now newest
         assertEquals("a", lib.list().get(0).romId);
+    }
+
+    @Test
+    public void touchPreservesRecordedSystem() throws IOException {
+        writeRom("gb1");
+        RomLibrary lib = new RomLibrary(filesDir);
+        lib.record("gb1", "Kirby", RomSystem.GB, 1000L);
+        lib.touch("gb1", 2000L);
+        List<RomLibrary.Entry> entries = lib.list();
+        assertEquals(1, entries.size());
+        assertEquals(RomSystem.GB, entries.get(0).system);
+        assertEquals(2000L, entries.get(0).lastPlayedMs);
     }
 
     @Test
@@ -98,7 +140,7 @@ public class RomLibraryTest {
         Files.write(new File(states, "slot1.state").toPath(), new byte[] {9});
 
         RomLibrary lib = new RomLibrary(filesDir);
-        lib.record("victim", "Victim", 1000L);
+        lib.record("victim", "Victim", RomSystem.GBA, 1000L);
         assertTrue(lib.exists("victim"));
 
         lib.delete("victim");
@@ -129,7 +171,7 @@ public class RomLibraryTest {
             threads[i] = new Thread(() -> {
                 try {
                     writeRom("rom" + idx);
-                    lib.record("rom" + idx, "Name" + idx, idx);
+                    lib.record("rom" + idx, "Name" + idx, RomSystem.GBA, idx);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

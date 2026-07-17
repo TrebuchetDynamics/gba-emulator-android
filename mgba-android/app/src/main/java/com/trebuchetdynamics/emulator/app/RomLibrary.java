@@ -22,12 +22,14 @@ final class RomLibrary {
         final String displayName;
         final long lastPlayedMs;
         final File romFile;
+        final RomSystem system;
 
-        Entry(String romId, String displayName, long lastPlayedMs, File romFile) {
+        Entry(String romId, String displayName, long lastPlayedMs, File romFile, RomSystem system) {
             this.romId = romId;
             this.displayName = displayName;
             this.lastPlayedMs = lastPlayedMs;
             this.romFile = romFile;
+            this.system = system;
         }
     }
 
@@ -57,7 +59,8 @@ final class RomLibrary {
                 String romId = name.substring(0, name.length() - ".gba".length());
                 String displayName = meta.getProperty(romId + ".name", shortId(romId));
                 long played = parseLong(meta.getProperty(romId + ".played"));
-                entries.add(new Entry(romId, displayName, played, f));
+                RomSystem system = RomSystem.valueOfOrGba(meta.getProperty(romId + ".system"));
+                entries.add(new Entry(romId, displayName, played, f, system));
             }
         }
         Collections.sort(entries, new Comparator<Entry>() {
@@ -70,9 +73,10 @@ final class RomLibrary {
         return entries;
     }
 
-    synchronized void record(String romId, String displayName, long nowMs) throws IOException {
+    synchronized void record(String romId, String displayName, RomSystem system, long nowMs) throws IOException {
         Properties meta = loadMeta();
         meta.setProperty(romId + ".name", displayName);
+        meta.setProperty(romId + ".system", system.name());
         meta.setProperty(romId + ".played", Long.toString(nowMs));
         storeMeta(meta);
     }
@@ -94,6 +98,7 @@ final class RomLibrary {
         deleteRecursively(new File(statesDir, romId));
         Properties meta = loadMeta();
         meta.remove(romId + ".name");
+        meta.remove(romId + ".system");
         meta.remove(romId + ".played");
         storeMeta(meta);
     }

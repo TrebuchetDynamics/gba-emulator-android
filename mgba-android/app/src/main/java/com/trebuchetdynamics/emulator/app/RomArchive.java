@@ -13,16 +13,18 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * Extracts a GBA ROM from either a raw stream or a zip archive, streaming
- * throughout with a fixed-size buffer so the ROM is never held fully in
- * memory. Pure java.io / java.util.zip / java.security logic — no
- * android.* imports — so it is unit-testable on the JVM without Robolectric
- * or a device, the same pattern {@code ControlLayout} uses.
+ * Extracts a ROM (GBA, GB, or GBC — by filename, not content, for the zip
+ * path; content is validated by the caller via {@link RomSystem#detect})
+ * from either a raw stream or a zip archive, streaming throughout with a
+ * fixed-size buffer so the ROM is never held fully in memory. Pure java.io /
+ * java.util.zip / java.security logic — no android.* imports — so it is
+ * unit-testable on the JVM without Robolectric or a device, the same pattern
+ * {@code ControlLayout} uses.
  */
 final class RomArchive {
     private static final int BUFFER_SIZE = 64 * 1024;
     private static final byte[] ZIP_MAGIC = {0x50, 0x4B, 0x03, 0x04};
-    private static final String ROM_SUFFIX = ".gba";
+    private static final String[] ROM_SUFFIXES = {".gba", ".gb", ".gbc"};
 
     private RomArchive() {
     }
@@ -102,7 +104,7 @@ final class RomArchive {
             }
         }
         if (total < 0) {
-            throw new IOException("Archive contains no .gba ROM");
+            throw new IOException("Archive contains no ROM (.gba/.gb/.gbc)");
         }
         return total;
     }
@@ -120,7 +122,13 @@ final class RomArchive {
     }
 
     private static boolean isRomEntry(String name) {
-        return name.toLowerCase(Locale.ROOT).endsWith(ROM_SUFFIX);
+        String lower = name.toLowerCase(Locale.ROOT);
+        for (String suffix : ROM_SUFFIXES) {
+            if (lower.endsWith(suffix)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Enforces the cap against bytes actually written (i.e. the decompressed

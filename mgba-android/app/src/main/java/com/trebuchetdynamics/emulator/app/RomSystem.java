@@ -29,6 +29,18 @@ enum RomSystem {
             0xDC, 0xCC, 0x6E, 0xE6, 0xDD, 0xDD, 0xD9, 0x99, 0xBB, 0xBB, 0x67, 0x63,
             0x6E, 0x0E, 0xEC, 0xCC, 0xDD, 0xDC, 0x99, 0x9F, 0xBB, 0xB9, 0x33, 0x3E };
 
+    /** Tolerant parser for the stored library index: unknown/missing values default to GBA. */
+    static RomSystem valueOfOrGba(String s) {
+        if (s == null) {
+            return GBA;
+        }
+        try {
+            return RomSystem.valueOf(s);
+        } catch (IllegalArgumentException e) {
+            return GBA;
+        }
+    }
+
     static RomSystem detect(byte[] rom) {
         if (rom == null) {
             return UNKNOWN;

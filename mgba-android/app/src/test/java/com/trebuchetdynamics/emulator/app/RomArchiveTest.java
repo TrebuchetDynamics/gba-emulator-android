@@ -65,14 +65,38 @@ public class RomArchiveTest {
     }
 
     @Test
-    public void zipWithNoGbaEntryIsRejected() {
+    public void zipWithNoRomEntryIsRejected() {
         byte[] zip = zipOf(entries("readme.txt", romBytes(64)));
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         IOException thrown = assertThrows(IOException.class,
                 () -> RomArchive.extractRom(new ByteArrayInputStream(zip), out, CAP));
 
-        assertEquals("Archive contains no .gba ROM", thrown.getMessage());
+        assertEquals("Archive contains no ROM (.gba/.gb/.gbc)", thrown.getMessage());
+    }
+
+    @Test
+    public void zipContainingGbEntryIsExtracted() throws IOException {
+        byte[] rom = romBytes(4096);
+        byte[] zip = zipOf(entries("game.gb", rom));
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        RomArchive.extractRom(new ByteArrayInputStream(zip), out, CAP);
+
+        assertArrayEquals("a .gb entry must be recognized as a ROM candidate, same as .gba",
+                rom, out.toByteArray());
+    }
+
+    @Test
+    public void zipContainingGbcEntryIsExtracted() throws IOException {
+        byte[] rom = romBytes(4096);
+        byte[] zip = zipOf(entries("game.gbc", rom));
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        RomArchive.extractRom(new ByteArrayInputStream(zip), out, CAP);
+
+        assertArrayEquals("a .gbc entry must be recognized as a ROM candidate, same as .gba",
+                rom, out.toByteArray());
     }
 
     @Test

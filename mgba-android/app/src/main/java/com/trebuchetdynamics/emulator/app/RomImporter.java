@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.provider.OpenableColumns;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 /** Imports a user-selected document into the private ROM store and the library. */
 final class RomImporter {
@@ -53,6 +55,12 @@ final class RomImporter {
             throw e;
         }
 
+        RomSystem system = RomSystem.detect(readHeader(temporary));
+        if (system == RomSystem.UNKNOWN) {
+            temporary.delete();
+            throw new IOException("Not a valid ROM");
+        }
+
         String romId = hex(hash);
         File destination = new File(directory, romId + ".gba");
         if (destination.isFile()) {
@@ -63,8 +71,21 @@ final class RomImporter {
         }
 
         String displayName = resolveDisplayName(uri, romId);
-        library.record(romId, displayName, System.currentTimeMillis());
+        library.record(romId, displayName, system, System.currentTimeMillis());
         return new Result(romId, destination, displayName);
+    }
+
+    /** Reads just enough of the front of {@code file} for {@link RomSystem#detect}. */
+    private static byte[] readHeader(File file) throws IOException {
+        byte[] buffer = new byte[0x150];
+        try (FileInputStream in = new FileInputStream(file)) {
+            int total = 0;
+            int count;
+            while (total < buffer.length && (count = in.read(buffer, total, buffer.length - total)) != -1) {
+                total += count;
+            }
+            return total == buffer.length ? buffer : Arrays.copyOf(buffer, total);
+        }
     }
 
     private String resolveDisplayName(Uri uri, String romId) {
@@ -81,10 +102,12 @@ final class RomImporter {
             return romId.length() > 12 ? romId.substring(0, 12) : romId;
         }
         name = name.trim();
-        // Strip a trailing .gba / .zip for a cleaner title.
+        // Strip a trailing .gba / .gbc / .gb / .zip for a cleaner title.
         String lower = name.toLowerCase();
-        if (lower.endsWith(".gba") || lower.endsWith(".zip")) {
+        if (lower.endsWith(".gba") || lower.endsWith(".gbc") || lower.endsWith(".zip")) {
             name = name.substring(0, name.length() - 4);
+        } else if (lower.endsWith(".gb")) {
+            name = name.substring(0, name.length() - 3);
         }
         return name;
     }
