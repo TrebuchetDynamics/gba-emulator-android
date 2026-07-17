@@ -98,14 +98,14 @@ public final class MgbaSession implements AutoCloseable {
      * Runs one emulated frame.
      *
      * @param keys bitwise combination of {@code KEY_*} constants
-     * @param argbPixels output buffer containing 240×160 Android ARGB pixels
+     * @param argbPixels output buffer containing Android ARGB pixels sized to the session's video dimensions
      * @param stereoAudio output buffer containing interleaved signed 16-bit stereo samples
      * @return number of stereo audio frames written
      */
     public synchronized int runFrame(int keys, int[] argbPixels, short[] stereoAudio) {
         requireLoaded();
-        if (argbPixels == null || argbPixels.length < FRAME_PIXELS) {
-            throw new IllegalArgumentException("Pixel buffer must hold 240x160 pixels");
+        if (argbPixels == null || argbPixels.length < framePixels()) {
+            throw new IllegalArgumentException("Pixel buffer must hold " + framePixels() + " pixels");
         }
         if (stereoAudio == null || stereoAudio.length < MIN_AUDIO_BUFFER_SAMPLES) {
             throw new IllegalArgumentException("Audio buffer is too small");
