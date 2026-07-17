@@ -22,8 +22,11 @@ final class EmulatorView extends View {
     private boolean integerScale = true;    // false = fill
 
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Bitmap frame = Bitmap.createBitmap(
+    private volatile Bitmap frame = Bitmap.createBitmap(
             MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT, Bitmap.Config.ARGB_8888);
+    private volatile int videoWidth = MgbaSession.VIDEO_WIDTH;
+    private volatile int videoHeight = MgbaSession.VIDEO_HEIGHT;
+    private volatile boolean hasShoulders = true;
     private final Object frameLock = new Object();
     private final RectF gameRect = new RectF();
     private final RectF frameDst = new RectF();
@@ -103,10 +106,19 @@ final class EmulatorView extends View {
         postInvalidate();
     }
 
+    void setVideoSize(int w, int h, boolean hasShoulders) {
+        if (w > 0 && h > 0 && (w != videoWidth || h != videoHeight)) {
+            frame = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+            videoWidth = w;
+            videoHeight = h;
+        }
+        this.hasShoulders = hasShoulders;
+        postInvalidate();
+    }
+
     void publishFrame(int[] pixels) {
         synchronized (frameLock) {
-            frame.setPixels(pixels, 0, MgbaSession.VIDEO_WIDTH, 0, 0,
-                    MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT);
+            frame.setPixels(pixels, 0, videoWidth, 0, 0, videoWidth, videoHeight);
         }
         hasFrame = true;
         status = "Running";
@@ -116,13 +128,14 @@ final class EmulatorView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        layout = ControlLayout.of(w, h, activeOverrides(w, h));
+        layout = ControlLayout.of(w, h, activeOverrides(w, h), videoWidth, videoHeight, hasShoulders);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        layout = ControlLayout.of(getWidth(), getHeight(), activeOverrides(getWidth(), getHeight()));
+        layout = ControlLayout.of(getWidth(), getHeight(), activeOverrides(getWidth(), getHeight()),
+                videoWidth, videoHeight, hasShoulders);
         gameRect.set(layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom);
 
         int controlAlpha = hasFrame
@@ -136,9 +149,9 @@ final class EmulatorView extends View {
         if (hasFrame) {
             FeelMath.Box draw = integerScale
                     ? FeelMath.integerScale(gameRect.left, gameRect.top, gameRect.right,
-                            gameRect.bottom, MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT)
+                            gameRect.bottom, videoWidth, videoHeight)
                     : FeelMath.fitScale(gameRect.left, gameRect.top, gameRect.right,
-                            gameRect.bottom, MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT);
+                            gameRect.bottom, videoWidth, videoHeight);
             frameDst.set(draw.left, draw.top, draw.right, draw.bottom);
             synchronized (frameLock) {
                 canvas.drawBitmap(frame, null, frameDst, paint);

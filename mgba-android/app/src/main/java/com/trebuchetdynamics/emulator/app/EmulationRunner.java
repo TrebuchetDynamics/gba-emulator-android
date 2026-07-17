@@ -122,12 +122,30 @@ final class EmulationRunner implements Runnable {
         return frameIndex % (frameskip + 1) == 0;
     }
 
+    private static RomSystem detectSystem(File rom) {
+        try (java.io.InputStream in = new java.io.FileInputStream(rom)) {
+            byte[] head = new byte[0x150];
+            int off = 0;
+            int n;
+            while (off < head.length && (n = in.read(head, off, head.length - off)) > 0) {
+                off += n;
+            }
+            byte[] slice = off == head.length ? head : java.util.Arrays.copyOf(head, off);
+            return RomSystem.detect(slice);
+        } catch (java.io.IOException e) {
+            return RomSystem.UNKNOWN;
+        }
+    }
+
     @Override
     public void run() {
         AudioTrack audioTrack = null;
         view.setStatus("Starting mGBA…");
-        try (MgbaSession session = new MgbaSession()) {
+        RomSystem system = detectSystem(rom);
+        int platform = system.isGameBoy() ? MgbaSession.PLATFORM_GB : MgbaSession.PLATFORM_GBA;
+        try (MgbaSession session = new MgbaSession(platform)) {
             session.loadRom(rom);
+            view.setVideoSize(session.videoWidth(), session.videoHeight(), !system.isGameBoy());
             File saveFile = saveFile();
             restoreSavedata(session, saveFile);
             if (audioEnabled) {
@@ -137,7 +155,7 @@ final class EmulationRunner implements Runnable {
                 audioTrack.play();
             }
 
-            int[] pixels = new int[MgbaSession.FRAME_PIXELS];
+            int[] pixels = new int[session.framePixels()];
             short[] audio = new short[MgbaSession.MIN_AUDIO_BUFFER_SAMPLES];
             FrameStats stats = new FrameStats(FRAME_NANOS);
             long nextPerfLog = SystemClock.elapsedRealtimeNanos()
