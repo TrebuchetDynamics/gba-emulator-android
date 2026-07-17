@@ -104,19 +104,12 @@ static bool setupCore(struct MgbaSession* session, jint platform) {
         .volume = 0x100,
     };
     mCoreConfigLoadDefaults(&session->core->config, &options);
+    // Super Game Boy borders are out of scope and, if left enabled, make the GB
+    // core report a 256x224 SGB canvas (instead of 160x144) until a ROM is
+    // loaded and borders are turned off. That 224-row canvas overflows the
+    // fixed VIDEO_HEIGHT (160) video buffer, so disable borders up front.
+    mCoreConfigSetIntValue(&session->core->config, "sgb.borders", 0);
     mCoreLoadConfig(session->core);
-
-    unsigned w = VIDEO_WIDTH;
-    unsigned h = VIDEO_HEIGHT;
-    session->core->desiredVideoDimensions(session->core, &w, &h);
-    if ((int) w > VIDEO_STRIDE || (int) h > VIDEO_HEIGHT) {
-        // Would overflow the fixed buffer; refuse rather than corrupt memory.
-        session->core->deinit(session->core);
-        session->core = NULL;
-        return false;
-    }
-    session->videoWidth = (int) w;
-    session->videoHeight = (int) h;
 
     session->core->setVideoBuffer(session->core, session->video, VIDEO_STRIDE);
     session->core->setAudioBufferSize(session->core, 2048);
@@ -124,6 +117,22 @@ static bool setupCore(struct MgbaSession* session, jint platform) {
                    session->core->frequency(session->core), AUDIO_SAMPLE_RATE);
     blip_set_rates(session->core->getAudioChannel(session->core, 1),
                    session->core->frequency(session->core), AUDIO_SAMPLE_RATE);
+    return true;
+}
+
+// Queries the core's post-load, post-reset video dimensions and rejects
+// anything that would overflow the fixed video buffer. Must be called after
+// loadROM()+reset() so the GB/GBC core has settled on its real dimensions
+// (160x144 with SGB borders disabled) rather than the pre-load default.
+static bool refreshDimensions(struct MgbaSession* session) {
+    unsigned w = VIDEO_WIDTH;
+    unsigned h = VIDEO_HEIGHT;
+    session->core->desiredVideoDimensions(session->core, &w, &h);
+    if ((int) w > VIDEO_STRIDE || (int) h > VIDEO_HEIGHT || w == 0 || h == 0) {
+        return false;
+    }
+    session->videoWidth = (int) w;
+    session->videoHeight = (int) h;
     return true;
 }
 
@@ -177,11 +186,17 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeLoadRom(
         free(romData);
         return JNI_FALSE;
     }
+    session->core->reset(session->core);
+    if (!refreshDimensions(session)) {
+        // Post-load dimensions would overflow the fixed video buffer; treat
+        // this the same as a load failure rather than risk memory corruption.
+        free(romData);
+        return JNI_FALSE;
+    }
 
     session->romData = romData;
     session->romSize = (size_t) romSize;
     session->loaded = true;
-    session->core->reset(session->core);
     return JNI_TRUE;
 }
 
@@ -236,11 +251,17 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeLoadRomFile(
         free(romData);
         return JNI_FALSE;
     }
+    session->core->reset(session->core);
+    if (!refreshDimensions(session)) {
+        // Post-load dimensions would overflow the fixed video buffer; treat
+        // this the same as a load failure rather than risk memory corruption.
+        free(romData);
+        return JNI_FALSE;
+    }
 
     session->romData = romData;
     session->romSize = (size_t) romSize;
     session->loaded = true;
-    session->core->reset(session->core);
     return JNI_TRUE;
 }
 

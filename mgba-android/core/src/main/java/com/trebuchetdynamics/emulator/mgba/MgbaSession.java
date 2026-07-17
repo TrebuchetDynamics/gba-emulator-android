@@ -36,8 +36,6 @@ public final class MgbaSession implements AutoCloseable {
 
     private long handle;
     private boolean loaded;
-    private final int videoWidth;
-    private final int videoHeight;
 
     public MgbaSession() {
         this(PLATFORM_GBA);
@@ -48,20 +46,24 @@ public final class MgbaSession implements AutoCloseable {
         if (handle == 0) {
             throw new IllegalStateException("Could not initialize the mGBA core");
         }
-        videoWidth = nativeVideoWidth(handle);
-        videoHeight = nativeVideoHeight(handle);
     }
 
+    /**
+     * Returns the current video width. Before a ROM is loaded the underlying
+     * core has not settled on real dimensions, so this reads live from native
+     * rather than a value cached at construction time.
+     */
     public int videoWidth() {
-        return videoWidth;
+        return nativeVideoWidth(handle);
     }
 
+    /** See {@link #videoWidth()}: read live from native, not cached at construction. */
     public int videoHeight() {
-        return videoHeight;
+        return nativeVideoHeight(handle);
     }
 
     public int framePixels() {
-        return videoWidth * videoHeight;
+        return videoWidth() * videoHeight();
     }
 
     /** Loads one GBA ROM into this session. A session cannot be reused for another ROM. */
