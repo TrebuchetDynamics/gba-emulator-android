@@ -252,6 +252,46 @@ public class ControlLayoutTest {
         }
     }
 
+    @Test
+    public void gameBoyLayoutHasNoShoulders() {
+        ControlLayout gb = ControlLayout.of(1080f, 2340f, ControlOverrides.EMPTY, 160f, 144f, false);
+        for (ControlLayout.Control c : gb.controls) {
+            assertTrue("unexpected shoulder key=" + c.key,
+                    c.key != MgbaSession.KEY_L && c.key != MgbaSession.KEY_R);
+        }
+        // A/B/SELECT/START/D-pad still present and hit-testable.
+        assertTrue((gb.keysAt(control(gb, MgbaSession.KEY_A).cx,
+                control(gb, MgbaSession.KEY_A).cy) & MgbaSession.KEY_A) != 0);
+    }
+
+    @Test
+    public void gameBoyGameRectUsesTenNineAspect() {
+        ControlLayout gb = ControlLayout.of(1080f, 2340f, ControlOverrides.EMPTY, 160f, 144f, false);
+        float w = gb.gameRight - gb.gameLeft;
+        float h = gb.gameBottom - gb.gameTop;
+        assertEquals(160f / 144f, w / h, 0.02f);
+    }
+
+    @Test
+    public void defaultOverloadsPreserveGbaLayout() {
+        ControlLayout a = ControlLayout.of(1080f, 2340f);
+        ControlLayout b = ControlLayout.of(1080f, 2340f, ControlOverrides.EMPTY,
+                MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT, true);
+        assertEquals(a.controls.size(), b.controls.size());
+        for (int i = 0; i < a.controls.size(); i++) {
+            assertEquals(a.controls.get(i).key, b.controls.get(i).key);
+            assertEquals(a.controls.get(i).cx, b.controls.get(i).cx, 1e-4f);
+            assertEquals(a.controls.get(i).cy, b.controls.get(i).cy, 1e-4f);
+        }
+        // L and R are present in the GBA layout.
+        boolean hasL = false, hasR = false;
+        for (ControlLayout.Control c : a.controls) {
+            if (c.key == MgbaSession.KEY_L) hasL = true;
+            if (c.key == MgbaSession.KEY_R) hasR = true;
+        }
+        assertTrue(hasL && hasR);
+    }
+
     private static ControlLayout.Control control(ControlLayout layout, int key) {
         for (ControlLayout.Control c : layout.controls) {
             if (c.key == key) {

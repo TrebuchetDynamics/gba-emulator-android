@@ -100,7 +100,15 @@ final class ControlLayout {
     }
 
     static ControlLayout of(float width, float height, ControlOverrides overrides) {
-        ControlLayout base = width > height ? landscape(width, height) : portrait(width, height);
+        return of(width, height, overrides,
+                MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT, true);
+    }
+
+    static ControlLayout of(float width, float height, ControlOverrides overrides,
+            float srcW, float srcH, boolean hasShoulders) {
+        ControlLayout base = width > height
+                ? landscape(width, height, srcW, srcH, hasShoulders)
+                : portrait(width, height, srcW, srcH, hasShoulders);
         if (overrides == null || overrides == ControlOverrides.EMPTY) {
             return base;
         }
@@ -151,7 +159,8 @@ final class ControlLayout {
      * <p>The LOAD/NOTICES chips sit in a header band above the game rect
      * (not overlaid on it), anchored to the game's right edge.
      */
-    private static ControlLayout portrait(float width, float height) {
+    private static ControlLayout portrait(float width, float height,
+            float srcW, float srcH, boolean hasShoulders) {
         float unit = Math.min(width, height);
         float margin = unit * 0.025f;
 
@@ -160,10 +169,10 @@ final class ControlLayout {
         float headerHeight = chipHeight + chipGap * 2;
 
         float gameWidth = width - margin * 2;
-        float gameHeight = gameWidth * MgbaSession.VIDEO_HEIGHT / MgbaSession.VIDEO_WIDTH;
+        float gameHeight = gameWidth * srcH / srcW;
         if (gameHeight > height * 0.5f) {
             gameHeight = height * 0.5f;
-            gameWidth = gameHeight * MgbaSession.VIDEO_WIDTH / MgbaSession.VIDEO_HEIGHT;
+            gameWidth = gameHeight * srcW / srcH;
         }
         float gameLeft = (width - gameWidth) / 2;
         float gameTop = headerHeight;
@@ -196,10 +205,12 @@ final class ControlLayout {
         float shoulderY = controlsTop + controlsHeight * 0.10f;
         float shoulderHalfWidth = unit * 0.11f;
         float shoulderHalfHeight = shoulderHalfWidth * 0.34f;
-        controls.add(new Control(MgbaSession.KEY_L, "L", Shape.PILL,
-                width * 0.16f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
-        controls.add(new Control(MgbaSession.KEY_R, "R", Shape.PILL,
-                width * 0.84f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
+        if (hasShoulders) {
+            controls.add(new Control(MgbaSession.KEY_L, "L", Shape.PILL,
+                    width * 0.16f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
+            controls.add(new Control(MgbaSession.KEY_R, "R", Shape.PILL,
+                    width * 0.84f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
+        }
 
         float dpadX = width * 0.24f;
         float dpadY = controlsTop + controlsHeight * 0.42f;
@@ -237,7 +248,8 @@ final class ControlLayout {
      * <p>The LOAD/NOTICES chips sit in a header band above the game rect
      * (not overlaid on it), anchored to the game's right edge.
      */
-    private static ControlLayout landscape(float width, float height) {
+    private static ControlLayout landscape(float width, float height,
+            float srcW, float srcH, boolean hasShoulders) {
         float unit = Math.min(width, height);
 
         float dpadHalf = unit * 0.17f;
@@ -259,11 +271,11 @@ final class ControlLayout {
         float bottomReserve = selectStartHalfHeight * 2f + bottomMargin * 2f;
 
         float maxGameHeight = Math.min(height * 0.92f, height - topMargin - bottomReserve);
-        float maxGameWidthByHeight = maxGameHeight * MgbaSession.VIDEO_WIDTH / MgbaSession.VIDEO_HEIGHT;
+        float maxGameWidthByHeight = maxGameHeight * srcW / srcH;
         float maxGameWidthByGutter = width - 2f * gutterWidth;
 
         float gameWidth = Math.min(maxGameWidthByHeight, maxGameWidthByGutter);
-        float gameHeight = gameWidth * MgbaSession.VIDEO_HEIGHT / MgbaSession.VIDEO_WIDTH;
+        float gameHeight = gameWidth * srcH / srcW;
 
         float gameLeft = (width - gameWidth) / 2;
         float gameTop = topMargin;
@@ -304,12 +316,14 @@ final class ControlLayout {
         float shoulderHalfWidth = unit * 0.11f;
         float shoulderHalfHeight = unit * 0.045f;
         float shoulderEdgeMargin = unit * 0.02f;
-        controls.add(new Control(MgbaSession.KEY_L, "L", Shape.PILL,
-                shoulderHalfWidth + shoulderEdgeMargin, shoulderHalfHeight + shoulderEdgeMargin,
-                shoulderHalfWidth, shoulderHalfHeight));
-        controls.add(new Control(MgbaSession.KEY_R, "R", Shape.PILL,
-                width - shoulderHalfWidth - shoulderEdgeMargin, shoulderHalfHeight + shoulderEdgeMargin,
-                shoulderHalfWidth, shoulderHalfHeight));
+        if (hasShoulders) {
+            controls.add(new Control(MgbaSession.KEY_L, "L", Shape.PILL,
+                    shoulderHalfWidth + shoulderEdgeMargin, shoulderHalfHeight + shoulderEdgeMargin,
+                    shoulderHalfWidth, shoulderHalfHeight));
+            controls.add(new Control(MgbaSession.KEY_R, "R", Shape.PILL,
+                    width - shoulderHalfWidth - shoulderEdgeMargin, shoulderHalfHeight + shoulderEdgeMargin,
+                    shoulderHalfWidth, shoulderHalfHeight));
+        }
 
         float smallHalfWidth = unit * 0.09f;
         float smallHalfHeight = unit * 0.035f;
