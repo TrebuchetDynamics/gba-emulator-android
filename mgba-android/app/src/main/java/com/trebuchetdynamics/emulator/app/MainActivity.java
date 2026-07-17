@@ -18,6 +18,7 @@ public final class MainActivity extends Activity {
     private EmulatorView emulatorView;
     private FrameLayout root;
     private InGameMenuView menu;
+    private LayoutEditorView layoutEditor;
     private SaveStateStore states;
     private EmulationRunner runner;
     private RomLibrary library;
@@ -79,12 +80,28 @@ public final class MainActivity extends Activity {
                 startActivity(new android.content.Intent(MainActivity.this, SettingsActivity.class));
                 closeMenu();
             }
+            @Override public void onEditLayout() {
+                menu.setVisibility(View.GONE);
+                boolean landscape = emulatorView.getWidth() > emulatorView.getHeight();
+                layoutEditor.begin(landscape);
+                layoutEditor.setVisibility(View.VISIBLE);
+                layoutEditor.bringToFront();
+            }
             @Override public void onClose() {
                 closeMenu();
             }
         });
         menu.setVisibility(View.GONE);
         root.addView(menu, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));
+        layoutEditor = new LayoutEditorView(this, settings, () -> {
+            layoutEditor.setVisibility(View.GONE);
+            emulatorView.setControlOverrides(
+                    settings.controlOverrides(false), settings.controlOverrides(true));
+        });
+        layoutEditor.setVisibility(View.GONE);
+        root.addView(layoutEditor, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT));
         setContentView(root);

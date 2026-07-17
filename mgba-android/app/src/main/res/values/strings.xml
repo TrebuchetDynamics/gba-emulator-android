@@ -10,6 +10,10 @@
     <string name="menu_reset">Reset</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_close">Close</string>
+    <string name="menu_edit_layout">Edit layout</string>
+    <string name="layout_save">Save</string>
+    <string name="layout_reset">Reset</string>
+    <string name="layout_cancel">Cancel</string>
     <string name="menu_slot_empty">Slot %1$d · empty</string>
     <string name="menu_slot_filled">Slot %1$d · saved</string>
     <string name="library_title">Garnacha Boy</string>

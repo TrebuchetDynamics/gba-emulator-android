@@ -16,6 +16,7 @@ final class InGameMenuView extends LinearLayout {
         void onToggleFastForward();
         void onReset();
         void onSettings();
+        void onEditLayout();
         void onClose();
     }
 
@@ -45,6 +46,7 @@ final class InGameMenuView extends LinearLayout {
         addView(fastForwardButton);
         addView(wideButton(context.getString(R.string.menu_reset), v -> listener.onReset()));
         addView(wideButton(context.getString(R.string.menu_settings), v -> listener.onSettings()));
+        addView(wideButton(context.getString(R.string.menu_edit_layout), v -> listener.onEditLayout()));
         addView(wideButton(context.getString(R.string.menu_close), v -> listener.onClose()));
     }
 
