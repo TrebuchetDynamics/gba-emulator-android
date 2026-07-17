@@ -32,6 +32,8 @@ final class EmulatorView extends View {
     private final Runnable requestMenu;
 
     private ControlLayout layout = ControlLayout.of(1, 1);
+    private ControlOverrides portraitOverrides = ControlOverrides.EMPTY;
+    private ControlOverrides landscapeOverrides = ControlOverrides.EMPTY;
 
     private volatile int touchKeys;
     private volatile int hardwareKeys;
@@ -83,6 +85,16 @@ final class EmulatorView extends View {
         invalidate();
     }
 
+    void setControlOverrides(ControlOverrides portrait, ControlOverrides landscape) {
+        this.portraitOverrides = portrait == null ? ControlOverrides.EMPTY : portrait;
+        this.landscapeOverrides = landscape == null ? ControlOverrides.EMPTY : landscape;
+        invalidate();
+    }
+
+    private ControlOverrides activeOverrides(int w, int h) {
+        return w > h ? landscapeOverrides : portraitOverrides;
+    }
+
     void setStatus(String value) {
         status = value;
         if (!"Running".equals(value)) {
@@ -104,13 +116,13 @@ final class EmulatorView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        layout = ControlLayout.of(w, h);
+        layout = ControlLayout.of(w, h, activeOverrides(w, h));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        layout = ControlLayout.of(getWidth(), getHeight());
+        layout = ControlLayout.of(getWidth(), getHeight(), activeOverrides(getWidth(), getHeight()));
         gameRect.set(layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom);
 
         int controlAlpha = hasFrame

@@ -104,6 +104,8 @@ public final class MainActivity extends Activity {
         emulatorView.setHapticsEnabled(settings.haptics());
         emulatorView.setIdleOpacityAlpha(Settings.opacityPercentToAlpha(settings.controlOpacityPercent()));
         emulatorView.setIntegerScale(settings.scaleMode() == Settings.ScaleMode.INTEGER);
+        emulatorView.setControlOverrides(
+                settings.controlOverrides(false), settings.controlOverrides(true));
         if (romFile != null && romFile.isFile()) {
             startRunner();
         }
