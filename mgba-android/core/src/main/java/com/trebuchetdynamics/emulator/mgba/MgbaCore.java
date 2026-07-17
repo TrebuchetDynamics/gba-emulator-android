@@ -13,4 +13,7 @@ public final class MgbaCore {
 
     /** Creates, initializes, and destroys a GBA core as a native integration smoke test. */
     public static native boolean canCreateGbaCore();
+
+    /** Creates, initializes, and destroys a GB core as a native integration smoke test. */
+    public static native boolean canCreateGbCore();
 }

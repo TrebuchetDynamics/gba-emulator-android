@@ -29,6 +29,11 @@ public class MgbaCoreInstrumentedTest {
     }
 
     @Test
+    public void canCreateGbCore() {
+        assertTrue(MgbaCore.canCreateGbCore());
+    }
+
+    @Test
     public void sessionRunsMitLicensedRomAndRestoresState() throws Exception {
         byte[] rom = readAsset("hello.gba");
         int[] pixels = new int[MgbaSession.FRAME_PIXELS];

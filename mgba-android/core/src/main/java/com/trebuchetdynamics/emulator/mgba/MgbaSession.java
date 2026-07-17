@@ -16,6 +16,9 @@ public final class MgbaSession implements AutoCloseable {
     public static final int MIN_AUDIO_BUFFER_SAMPLES = 2_048;
     private static final long MAX_GBA_ROM_BYTES = 32L * 1024 * 1024;
 
+    public static final int PLATFORM_GBA = 0;
+    public static final int PLATFORM_GB = 1;
+
     public static final int KEY_A = 1 << 0;
     public static final int KEY_B = 1 << 1;
     public static final int KEY_SELECT = 1 << 2;
@@ -33,12 +36,32 @@ public final class MgbaSession implements AutoCloseable {
 
     private long handle;
     private boolean loaded;
+    private final int videoWidth;
+    private final int videoHeight;
 
     public MgbaSession() {
-        handle = nativeCreate();
+        this(PLATFORM_GBA);
+    }
+
+    public MgbaSession(int platform) {
+        handle = nativeCreate(platform);
         if (handle == 0) {
             throw new IllegalStateException("Could not initialize the mGBA core");
         }
+        videoWidth = nativeVideoWidth(handle);
+        videoHeight = nativeVideoHeight(handle);
+    }
+
+    public int videoWidth() {
+        return videoWidth;
+    }
+
+    public int videoHeight() {
+        return videoHeight;
+    }
+
+    public int framePixels() {
+        return videoWidth * videoHeight;
     }
 
     /** Loads one GBA ROM into this session. A session cannot be reused for another ROM. */
@@ -155,7 +178,9 @@ public final class MgbaSession implements AutoCloseable {
         }
     }
 
-    private static native long nativeCreate();
+    private static native long nativeCreate(int platform);
+    private static native int nativeVideoWidth(long handle);
+    private static native int nativeVideoHeight(long handle);
     private static native boolean nativeLoadRom(long handle, byte[] rom);
     private static native boolean nativeLoadRomFile(long handle, String path);
     private static native int nativeRunFrame(long handle, int keys, int[] pixels, short[] audio);

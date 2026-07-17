@@ -26,6 +26,8 @@ struct MgbaSession {
     size_t romSize;
     color_t video[VIDEO_STRIDE * VIDEO_HEIGHT];
     bool loaded;
+    int videoWidth;
+    int videoHeight;
 };
 
 static struct MgbaSession* sessionFromHandle(jlong handle) {
@@ -68,23 +70,30 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaCore_canCreateGbaCore(JNIEnv* env, 
     return JNI_TRUE;
 }
 
-JNIEXPORT jlong JNICALL
-Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeCreate(JNIEnv* env, jclass clazz) {
-    (void) env;
-    (void) clazz;
-
-    struct MgbaSession* session = calloc(1, sizeof(*session));
-    if (!session) {
-        return 0;
+JNIEXPORT jboolean JNICALL
+Java_com_trebuchetdynamics_emulator_mgba_MgbaCore_canCreateGbCore(JNIEnv* env, jclass clazz) {
+    (void) env; (void) clazz;
+    struct mCore* core = mCoreCreate(mPLATFORM_GB);
+    if (!core) {
+        return JNI_FALSE;
     }
+    if (!core->init(core)) {
+        free(core);
+        return JNI_FALSE;
+    }
+    core->deinit(core);
+    return JNI_TRUE;
+}
 
-    session->core = mCoreCreate(mPLATFORM_GBA);
+static bool setupCore(struct MgbaSession* session, jint platform) {
+    enum mPlatform mp = (platform == 1) ? mPLATFORM_GB : mPLATFORM_GBA;
+    session->core = mCoreCreate(mp);
     if (!session->core || !session->core->init(session->core)) {
         if (session->core) {
             free(session->core);
+            session->core = NULL;
         }
-        free(session);
-        return 0;
+        return false;
     }
 
     mCoreInitConfig(session->core, NULL);
@@ -96,13 +105,41 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeCreate(JNIEnv* env, j
     };
     mCoreConfigLoadDefaults(&session->core->config, &options);
     mCoreLoadConfig(session->core);
+
+    unsigned w = VIDEO_WIDTH;
+    unsigned h = VIDEO_HEIGHT;
+    session->core->desiredVideoDimensions(session->core, &w, &h);
+    if ((int) w > VIDEO_STRIDE || (int) h > VIDEO_HEIGHT) {
+        // Would overflow the fixed buffer; refuse rather than corrupt memory.
+        session->core->deinit(session->core);
+        session->core = NULL;
+        return false;
+    }
+    session->videoWidth = (int) w;
+    session->videoHeight = (int) h;
+
     session->core->setVideoBuffer(session->core, session->video, VIDEO_STRIDE);
     session->core->setAudioBufferSize(session->core, 2048);
     blip_set_rates(session->core->getAudioChannel(session->core, 0),
                    session->core->frequency(session->core), AUDIO_SAMPLE_RATE);
     blip_set_rates(session->core->getAudioChannel(session->core, 1),
                    session->core->frequency(session->core), AUDIO_SAMPLE_RATE);
+    return true;
+}
 
+JNIEXPORT jlong JNICALL
+Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeCreate(JNIEnv* env, jclass clazz, jint platform) {
+    (void) env;
+    (void) clazz;
+
+    struct MgbaSession* session = calloc(1, sizeof(*session));
+    if (!session) {
+        return 0;
+    }
+    if (!setupCore(session, platform)) {
+        free(session);
+        return 0;
+    }
     return (jlong) (uintptr_t) session;
 }
 
@@ -218,7 +255,7 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeRunFrame(
 
     jsize pixelCapacity = (*env)->GetArrayLength(env, pixels);
     jsize audioCapacity = (*env)->GetArrayLength(env, audio);
-    if (pixelCapacity < VIDEO_WIDTH * VIDEO_HEIGHT || audioCapacity < 2) {
+    if (pixelCapacity < session->videoWidth * session->videoHeight || audioCapacity < 2) {
         return -1;
     }
 
@@ -229,10 +266,10 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeRunFrame(
     if (!output) {
         return -1;
     }
-    for (size_t y = 0; y < VIDEO_HEIGHT; ++y) {
-        for (size_t x = 0; x < VIDEO_WIDTH; ++x) {
+    for (size_t y = 0; y < (size_t) session->videoHeight; ++y) {
+        for (size_t x = 0; x < (size_t) session->videoWidth; ++x) {
             uint32_t native = session->video[y * VIDEO_STRIDE + x];
-            output[y * VIDEO_WIDTH + x] = (jint) (0xFF000000U
+            output[y * session->videoWidth + x] = (jint) (0xFF000000U
                     | ((native & 0x000000FFU) << 16)
                     | (native & 0x0000FF00U)
                     | ((native & 0x00FF0000U) >> 16));
@@ -269,6 +306,20 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeFrameCounter(
         return -1;
     }
     return (jlong) session->core->frameCounter(session->core);
+}
+
+JNIEXPORT jint JNICALL
+Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeVideoWidth(JNIEnv* env, jclass clazz, jlong handle) {
+    (void) env; (void) clazz;
+    struct MgbaSession* session = sessionFromHandle(handle);
+    return session ? session->videoWidth : 0;
+}
+
+JNIEXPORT jint JNICALL
+Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeVideoHeight(JNIEnv* env, jclass clazz, jlong handle) {
+    (void) env; (void) clazz;
+    struct MgbaSession* session = sessionFromHandle(handle);
+    return session ? session->videoHeight : 0;
 }
 
 JNIEXPORT jbyteArray JNICALL

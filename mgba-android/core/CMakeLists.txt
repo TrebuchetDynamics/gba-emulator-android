@@ -8,7 +8,7 @@ endif()
 
 set(LIBMGBA_ONLY ON CACHE BOOL "Build only libmGBA" FORCE)
 set(M_CORE_GBA ON CACHE BOOL "Build the Game Boy Advance core" FORCE)
-set(M_CORE_GB OFF CACHE BOOL "Do not build the Game Boy core" FORCE)
+set(M_CORE_GB ON CACHE BOOL "Build the Game Boy core" FORCE)
 set(BUILD_LTO OFF CACHE BOOL "Keep the integration build deterministic" FORCE)
 add_subdirectory("${MGBA_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/mgba" EXCLUDE_FROM_ALL)
 
