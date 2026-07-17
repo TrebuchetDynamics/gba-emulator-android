@@ -95,11 +95,7 @@ public final class MainActivity extends Activity {
         root.addView(menu, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT));
-        layoutEditor = new LayoutEditorView(this, settings, () -> {
-            layoutEditor.setVisibility(View.GONE);
-            emulatorView.setControlOverrides(
-                    settings.controlOverrides(false), settings.controlOverrides(true));
-        });
+        layoutEditor = new LayoutEditorView(this, settings, this::closeLayoutEditor);
         layoutEditor.setVisibility(View.GONE);
         root.addView(layoutEditor, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
@@ -170,6 +166,13 @@ public final class MainActivity extends Activity {
         menu.setVisibility(View.GONE);
     }
 
+    /** Closes the layout editor without persisting any working (unsaved) edits. */
+    private void closeLayoutEditor() {
+        layoutEditor.setVisibility(View.GONE);
+        emulatorView.setControlOverrides(
+                settings.controlOverrides(false), settings.controlOverrides(true));
+    }
+
     private void refreshMenu() {
         if (states != null && runner != null) {
             menu.bind(states, runner.isFastForward());
@@ -231,6 +234,10 @@ public final class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        if (layoutEditor != null && layoutEditor.getVisibility() == View.VISIBLE) {
+            closeLayoutEditor();
+            return;
+        }
         if (menu.getVisibility() == View.VISIBLE) {
             closeMenu();
             return;
