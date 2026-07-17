@@ -25,4 +25,13 @@ public class SettingsTest {
         assertEquals(255, Settings.opacityPercentToAlpha(100));
         assertEquals(61, Settings.opacityPercentToAlpha(24)); // 24% -> round(0.24*255)=61
     }
+
+    @Test
+    public void clampFrameskipBoundsToZeroThroughThree() {
+        assertEquals(0, Settings.clampFrameskip(-1));
+        assertEquals(0, Settings.clampFrameskip(0));
+        assertEquals(2, Settings.clampFrameskip(2));
+        assertEquals(3, Settings.clampFrameskip(3));
+        assertEquals(3, Settings.clampFrameskip(9));
+    }
 }

@@ -3,6 +3,8 @@ package com.trebuchetdynamics.emulator.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Map;
+
 /** Typed wrapper over the app's preferences, with pure clamp/enum helpers. */
 final class Settings {
     enum Orientation { AUTO, PORTRAIT, LANDSCAPE }
@@ -17,6 +19,8 @@ final class Settings {
     private static final String K_HAPTICS = "haptics";
     private static final String K_OPACITY = "controlOpacityPercent";
     private static final String K_FF_SPEED = "fastForwardSpeed";
+    private static final String K_FRAMESKIP = "frameskip";
+    private static final String K_GAMEPAD = "gamepadBindings";
 
     private final SharedPreferences prefs;
 
@@ -81,6 +85,22 @@ final class Settings {
         prefs.edit().putInt(K_FF_SPEED, clampFastForwardSpeed(value)).apply();
     }
 
+    int frameskip() {
+        return clampFrameskip(prefs.getInt(K_FRAMESKIP, 0));
+    }
+
+    void setFrameskip(int value) {
+        prefs.edit().putInt(K_FRAMESKIP, clampFrameskip(value)).apply();
+    }
+
+    KeyBindings gamepadBindings(Map<Integer, Integer> defaults) {
+        return KeyBindings.parse(prefs.getString(K_GAMEPAD, ""), defaults);
+    }
+
+    void setGamepadBindings(KeyBindings bindings) {
+        prefs.edit().putString(K_GAMEPAD, bindings.serialize()).apply();
+    }
+
     static int clampPercent(int value) {
         if (value < 0) {
             return 0;
@@ -93,6 +113,13 @@ final class Settings {
             return 2;
         }
         return Math.min(value, 4);
+    }
+
+    static int clampFrameskip(int value) {
+        if (value < 0) {
+            return 0;
+        }
+        return Math.min(value, 3);
     }
 
     static int opacityPercentToAlpha(int percent) {
