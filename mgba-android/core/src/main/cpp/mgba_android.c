@@ -190,7 +190,16 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeLoadRom(
     if (!refreshDimensions(session)) {
         // Post-load dimensions would overflow the fixed video buffer; treat
         // this the same as a load failure rather than risk memory corruption.
-        free(romData);
+        // The core already owns the VFile wrapping romData (loadROM()
+        // succeeded), so we must NOT free it here or close that VFile
+        // ourselves: doing so would leave the core holding a dangling
+        // pointer, and a later nativeDestroy()->destroySession() would
+        // touch freed memory when it deinits the core. Instead, retain the
+        // memory in the session (loaded stays false) so destroySession()
+        // deinits the core first (closing the VFile) and only then frees
+        // session->romData, in the correct order.
+        session->romData = romData;
+        session->romSize = (size_t) romSize;
         return JNI_FALSE;
     }
 
@@ -255,7 +264,16 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeLoadRomFile(
     if (!refreshDimensions(session)) {
         // Post-load dimensions would overflow the fixed video buffer; treat
         // this the same as a load failure rather than risk memory corruption.
-        free(romData);
+        // The core already owns the VFile wrapping romData (loadROM()
+        // succeeded), so we must NOT free it here or close that VFile
+        // ourselves: doing so would leave the core holding a dangling
+        // pointer, and a later nativeDestroy()->destroySession() would
+        // touch freed memory when it deinits the core. Instead, retain the
+        // memory in the session (loaded stays false) so destroySession()
+        // deinits the core first (closing the VFile) and only then frees
+        // session->romData, in the correct order.
+        session->romData = romData;
+        session->romSize = (size_t) romSize;
         return JNI_FALSE;
     }
 

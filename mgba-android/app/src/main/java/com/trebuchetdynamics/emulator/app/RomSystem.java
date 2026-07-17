@@ -45,14 +45,16 @@ enum RomSystem {
         if (rom == null) {
             return UNKNOWN;
         }
-        // GBA: fixed value 0x96 at 0xB2 within the 192-byte cartridge header.
-        if (rom.length >= 0xC0 && (rom[0xB2] & 0xFF) == 0x96) {
-            return GBA;
-        }
-        // GB/GBC: the Nintendo logo occupies 0x104..0x133; CGB flag at 0x143.
+        // Game Boy / Game Boy Color: the 48-byte Nintendo logo is far more specific
+        // than the GBA fixed byte, so check it first to avoid a 0xB2==0x96 collision
+        // in Game Boy program code.
         if (rom.length >= 0x150 && matchesNintendoLogo(rom)) {
             int cgb = rom[0x143] & 0xFF;
             return (cgb == 0x80 || cgb == 0xC0) ? GBC : GB;
+        }
+        // GBA: fixed value 0x96 at 0xB2 within the 192-byte cartridge header.
+        if (rom.length >= 0xC0 && (rom[0xB2] & 0xFF) == 0x96) {
+            return GBA;
         }
         return UNKNOWN;
     }

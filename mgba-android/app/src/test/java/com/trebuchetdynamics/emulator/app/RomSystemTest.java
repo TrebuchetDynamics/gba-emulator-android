@@ -46,6 +46,16 @@ public class RomSystemTest {
     }
 
     @Test
+    public void gbLogoWinsOverIncidentalGbaByteCollision() {
+        // A real GB ROM whose ordinary program code happens to place 0x96 at
+        // offset 0xB2 (the GBA fixed-byte offset) must still detect as GB: the
+        // 48-byte Nintendo logo is checked first because it is far more specific.
+        byte[] r = gbRom(0x00);
+        r[0xB2] = (byte) 0x96;
+        assertEquals(RomSystem.GB, RomSystem.detect(r));
+    }
+
+    @Test
     public void unknownForGarbageOrShort() {
         assertEquals(RomSystem.UNKNOWN, RomSystem.detect(new byte[16]));
         assertEquals(RomSystem.UNKNOWN, RomSystem.detect(null));
