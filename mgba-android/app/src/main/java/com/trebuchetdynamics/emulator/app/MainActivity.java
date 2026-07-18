@@ -219,7 +219,8 @@ public final class MainActivity extends Activity {
                 },
                 settings.audioEnabled(),
                 settings.audioVolumePercent() / 100f,
-                settings.fastForwardSpeed(), settings.frameskip());
+                settings.fastForwardSpeed(), settings.frameskip(),
+                settings.dmgPalette().shades());
         runner.start();
     }
 

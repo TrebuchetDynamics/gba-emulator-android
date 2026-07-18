@@ -45,4 +45,21 @@ public class SettingsTest {
         ControlOverrides back = ControlOverrides.parse(o.serialize());
         assertEquals(0.2f, back.normCx(1), 1e-3f);
     }
+
+    // Settings persists these enums by ordinal, so their declaration order is a
+    // storage format: reordering or removing a value would silently remap every
+    // stored user choice. This pins the ordinals so such a change fails loudly
+    // here instead of corrupting preferences at runtime. Append new values only.
+    @Test
+    public void persistedEnumOrdinalsAreStable() {
+        assertEquals(0, Settings.Orientation.AUTO.ordinal());
+        assertEquals(1, Settings.Orientation.PORTRAIT.ordinal());
+        assertEquals(2, Settings.Orientation.LANDSCAPE.ordinal());
+
+        assertEquals(0, Settings.ScaleMode.INTEGER.ordinal());
+        assertEquals(1, Settings.ScaleMode.FILL.ordinal());
+
+        assertEquals(0, DmgPalette.GREEN.ordinal());
+        assertEquals(1, DmgPalette.GREY.ordinal());
+    }
 }

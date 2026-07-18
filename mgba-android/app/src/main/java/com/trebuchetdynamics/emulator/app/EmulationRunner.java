@@ -59,12 +59,13 @@ final class EmulationRunner implements Runnable {
     private final float audioVolume; // 0f..1f
     private final int fastForwardSpeed;
     private final int frameskip;
+    private final int[] dmgPaletteArgb;
 
     EmulationRunner(Context context, EmulatorView view, File rom, String romId,
                     SaveStateStore states, ErrorListener errors,
                     StateListener stateListener,
                     boolean audioEnabled, float audioVolume, int fastForwardSpeed,
-                    int frameskip) {
+                    int frameskip, int[] dmgPaletteArgb) {
         this.context = context.getApplicationContext();
         this.view = view;
         this.rom = rom;
@@ -76,6 +77,7 @@ final class EmulationRunner implements Runnable {
         this.audioVolume = audioVolume;
         this.fastForwardSpeed = fastForwardSpeed;
         this.frameskip = Math.max(0, frameskip);
+        this.dmgPaletteArgb = dmgPaletteArgb;
         thread = new Thread(this, "mgba-emulation");
     }
 
@@ -146,6 +148,10 @@ final class EmulationRunner implements Runnable {
         try (MgbaSession session = new MgbaSession(platform)) {
             session.loadRom(rom);
             view.setVideoSize(session.videoWidth(), session.videoHeight(), !system.isGameBoy());
+            // Recolour only original Game Boy (DMG) games; GBC and GBA are untouched.
+            if (system.usesDmgPalette() && dmgPaletteArgb != null) {
+                session.setDmgPalette(dmgPaletteArgb);
+            }
             File saveFile = saveFile();
             restoreSavedata(session, saveFile);
             if (audioEnabled) {

@@ -13,6 +13,15 @@ enum RomSystem {
         return this == GB || this == GBC;
     }
 
+    /**
+     * True only for original monochrome Game Boy (DMG). The chosen DMG palette
+     * applies here; Game Boy Color and GBA render their own colours and must be
+     * left untouched.
+     */
+    boolean usesDmgPalette() {
+        return this == GB;
+    }
+
     /** Short label for the library badge. */
     String badge() {
         switch (this) {

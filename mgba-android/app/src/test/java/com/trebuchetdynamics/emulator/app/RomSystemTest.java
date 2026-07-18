@@ -69,4 +69,27 @@ public class RomSystemTest {
         assertFalse(RomSystem.GBA.isGameBoy());
         assertFalse(RomSystem.UNKNOWN.isGameBoy());
     }
+
+    @Test
+    public void onlyPlainGameBoyUsesTheDmgPalette() {
+        assertTrue(RomSystem.GB.usesDmgPalette());
+        // The DMG palette must never affect Game Boy Color or GBA.
+        assertFalse(RomSystem.GBC.usesDmgPalette());
+        assertFalse(RomSystem.GBA.usesDmgPalette());
+        assertFalse(RomSystem.UNKNOWN.usesDmgPalette());
+    }
+
+    // RomLibrary persists the system by name; valueOfOrGba is the read-side
+    // tolerance that keeps a missing (legacy entry) or unrecognised (corrupt or
+    // newer) stored name from throwing — it falls back to GBA. Valid names
+    // round-trip. This pins the name-based persistence compatibility.
+    @Test
+    public void valueOfOrGbaToleratesMissingAndUnknownNames() {
+        assertEquals(RomSystem.GBA, RomSystem.valueOfOrGba(null));
+        assertEquals(RomSystem.GBA, RomSystem.valueOfOrGba(""));
+        assertEquals(RomSystem.GBA, RomSystem.valueOfOrGba("SNES"));
+        assertEquals(RomSystem.GB, RomSystem.valueOfOrGba("GB"));
+        assertEquals(RomSystem.GBC, RomSystem.valueOfOrGba("GBC"));
+        assertEquals(RomSystem.GBA, RomSystem.valueOfOrGba("GBA"));
+    }
 }

@@ -66,6 +66,20 @@ public final class MgbaSession implements AutoCloseable {
         return videoWidth() * videoHeight();
     }
 
+    /**
+     * Recolours original Game Boy (DMG) output with four ARGB shades (lightest
+     * to darkest; alpha ignored). Only affects DMG rendering — GBA and Game Boy
+     * Color output are unchanged. Call after a ROM is loaded. A palette shorter
+     * than four entries is ignored.
+     */
+    public synchronized void setDmgPalette(int[] argbShades) {
+        requireOpen();
+        if (argbShades == null || argbShades.length < 4) {
+            return;
+        }
+        nativeSetDmgPalette(handle, argbShades[0], argbShades[1], argbShades[2], argbShades[3]);
+    }
+
     /** Loads one GBA ROM into this session. A session cannot be reused for another ROM. */
     public synchronized void loadRom(byte[] rom) {
         requireOpen();
@@ -183,6 +197,7 @@ public final class MgbaSession implements AutoCloseable {
     private static native long nativeCreate(int platform);
     private static native int nativeVideoWidth(long handle);
     private static native int nativeVideoHeight(long handle);
+    private static native void nativeSetDmgPalette(long handle, int s0, int s1, int s2, int s3);
     private static native boolean nativeLoadRom(long handle, byte[] rom);
     private static native boolean nativeLoadRomFile(long handle, String path);
     private static native int nativeRunFrame(long handle, int keys, int[] pixels, short[] audio);

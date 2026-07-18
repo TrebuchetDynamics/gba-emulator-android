@@ -135,6 +135,24 @@ public class MgbaCoreInstrumentedTest {
         }
     }
 
+    @Test
+    public void dmgPaletteAppliesToGameBoySessionWithoutBreakingIt() throws Exception {
+        try (MgbaSession session = new MgbaSession(MgbaSession.PLATFORM_GB)) {
+            session.loadRom(readAsset("hello.gb"));
+            // Apply a DMG palette right after load, exactly as the player does.
+            // This exercises the nativeSetDmgPalette JNI signature via real
+            // linkage — a Java/native signature mismatch throws UnsatisfiedLinkError.
+            session.setDmgPalette(new int[] { 0xFFFFFFFF, 0xFFA9A9A9, 0xFF545454, 0xFF000000 });
+
+            int[] pixels = new int[session.framePixels()];
+            short[] audio = new short[MgbaSession.MIN_AUDIO_BUFFER_SAMPLES];
+            for (int i = 0; i < 3; i++) {
+                session.runFrame(0, pixels, audio);
+            }
+            assertEquals(3, session.frameCounter());
+        }
+    }
+
     private static byte[] readAsset(String name) throws IOException {
         Context context = InstrumentationRegistry.getInstrumentation().getContext();
         try (InputStream input = context.getAssets().open(name);

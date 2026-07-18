@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -359,6 +360,28 @@ Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeVideoHeight(JNIEnv* e
     (void) env; (void) clazz;
     struct MgbaSession* session = sessionFromHandle(handle);
     return session ? session->videoHeight : 0;
+}
+
+// Recolours the original Game Boy (DMG) output via mGBA's gb.pal[0..11] config
+// (background, obj0, obj1 all use the same four shades). The four inputs are
+// 0xRRGGBB (alpha ignored). No-op on GBA cores, which never read gb.pal; the
+// caller only invokes this for DMG ROMs so GBC output is untouched.
+JNIEXPORT void JNICALL
+Java_com_trebuchetdynamics_emulator_mgba_MgbaSession_nativeSetDmgPalette(
+        JNIEnv* env, jclass clazz, jlong handle, jint s0, jint s1, jint s2, jint s3) {
+    (void) env;
+    (void) clazz;
+    struct MgbaSession* session = sessionFromHandle(handle);
+    if (!session || !session->core) {
+        return;
+    }
+    jint shades[4] = { s0 & 0xFFFFFF, s1 & 0xFFFFFF, s2 & 0xFFFFFF, s3 & 0xFFFFFF };
+    char key[16];
+    for (int i = 0; i < 12; ++i) {
+        snprintf(key, sizeof(key), "gb.pal[%d]", i);
+        mCoreConfigSetIntValue(&session->core->config, key, shades[i % 4]);
+    }
+    mCoreLoadConfig(session->core);
 }
 
 JNIEXPORT jbyteArray JNICALL

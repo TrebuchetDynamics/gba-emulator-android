@@ -35,6 +35,8 @@ public final class SettingsActivity extends Activity {
                 orientationLabel(), v -> pickOrientation()));
         content.addView(choiceRow(getString(R.string.settings_scale),
                 scaleLabel(), v -> pickScale()));
+        content.addView(choiceRow(getString(R.string.settings_dmg_palette),
+                settings.dmgPalette().label(), v -> pickDmgPalette()));
 
         content.addView(header(getString(R.string.settings_group_audio)));
         content.addView(switchRow(getString(R.string.settings_audio_enabled),
@@ -172,6 +174,22 @@ public final class SettingsActivity extends Activity {
                 .setTitle(R.string.settings_scale)
                 .setSingleChoiceItems(labels, settings.scaleMode().ordinal(), (d, which) -> {
                     settings.setScaleMode(Settings.ScaleMode.values()[which]);
+                    d.dismiss();
+                    recreate();
+                })
+                .show();
+    }
+
+    private void pickDmgPalette() {
+        DmgPalette[] values = DmgPalette.values();
+        String[] labels = new String[values.length];
+        for (int i = 0; i < values.length; i++) {
+            labels[i] = values[i].label();
+        }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.settings_dmg_palette)
+                .setSingleChoiceItems(labels, settings.dmgPalette().ordinal(), (d, which) -> {
+                    settings.setDmgPalette(values[which]);
                     d.dismiss();
                     recreate();
                 })

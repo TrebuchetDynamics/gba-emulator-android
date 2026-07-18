@@ -39,6 +39,7 @@
     <string name="settings_scale">Scaling</string>
     <string name="settings_scale_integer">Integer (crisp)</string>
     <string name="settings_scale_fill">Fill screen</string>
+    <string name="settings_dmg_palette">Game Boy palette</string>
     <string name="settings_audio_enabled">Sound</string>
     <string name="settings_volume">Volume</string>
     <string name="settings_haptics">Vibrate on touch</string>

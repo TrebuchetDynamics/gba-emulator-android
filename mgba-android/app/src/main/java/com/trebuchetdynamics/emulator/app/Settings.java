@@ -7,8 +7,12 @@ import java.util.Map;
 
 /** Typed wrapper over the app's preferences, with pure clamp/enum helpers. */
 final class Settings {
+    // Persisted by ordinal in SharedPreferences — append new values only; never
+    // reorder or remove existing ones, or stored user choices remap silently.
     enum Orientation { AUTO, PORTRAIT, LANDSCAPE }
 
+    // Persisted by ordinal in SharedPreferences — append new values only; never
+    // reorder or remove existing ones, or stored user choices remap silently.
     enum ScaleMode { INTEGER, FILL }
 
     private static final String FILE = "garnacha_settings";
@@ -23,6 +27,7 @@ final class Settings {
     private static final String K_GAMEPAD = "gamepadBindings";
     private static final String K_LAYOUT_PORTRAIT = "layoutOverridesPortrait";
     private static final String K_LAYOUT_LANDSCAPE = "layoutOverridesLandscape";
+    private static final String K_DMG_PALETTE = "dmgPalette";
 
     private final SharedPreferences prefs;
 
@@ -45,6 +50,15 @@ final class Settings {
 
     void setScaleMode(ScaleMode value) {
         prefs.edit().putInt(K_SCALE, value.ordinal()).apply();
+    }
+
+    /** Monochrome palette for original Game Boy (DMG) games; default green. */
+    DmgPalette dmgPalette() {
+        return dmgPaletteFromOrdinal(prefs.getInt(K_DMG_PALETTE, DmgPalette.DEFAULT.ordinal()));
+    }
+
+    void setDmgPalette(DmgPalette value) {
+        prefs.edit().putInt(K_DMG_PALETTE, value.ordinal()).apply();
     }
 
     boolean audioEnabled() {
@@ -147,5 +161,10 @@ final class Settings {
     private static ScaleMode scaleModeFromOrdinal(int ordinal) {
         ScaleMode[] values = ScaleMode.values();
         return ordinal >= 0 && ordinal < values.length ? values[ordinal] : ScaleMode.INTEGER;
+    }
+
+    private static DmgPalette dmgPaletteFromOrdinal(int ordinal) {
+        DmgPalette[] values = DmgPalette.values();
+        return ordinal >= 0 && ordinal < values.length ? values[ordinal] : DmgPalette.DEFAULT;
     }
 }
