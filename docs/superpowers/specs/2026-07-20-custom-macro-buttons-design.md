@@ -1,6 +1,7 @@
 # Custom Macro Buttons Design
 
-**Date:** 2026-07-20  
+**Date:** 2026-07-20
+
 **Status:** Approved design; implementation not started
 
 ## Goal
@@ -66,9 +67,9 @@ Adding rejects a duplicate `(keyMask, turbo)` definition. Stored order is slot
 order, keeping labels and output deterministic.
 
 `Settings` stores one macro string for portrait and one for landscape. Saving
-from the editor writes the macro string and matching override string through a
-single `SharedPreferences.Editor.apply()` call so the visible controls and
-positions cannot diverge.
+from the editor writes the macro string, matching override string, and opacity
+through a single `SharedPreferences.Editor.apply()` call so the visible controls,
+positions, and styling cannot diverge.
 
 ## Runtime input flow
 
