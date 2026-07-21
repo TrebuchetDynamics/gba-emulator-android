@@ -56,6 +56,11 @@ public class FeelMathTest {
     }
 
     @Test
+    public void activeOpacityCapsIdleOpacity() {
+        assertEquals(128, FeelMath.controlAlpha(9000, 1000, 1500, 500, 200, 128));
+    }
+
+    @Test
     public void newPressDetection() {
         assertTrue(FeelMath.introducesNewPress(0, 1));      // press A
         assertFalse(FeelMath.introducesNewPress(1, 1));     // still A
@@ -81,5 +86,21 @@ public class FeelMathTest {
         FeelMath.Box b = FeelMath.fitScale(0, 0, 1260, 840, 240, 160);
         assertEquals(1260f, b.right - b.left, 0.001f);
         assertEquals(840f, b.bottom - b.top, 0.001f);
+    }
+
+    @Test public void turboPulsesWholeCombinationTwoFramesOnTwoFramesOff() {
+        int combo = 1 | 32;
+        assertEquals(combo, FeelMath.applyTurbo(0, combo, 0));
+        assertEquals(combo, FeelMath.applyTurbo(0, combo, 1));
+        assertEquals(0, FeelMath.applyTurbo(0, combo, 2));
+        assertEquals(0, FeelMath.applyTurbo(0, combo, 3));
+        assertEquals(combo, FeelMath.applyTurbo(0, combo, 4));
+    }
+
+    @Test public void normalKeysRemainHeldWhileTurboPulses() {
+        int normal = 2;
+        int turbo = 1 | 32;
+        assertEquals(normal | turbo, FeelMath.applyTurbo(normal, turbo, 0));
+        assertEquals(normal, FeelMath.applyTurbo(normal, turbo, 2));
     }
 }

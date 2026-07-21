@@ -3,6 +3,7 @@ package com.trebuchetdynamics.emulator.app;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -14,7 +15,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 public final class SettingsActivity extends Activity {
+    private static final int HOME = 0;
+    private static final int VIDEO = 1;
+    private static final int AUDIO = 2;
+    private static final int CONTROLS = 3;
+    private static final int STATES = 4;
+    private static final int EMULATION = 5;
+
     private Settings settings;
+    private LinearLayout content;
+    private int section = HOME;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -24,70 +34,171 @@ public final class SettingsActivity extends Activity {
         getWindow().setStatusBarColor(0xFF0E1014);
         getWindow().setNavigationBarColor(0xFF0E1014);
 
-        LinearLayout content = new LinearLayout(this);
+        content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
-        content.setBackgroundColor(0xFF0E1014);
-        int pad = dp(16);
-        content.setPadding(pad, pad, pad, pad);
-
-        content.addView(header(getString(R.string.settings_group_video)));
-        content.addView(choiceRow(getString(R.string.settings_orientation),
-                orientationLabel(), v -> pickOrientation()));
-        content.addView(choiceRow(getString(R.string.settings_scale),
-                scaleLabel(), v -> pickScale()));
-        content.addView(choiceRow(getString(R.string.settings_dmg_palette),
-                settings.dmgPalette().label(), v -> pickDmgPalette()));
-
-        content.addView(header(getString(R.string.settings_group_audio)));
-        content.addView(switchRow(getString(R.string.settings_audio_enabled),
-                settings.audioEnabled(), (b, on) -> settings.setAudioEnabled(on)));
-        content.addView(sliderRow(getString(R.string.settings_volume), 0, 100,
-                settings.audioVolumePercent(), settings::setAudioVolumePercent));
-
-        content.addView(header(getString(R.string.settings_group_controls)));
-        content.addView(switchRow(getString(R.string.settings_haptics),
-                settings.haptics(), (b, on) -> settings.setHaptics(on)));
-        content.addView(sliderRow(getString(R.string.settings_opacity), 10, 100,
-                settings.controlOpacityPercent(), settings::setControlOpacityPercent));
-        content.addView(choiceRow(getString(R.string.settings_gamepad),
-                getString(R.string.settings_gamepad_sub),
-                v -> startActivity(new android.content.Intent(this, GamepadSettingsActivity.class))));
-
-        content.addView(header(getString(R.string.settings_group_emulation)));
-        content.addView(choiceRow(getString(R.string.settings_ff_speed),
-                settings.fastForwardSpeed() + "×", v -> pickFastForward()));
-        content.addView(choiceRow(getString(R.string.settings_frameskip),
-                frameskipLabel(), v -> pickFrameskip()));
+        content.setBackgroundColor(0xFF191C22);
+        int pad = dp(20);
+        content.setPadding(pad, dp(16), pad, dp(32));
 
         ScrollView scroll = new ScrollView(this);
-        scroll.addView(content);
+        scroll.setFillViewport(true);
+        scroll.setBackgroundColor(0xFF191C22);
+        ScrollView.LayoutParams contentParams = new ScrollView.LayoutParams(
+                Math.min(dp(520), getResources().getDisplayMetrics().widthPixels),
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        contentParams.gravity = Gravity.START;
+        scroll.addView(content, contentParams);
         setContentView(scroll);
+        showHome();
     }
 
-    private TextView header(String text) {
+    private void showHome() {
+        section = HOME;
+        page(R.string.settings_title, R.string.settings_intro);
+        content.addView(categoryRow(getString(R.string.settings_group_video),
+                getString(R.string.settings_group_video_sub), v -> showSection(VIDEO)));
+        content.addView(categoryRow(getString(R.string.settings_group_audio),
+                getString(R.string.settings_group_audio_sub), v -> showSection(AUDIO)));
+        content.addView(categoryRow(getString(R.string.settings_group_controls),
+                getString(R.string.settings_group_controls_sub), v -> showSection(CONTROLS)));
+        content.addView(categoryRow(getString(R.string.settings_group_states),
+                getString(R.string.settings_group_states_sub), v -> showSection(STATES)));
+        content.addView(categoryRow(getString(R.string.settings_group_emulation),
+                getString(R.string.settings_group_emulation_sub), v -> showSection(EMULATION)));
+    }
+
+    private void showSection(int target) {
+        section = target;
+        switch (target) {
+            case VIDEO:
+                page(R.string.settings_group_video, R.string.settings_group_video_sub);
+                content.addView(choiceRow(getString(R.string.settings_orientation),
+                        orientationLabel(), v -> pickOrientation()));
+                content.addView(choiceRow(getString(R.string.settings_scale),
+                        scaleLabel(), v -> pickScale()));
+                content.addView(switchRow(getString(R.string.settings_smooth_video),
+                        getString(R.string.settings_smooth_video_sub), settings.smoothVideo(),
+                        (b, on) -> settings.setSmoothVideo(on)));
+                content.addView(choiceRow(getString(R.string.settings_dmg_palette),
+                        settings.dmgPalette().label(), v -> pickDmgPalette()));
+                break;
+            case AUDIO:
+                page(R.string.settings_group_audio, R.string.settings_group_audio_sub);
+                content.addView(switchRow(getString(R.string.settings_audio_enabled),
+                        settings.audioEnabled(), (b, on) -> settings.setAudioEnabled(on)));
+                content.addView(sliderRow(getString(R.string.settings_volume), 0, 100,
+                        settings.audioVolumePercent(), settings::setAudioVolumePercent));
+                break;
+            case CONTROLS:
+                page(R.string.settings_group_controls, R.string.settings_group_controls_sub);
+                content.addView(switchRow(getString(R.string.settings_haptics),
+                        settings.haptics(), (b, on) -> settings.setHaptics(on)));
+                content.addView(switchRow(getString(R.string.settings_hide_touch_gamepad),
+                        getString(R.string.settings_hide_touch_gamepad_sub),
+                        settings.hideTouchWithGamepad(),
+                        (b, on) -> settings.setHideTouchWithGamepad(on)));
+                content.addView(sliderRow(getString(R.string.settings_active_opacity), 10, 100,
+                        settings.activeControlOpacityPercent(),
+                        settings::setActiveControlOpacityPercent));
+                content.addView(sliderRow(getString(R.string.settings_opacity), 10, 100,
+                        settings.controlOpacityPercent(), settings::setControlOpacityPercent));
+                content.addView(choiceRow(getString(R.string.settings_gamepad),
+                        getString(R.string.settings_gamepad_sub),
+                        v -> startActivity(new android.content.Intent(
+                                this, GamepadSettingsActivity.class))));
+                break;
+            case STATES:
+                page(R.string.settings_group_states, R.string.settings_group_states_sub);
+                content.addView(switchRow(getString(R.string.settings_auto_load_state),
+                        getString(R.string.settings_auto_load_state_sub), settings.autoLoadState(),
+                        (b, on) -> settings.setAutoLoadState(on)));
+                content.addView(switchRow(getString(R.string.settings_confirm_reset),
+                        getString(R.string.settings_confirm_reset_sub), settings.confirmReset(),
+                        (b, on) -> settings.setConfirmReset(on)));
+                break;
+            case EMULATION:
+                page(R.string.settings_group_emulation, R.string.settings_group_emulation_sub);
+                content.addView(choiceRow(getString(R.string.settings_ff_speed),
+                        settings.fastForwardSpeed() + "×", v -> pickFastForward()));
+                content.addView(choiceRow(getString(R.string.settings_frameskip),
+                        frameskipLabel(), v -> pickFrameskip()));
+                break;
+            default:
+                showHome();
+        }
+    }
+
+    private void page(int title, int intro) {
+        content.removeAllViews();
+        if (section != HOME) {
+            TextView back = label("‹ " + getString(R.string.settings_title));
+            back.setTextColor(0xFF9FB8E5);
+            back.setTextSize(14);
+            back.setPadding(0, 0, 0, dp(12));
+            back.setClickable(true);
+            back.setFocusable(true);
+            back.setBackgroundResource(android.R.drawable.list_selector_background);
+            back.setOnClickListener(v -> showHome());
+            content.addView(back);
+        }
+        content.addView(pageTitle(getString(title)));
+        content.addView(pageIntro(getString(intro)));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (section != HOME) {
+            showHome();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private TextView pageTitle(String text) {
+        TextView tv = label(text);
+        tv.setTextSize(28);
+        tv.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        return tv;
+    }
+
+    private TextView pageIntro(String text) {
         TextView tv = new TextView(this);
         tv.setText(text);
-        tv.setTextColor(0xFF7199DE);
+        tv.setTextColor(0xFF9AA0AA);
         tv.setTextSize(14);
-        tv.setPadding(0, dp(20), 0, dp(6));
+        tv.setPadding(0, dp(4), 0, dp(8));
         return tv;
     }
 
     private View switchRow(String label, boolean value,
                            android.widget.CompoundButton.OnCheckedChangeListener onChange) {
+        return switchRow(label, null, value, onChange);
+    }
+
+    private View switchRow(String label, String detail, boolean value,
+                           android.widget.CompoundButton.OnCheckedChangeListener onChange) {
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
-        row.setPadding(0, dp(10), 0, dp(10));
-        TextView tv = label(label);
-        tv.setLayoutParams(new LinearLayout.LayoutParams(
+        row.setPadding(dp(16), dp(12), dp(12), dp(12));
+
+        LinearLayout text = new LinearLayout(this);
+        text.setOrientation(LinearLayout.VERTICAL);
+        text.setLayoutParams(new LinearLayout.LayoutParams(
                 0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        row.addView(tv);
+        text.addView(label(label));
+        if (detail != null) {
+            text.addView(detail(detail));
+        }
+        row.addView(text);
+
         Switch sw = new Switch(this);
         sw.setChecked(value);
+        sw.setContentDescription(label);
         sw.setOnCheckedChangeListener(onChange);
         row.addView(sw);
-        return row;
+        row.setOnClickListener(v -> sw.toggle());
+        return card(row);
     }
 
     private interface IntConsumer { void accept(int value); }
@@ -95,38 +206,88 @@ public final class SettingsActivity extends Activity {
     private View sliderRow(String label, int min, int max, int value, IntConsumer onChange) {
         LinearLayout col = new LinearLayout(this);
         col.setOrientation(LinearLayout.VERTICAL);
-        col.setPadding(0, dp(10), 0, dp(10));
-        col.addView(label(label));
+        col.setPadding(dp(16), dp(12), dp(16), dp(10));
+
+        LinearLayout heading = new LinearLayout(this);
+        heading.setGravity(Gravity.CENTER_VERTICAL);
+        TextView name = label(label);
+        name.setLayoutParams(new LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        heading.addView(name);
+        TextView current = detail(value + "%");
+        current.setTextColor(0xFFB6C9EC);
+        heading.addView(current);
+        col.addView(heading);
+
         SeekBar bar = new SeekBar(this);
         bar.setMax(max - min);
         bar.setProgress(value - min);
         bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override public void onProgressChanged(SeekBar sb, int progress, boolean fromUser) {
+                int selected = min + progress;
+                current.setText(selected + "%");
                 if (fromUser) {
-                    onChange.accept(min + progress);
+                    onChange.accept(selected);
                 }
             }
             @Override public void onStartTrackingTouch(SeekBar sb) { }
             @Override public void onStopTrackingTouch(SeekBar sb) { }
         });
         col.addView(bar);
-        return col;
+        return card(col);
+    }
+
+    private View categoryRow(String label, String value, View.OnClickListener onClick) {
+        LinearLayout row = new LinearLayout(this);
+        row.setGravity(Gravity.CENTER_VERTICAL);
+        row.setPadding(dp(16), dp(14), dp(12), dp(14));
+        row.setClickable(true);
+        row.setFocusable(true);
+        row.setOnClickListener(onClick);
+
+        LinearLayout text = new LinearLayout(this);
+        text.setOrientation(LinearLayout.VERTICAL);
+        text.setLayoutParams(new LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        text.addView(label(label));
+        text.addView(detail(value));
+        row.addView(text);
+
+        TextView arrow = label("›");
+        arrow.setTextColor(0xFF9FB8E5);
+        arrow.setTextSize(26);
+        row.addView(arrow);
+        return card(row);
     }
 
     private View choiceRow(String label, String value, View.OnClickListener onClick) {
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.VERTICAL);
-        row.setPadding(0, dp(10), 0, dp(10));
+        row.setPadding(dp(16), dp(12), dp(16), dp(12));
         row.setClickable(true);
+        row.setFocusable(true);
         row.setOnClickListener(onClick);
         row.addView(label(label));
-        TextView sub = new TextView(this);
-        sub.setText(value);
-        sub.setTextColor(0xFF9AA0AA);
-        sub.setTextSize(13);
+        TextView sub = detail(value);
         sub.setTag("value");
         row.addView(sub);
-        return row;
+        return card(row);
+    }
+
+    private View card(View view) {
+        view.setBackgroundResource(android.R.drawable.list_selector_background);
+        view.setMinimumHeight(dp(60));
+        view.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        return view;
+    }
+
+    private TextView detail(String text) {
+        TextView tv = new TextView(this);
+        tv.setText(text);
+        tv.setTextColor(0xFF9AA0AA);
+        tv.setTextSize(13);
+        return tv;
     }
 
     private TextView label(String text) {
@@ -161,7 +322,7 @@ public final class SettingsActivity extends Activity {
                 .setSingleChoiceItems(labels, settings.orientation().ordinal(), (d, which) -> {
                     settings.setOrientation(Settings.Orientation.values()[which]);
                     d.dismiss();
-                    recreate();
+                    showSection(VIDEO);
                 })
                 .show();
     }
@@ -175,7 +336,7 @@ public final class SettingsActivity extends Activity {
                 .setSingleChoiceItems(labels, settings.scaleMode().ordinal(), (d, which) -> {
                     settings.setScaleMode(Settings.ScaleMode.values()[which]);
                     d.dismiss();
-                    recreate();
+                    showSection(VIDEO);
                 })
                 .show();
     }
@@ -191,7 +352,7 @@ public final class SettingsActivity extends Activity {
                 .setSingleChoiceItems(labels, settings.dmgPalette().ordinal(), (d, which) -> {
                     settings.setDmgPalette(values[which]);
                     d.dismiss();
-                    recreate();
+                    showSection(VIDEO);
                 })
                 .show();
     }
@@ -204,7 +365,7 @@ public final class SettingsActivity extends Activity {
                 .setSingleChoiceItems(labels, current, (d, which) -> {
                     settings.setFastForwardSpeed(which + 2);
                     d.dismiss();
-                    recreate();
+                    showSection(EMULATION);
                 })
                 .show();
     }
@@ -221,7 +382,7 @@ public final class SettingsActivity extends Activity {
                 .setSingleChoiceItems(labels, settings.frameskip(), (d, which) -> {
                     settings.setFrameskip(which);
                     d.dismiss();
-                    recreate();
+                    showSection(EMULATION);
                 })
                 .show();
     }

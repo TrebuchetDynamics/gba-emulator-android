@@ -34,6 +34,17 @@ public class RomArchiveTest {
     }
 
     @Test
+    public void sevenZipExplainsHowToImportInstead() {
+        byte[] sevenZip = {(byte) 0x37, (byte) 0x7A, (byte) 0xBC,
+                (byte) 0xAF, (byte) 0x27, (byte) 0x1C, 0, 0};
+        IOException thrown = assertThrows(IOException.class,
+                () -> RomArchive.extractRom(new ByteArrayInputStream(sevenZip),
+                        new ByteArrayOutputStream(), CAP));
+        assertEquals("7z archives are not supported — extract the ROM first",
+                thrown.getMessage());
+    }
+
+    @Test
     public void zipContainingOneRomIsExtracted() throws IOException {
         byte[] rom = romBytes(4096);
         byte[] zip = zipOf(entries("game.gba", rom));

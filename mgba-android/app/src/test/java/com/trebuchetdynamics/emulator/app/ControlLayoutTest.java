@@ -1,7 +1,6 @@
 package com.trebuchetdynamics.emulator.app;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
@@ -18,15 +17,18 @@ public class ControlLayoutTest {
     private static final float PORTRAIT_HEIGHT = 2340f;
 
     @Test
-    public void landscapeControlsDoNotOverlapTheGameScreen() {
-        ControlLayout layout = ControlLayout.of(LANDSCAPE_WIDTH, LANDSCAPE_HEIGHT);
-        for (ControlLayout.Control control : layout.controls) {
-            assertTrue("control key=" + control.key + " label=" + control.label
-                            + " overlaps the game screen",
-                    !intersects(
-                            control.cx - control.halfWidth, control.cy - control.halfHeight,
-                            control.cx + control.halfWidth, control.cy + control.halfHeight,
-                            layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom));
+    public void quickMuteMirrorsMenuWithoutSharingItsHitTarget() {
+        for (ControlLayout layout : new ControlLayout[] {
+                ControlLayout.of(PORTRAIT_WIDTH, PORTRAIT_HEIGHT),
+                ControlLayout.of(LANDSCAPE_WIDTH, LANDSCAPE_HEIGHT) }) {
+            assertEquals(layout.menuRight - layout.menuLeft,
+                    layout.muteRight - layout.muteLeft, 0.01f);
+            assertEquals(layout.menuTop, layout.muteTop, 0.01f);
+            assertEquals(layout.menuBottom, layout.muteBottom, 0.01f);
+            float muteX = (layout.muteLeft + layout.muteRight) / 2f;
+            float muteY = (layout.muteTop + layout.muteBottom) / 2f;
+            assertTrue(layout.isMuteHit(muteX, muteY));
+            assertTrue(!layout.isMenuHit(muteX, muteY));
         }
     }
 
@@ -132,41 +134,36 @@ public class ControlLayoutTest {
     }
 
     @Test
-    public void loadAndNoticesChipsDoNotOverlapEachOtherOrTheGameScreen() {
-        assertChipsDoNotOverlap(ControlLayout.of(LANDSCAPE_WIDTH, LANDSCAPE_HEIGHT));
-        assertChipsDoNotOverlap(ControlLayout.of(PORTRAIT_WIDTH, PORTRAIT_HEIGHT));
-    }
+    public void portraitMatchesTheLiveReferenceZones() {
+        ControlLayout layout = ControlLayout.of(PORTRAIT_WIDTH, PORTRAIT_HEIGHT);
+        assertEquals(0f, layout.gameLeft, 1f);
+        assertEquals(PORTRAIT_WIDTH, layout.gameRight, 1f);
+        assertTrue("game should start below the camera-safe top edge",
+                layout.gameTop <= PORTRAIT_WIDTH * 0.10f);
 
-    private void assertChipsDoNotOverlap(ControlLayout layout) {
-        assertTrue("LOAD and NOTICES chips overlap each other",
-                !intersects(
-                        layout.loadLeft, layout.loadTop, layout.loadRight, layout.loadBottom,
-                        layout.noticesLeft, layout.noticesTop, layout.noticesRight, layout.noticesBottom));
-        assertTrue("LOAD chip overlaps the game screen",
-                !intersects(
-                        layout.loadLeft, layout.loadTop, layout.loadRight, layout.loadBottom,
-                        layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom));
-        assertTrue("NOTICES chip overlaps the game screen",
-                !intersects(
-                        layout.noticesLeft, layout.noticesTop, layout.noticesRight, layout.noticesBottom,
-                        layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom));
+        ControlLayout.Control dpad = findDpad(layout);
+        assertTrue("portrait D-pad should use the available thumb area",
+                dpad.halfWidth >= PORTRAIT_WIDTH * 0.22f);
+        assertTrue(dpad.cy > layout.gameBottom);
+
+        assertTrue(layout.menuRight <= PORTRAIT_WIDTH * 0.25f);
+        assertTrue(layout.menuTop >= PORTRAIT_HEIGHT * 0.90f);
     }
 
     @Test
-    public void menuChipDoesNotOverlapOtherChipsOrTheGameScreen() {
-        for (ControlLayout l : new ControlLayout[] {
-                ControlLayout.of(LANDSCAPE_WIDTH, LANDSCAPE_HEIGHT),
-                ControlLayout.of(PORTRAIT_WIDTH, PORTRAIT_HEIGHT) }) {
-            assertFalse(intersects(
-                    l.menuLeft, l.menuTop, l.menuRight, l.menuBottom,
-                    l.gameLeft, l.gameTop, l.gameRight, l.gameBottom));
-            assertFalse(intersects(
-                    l.menuLeft, l.menuTop, l.menuRight, l.menuBottom,
-                    l.noticesLeft, l.noticesTop, l.noticesRight, l.noticesBottom));
-            assertFalse(intersects(
-                    l.menuLeft, l.menuTop, l.menuRight, l.menuBottom,
-                    l.loadLeft, l.loadTop, l.loadRight, l.loadBottom));
-        }
+    public void landscapeMaximizesTheGameAndKeepsActionsInTheGutters() {
+        ControlLayout layout = ControlLayout.of(LANDSCAPE_WIDTH, LANDSCAPE_HEIGHT);
+        assertEquals(0f, layout.gameTop, 0f);
+        assertEquals(LANDSCAPE_HEIGHT, layout.gameBottom, 0f);
+        assertEquals(LANDSCAPE_WIDTH / 2f,
+                (layout.gameLeft + layout.gameRight) / 2f, 1f);
+
+        ControlLayout.Control dpad = findDpad(layout);
+        assertTrue(dpad.cx < layout.gameLeft);
+        assertTrue(control(layout, MgbaSession.KEY_A).cx > layout.gameRight);
+        assertTrue(control(layout, MgbaSession.KEY_B).cx > layout.gameRight);
+        assertTrue(layout.menuRight < layout.gameLeft);
+        assertTrue(layout.menuTop >= LANDSCAPE_HEIGHT * 0.85f);
     }
 
     @Test
@@ -290,6 +287,50 @@ public class ControlLayoutTest {
             if (c.key == MgbaSession.KEY_R) hasR = true;
         }
         assertTrue(hasL && hasR);
+    }
+
+    @Test public void macroUsesStableLayoutIdAndOverride() {
+        MacroControls macros = new MacroControls();
+        MacroControls.Macro macro = macros.add(
+                MgbaSession.KEY_LEFT | MgbaSession.KEY_A, false);
+        ControlOverrides overrides = new ControlOverrides();
+        overrides.put(macro.layoutId(), 0.5f, 0.4f, 1.5f);
+        ControlLayout layout = ControlLayout.of(1080f, 2340f, overrides,
+                MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT, true, macros);
+        ControlLayout.Control control = controlById(layout, macro.layoutId());
+        assertEquals(MgbaSession.KEY_LEFT | MgbaSession.KEY_A, control.key);
+        assertEquals(540f, control.cx, 0.5f);
+        assertEquals(936f, control.cy, 0.5f);
+        assertEquals(1.5f, overrides.scale(control.id), 0.001f);
+    }
+
+    @Test public void normalAndTurboMacrosUseSeparateChannels() {
+        MacroControls macros = new MacroControls();
+        MacroControls.Macro normal = macros.add(
+                MgbaSession.KEY_LEFT | MgbaSession.KEY_A, false);
+        MacroControls.Macro turbo = macros.add(MgbaSession.KEY_B, true);
+        ControlOverrides overrides = new ControlOverrides();
+        overrides.put(normal.layoutId(), 0.4f, 0.8f, 1f);
+        overrides.put(turbo.layoutId(), 0.7f, 0.8f, 1f);
+        ControlLayout layout = ControlLayout.of(1080f, 2340f, overrides,
+                MgbaSession.VIDEO_WIDTH, MgbaSession.VIDEO_HEIGHT, true, macros);
+        ControlLayout.Control normalControl = controlById(layout, normal.layoutId());
+        ControlLayout.Control turboControl = controlById(layout, turbo.layoutId());
+        ControlLayout.Input normalInput = layout.inputAt(normalControl.cx, normalControl.cy);
+        ControlLayout.Input turboInput = layout.inputAt(turboControl.cx, turboControl.cy);
+        assertEquals(MgbaSession.KEY_LEFT | MgbaSession.KEY_A, normalInput.normalKeys);
+        assertEquals(0, normalInput.turboKeys);
+        assertEquals(0, turboInput.normalKeys);
+        assertEquals(MgbaSession.KEY_B, turboInput.turboKeys);
+    }
+
+    private static ControlLayout.Control controlById(ControlLayout layout, int id) {
+        for (ControlLayout.Control control : layout.controls) {
+            if (control.id == id) {
+                return control;
+            }
+        }
+        throw new AssertionError("Missing control id " + id);
     }
 
     private static ControlLayout.Control control(ControlLayout layout, int key) {

@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.LockSupport;
@@ -26,10 +27,12 @@ final class EmulationRunner implements Runnable {
     interface StateListener {
         void onStateSaved(int slot);
         void onStateLoaded(int slot);
+        void onAutoStateLoaded();
+        void onRewound(int seconds);
         void onStateError(String message);
     }
 
-    private enum CommandType { SAVE, LOAD, RESET }
+    private enum CommandType { SAVE, LOAD, LOAD_AUTO, REWIND, RESET }
 
     private static final class Command {
         final CommandType type;
@@ -43,6 +46,9 @@ final class EmulationRunner implements Runnable {
     private static final long FRAME_NANOS = 16_743_000L;
     private static final String PERF_TAG = "MgbaPerf";
     private static final long PERF_LOG_INTERVAL_NANOS = 10_000_000_000L;
+    private static final int REWIND_INTERVAL_FRAMES = 60;
+    private static final int MAX_REWIND_SECONDS = 5;
+    private static final int REWIND_MEMORY_BYTES = 24 * 1024 * 1024;
 
     private final Context context;
     private final EmulatorView view;
@@ -55,17 +61,22 @@ final class EmulationRunner implements Runnable {
     private final StateListener stateListener;
     private final Queue<Command> commands = new ConcurrentLinkedQueue<>();
     private volatile boolean fastForward;
+    private volatile boolean slowMotion;
+    private volatile boolean muted;
     private final boolean audioEnabled;
     private final float audioVolume; // 0f..1f
     private final int fastForwardSpeed;
     private final int frameskip;
     private final int[] dmgPaletteArgb;
+    private final boolean autoResume;
+    private final RewindBuffer rewind = new RewindBuffer(REWIND_MEMORY_BYTES);
+    private volatile int rewindSnapshots;
 
     EmulationRunner(Context context, EmulatorView view, File rom, String romId,
                     SaveStateStore states, ErrorListener errors,
                     StateListener stateListener,
                     boolean audioEnabled, float audioVolume, int fastForwardSpeed,
-                    int frameskip, int[] dmgPaletteArgb) {
+                    int frameskip, int[] dmgPaletteArgb, boolean autoResume) {
         this.context = context.getApplicationContext();
         this.view = view;
         this.rom = rom;
@@ -78,6 +89,7 @@ final class EmulationRunner implements Runnable {
         this.fastForwardSpeed = fastForwardSpeed;
         this.frameskip = Math.max(0, frameskip);
         this.dmgPaletteArgb = dmgPaletteArgb;
+        this.autoResume = autoResume;
         thread = new Thread(this, "mgba-emulation");
     }
 
@@ -103,11 +115,40 @@ final class EmulationRunner implements Runnable {
         commands.add(new Command(CommandType.LOAD, slot));
     }
 
+    void postLoadAutoState() {
+        commands.add(new Command(CommandType.LOAD_AUTO, 0));
+    }
+
+    void postLoadAutoState(int generation) {
+        if (generation < 1 || generation > SaveStateStore.AUTO_SLOT_COUNT) {
+            throw new IllegalArgumentException("Autosave generation out of range");
+        }
+        commands.add(new Command(CommandType.LOAD_AUTO, generation));
+    }
+
+    void postRewind(int seconds) {
+        if (seconds < 1 || seconds > MAX_REWIND_SECONDS) {
+            throw new IllegalArgumentException("Rewind must be 1..5 seconds");
+        }
+        commands.add(new Command(CommandType.REWIND, seconds));
+    }
+
+    int rewindSecondsAvailable() {
+        return availableRewindSeconds(rewindSnapshots);
+    }
+
+    static int availableRewindSeconds(int snapshots) {
+        return Math.max(0, Math.min(MAX_REWIND_SECONDS, snapshots - 1));
+    }
+
     void postReset() {
         commands.add(new Command(CommandType.RESET, 0));
     }
 
     void setFastForward(boolean on) {
+        if (on) {
+            slowMotion = false;
+        }
         fastForward = on;
     }
 
@@ -115,8 +156,35 @@ final class EmulationRunner implements Runnable {
         return fastForward;
     }
 
+    void setSlowMotion(boolean on) {
+        if (on) {
+            fastForward = false;
+        }
+        slowMotion = on;
+    }
+
+    boolean isSlowMotion() {
+        return slowMotion;
+    }
+
+    void setMuted(boolean muted) {
+        this.muted = muted;
+    }
+
+    static float effectiveAudioVolume(float configuredVolume, boolean muted) {
+        return muted ? 0f : configuredVolume;
+    }
+
     static long frameBudgetNanos(boolean fastForward, int fastForwardSpeed) {
-        return fastForward ? FRAME_NANOS / fastForwardSpeed : FRAME_NANOS;
+        return frameBudgetNanos(fastForward, fastForwardSpeed, false);
+    }
+
+    static long frameBudgetNanos(boolean fastForward, int fastForwardSpeed,
+                                 boolean slowMotion) {
+        if (fastForward) {
+            return FRAME_NANOS / fastForwardSpeed;
+        }
+        return slowMotion ? FRAME_NANOS * 2 : FRAME_NANOS;
     }
 
     /** True when frame {@code frameIndex} should be blitted under {@code frameskip}. */
@@ -157,7 +225,9 @@ final class EmulationRunner implements Runnable {
             if (audioEnabled) {
                 audioTrack = createAudioTrack();
             }
+            boolean appliedMuted = muted;
             if (audioTrack != null) {
+                audioTrack.setVolume(effectiveAudioVolume(audioVolume, appliedMuted));
                 audioTrack.play();
             }
 
@@ -171,24 +241,58 @@ final class EmulationRunner implements Runnable {
             while (running) {
                 applyCommands(session);
                 boolean ff = fastForward;
-                long budget = frameBudgetNanos(ff, fastForwardSpeed);
+                boolean slow = slowMotion;
+                long budget = frameBudgetNanos(ff, fastForwardSpeed, slow);
                 long frameStart = SystemClock.elapsedRealtimeNanos();
-                int audioFrames = session.runFrame(view.keys(), pixels, audio);
+                int audioFrames = session.runFrame(
+                        view.keysForFrame(frameIndex), pixels, audio);
+                long nativeEnd = SystemClock.elapsedRealtimeNanos();
+                long nativeNanos = nativeEnd - frameStart;
                 if (audioFrames < 0) {
                     throw new IllegalStateException("mGBA failed to run a frame");
                 }
-                // Audio is intentionally skipped during fast-forward, which starves the
-                // AudioTrack; expect getUnderrunCount() below to climb during FF — a
-                // reading artifact, not a real glitch.
-                if (!ff && audioTrack != null && audioFrames > 0) {
-                    audioTrack.write(audio, 0, audioFrames * 2, AudioTrack.WRITE_BLOCKING);
+
+                boolean muteNow = muted;
+                if (muteNow != appliedMuted) {
+                    if (audioTrack != null) {
+                        audioTrack.setVolume(effectiveAudioVolume(audioVolume, muteNow));
+                    }
+                    appliedMuted = muteNow;
                 }
+
+                // Altered-speed audio would stutter because the core still emits one normal
+                // frame of samples, so keep both fast-forward and slow motion silent.
+                long audioNanos = 0;
+                if (!ff && !slow && audioTrack != null && audioFrames > 0) {
+                    long audioStart = SystemClock.elapsedRealtimeNanos();
+                    audioTrack.write(audio, 0, audioFrames * 2, AudioTrack.WRITE_BLOCKING);
+                    audioNanos = SystemClock.elapsedRealtimeNanos() - audioStart;
+                }
+
+                long publishNanos = 0;
                 if (shouldRenderFrame(frameIndex, frameskip)) {
+                    long publishStart = SystemClock.elapsedRealtimeNanos();
                     view.publishFrame(pixels);
+                    publishNanos = SystemClock.elapsedRealtimeNanos() - publishStart;
                 }
                 frameIndex++;
+
+                long rewindNanos = 0;
+                if (frameIndex % REWIND_INTERVAL_FRAMES == 0) {
+                    long rewindStart = SystemClock.elapsedRealtimeNanos();
+                    try {
+                        rewind.push(session.saveState());
+                        rewindSnapshots = rewind.size();
+                    } catch (RuntimeException ignored) {
+                        rewind.clear();
+                        rewindSnapshots = 0;
+                    }
+                    rewindNanos = SystemClock.elapsedRealtimeNanos() - rewindStart;
+                }
+
                 long now = SystemClock.elapsedRealtimeNanos();
-                stats.record(now - frameStart);
+                stats.record(now - frameStart, nativeNanos, audioNanos,
+                        publishNanos, rewindNanos);
                 if (now >= nextPerfLog && stats.hasFrames()) {
                     int cumulativeUnderruns = audioTrack == null
                             ? 0 : audioTrack.getUnderrunCount();
@@ -202,6 +306,13 @@ final class EmulationRunner implements Runnable {
                     LockSupport.parkNanos(wait);
                 } else if (wait < -budget * 4) {
                     nextFrame = SystemClock.elapsedRealtimeNanos();
+                }
+            }
+            if (autoResume) {
+                try {
+                    states.writeAuto(session.saveState());
+                } catch (IOException | RuntimeException ignored) {
+                    // Battery save persistence below still gets its chance.
                 }
             }
             persistSavedata(session, saveFile);
@@ -231,11 +342,37 @@ final class EmulationRunner implements Runnable {
                             stateListener.onStateError("Slot " + command.slot + " is empty");
                         } else {
                             session.loadState(state);
+                            rewind.clear();
+                            rewindSnapshots = 0;
                             stateListener.onStateLoaded(command.slot);
+                        }
+                        break;
+                    case LOAD_AUTO:
+                        byte[] autosave = command.slot == 0
+                                ? states.readLatestAuto() : states.readAuto(command.slot);
+                        if (autosave == null) {
+                            stateListener.onStateError("Recovery save is unavailable");
+                        } else {
+                            session.loadState(autosave);
+                            rewind.clear();
+                            rewindSnapshots = 0;
+                            stateListener.onAutoStateLoaded();
+                        }
+                        break;
+                    case REWIND:
+                        byte[] previous = rewind.rewind(command.slot);
+                        if (previous == null) {
+                            stateListener.onStateError("Keep playing to build rewind history");
+                        } else {
+                            session.loadState(previous);
+                            rewindSnapshots = rewind.size();
+                            stateListener.onRewound(command.slot);
                         }
                         break;
                     case RESET:
                         session.reset();
+                        rewind.clear();
+                        rewindSnapshots = 0;
                         break;
                 }
             } catch (IOException | RuntimeException e) {
@@ -319,4 +456,46 @@ final class EmulationRunner implements Runnable {
         }
     }
 
+    /** Memory-capped timeline; rewinding discards the future branch. */
+    static final class RewindBuffer {
+        private final ArrayDeque<byte[]> states = new ArrayDeque<>();
+        private final int maxBytes;
+        private int bytes;
+
+        RewindBuffer(int maxBytes) {
+            this.maxBytes = Math.max(1, maxBytes);
+        }
+
+        void push(byte[] state) {
+            if (state == null || state.length == 0 || state.length > maxBytes) {
+                clear();
+                return;
+            }
+            while (!states.isEmpty() && bytes + state.length > maxBytes) {
+                bytes -= states.removeFirst().length;
+            }
+            states.addLast(state);
+            bytes += state.length;
+        }
+
+        byte[] rewind(int steps) {
+            if (states.size() < 2) {
+                return null;
+            }
+            int count = Math.min(Math.max(1, steps), states.size() - 1);
+            while (count-- > 0) {
+                bytes -= states.removeLast().length;
+            }
+            return states.peekLast();
+        }
+
+        int size() {
+            return states.size();
+        }
+
+        void clear() {
+            states.clear();
+            bytes = 0;
+        }
+    }
 }

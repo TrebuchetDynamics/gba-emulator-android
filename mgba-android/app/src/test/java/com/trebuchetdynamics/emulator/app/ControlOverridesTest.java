@@ -70,4 +70,13 @@ public class ControlOverridesTest {
         o.clear();
         assertFalse(o.has(2));
     }
+
+    @Test public void removeDeletesOnlyNamedOverride() {
+        ControlOverrides overrides = new ControlOverrides();
+        overrides.put(1, 0.2f, 0.3f, 1f);
+        overrides.put(2, 0.4f, 0.5f, 1f);
+        overrides.remove(1);
+        assertFalse(overrides.has(1));
+        assertTrue(overrides.has(2));
+    }
 }

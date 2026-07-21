@@ -1,6 +1,7 @@
 package com.trebuchetdynamics.emulator.mgba;
 
 import java.io.File;
+import java.nio.ByteBuffer;
 
 /**
  * Product-owned, single-threaded session boundary around an mGBA GBA core.
@@ -36,6 +37,7 @@ public final class MgbaSession implements AutoCloseable {
 
     private long handle;
     private boolean loaded;
+    private ByteBuffer frameBuffer;
 
     public MgbaSession() {
         this(PLATFORM_GBA);
@@ -93,6 +95,7 @@ public final class MgbaSession implements AutoCloseable {
             throw new IllegalArgumentException("mGBA rejected the ROM data");
         }
         loaded = true;
+        initializeDirectFrameBuffer();
     }
 
     /** Loads one GBA ROM from a private, seekable file without copying it into the Java heap. */
@@ -108,6 +111,7 @@ public final class MgbaSession implements AutoCloseable {
             throw new IllegalArgumentException("mGBA rejected the ROM file");
         }
         loaded = true;
+        initializeDirectFrameBuffer();
     }
 
     /**
@@ -127,6 +131,35 @@ public final class MgbaSession implements AutoCloseable {
             throw new IllegalArgumentException("Audio buffer is too small");
         }
         return nativeRunFrame(handle, keys & 0x3FF, argbPixels, stereoAudio);
+    }
+
+    /**
+     * Returns the session-owned native frame buffer, or null when the direct path
+     * is unavailable. The buffer becomes invalid when this session is closed.
+     */
+    public synchronized ByteBuffer directFrameBuffer() {
+        requireLoaded();
+        return frameBuffer;
+    }
+
+    /** Runs one frame without producing the compatibility ARGB int array. */
+    public synchronized int runFrameDirect(int keys, short[] stereoAudio) {
+        requireLoaded();
+        if (frameBuffer == null) {
+            throw new IllegalStateException("Direct frame buffer is unavailable");
+        }
+        if (stereoAudio == null || stereoAudio.length < MIN_AUDIO_BUFFER_SAMPLES) {
+            throw new IllegalArgumentException("Audio buffer is too small");
+        }
+        return nativeRunFrameDirect(handle, keys & 0x3FF, stereoAudio);
+    }
+
+    private void initializeDirectFrameBuffer() {
+        ByteBuffer buffer = nativeVideoBuffer(handle);
+        int expectedBytes = framePixels() * Integer.BYTES;
+        frameBuffer = buffer != null && buffer.isDirect()
+                && buffer.capacity() == expectedBytes
+                ? buffer.asReadOnlyBuffer() : null;
     }
 
     public synchronized long frameCounter() {
@@ -175,6 +208,7 @@ public final class MgbaSession implements AutoCloseable {
     @Override
     public synchronized void close() {
         if (handle != 0) {
+            frameBuffer = null;
             nativeDestroy(handle);
             handle = 0;
             loaded = false;
@@ -201,6 +235,8 @@ public final class MgbaSession implements AutoCloseable {
     private static native boolean nativeLoadRom(long handle, byte[] rom);
     private static native boolean nativeLoadRomFile(long handle, String path);
     private static native int nativeRunFrame(long handle, int keys, int[] pixels, short[] audio);
+    private static native ByteBuffer nativeVideoBuffer(long handle);
+    private static native int nativeRunFrameDirect(long handle, int keys, short[] audio);
     private static native long nativeFrameCounter(long handle);
     private static native byte[] nativeSaveState(long handle);
     private static native boolean nativeLoadState(long handle, byte[] state);

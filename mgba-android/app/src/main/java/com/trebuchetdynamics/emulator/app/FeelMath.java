@@ -68,6 +68,7 @@ final class FeelMath {
      */
     static int controlAlpha(long nowMs, long lastInputMs, int holdMs, int fadeMs,
                             int minAlpha, int maxAlpha) {
+        minAlpha = Math.min(minAlpha, maxAlpha);
         long elapsed = nowMs - lastInputMs;
         if (elapsed <= holdMs) {
             return maxAlpha;
@@ -82,5 +83,10 @@ final class FeelMath {
     /** True iff {@code currentKeys} presses a key bit not already down in {@code previousKeys}. */
     static boolean introducesNewPress(int previousKeys, int currentKeys) {
         return (currentKeys & ~previousKeys) != 0;
+    }
+
+    /** Fixed 15 Hz whole-mask pulse at the emulator's nominal 60 FPS. */
+    static int applyTurbo(int normalKeys, int turboKeys, long frameIndex) {
+        return frameIndex % 4 < 2 ? normalKeys | turboKeys : normalKeys;
     }
 }

@@ -6,15 +6,15 @@ M5 (settings and input). References are studied for *ideas and conventions* —
 no proprietary assets, art, or trade dress are copied.
 
 References:
-- **Pizza Boy GBA** — teardown from public knowledge (not installed; the app
-  was pulled from Play and has no legitimate APK source). The gold standard for
-  "feels great in the hand."
+- **Pizza Boy GBA 2.2.13** — live device teardown on SM-S928B; screenshots and
+  UI Automator hierarchies are in [`pizzaboy-live/`](pizzaboy-live/). The gold
+  standard for "feels great in the hand."
 - **Lemuroid 1.17.0** — installed on the test device from its Apache-2.0 GitHub
   release; live Maestro study captured separately.
 
 ---
 
-## Part 1 — Pizza Boy teardown: what makes it feel great
+## Part 1 — Pizza Boy live teardown: what makes it feel great
 
 ### The core principle
 The game is the product; the chrome disappears. In active play there is nothing

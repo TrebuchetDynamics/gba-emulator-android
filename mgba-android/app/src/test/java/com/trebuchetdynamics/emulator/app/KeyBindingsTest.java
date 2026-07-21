@@ -55,6 +55,16 @@ public class KeyBindingsTest {
     }
 
     @Test
+    public void unbindRemovesEveryPhysicalKeyForOneButton() {
+        KeyBindings b = KeyBindings.of(defaults());
+        b.unbind(1);
+        assertEquals(0, b.gbaKeyFor(96));
+        assertEquals(0, b.gbaKeyFor(52));
+        assertEquals(-1, b.keyCodeFor(1));
+        assertEquals(2, b.gbaKeyFor(97));
+    }
+
+    @Test
     public void keyCodeForReturnsABoundKeyOrMinusOne() {
         KeyBindings b = KeyBindings.of(defaults());
         assertEquals(2, b.gbaKeyFor(b.keyCodeFor(2)));

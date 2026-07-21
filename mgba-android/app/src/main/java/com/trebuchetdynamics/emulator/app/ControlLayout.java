@@ -7,7 +7,7 @@ import java.util.List;
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 
 /**
- * Pure geometry for the emulated screen, the LOAD chip, and the on-screen
+ * Pure geometry for the emulated screen, menu affordance, and on-screen
  * gamepad. Deliberately has no {@code android.*} imports so it can be
  * unit-tested on the JVM (an {@code android.graphics.RectF} throws
  * "Stub!" outside instrumented tests).
@@ -22,7 +22,9 @@ final class ControlLayout {
     enum Shape { CIRCLE, PILL, DPAD }
 
     static final class Control {
+        final int id;
         final int key;
+        final boolean turbo;
         final String label;
         final Shape shape;
         final float cx;
@@ -32,7 +34,14 @@ final class ControlLayout {
 
         Control(int key, String label, Shape shape,
                 float cx, float cy, float halfWidth, float halfHeight) {
+            this(key, key, false, label, shape, cx, cy, halfWidth, halfHeight);
+        }
+
+        Control(int id, int key, boolean turbo, String label, Shape shape,
+                float cx, float cy, float halfWidth, float halfHeight) {
+            this.id = id;
             this.key = key;
+            this.turbo = turbo;
             this.label = label;
             this.shape = shape;
             this.cx = cx;
@@ -57,41 +66,32 @@ final class ControlLayout {
     final float gameTop;
     final float gameRight;
     final float gameBottom;
-    final float loadLeft;
-    final float loadTop;
-    final float loadRight;
-    final float loadBottom;
-    final float noticesLeft;
-    final float noticesTop;
-    final float noticesRight;
-    final float noticesBottom;
     final float menuLeft;
     final float menuTop;
     final float menuRight;
     final float menuBottom;
+    final float muteLeft;
+    final float muteTop;
+    final float muteRight;
+    final float muteBottom;
     final List<Control> controls;
 
     private ControlLayout(float gameLeft, float gameTop, float gameRight, float gameBottom,
-            float loadLeft, float loadTop, float loadRight, float loadBottom,
-            float noticesLeft, float noticesTop, float noticesRight, float noticesBottom,
             float menuLeft, float menuTop, float menuRight, float menuBottom,
+            float muteLeft, float muteTop, float muteRight, float muteBottom,
             List<Control> controls) {
         this.gameLeft = gameLeft;
         this.gameTop = gameTop;
         this.gameRight = gameRight;
         this.gameBottom = gameBottom;
-        this.loadLeft = loadLeft;
-        this.loadTop = loadTop;
-        this.loadRight = loadRight;
-        this.loadBottom = loadBottom;
-        this.noticesLeft = noticesLeft;
-        this.noticesTop = noticesTop;
-        this.noticesRight = noticesRight;
-        this.noticesBottom = noticesBottom;
         this.menuLeft = menuLeft;
         this.menuTop = menuTop;
         this.menuRight = menuRight;
         this.menuBottom = menuBottom;
+        this.muteLeft = muteLeft;
+        this.muteTop = muteTop;
+        this.muteRight = muteRight;
+        this.muteBottom = muteBottom;
         this.controls = Collections.unmodifiableList(controls);
     }
 
@@ -106,16 +106,39 @@ final class ControlLayout {
 
     static ControlLayout of(float width, float height, ControlOverrides overrides,
             float srcW, float srcH, boolean hasShoulders) {
+        return of(width, height, overrides, srcW, srcH, hasShoulders, MacroControls.EMPTY);
+    }
+
+    static ControlLayout of(float width, float height, ControlOverrides overrides,
+            float srcW, float srcH, boolean hasShoulders, MacroControls macros) {
         ControlLayout base = width > height
                 ? landscape(width, height, srcW, srcH, hasShoulders)
                 : portrait(width, height, srcW, srcH, hasShoulders);
-        if (overrides == null || overrides == ControlOverrides.EMPTY) {
-            return base;
+        List<Control> controls = new ArrayList<>(base.controls);
+        float unit = Math.min(width, height);
+        if (macros != null) {
+            for (MacroControls.Macro macro : macros.values()) {
+                controls.add(new Control(macro.layoutId(), macro.keyMask, macro.turbo,
+                        macro.shortLabel(), Shape.PILL, width / 2f, height / 2f,
+                        unit * 0.13f, unit * 0.055f));
+            }
         }
-        List<Control> applied = new ArrayList<>(base.controls.size());
+        ControlLayout withMacros = new ControlLayout(
+                base.gameLeft, base.gameTop, base.gameRight, base.gameBottom,
+                base.menuLeft, base.menuTop, base.menuRight, base.menuBottom,
+                base.muteLeft, base.muteTop, base.muteRight, base.muteBottom, controls);
+        return applyOverrides(withMacros, overrides, width, height);
+    }
+
+    private static ControlLayout applyOverrides(ControlLayout layout,
+            ControlOverrides overrides, float width, float height) {
+        if (overrides == null || overrides == ControlOverrides.EMPTY) {
+            return layout;
+        }
+        List<Control> applied = new ArrayList<>(layout.controls.size());
         boolean changed = false;
-        for (Control c : base.controls) {
-            if (overrides.has(c.key)) {
+        for (Control c : layout.controls) {
+            if (overrides.has(c.id)) {
                 applied.add(applyOverride(c, overrides, width, height));
                 changed = true;
             } else {
@@ -123,20 +146,22 @@ final class ControlLayout {
             }
         }
         if (!changed) {
-            return base;
+            return layout;
         }
-        return new ControlLayout(base.gameLeft, base.gameTop, base.gameRight, base.gameBottom,
-                base.loadLeft, base.loadTop, base.loadRight, base.loadBottom,
-                base.noticesLeft, base.noticesTop, base.noticesRight, base.noticesBottom,
-                base.menuLeft, base.menuTop, base.menuRight, base.menuBottom, applied);
+        return new ControlLayout(
+                layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom,
+                layout.menuLeft, layout.menuTop, layout.menuRight, layout.menuBottom,
+                layout.muteLeft, layout.muteTop, layout.muteRight, layout.muteBottom,
+                applied);
     }
 
     private static Control applyOverride(Control c, ControlOverrides o, float w, float h) {
-        float halfWidth = c.halfWidth * o.scale(c.key);
-        float halfHeight = c.halfHeight * o.scale(c.key);
-        float cx = clampCenter(o.normCx(c.key) * w, halfWidth, w);
-        float cy = clampCenter(o.normCy(c.key) * h, halfHeight, h);
-        return new Control(c.key, c.label, c.shape, cx, cy, halfWidth, halfHeight);
+        float halfWidth = c.halfWidth * o.scale(c.id);
+        float halfHeight = c.halfHeight * o.scale(c.id);
+        float cx = clampCenter(o.normCx(c.id) * w, halfWidth, w);
+        float cy = clampCenter(o.normCy(c.id) * h, halfHeight, h);
+        return new Control(c.id, c.key, c.turbo, c.label, c.shape,
+                cx, cy, halfWidth, halfHeight);
     }
 
     /** Keep a control's box fully within [0, extent]; center it if it cannot fit. */
@@ -150,236 +175,185 @@ final class ControlLayout {
         return Math.min(center, extent - half);
     }
 
-    /**
-     * Existing shape (game on top, controls below), unchanged visually, but
-     * sized off {@code unit = min(width, height)} so it shares one sizing
-     * rule with {@link #landscape}. In portrait {@code unit == width}
-     * always, so these constants reproduce the pre-fix pixel values exactly.
-     *
-     * <p>The LOAD/NOTICES chips sit in a header band above the game rect
-     * (not overlaid on it), anchored to the game's right edge.
-     */
+    /** Game above large, thumb-sized controls; only the menu remains as chrome. */
     private static ControlLayout portrait(float width, float height,
             float srcW, float srcH, boolean hasShoulders) {
         float unit = Math.min(width, height);
         float margin = unit * 0.025f;
 
-        float chipHeight = Math.max(54, unit * 0.075f);
-        float chipGap = unit * 0.02f;
-        float headerHeight = chipHeight + chipGap * 2;
-
-        float gameWidth = width - margin * 2;
+        float gameWidth = width;
         float gameHeight = gameWidth * srcH / srcW;
         if (gameHeight > height * 0.5f) {
             gameHeight = height * 0.5f;
             gameWidth = gameHeight * srcW / srcH;
         }
-        float gameLeft = (width - gameWidth) / 2;
-        float gameTop = headerHeight;
+        float gameLeft = (width - gameWidth) / 2f;
+        float gameTop = unit * 0.09f;
         float gameRight = gameLeft + gameWidth;
         float gameBottom = gameTop + gameHeight;
 
-        float loadWidth = unit * 0.18f;
-        float loadRight = gameRight - 12;
-        float loadLeft = loadRight - loadWidth;
-        float loadTop = chipGap;
-        float loadBottom = loadTop + chipHeight;
-
-        float noticesWidth = unit * 0.28f;
-        float noticesRight = loadLeft - 12;
-        float noticesLeft = noticesRight - noticesWidth;
-        float noticesTop = chipGap;
-        float noticesBottom = noticesTop + chipHeight;
-
-        float menuWidth = unit * 0.22f;
-        float menuRight = noticesLeft - 12;
-        float menuLeft = menuRight - menuWidth;
-        float menuTop = chipGap;
-        float menuBottom = menuTop + chipHeight;
+        float menuSize = unit * 0.13f;
+        float menuLeft = margin;
+        float menuRight = menuLeft + menuSize;
+        float menuBottom = height - margin;
+        float menuTop = menuBottom - menuSize;
+        float muteRight = width - margin;
+        float muteLeft = muteRight - menuSize;
+        float muteTop = menuTop;
+        float muteBottom = menuBottom;
 
         float controlsTop = gameBottom + margin;
         float controlsHeight = height - controlsTop;
-
+        float mainY = controlsTop + controlsHeight * 0.49f;
         List<Control> controls = new ArrayList<>();
 
-        float shoulderY = controlsTop + controlsHeight * 0.10f;
-        float shoulderHalfWidth = unit * 0.11f;
-        float shoulderHalfHeight = shoulderHalfWidth * 0.34f;
+        float shoulderHalfWidth = unit * 0.15f;
+        float shoulderHalfHeight = unit * 0.065f;
+        float shoulderY = controlsTop + controlsHeight * 0.18f;
         if (hasShoulders) {
             controls.add(new Control(MgbaSession.KEY_L, "L", Shape.PILL,
-                    width * 0.16f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
+                    width * 0.20f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
             controls.add(new Control(MgbaSession.KEY_R, "R", Shape.PILL,
-                    width * 0.84f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
+                    width * 0.80f, shoulderY, shoulderHalfWidth, shoulderHalfHeight));
         }
 
-        float dpadX = width * 0.24f;
-        float dpadY = controlsTop + controlsHeight * 0.42f;
-        float dpadHalf = unit * 0.17f;
-        controls.add(new Control(0, "", Shape.DPAD, dpadX, dpadY, dpadHalf, dpadHalf));
+        float dpadHalf = unit * 0.235f;
+        controls.add(new Control(0, "", Shape.DPAD,
+                width * 0.25f, mainY, dpadHalf, dpadHalf));
 
-        float buttonRadius = unit * 0.09f;
-        float buttonY = controlsTop + controlsHeight * 0.39f;
-        controls.add(new Control(MgbaSession.KEY_A, "A", Shape.CIRCLE,
-                width * 0.80f, buttonY - buttonRadius * 0.45f, buttonRadius, buttonRadius));
+        float buttonRadius = unit * 0.12f;
         controls.add(new Control(MgbaSession.KEY_B, "B", Shape.CIRCLE,
-                width * 0.65f, buttonY + buttonRadius * 0.45f, buttonRadius, buttonRadius));
+                width * 0.63f, mainY, buttonRadius, buttonRadius));
+        controls.add(new Control(MgbaSession.KEY_A, "A", Shape.CIRCLE,
+                width * 0.87f, mainY, buttonRadius, buttonRadius));
 
-        float smallY = controlsTop + controlsHeight * 0.78f;
-        float smallHalfWidth = unit * 0.075f;
-        float smallHalfHeight = smallHalfWidth * 0.34f;
+        float smallY = controlsTop + controlsHeight * 0.80f;
+        float smallHalfWidth = unit * 0.15f;
+        float smallHalfHeight = unit * 0.055f;
         controls.add(new Control(MgbaSession.KEY_SELECT, "SELECT", Shape.PILL,
-                width * 0.39f, smallY, smallHalfWidth, smallHalfHeight));
+                width / 3f, smallY, smallHalfWidth, smallHalfHeight));
         controls.add(new Control(MgbaSession.KEY_START, "START", Shape.PILL,
-                width * 0.61f, smallY, smallHalfWidth, smallHalfHeight));
+                width * 2f / 3f, smallY, smallHalfWidth, smallHalfHeight));
 
         return new ControlLayout(gameLeft, gameTop, gameRight, gameBottom,
-                loadLeft, loadTop, loadRight, loadBottom,
-                noticesLeft, noticesTop, noticesRight, noticesBottom,
-                menuLeft, menuTop, menuRight, menuBottom, controls);
+                menuLeft, menuTop, menuRight, menuBottom,
+                muteLeft, muteTop, muteRight, muteBottom, controls);
     }
 
-    /**
-     * Handheld-emulator arrangement: game centred, D-pad in the left gutter,
-     * A/B in the right gutter, shoulders in the top corners, SELECT/START
-     * bottom-centre. The game rect is sized as large as fits within ~92% of
-     * height at the console's 3:2 aspect ratio, then clamped so it never
-     * reaches into either gutter.
-     *
-     * <p>The LOAD/NOTICES chips sit in a header band above the game rect
-     * (not overlaid on it), anchored to the game's right edge.
-     */
+    /** Maximized game with controls in the natural left and right thumb arcs. */
     private static ControlLayout landscape(float width, float height,
             float srcW, float srcH, boolean hasShoulders) {
         float unit = Math.min(width, height);
-
-        float dpadHalf = unit * 0.17f;
-        float abRadius = unit * 0.10f;
-        float abOffset = abRadius;
-        float clusterMargin = unit * 0.04f;
-
-        // Half-width each gutter must have so its cluster (D-pad, or the
-        // diagonal A/B pair) clears both the game edge and the screen edge.
-        float leftClusterHalfExtent = dpadHalf + clusterMargin;
-        float rightClusterHalfExtent = abRadius + abOffset + clusterMargin;
-        float gutterWidth = 2f * Math.max(leftClusterHalfExtent, rightClusterHalfExtent);
-
-        float chipHeight = Math.max(54, unit * 0.075f);
-        float chipGap = unit * 0.02f;
-        float topMargin = chipHeight + chipGap * 2;
-        float bottomMargin = unit * 0.02f;
-        float selectStartHalfHeight = unit * 0.035f;
-        float bottomReserve = selectStartHalfHeight * 2f + bottomMargin * 2f;
-
-        float maxGameHeight = Math.min(height * 0.92f, height - topMargin - bottomReserve);
-        float maxGameWidthByHeight = maxGameHeight * srcW / srcH;
-        float maxGameWidthByGutter = width - 2f * gutterWidth;
-
-        float gameWidth = Math.min(maxGameWidthByHeight, maxGameWidthByGutter);
-        float gameHeight = gameWidth * srcH / srcW;
-
-        float gameLeft = (width - gameWidth) / 2;
-        float gameTop = topMargin;
+        float gameHeight = height;
+        float gameWidth = gameHeight * srcW / srcH;
+        if (gameWidth > width) {
+            gameWidth = width;
+            gameHeight = gameWidth * srcH / srcW;
+        }
+        float gameLeft = (width - gameWidth) / 2f;
+        float gameTop = 0f;
         float gameRight = gameLeft + gameWidth;
-        float gameBottom = gameTop + gameHeight;
+        float gameBottom = gameHeight;
 
-        float loadWidth = unit * 0.18f;
-        float loadRight = gameRight - 12;
-        float loadLeft = loadRight - loadWidth;
-        float loadTop = chipGap;
-        float loadBottom = loadTop + chipHeight;
+        float menuSize = unit * 0.13f;
+        float menuLeft = unit * 0.04f;
+        float menuRight = menuLeft + menuSize;
+        float menuBottom = height - unit * 0.02f;
+        float menuTop = menuBottom - menuSize;
+        float muteRight = width - unit * 0.04f;
+        float muteLeft = muteRight - menuSize;
+        float muteTop = menuTop;
+        float muteBottom = menuBottom;
 
-        float noticesWidth = unit * 0.28f;
-        float noticesRight = loadLeft - 12;
-        float noticesLeft = noticesRight - noticesWidth;
-        float noticesTop = chipGap;
-        float noticesBottom = noticesTop + chipHeight;
-
-        float menuWidth = unit * 0.22f;
-        float menuRight = noticesLeft - 12;
-        float menuLeft = menuRight - menuWidth;
-        float menuTop = chipGap;
-        float menuBottom = menuTop + chipHeight;
-
+        float leftGutter = gameLeft;
+        float rightGutter = width - gameRight;
         List<Control> controls = new ArrayList<>();
 
-        float dpadX = gameLeft / 2f;
-        float dpadY = height * 0.62f;
-        controls.add(new Control(0, "", Shape.DPAD, dpadX, dpadY, dpadHalf, dpadHalf));
+        float dpadHalf = unit * 0.20f;
+        float dpadX = Math.max(dpadHalf + unit * 0.02f, leftGutter * 0.55f);
+        float mainY = height * 0.62f;
+        controls.add(new Control(0, "", Shape.DPAD, dpadX, mainY, dpadHalf, dpadHalf));
 
-        float abCenterX = gameRight + (width - gameRight) / 2f;
-        float abCenterY = height * 0.62f;
-        controls.add(new Control(MgbaSession.KEY_A, "A", Shape.CIRCLE,
-                abCenterX + abOffset, abCenterY - abOffset, abRadius, abRadius));
+        float abRadius = unit * 0.08f;
         controls.add(new Control(MgbaSession.KEY_B, "B", Shape.CIRCLE,
-                abCenterX - abOffset, abCenterY + abOffset, abRadius, abRadius));
+                gameRight + rightGutter * 0.23f, mainY, abRadius, abRadius));
+        controls.add(new Control(MgbaSession.KEY_A, "A", Shape.CIRCLE,
+                gameRight + rightGutter * 0.74f, mainY, abRadius, abRadius));
 
-        float shoulderHalfWidth = unit * 0.11f;
-        float shoulderHalfHeight = unit * 0.045f;
-        float shoulderEdgeMargin = unit * 0.02f;
+        float shoulderHalfWidth = unit * 0.145f;
+        float shoulderHalfHeight = unit * 0.05f;
+        float sideCenter = unit * 0.22f;
         if (hasShoulders) {
             controls.add(new Control(MgbaSession.KEY_L, "L", Shape.PILL,
-                    shoulderHalfWidth + shoulderEdgeMargin, shoulderHalfHeight + shoulderEdgeMargin,
-                    shoulderHalfWidth, shoulderHalfHeight));
+                    sideCenter, height * 0.29f, shoulderHalfWidth, shoulderHalfHeight));
             controls.add(new Control(MgbaSession.KEY_R, "R", Shape.PILL,
-                    width - shoulderHalfWidth - shoulderEdgeMargin, shoulderHalfHeight + shoulderEdgeMargin,
-                    shoulderHalfWidth, shoulderHalfHeight));
+                    width - sideCenter, height * 0.29f, shoulderHalfWidth, shoulderHalfHeight));
         }
 
-        float smallHalfWidth = unit * 0.09f;
-        float smallHalfHeight = unit * 0.035f;
-        float smallGap = unit * 0.02f;
-        float smallY = height - bottomMargin - smallHalfHeight;
+        float smallHalfWidth = unit * 0.08f;
+        float smallHalfHeight = unit * 0.03f;
+        float smallY = height * 0.13f;
         controls.add(new Control(MgbaSession.KEY_SELECT, "SELECT", Shape.PILL,
-                width / 2f - smallHalfWidth - smallGap / 2f, smallY, smallHalfWidth, smallHalfHeight));
+                gameRight + rightGutter * 0.23f, smallY, smallHalfWidth, smallHalfHeight));
         controls.add(new Control(MgbaSession.KEY_START, "START", Shape.PILL,
-                width / 2f + smallHalfWidth + smallGap / 2f, smallY, smallHalfWidth, smallHalfHeight));
+                gameRight + rightGutter * 0.74f, smallY, smallHalfWidth, smallHalfHeight));
 
         return new ControlLayout(gameLeft, gameTop, gameRight, gameBottom,
-                loadLeft, loadTop, loadRight, loadBottom,
-                noticesLeft, noticesTop, noticesRight, noticesBottom,
-                menuLeft, menuTop, menuRight, menuBottom, controls);
+                menuLeft, menuTop, menuRight, menuBottom,
+                muteLeft, muteTop, muteRight, muteBottom, controls);
     }
 
-    /**
-     * Single source of truth for hit-testing: the OR of every control this
-     * point falls in. The D-pad's box decomposes into direction bits around
-     * a dead zone at its centre; diagonals set two bits at once.
-     */
-    int keysAt(float x, float y) {
-        int keys = 0;
+    static final class Input {
+        final int normalKeys;
+        final int turboKeys;
+
+        Input(int normalKeys, int turboKeys) {
+            this.normalKeys = normalKeys;
+            this.turboKeys = turboKeys;
+        }
+    }
+
+    /** Hit-tested normal and Turbo channels at one point. */
+    Input inputAt(float x, float y) {
+        int normal = 0;
+        int turbo = 0;
         for (Control control : controls) {
-            if (control.shape == Shape.DPAD) {
-                if (control.contains(x, y)) {
-                    float dx = x - control.cx;
-                    float dy = y - control.cy;
-                    float dead = control.halfWidth * 0.18f;
-                    if (dx < -dead) keys |= MgbaSession.KEY_LEFT;
-                    if (dx > dead) keys |= MgbaSession.KEY_RIGHT;
-                    if (dy < -dead) keys |= MgbaSession.KEY_UP;
-                    if (dy > dead) keys |= MgbaSession.KEY_DOWN;
-                }
-            } else if (control.contains(x, y)) {
-                keys |= control.key;
+            int hit = 0;
+            if (control.shape == Shape.DPAD && control.contains(x, y)) {
+                float dx = x - control.cx;
+                float dy = y - control.cy;
+                float dead = control.halfWidth * 0.18f;
+                if (dx < -dead) hit |= MgbaSession.KEY_LEFT;
+                if (dx > dead) hit |= MgbaSession.KEY_RIGHT;
+                if (dy < -dead) hit |= MgbaSession.KEY_UP;
+                if (dy > dead) hit |= MgbaSession.KEY_DOWN;
+            } else if (control.shape != Shape.DPAD && control.contains(x, y)) {
+                hit = control.key;
+            }
+            if (control.turbo) {
+                turbo |= hit;
+            } else {
+                normal |= hit;
             }
         }
-        return keys;
+        return new Input(normal, turbo);
     }
 
-    boolean isLoadHit(float x, float y) {
-        float pad = 12f;
-        return x >= loadLeft - pad && x <= loadRight + pad
-                && y >= loadTop - pad && y <= loadBottom + pad * 2f;
-    }
-
-    boolean isNoticesHit(float x, float y) {
-        float pad = 12f;
-        return x >= noticesLeft - pad && x <= noticesRight + pad
-                && y >= noticesTop - pad && y <= noticesBottom + pad * 2f;
+    /** Compatibility view of both input channels. */
+    int keysAt(float x, float y) {
+        Input input = inputAt(x, y);
+        return input.normalKeys | input.turboKeys;
     }
 
     boolean isMenuHit(float x, float y) {
         float pad = 12f;
         return x >= menuLeft - pad && x <= menuRight + pad
                 && y >= menuTop - pad && y <= menuBottom + pad * 2f;
+    }
+
+    boolean isMuteHit(float x, float y) {
+        float pad = 12f;
+        return x >= muteLeft - pad && x <= muteRight + pad
+                && y >= muteTop - pad && y <= muteBottom + pad * 2f;
     }
 }

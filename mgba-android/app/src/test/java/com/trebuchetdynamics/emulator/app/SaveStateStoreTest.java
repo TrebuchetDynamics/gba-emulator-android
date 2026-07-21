@@ -47,6 +47,41 @@ public class SaveStateStoreTest {
     }
 
     @Test
+    public void newestSlotReturnsLatestOccupiedSlotOrZero() throws IOException {
+        SaveStateStore s = store("rom1");
+        assertEquals(0, s.newestSlot());
+        s.write(1, new byte[] {1});
+        s.write(3, new byte[] {3});
+        assertEquals(3, s.newestSlot());
+    }
+
+    @Test
+    public void autosavesRotateWithoutTouchingManualSlots() throws IOException {
+        SaveStateStore s = store("rom1");
+        s.write(2, new byte[] {42});
+        assertFalse(s.hasAutoState());
+        for (int value = 1; value <= 4; value++) {
+            s.writeAuto(new byte[] {(byte) value});
+        }
+        assertTrue(s.hasAutoState());
+        assertArrayEquals(new byte[] {4}, s.readLatestAuto());
+        assertArrayEquals(new byte[] {4}, s.readAuto(1));
+        assertArrayEquals(new byte[] {3}, s.readAuto(2));
+        assertArrayEquals(new byte[] {2}, s.readAuto(3));
+        assertTrue(s.autoExists(1));
+        assertTrue(s.autoTimestamp(1) > 0);
+        assertArrayEquals(new byte[] {42}, s.read(2));
+    }
+
+    @Test
+    public void autosaveGenerationOutOfRangeIsRejected() throws IOException {
+        SaveStateStore s = store("rom1");
+        assertThrows(IllegalArgumentException.class, () -> s.readAuto(0));
+        assertThrows(IllegalArgumentException.class,
+                () -> s.autoExists(SaveStateStore.AUTO_SLOT_COUNT + 1));
+    }
+
+    @Test
     public void differentRomsDoNotShareSlots() throws IOException {
         File root = Files.createTempDirectory("states").toFile();
         root.deleteOnExit();

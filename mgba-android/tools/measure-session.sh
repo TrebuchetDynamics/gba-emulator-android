@@ -14,15 +14,168 @@
 # works too and `collect` can then be run without replugging.
 set -uo pipefail
 
-PKG=com.trebuchetdynamics.mgba
-MODE="${1:?usage: measure-session.sh start | collect [title]}"
+PKG=com.trebuchetdynamics.garnacha
+MODE="${1:?usage: measure-session.sh start | collect [title] | profile-start | profile-collect LABEL | profile-summary RUN1 RUN2 RUN3}"
 STATE="${OUT_DIR:-.}/.session-state"
 
 battery_level() { adb shell dumpsys battery | sed -n 's/^  level: //p'; }
 battery_temp()  { adb shell dumpsys battery | sed -n 's/^  temperature: //p'; }
 thermal()       { adb shell dumpsys thermalservice | sed -n '/Current temperatures/,/^$/p'; }
 
+PROFILE_STATE="${OUT_DIR:-build/perf}/.profile-state"
+
+require_package() {
+    adb shell pm path "$PKG" 2>/dev/null | grep -q '^package:' || {
+        echo "REFUSING: $PKG is not installed." >&2
+        return 1
+    }
+}
+
+require_running() {
+    adb shell pidof "$PKG" >/dev/null 2>&1 || {
+        echo "REFUSING: $PKG is not running. Start representative gameplay first." >&2
+        return 1
+    }
+}
+
+profile_start() {
+    require_package && require_running || return 1
+    local base="${OUT_DIR:-build/perf}"
+    mkdir -p "$base"
+    adb shell dumpsys gfxinfo "$PKG" reset >/dev/null
+    adb logcat -c
+    {
+        echo "start_epoch=$(date +%s)"
+        echo "model=$(adb shell getprop ro.product.model | tr -d '\r')"
+        echo "build=$(adb shell getprop ro.build.fingerprint | tr -d '\r')"
+        echo "brightness=$(adb shell settings get system screen_brightness | tr -d '\r')"
+        echo "peak_refresh_rate=$(adb shell settings get system peak_refresh_rate | tr -d '\r')"
+        echo "battery_temp=$(battery_temp)"
+    } > "$PROFILE_STATE"
+    echo "Profile counters reset after warm-up. Play for at least 10 minutes."
+}
+
+profile_collect() {
+    local label="$1"
+    [ -n "$label" ] || { echo "profile-collect requires a label" >&2; return 1; }
+    [ -f "$PROFILE_STATE" ] || { echo "Run profile-start first." >&2; return 1; }
+    require_package && require_running || return 1
+    # shellcheck disable=SC1090
+    . "$PROFILE_STATE"
+    local elapsed=$(( $(date +%s) - start_epoch ))
+    [ "$elapsed" -ge 600 ] || {
+        echo "REFUSING: profile duration is ${elapsed}s; 600s required." >&2
+        return 1
+    }
+    local base="${OUT_DIR:-build/perf}"
+    local safe
+    safe="$(printf '%s' "$label" | tr -c 'A-Za-z0-9._-' '-')"
+    local out="$base/profile-$safe"
+    [ ! -e "$out" ] || { echo "REFUSING: $out already exists." >&2; return 1; }
+    mkdir -p "$out"
+    adb logcat -d -s MgbaPerf:I '*:S' > "$out/frames.log"
+    local windows
+    windows="$(grep -c 'MgbaPerf' "$out/frames.log")"
+    [ "$windows" -ge 50 ] || {
+        echo "REFUSING: only $windows complete metric windows captured." >&2
+        rm -rf "$out"
+        return 1
+    }
+    adb shell dumpsys gfxinfo "$PKG" > "$out/gfxinfo.txt"
+    adb shell dumpsys meminfo "$PKG" > "$out/meminfo.txt"
+    {
+        echo "model=$model"
+        echo "build=$build"
+        echo "brightness=$brightness"
+        echo "peak_refresh_rate=$peak_refresh_rate"
+        echo "start_battery_temp=$battery_temp"
+        echo "end_battery_temp=$(battery_temp)"
+        echo "duration_seconds=$elapsed"
+    } > "$out/device.env"
+    echo "Wrote $out"
+}
+
+profile_summary() {
+    python3 - "$@" <<'PY'
+import re
+import statistics
+import sys
+from pathlib import Path
+
+KEYS = ('avg_us', 'native_us', 'audio_us', 'publish_us',
+        'rewind_us', 'other_us', 'rewind_max_us')
+PHASES = ('native_us', 'audio_us', 'publish_us', 'rewind_us', 'other_us')
+runs = []
+identity = None
+for name in sys.argv[1:]:
+    root = Path(name)
+    env = dict(line.split('=', 1) for line in (root / 'device.env').read_text().splitlines())
+    current = (env['model'], env['build'])
+    if identity is None:
+        identity = current
+    elif current != identity:
+        raise SystemExit('run device/build mismatch')
+    rows = []
+    for line in (root / 'frames.log').read_text().splitlines():
+        if 'MgbaPerf' not in line:
+            continue
+        fields = {}
+        for token in line.split():
+            if '=' in token:
+                key, value = token.split('=', 1)
+                value = value.rstrip(',')
+                if value.lstrip('-').isdigit():
+                    fields[key] = int(value)
+        required = {'avg_us', 'max_us', 'late', 'underruns', *KEYS[1:]}
+        missing = required - fields.keys()
+        if missing:
+            raise SystemExit(f'{root}: malformed metric line, missing {sorted(missing)}')
+        if any(fields[key] < 0 for key in required):
+            raise SystemExit(f'{root}: negative metric value')
+        rows.append(fields)
+    if not rows:
+        raise SystemExit(f'{root}: no MgbaPerf windows')
+    jank = re.search(r'Janky frames:\s+\d+\s+\(([0-9.]+)%\)',
+                     (root / 'gfxinfo.txt').read_text())
+    if not jank:
+        raise SystemExit(f'{root}: missing gfxinfo jank summary')
+    runs.append({
+        **{key: int(statistics.median(row[key] for row in rows)) for key in KEYS},
+        'max_us': max(row['max_us'] for row in rows),
+        'late': sum(row['late'] for row in rows),
+        'underruns': sum(row['underruns'] for row in rows),
+        'janky_pct': float(jank.group(1)),
+    })
+
+median = {key: int(statistics.median(run[key] for run in runs)) for key in KEYS}
+dominant = max(PHASES, key=lambda key: median[key])
+print(f'runs={len(runs)}')
+print(f'device={identity[0]}')
+print(f'build={identity[1]}')
+for key in KEYS:
+    print(f'{key}={median[key]}')
+print(f'max_us={max(run["max_us"] for run in runs)}')
+print(f'late={sum(run["late"] for run in runs)}')
+print(f'underruns={sum(run["underruns"] for run in runs)}')
+print(f'janky_pct={statistics.median(run["janky_pct"] for run in runs):.2f}')
+print(f'dominant={dominant.removesuffix("_us")}')
+PY
+}
+
 case "$MODE" in
+profile-start)
+    profile_start
+    ;;
+profile-collect)
+    profile_collect "${2:-}"
+    ;;
+profile-summary)
+    [ "$#" -eq 4 ] || {
+        echo "usage: $0 profile-summary RUN1 RUN2 RUN3" >&2
+        exit 1
+    }
+    profile_summary "$2" "$3" "$4"
+    ;;
 start)
     if ! adb shell pidof "$PKG" >/dev/null 2>&1; then
         echo "REFUSING: $PKG is not running. Load a ROM and start the game first." >&2
@@ -135,7 +288,7 @@ collect)
     ;;
 
 *)
-    echo "usage: measure-session.sh start | collect [title]" >&2
+    echo "usage: $0 start | collect [title] | profile-start | profile-collect LABEL | profile-summary RUN1 RUN2 RUN3" >&2
     exit 1
     ;;
 esac

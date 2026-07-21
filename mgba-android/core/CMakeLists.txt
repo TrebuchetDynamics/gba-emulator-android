@@ -12,5 +12,11 @@ set(M_CORE_GB ON CACHE BOOL "Build the Game Boy core" FORCE)
 set(BUILD_LTO OFF CACHE BOOL "Keep the integration build deterministic" FORCE)
 add_subdirectory("${MGBA_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/mgba" EXCLUDE_FROM_ALL)
 
-add_library(mgba-android SHARED src/main/cpp/mgba_android.c)
+add_library(mgba-android SHARED
+    src/main/cpp/mgba_android.c
+    src/main/cpp/mgba_session.c)
+target_include_directories(mgba-android PRIVATE src/main/cpp)
 target_link_libraries(mgba-android PRIVATE mgba android log)
+if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+    target_compile_options(mgba-android PRIVATE -Wall -Wextra -Werror)
+endif()

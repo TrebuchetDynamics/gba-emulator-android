@@ -53,6 +53,10 @@ final class ControlOverrides {
         map.put(key, new Entry(clampNorm(normCx), clampNorm(normCy), clampScale(scale)));
     }
 
+    void remove(int key) {
+        map.remove(key);
+    }
+
     void clear() {
         map.clear();
     }

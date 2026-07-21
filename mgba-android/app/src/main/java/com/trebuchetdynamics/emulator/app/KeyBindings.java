@@ -36,13 +36,18 @@ final class KeyBindings {
      * overwrites any prior binding of {@code keyCode}.
      */
     void bind(int gbaKey, int keyCode) {
+        unbind(gbaKey);
+        map.put(keyCode, gbaKey);
+    }
+
+    /** Remove every physical key assigned to {@code gbaKey}. */
+    void unbind(int gbaKey) {
         Iterator<Map.Entry<Integer, Integer>> it = map.entrySet().iterator();
         while (it.hasNext()) {
             if (it.next().getValue() == gbaKey) {
                 it.remove();
             }
         }
-        map.put(keyCode, gbaKey);
     }
 
     /** Some key bound to {@code gbaKey}, or -1 if none. */

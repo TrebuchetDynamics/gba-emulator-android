@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 
 @RunWith(AndroidJUnit4.class)
 public class MgbaCoreInstrumentedTest {
@@ -150,6 +152,49 @@ public class MgbaCoreInstrumentedTest {
                 session.runFrame(0, pixels, audio);
             }
             assertEquals(3, session.frameCounter());
+        }
+    }
+
+    @Test
+    public void directFrameBufferMatchesLegacyArgbForSupportedSystems() throws Exception {
+        assertDirectMatchesLegacy("hello.gba", MgbaSession.PLATFORM_GBA);
+        assertDirectMatchesLegacy("hello.gb", MgbaSession.PLATFORM_GB);
+        assertDirectMatchesLegacy("hello.gbc", MgbaSession.PLATFORM_GB);
+    }
+
+    private static void assertDirectMatchesLegacy(String asset, int platform) throws Exception {
+        byte[] rom = readAsset(asset);
+        short[] directAudio = new short[MgbaSession.MIN_AUDIO_BUFFER_SAMPLES];
+        short[] legacyAudio = new short[MgbaSession.MIN_AUDIO_BUFFER_SAMPLES];
+
+        try (MgbaSession direct = new MgbaSession(platform);
+             MgbaSession legacy = new MgbaSession(platform)) {
+            direct.loadRom(rom);
+            legacy.loadRom(rom);
+            ByteBuffer buffer = direct.directFrameBuffer();
+            assertNotNull(buffer);
+            assertTrue(buffer.isDirect());
+            assertTrue(buffer.isReadOnly());
+            assertEquals(direct.framePixels() * Integer.BYTES, buffer.capacity());
+
+            int directFrames = direct.runFrameDirect(0, directAudio);
+            int[] legacyPixels = new int[legacy.framePixels()];
+            int legacyFrames = legacy.runFrame(0, legacyPixels, legacyAudio);
+            assertTrue(directFrames >= 0);
+            assertTrue(legacyFrames >= 0);
+            assertEquals(1, direct.frameCounter());
+            assertEquals(1, legacy.frameCounter());
+
+            Bitmap bitmap = Bitmap.createBitmap(
+                    direct.videoWidth(), direct.videoHeight(), Bitmap.Config.ARGB_8888);
+            bitmap.setHasAlpha(false);
+            buffer.position(0);
+            bitmap.copyPixelsFromBuffer(buffer);
+            int[] directPixels = new int[direct.framePixels()];
+            bitmap.getPixels(directPixels, 0, direct.videoWidth(), 0, 0,
+                    direct.videoWidth(), direct.videoHeight());
+            assertArrayEquals(asset, legacyPixels, directPixels);
+            bitmap.recycle();
         }
     }
 

@@ -29,8 +29,14 @@ public final class NoticesActivity extends Activity {
         }
 
         ScrollView scroll = new ScrollView(this);
+        scroll.setFillViewport(true);
         scroll.setBackgroundColor(Color.rgb(14, 16, 20));
-        scroll.addView(text);
+        ScrollView.LayoutParams textParams = new ScrollView.LayoutParams(
+                Math.min(Math.round(680 * getResources().getDisplayMetrics().density),
+                        getResources().getDisplayMetrics().widthPixels),
+                ScrollView.LayoutParams.WRAP_CONTENT);
+        textParams.gravity = Gravity.START;
+        scroll.addView(text, textParams);
         setContentView(scroll);
     }
 }

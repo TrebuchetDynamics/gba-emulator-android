@@ -24,6 +24,8 @@ import java.util.zip.ZipInputStream;
 final class RomArchive {
     private static final int BUFFER_SIZE = 64 * 1024;
     private static final byte[] ZIP_MAGIC = {0x50, 0x4B, 0x03, 0x04};
+    private static final byte[] SEVEN_Z_MAGIC = {0x37, 0x7A, (byte) 0xBC,
+            (byte) 0xAF, 0x27, 0x1C};
     private static final String[] ROM_SUFFIXES = {".gba", ".gb", ".gbc"};
 
     private RomArchive() {
@@ -40,9 +42,12 @@ final class RomArchive {
      */
     static byte[] extractRom(InputStream in, OutputStream out, long maxBytes) throws IOException {
         BufferedInputStream buffered = new BufferedInputStream(in, BUFFER_SIZE);
+        if (startsWith(buffered, SEVEN_Z_MAGIC)) {
+            throw new IOException("7z archives are not supported — extract the ROM first");
+        }
         MessageDigest digest = sha256();
         DigestOutputStream digestOut = new DigestOutputStream(out, digest);
-        long total = looksLikeZip(buffered)
+        long total = startsWith(buffered, ZIP_MAGIC)
                 ? extractFromZip(buffered, digestOut, maxBytes)
                 : copyCapped(buffered, digestOut, maxBytes);
         if (total == 0) {
@@ -51,16 +56,17 @@ final class RomArchive {
         return digest.digest();
     }
 
-    private static boolean looksLikeZip(BufferedInputStream buffered) throws IOException {
-        buffered.mark(ZIP_MAGIC.length);
-        byte[] header = new byte[ZIP_MAGIC.length];
+    private static boolean startsWith(BufferedInputStream buffered, byte[] magic)
+            throws IOException {
+        buffered.mark(magic.length);
+        byte[] header = new byte[magic.length];
         int read = readFully(buffered, header);
         buffered.reset();
-        if (read < ZIP_MAGIC.length) {
+        if (read < magic.length) {
             return false;
         }
-        for (int i = 0; i < ZIP_MAGIC.length; ++i) {
-            if (header[i] != ZIP_MAGIC[i]) {
+        for (int i = 0; i < magic.length; ++i) {
+            if (header[i] != magic[i]) {
                 return false;
             }
         }

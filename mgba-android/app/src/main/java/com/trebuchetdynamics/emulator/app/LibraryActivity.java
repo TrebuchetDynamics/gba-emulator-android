@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -25,6 +26,8 @@ public final class LibraryActivity extends Activity {
     private RomLibrary library;
     private LinearLayout listContainer;
     private TextView emptyView;
+    private ScrollView scroll;
+    private Button importButton;
     private volatile boolean importing;
 
     @Override
@@ -46,20 +49,25 @@ public final class LibraryActivity extends Activity {
         TextView title = new TextView(this);
         title.setText(R.string.library_title);
         title.setTextColor(Color.WHITE);
-        title.setTextSize(22);
+        title.setTextSize(28);
+        title.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         title.setLayoutParams(new LinearLayout.LayoutParams(
                 0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         header.addView(title);
-        Button importButton = new Button(this);
+        importButton = new Button(this);
         importButton.setText(R.string.library_import);
         importButton.setAllCaps(false);
+        importButton.setTextColor(0xFFB6C9EC);
+        importButton.setBackgroundResource(android.R.drawable.list_selector_background);
         importButton.setOnClickListener(v -> openRomPicker());
         header.addView(importButton);
-        android.widget.Button settingsButton = new android.widget.Button(this);
+        Button settingsButton = new Button(this);
         settingsButton.setText(R.string.settings_open);
         settingsButton.setAllCaps(false);
+        settingsButton.setTextColor(0xFF9AA0AA);
+        settingsButton.setBackgroundResource(android.R.drawable.list_selector_background);
         settingsButton.setOnClickListener(v ->
-                startActivity(new android.content.Intent(this, SettingsActivity.class)));
+                startActivity(new Intent(this, SettingsActivity.class)));
         header.addView(settingsButton);
         root.addView(header);
 
@@ -67,14 +75,19 @@ public final class LibraryActivity extends Activity {
         emptyView.setText(R.string.library_empty);
         emptyView.setTextColor(0xFF9AA0AA);
         emptyView.setGravity(Gravity.CENTER);
-        emptyView.setPadding(0, dp(48), 0, 0);
+        emptyView.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
         root.addView(emptyView);
 
         listContainer = new LinearLayout(this);
         listContainer.setOrientation(LinearLayout.VERTICAL);
-        ScrollView scroll = new ScrollView(this);
+        listContainer.setPadding(0, dp(8), 0, dp(16));
+        scroll = new ScrollView(this);
+        scroll.setFillViewport(true);
+        scroll.setVisibility(View.GONE);
         scroll.addView(listContainer);
-        root.addView(scroll);
+        root.addView(scroll, new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
         setContentView(root);
     }
@@ -88,7 +101,9 @@ public final class LibraryActivity extends Activity {
     private void refresh() {
         listContainer.removeAllViews();
         List<RomLibrary.Entry> entries = library.list();
-        emptyView.setVisibility(entries.isEmpty() ? View.VISIBLE : View.GONE);
+        boolean empty = entries.isEmpty();
+        emptyView.setVisibility(empty ? View.VISIBLE : View.GONE);
+        scroll.setVisibility(empty ? View.GONE : View.VISIBLE);
         for (RomLibrary.Entry entry : entries) {
             listContainer.addView(rowFor(entry));
         }
@@ -100,6 +115,9 @@ public final class LibraryActivity extends Activity {
         int p = dp(14);
         row.setPadding(p, p, p, p);
         row.setClickable(true);
+        row.setFocusable(true);
+        row.setMinimumHeight(dp(72));
+        row.setBackgroundResource(android.R.drawable.list_selector_background);
 
         LinearLayout titleRow = new LinearLayout(this);
         titleRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -114,14 +132,18 @@ public final class LibraryActivity extends Activity {
 
         TextView badge = new TextView(this);
         badge.setText(entry.system.badge());
-        badge.setTextColor(0xFF0E1014);
-        badge.setBackgroundColor(0xFF9AA0AA);
-        badge.setTextSize(11);
-        int badgePad = dp(4);
-        badge.setPadding(dp(6), badgePad, dp(6), badgePad);
+        badge.setTextColor(0xFFB6C9EC);
+        badge.setTextSize(12);
+        badge.setPadding(dp(8), 0, dp(8), 0);
+
+        TextView arrow = new TextView(this);
+        arrow.setText("›");
+        arrow.setTextColor(0xFF9AA0AA);
+        arrow.setTextSize(24);
 
         titleRow.addView(name);
         titleRow.addView(badge);
+        titleRow.addView(arrow);
 
         TextView sub = new TextView(this);
         sub.setText(entry.lastPlayedMs > 0
@@ -132,6 +154,7 @@ public final class LibraryActivity extends Activity {
 
         row.addView(titleRow);
         row.addView(sub);
+        row.setContentDescription(entry.displayName + " · " + entry.system.badge());
 
         row.setOnClickListener(v -> play(entry.romId));
         row.setOnLongClickListener(v -> {
@@ -181,22 +204,35 @@ public final class LibraryActivity extends Activity {
         if (uri == null || importing) {
             return;
         }
-        importing = true;
+        setImporting(true);
         Toast.makeText(this, R.string.library_importing, Toast.LENGTH_SHORT).show();
         new Thread(() -> {
             try {
                 new RomImporter(this, library).importRom(uri);
                 runOnUiThread(() -> {
-                    importing = false;
+                    setImporting(false);
                     refresh();
                 });
             } catch (IOException | RuntimeException e) {
+                String detail = e instanceof IOException ? e.getMessage() : null;
                 runOnUiThread(() -> {
-                    importing = false;
-                    Toast.makeText(this, R.string.library_import_failed, Toast.LENGTH_LONG).show();
+                    setImporting(false);
+                    String message = detail == null || detail.trim().isEmpty()
+                            ? getString(R.string.library_import_failed) : detail;
+                    new AlertDialog.Builder(this)
+                            .setTitle(R.string.library_import_error_title)
+                            .setMessage(message)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .show();
                 });
             }
         }, "rom-import").start();
+    }
+
+    private void setImporting(boolean value) {
+        importing = value;
+        importButton.setEnabled(!value);
+        importButton.setAlpha(value ? 0.45f : 1f);
     }
 
     private int dp(int value) {

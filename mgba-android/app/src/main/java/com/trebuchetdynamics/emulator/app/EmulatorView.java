@@ -16,10 +16,17 @@ import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 final class EmulatorView extends View {
     private static final int HOLD_MS = 1500;
     private static final int FADE_MS = 500;
+    private static final int CONTROL_COLOR = Color.rgb(100, 113, 132);
+    private static final int CONTROL_PRESSED_COLOR = Color.rgb(113, 153, 222);
 
     private int minAlpha = 60;              // was MIN_ALPHA constant
+    private int maxAlpha = 255;
     private boolean hapticsEnabled = true;
     private boolean integerScale = true;    // false = fill
+    private boolean touchControlsHidden;
+    private boolean muted;
+    private String speedIndicator;
+    private long speedIndicatorUntilMs;
 
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private volatile Bitmap frame = Bitmap.createBitmap(
@@ -31,15 +38,19 @@ final class EmulatorView extends View {
     private final RectF gameRect = new RectF();
     private final RectF frameDst = new RectF();
     private final Runnable requestRom;
-    private final Runnable requestNotices;
     private final Runnable requestMenu;
+    private final Runnable requestMute;
 
     private ControlLayout layout = ControlLayout.of(1, 1);
     private ControlOverrides portraitOverrides = ControlOverrides.EMPTY;
     private ControlOverrides landscapeOverrides = ControlOverrides.EMPTY;
+    private MacroControls portraitMacros = MacroControls.EMPTY;
+    private MacroControls landscapeMacros = MacroControls.EMPTY;
 
     private volatile int touchKeys;
+    private volatile int touchTurboKeys;
     private volatile int hardwareKeys;
+    private volatile int resolvedFrameKeys;
     private int previousTouchKeys;
     private volatile boolean hasFrame;
     private volatile String status = "Tap to load a GBA ROM";
@@ -49,19 +60,30 @@ final class EmulatorView extends View {
         this(context, () -> {}, () -> {}, () -> {});
     }
 
-    EmulatorView(Context context, Runnable requestRom, Runnable requestNotices, Runnable requestMenu) {
+    EmulatorView(Context context, Runnable requestRom, Runnable requestMenu, Runnable requestMute) {
         super(context);
         this.requestRom = requestRom;
-        this.requestNotices = requestNotices;
         this.requestMenu = requestMenu;
+        this.requestMute = requestMute;
         setBackgroundColor(Color.rgb(14, 16, 20));
+        setContentDescription("Game screen and touch controls");
         paint.setFilterBitmap(false); // crisp GBA pixels, no bilinear smoothing
         setFocusable(true);
         setFocusableInTouchMode(true);
     }
 
-    int keys() {
-        return touchKeys | hardwareKeys;
+    int keysForFrame(long frameIndex) {
+        int resolved = FeelMath.applyTurbo(
+                touchKeys | hardwareKeys, touchTurboKeys, frameIndex);
+        resolvedFrameKeys = resolved;
+        if (touchTurboKeys != 0) {
+            postInvalidateOnAnimation();
+        }
+        return resolved;
+    }
+
+    private int visualKeys() {
+        return resolvedFrameKeys;
     }
 
     void setHardwareKey(int key, boolean pressed) {
@@ -83,19 +105,71 @@ final class EmulatorView extends View {
         invalidate();
     }
 
+    void setActiveOpacityAlpha(int alpha) {
+        maxAlpha = Math.max(0, Math.min(255, alpha));
+        invalidate();
+    }
+
     void setIntegerScale(boolean integer) {
         integerScale = integer;
         invalidate();
     }
 
+    void setSmoothVideo(boolean smooth) {
+        paint.setFilterBitmap(smooth);
+        invalidate();
+    }
+
+    void setTouchControlsHidden(boolean hidden) {
+        touchControlsHidden = hidden;
+        if (hidden) {
+            touchKeys = 0;
+            touchTurboKeys = 0;
+            previousTouchKeys = 0;
+        }
+        invalidate();
+    }
+
+    void setMuted(boolean muted) {
+        this.muted = muted;
+        invalidate();
+    }
+
+    void showSpeedIndicator(String value) {
+        speedIndicator = value;
+        speedIndicatorUntilMs = SystemClock.uptimeMillis() + 1_400;
+        invalidate();
+        postInvalidateDelayed(1_450);
+    }
+
+    Bitmap copyGameFrame() {
+        if (!hasFrame) {
+            return null;
+        }
+        synchronized (frameLock) {
+            return frame.copy(Bitmap.Config.ARGB_8888, false);
+        }
+    }
+
     void setControlOverrides(ControlOverrides portrait, ControlOverrides landscape) {
+        setControlLayouts(portrait, portraitMacros, landscape, landscapeMacros);
+    }
+
+    void setControlLayouts(ControlOverrides portrait, MacroControls portraitMacros,
+            ControlOverrides landscape, MacroControls landscapeMacros) {
         this.portraitOverrides = portrait == null ? ControlOverrides.EMPTY : portrait;
         this.landscapeOverrides = landscape == null ? ControlOverrides.EMPTY : landscape;
+        this.portraitMacros = portraitMacros == null ? MacroControls.EMPTY : portraitMacros;
+        this.landscapeMacros = landscapeMacros == null ? MacroControls.EMPTY : landscapeMacros;
         invalidate();
     }
 
     private ControlOverrides activeOverrides(int w, int h) {
         return w > h ? landscapeOverrides : portraitOverrides;
+    }
+
+    private MacroControls activeMacros(int w, int h) {
+        return w > h ? landscapeMacros : portraitMacros;
     }
 
     void setStatus(String value) {
@@ -128,26 +202,27 @@ final class EmulatorView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        layout = ControlLayout.of(w, h, activeOverrides(w, h), videoWidth, videoHeight, hasShoulders);
+        layout = ControlLayout.of(w, h, activeOverrides(w, h), videoWidth, videoHeight,
+                hasShoulders, activeMacros(w, h));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         layout = ControlLayout.of(getWidth(), getHeight(), activeOverrides(getWidth(), getHeight()),
-                videoWidth, videoHeight, hasShoulders);
+                videoWidth, videoHeight, hasShoulders, activeMacros(getWidth(), getHeight()));
         gameRect.set(layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom);
 
         int controlAlpha = hasFrame
                 ? FeelMath.controlAlpha(SystemClock.uptimeMillis(), lastInputMs,
-                        HOLD_MS, FADE_MS, minAlpha, 255)
-                : 255;
+                        HOLD_MS, FADE_MS, minAlpha, maxAlpha)
+                : maxAlpha;
 
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);
         canvas.drawRoundRect(gameRect, 14, 14, paint); // letterbox backdrop
         if (hasFrame) {
-            FeelMath.Box draw = integerScale
+            FeelMath.Box draw = integerScale && getWidth() <= getHeight()
                     ? FeelMath.integerScale(gameRect.left, gameRect.top, gameRect.right,
                             gameRect.bottom, videoWidth, videoHeight)
                     : FeelMath.fitScale(gameRect.left, gameRect.top, gameRect.right,
@@ -163,71 +238,98 @@ final class EmulatorView extends View {
             canvas.drawText(status, gameRect.centerX(), gameRect.centerY(), paint);
         }
 
-        paint.setColor(0xCC262A31);
-        paint.setAlpha(chipAlpha(controlAlpha));
-        canvas.drawRoundRect(layout.loadLeft, layout.loadTop, layout.loadRight, layout.loadBottom,
-                12, 12, paint);
-        paint.setColor(Color.WHITE);
-        paint.setAlpha(controlAlpha);
-        paint.setTextAlign(Paint.Align.CENTER);
-        float loadHeight = layout.loadBottom - layout.loadTop;
-        paint.setTextSize(loadHeight * 0.42f);
-        canvas.drawText("LOAD", (layout.loadLeft + layout.loadRight) / 2,
-                layout.loadTop + loadHeight * 0.66f, paint);
+        drawSpeedIndicator(canvas);
+        drawMenuButton(canvas, controlAlpha);
+        drawMuteButton(canvas, controlAlpha);
 
-        paint.setColor(0xCC262A31);
-        paint.setAlpha(chipAlpha(controlAlpha));
-        canvas.drawRoundRect(layout.noticesLeft, layout.noticesTop,
-                layout.noticesRight, layout.noticesBottom, 12, 12, paint);
-        paint.setColor(Color.WHITE);
-        paint.setAlpha(controlAlpha);
-        paint.setTextAlign(Paint.Align.CENTER);
-        float noticesHeight = layout.noticesBottom - layout.noticesTop;
-        paint.setTextSize(noticesHeight * 0.34f);
-        canvas.drawText("NOTICES", (layout.noticesLeft + layout.noticesRight) / 2,
-                layout.noticesTop + noticesHeight * 0.66f, paint);
-
-        paint.setColor(0xCC262A31);
-        paint.setAlpha(chipAlpha(controlAlpha));
-        canvas.drawRoundRect(layout.menuLeft, layout.menuTop,
-                layout.menuRight, layout.menuBottom, 12, 12, paint);
-        paint.setColor(Color.WHITE);
-        paint.setAlpha(controlAlpha);
-        paint.setTextAlign(Paint.Align.CENTER);
-        float menuHeight = layout.menuBottom - layout.menuTop;
-        paint.setTextSize(menuHeight * 0.42f);
-        canvas.drawText("MENU", (layout.menuLeft + layout.menuRight) / 2,
-                layout.menuTop + menuHeight * 0.66f, paint);
-
-        for (ControlLayout.Control control : layout.controls) {
-            switch (control.shape) {
-                case DPAD:
-                    drawDpad(canvas, control.cx, control.cy, control.halfWidth, controlAlpha);
-                    break;
-                case CIRCLE:
-                    drawButton(canvas, control.cx, control.cy, control.halfWidth,
-                            control.label, control.key, controlAlpha);
-                    break;
-                case PILL:
-                    drawPill(canvas, control, controlAlpha);
-                    break;
+        if (!touchControlsHidden) {
+            for (ControlLayout.Control control : layout.controls) {
+                switch (control.shape) {
+                    case DPAD:
+                        drawDpad(canvas, control.cx, control.cy, control.halfWidth, controlAlpha);
+                        break;
+                    case CIRCLE:
+                        drawButton(canvas, control.cx, control.cy, control.halfWidth,
+                                control.label, control.key, controlAlpha);
+                        break;
+                    case PILL:
+                        drawPill(canvas, control, controlAlpha);
+                        break;
+                }
             }
         }
     }
 
-    // Chips are already ~80% opaque (0xCC); scale that base by the fade factor.
-    private static int chipAlpha(int controlAlpha) {
-        return 0xCC * controlAlpha / 255;
+    private void drawSpeedIndicator(Canvas canvas) {
+        if (speedIndicator == null || SystemClock.uptimeMillis() >= speedIndicatorUntilMs) {
+            return;
+        }
+        float textSize = Math.max(28, getWidth() * 0.035f);
+        paint.setTextSize(textSize);
+        paint.setTextAlign(Paint.Align.CENTER);
+        float width = paint.measureText(speedIndicator) + textSize;
+        float right = gameRect.right - textSize * 0.4f;
+        float top = gameRect.top + textSize * 0.4f;
+        paint.setColor(0xDD191C22);
+        paint.setAlpha(255);
+        canvas.drawRoundRect(right - width, top, right, top + textSize * 1.45f,
+                textSize * 0.35f, textSize * 0.35f, paint);
+        paint.setColor(Color.WHITE);
+        canvas.drawText(speedIndicator, right - width / 2f, top + textSize * 1.05f, paint);
+    }
+
+    private void drawMenuButton(Canvas canvas, int controlAlpha) {
+        float cx = (layout.menuLeft + layout.menuRight) / 2f;
+        float cy = (layout.menuTop + layout.menuBottom) / 2f;
+        float radius = (layout.menuRight - layout.menuLeft) * 0.07f;
+        paint.setColor(Color.WHITE);
+        paint.setAlpha(controlAlpha);
+        for (int i = -1; i <= 1; i++) {
+            canvas.drawCircle(cx, cy + i * radius * 2.8f, radius, paint);
+        }
+    }
+
+    private void drawMuteButton(Canvas canvas, int controlAlpha) {
+        float cx = (layout.muteLeft + layout.muteRight) / 2f;
+        float cy = (layout.muteTop + layout.muteBottom) / 2f;
+        float size = (layout.muteRight - layout.muteLeft) * 0.5f;
+        paint.setColor(Color.WHITE);
+        paint.setAlpha(controlAlpha);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(Math.max(3f, size * 0.1f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        canvas.drawLine(cx - size * 0.48f, cy - size * 0.18f,
+                cx - size * 0.20f, cy - size * 0.18f, paint);
+        canvas.drawLine(cx - size * 0.20f, cy - size * 0.18f,
+                cx + size * 0.08f, cy - size * 0.45f, paint);
+        canvas.drawLine(cx + size * 0.08f, cy - size * 0.45f,
+                cx + size * 0.08f, cy + size * 0.45f, paint);
+        canvas.drawLine(cx + size * 0.08f, cy + size * 0.45f,
+                cx - size * 0.20f, cy + size * 0.18f, paint);
+        canvas.drawLine(cx - size * 0.20f, cy + size * 0.18f,
+                cx - size * 0.48f, cy + size * 0.18f, paint);
+        if (muted) {
+            canvas.drawLine(cx - size * 0.48f, cy - size * 0.52f,
+                    cx + size * 0.52f, cy + size * 0.52f, paint);
+        } else {
+            canvas.drawArc(cx, cy - size * 0.35f, cx + size * 0.52f, cy + size * 0.35f,
+                    -48f, 96f, false, paint);
+        }
+        paint.setStrokeCap(Paint.Cap.BUTT);
+        paint.setStyle(Paint.Style.FILL);
     }
 
     private void drawDpad(Canvas canvas, float cx, float cy, float radius, int alpha) {
-        paint.setColor(Color.rgb(62, 66, 74));
+        int directions = MgbaSession.KEY_UP | MgbaSession.KEY_DOWN
+                | MgbaSession.KEY_LEFT | MgbaSession.KEY_RIGHT;
+        paint.setColor((visualKeys() & directions) != 0
+                ? CONTROL_PRESSED_COLOR : CONTROL_COLOR);
         paint.setAlpha(alpha);
         paint.setStyle(Paint.Style.FILL);
         float arm = radius * 0.42f;
         canvas.drawRoundRect(cx - arm, cy - radius, cx + arm, cy + radius, 14, 14, paint);
         canvas.drawRoundRect(cx - radius, cy - arm, cx + radius, cy + arm, 14, 14, paint);
-        paint.setColor(Color.rgb(120, 126, 138));
+        paint.setColor(Color.WHITE);
         paint.setAlpha(alpha);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(radius * 0.38f);
@@ -240,9 +342,10 @@ final class EmulatorView extends View {
     private void drawButton(Canvas canvas, float cx, float cy, float radius, String label, int key,
             int alpha) {
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor((keys() & key) != 0 ? Color.rgb(113, 153, 222) : Color.rgb(62, 66, 74));
+        boolean pressed = (visualKeys() & key) != 0;
+        paint.setColor(pressed ? CONTROL_PRESSED_COLOR : CONTROL_COLOR);
         paint.setAlpha(alpha);
-        canvas.drawCircle(cx, cy, radius, paint);
+        canvas.drawCircle(cx, cy, pressed ? radius * 0.94f : radius, paint);
         paint.setColor(Color.WHITE);
         paint.setAlpha(alpha);
         paint.setTextAlign(Paint.Align.CENTER);
@@ -255,13 +358,20 @@ final class EmulatorView extends View {
         float right = control.cx + control.halfWidth;
         float top = control.cy - control.halfHeight;
         float bottom = control.cy + control.halfHeight;
-        paint.setColor((keys() & control.key) != 0 ? Color.rgb(113, 153, 222) : Color.rgb(62, 66, 74));
+        paint.setColor((visualKeys() & control.key) == control.key
+                ? CONTROL_PRESSED_COLOR : CONTROL_COLOR);
         paint.setAlpha(alpha);
         canvas.drawRoundRect(left, top, right, bottom, control.halfHeight, control.halfHeight, paint);
         paint.setColor(Color.WHITE);
         paint.setAlpha(alpha);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(control.halfHeight * 0.9f);
+        float textSize = control.halfHeight * 0.9f;
+        paint.setTextSize(textSize);
+        float labelWidth = paint.measureText(control.label);
+        float maxLabelWidth = (right - left) * 0.82f;
+        if (labelWidth > maxLabelWidth) {
+            paint.setTextSize(textSize * maxLabelWidth / labelWidth);
+        }
         canvas.drawText(control.label, control.cx, control.cy + control.halfHeight * 0.32f, paint);
     }
 
@@ -270,30 +380,41 @@ final class EmulatorView extends View {
         lastInputMs = SystemClock.uptimeMillis();
         if (event.getActionMasked() == MotionEvent.ACTION_UP) {
             touchKeys = 0;
+            touchTurboKeys = 0;
             previousTouchKeys = 0;
             if (layout.isMenuHit(event.getX(), event.getY())) {
                 requestMenu.run();
-            } else if (layout.isNoticesHit(event.getX(), event.getY())) {
-                requestNotices.run();
-            } else if (!hasFrame || layout.isLoadHit(event.getX(), event.getY())) {
+            } else if (layout.isMuteHit(event.getX(), event.getY())) {
+                requestMute.run();
+            } else if (!hasFrame) {
                 performClick();
             }
             return true;
         }
 
-        int keys = 0;
-        if (event.getActionMasked() != MotionEvent.ACTION_UP
+        int normalKeys = 0;
+        int turboKeys = 0;
+        if (!touchControlsHidden
                 && event.getActionMasked() != MotionEvent.ACTION_CANCEL) {
             for (int i = 0; i < event.getPointerCount(); ++i) {
-                keys |= layout.keysAt(event.getX(i), event.getY(i));
+                if (event.getActionMasked() == MotionEvent.ACTION_POINTER_UP
+                        && i == event.getActionIndex()) {
+                    continue;
+                }
+                ControlLayout.Input input = layout.inputAt(event.getX(i), event.getY(i));
+                normalKeys |= input.normalKeys;
+                turboKeys |= input.turboKeys;
             }
         }
-        if (hapticsEnabled && FeelMath.introducesNewPress(previousTouchKeys, keys)) {
+        int allTouchKeys = normalKeys | turboKeys;
+        if (!touchControlsHidden && hapticsEnabled
+                && FeelMath.introducesNewPress(previousTouchKeys, allTouchKeys)) {
             performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY,
                     HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
         }
-        previousTouchKeys = keys;
-        touchKeys = keys;
+        previousTouchKeys = allTouchKeys;
+        touchKeys = normalKeys;
+        touchTurboKeys = turboKeys;
         invalidate();
         return true;
     }

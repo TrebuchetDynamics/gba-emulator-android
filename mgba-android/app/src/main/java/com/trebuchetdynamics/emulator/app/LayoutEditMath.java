@@ -1,10 +1,7 @@
 package com.trebuchetdynamics.emulator.app;
 
-/** Pure conversions for the layout editor's gestures and scale slider. */
+/** Pure conversions for the layout editor's gestures and size actions. */
 final class LayoutEditMath {
-    private static final float MIN_SCALE = 0.5f;
-    private static final float MAX_SCALE = 2f;
-
     private LayoutEditMath() {
     }
 
@@ -16,19 +13,8 @@ final class LayoutEditMath {
         return ControlOverrides.clampNorm(pixel / extent);
     }
 
-    /** Slider position 0..max mapped linearly to [0.5, 2.0]. */
-    static float scaleForProgress(int progress, int max) {
-        if (max <= 0) {
-            return 1f;
-        }
-        float t = (float) progress / max;
-        return MIN_SCALE + t * (MAX_SCALE - MIN_SCALE);
-    }
-
-    /** Inverse of {@link #scaleForProgress}, rounded to the nearest step. */
-    static int progressForScale(float scale, int max) {
-        float clamped = ControlOverrides.clampScale(scale);
-        float t = (clamped - MIN_SCALE) / (MAX_SCALE - MIN_SCALE);
-        return Math.round(t * max);
+    /** Move one 10% size step in either direction, clamped to supported limits. */
+    static float stepScale(float current, int direction) {
+        return ControlOverrides.clampScale(current + (direction < 0 ? -0.1f : 0.1f));
     }
 }

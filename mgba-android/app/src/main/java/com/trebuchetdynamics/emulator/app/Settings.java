@@ -18,16 +18,23 @@ final class Settings {
     private static final String FILE = "garnacha_settings";
     private static final String K_ORIENTATION = "orientation";
     private static final String K_SCALE = "scaleMode";
+    private static final String K_SMOOTH_VIDEO = "smoothVideo";
     private static final String K_AUDIO_ON = "audioEnabled";
     private static final String K_VOLUME = "audioVolumePercent";
     private static final String K_HAPTICS = "haptics";
     private static final String K_OPACITY = "controlOpacityPercent";
+    private static final String K_ACTIVE_OPACITY = "activeControlOpacityPercent";
     private static final String K_FF_SPEED = "fastForwardSpeed";
     private static final String K_FRAMESKIP = "frameskip";
     private static final String K_GAMEPAD = "gamepadBindings";
     private static final String K_LAYOUT_PORTRAIT = "layoutOverridesPortrait";
     private static final String K_LAYOUT_LANDSCAPE = "layoutOverridesLandscape";
+    private static final String K_MACROS_PORTRAIT = "macroControlsPortrait";
+    private static final String K_MACROS_LANDSCAPE = "macroControlsLandscape";
     private static final String K_DMG_PALETTE = "dmgPalette";
+    private static final String K_AUTO_LOAD_STATE = "autoLoadState";
+    private static final String K_CONFIRM_RESET = "confirmReset";
+    private static final String K_HIDE_TOUCH_GAMEPAD = "hideTouchWithGamepad";
 
     private final SharedPreferences prefs;
 
@@ -50,6 +57,14 @@ final class Settings {
 
     void setScaleMode(ScaleMode value) {
         prefs.edit().putInt(K_SCALE, value.ordinal()).apply();
+    }
+
+    boolean smoothVideo() {
+        return prefs.getBoolean(K_SMOOTH_VIDEO, false);
+    }
+
+    void setSmoothVideo(boolean value) {
+        prefs.edit().putBoolean(K_SMOOTH_VIDEO, value).apply();
     }
 
     /** Monochrome palette for original Game Boy (DMG) games; default green. */
@@ -93,6 +108,14 @@ final class Settings {
         prefs.edit().putInt(K_OPACITY, Math.max(10, clampPercent(value))).apply();
     }
 
+    int activeControlOpacityPercent() {
+        return Math.max(10, clampPercent(prefs.getInt(K_ACTIVE_OPACITY, 70)));
+    }
+
+    void setActiveControlOpacityPercent(int value) {
+        prefs.edit().putInt(K_ACTIVE_OPACITY, Math.max(10, clampPercent(value))).apply();
+    }
+
     int fastForwardSpeed() {
         return clampFastForwardSpeed(prefs.getInt(K_FF_SPEED, 4));
     }
@@ -107,6 +130,30 @@ final class Settings {
 
     void setFrameskip(int value) {
         prefs.edit().putInt(K_FRAMESKIP, clampFrameskip(value)).apply();
+    }
+
+    boolean autoLoadState() {
+        return prefs.getBoolean(K_AUTO_LOAD_STATE, true);
+    }
+
+    void setAutoLoadState(boolean value) {
+        prefs.edit().putBoolean(K_AUTO_LOAD_STATE, value).apply();
+    }
+
+    boolean confirmReset() {
+        return prefs.getBoolean(K_CONFIRM_RESET, true);
+    }
+
+    void setConfirmReset(boolean value) {
+        prefs.edit().putBoolean(K_CONFIRM_RESET, value).apply();
+    }
+
+    boolean hideTouchWithGamepad() {
+        return prefs.getBoolean(K_HIDE_TOUCH_GAMEPAD, false);
+    }
+
+    void setHideTouchWithGamepad(boolean value) {
+        prefs.edit().putBoolean(K_HIDE_TOUCH_GAMEPAD, value).apply();
     }
 
     KeyBindings gamepadBindings(Map<Integer, Integer> defaults) {
@@ -125,6 +172,22 @@ final class Settings {
     void setControlOverrides(boolean landscape, ControlOverrides overrides) {
         prefs.edit()
                 .putString(landscape ? K_LAYOUT_LANDSCAPE : K_LAYOUT_PORTRAIT, overrides.serialize())
+                .apply();
+    }
+
+    MacroControls macroControls(boolean landscape) {
+        return MacroControls.parse(prefs.getString(
+                landscape ? K_MACROS_LANDSCAPE : K_MACROS_PORTRAIT, ""));
+    }
+
+    void setControlLayout(boolean landscape, ControlOverrides overrides,
+            MacroControls macros, int opacityPercent) {
+        prefs.edit()
+                .putString(landscape ? K_LAYOUT_LANDSCAPE : K_LAYOUT_PORTRAIT,
+                        overrides.serialize())
+                .putString(landscape ? K_MACROS_LANDSCAPE : K_MACROS_PORTRAIT,
+                        macros.serialize())
+                .putInt(K_OPACITY, Math.max(10, clampPercent(opacityPercent)))
                 .apply();
     }
 
