@@ -641,7 +641,7 @@ namespace
 #ifndef EMSCRIPTEN
         // TODO(paris): When setting User-Agent from browser side, it sends a CORS
         // preflight request which is makes the request fail.
-        headers.push_back({"User-Agent", "SkyEmu/4.0"});
+        headers.push_back({"User-Agent", "GarnachaBoy/1.0 (SkyEmu fork)"});
 #endif
         headers.push_back({"Content-Type", "application/x-www-form-urlencoded"});
         headers.push_back({"Content-Length", std::to_string(post_data.size())});

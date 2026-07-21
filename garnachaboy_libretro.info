@@ -1,8 +1,8 @@
-display_name = "Nintendo - Game Boy/GBA/NDS (SkyEmu)"
+display_name = "Nintendo - Game Boy/GBA/NDS (Garnacha Boy)"
 categories = "Emulator"
-authors = "Team SkyEmu"
+authors = "Garnacha Boy contributors; SkyEmu team"
 supported_extensions = "gb|gbx|gba|nds"
-corename = "SkyEmu"
+corename = "Garnacha Boy"
 license = "MIT"
 permissions = ""
 display_version = "Git"
@@ -52,5 +52,5 @@ database = "Nintendo - Nintendo DS|Nintendo - Game Boy|Nintendo - Game Boy Advan
 needs_fullpath = "false"
 is_experimental = "false"
 
-description = "SkyEmu is a multi-system emulator, supporting Game Boy, Game Boy Color and Nintendo DS cores."
+description = "Garnacha Boy is a SkyEmu-derived multi-system emulator supporting Game Boy, Game Boy Color, Game Boy Advance, and Nintendo DS."
 

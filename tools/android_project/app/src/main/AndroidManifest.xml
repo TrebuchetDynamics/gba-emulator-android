@@ -108,7 +108,7 @@
 
       <meta-data
           android:name="android.app.lib_name"
-          android:value="SkyEmu" />
+          android:value="GarnachaBoy" />
     </activity>
   </application>
 </manifest>

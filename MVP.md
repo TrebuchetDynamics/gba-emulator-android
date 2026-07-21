@@ -1,52 +1,68 @@
-# Android emulator MVP
+# Garnacha Boy build guide
 
-This repository contains a local SkyEmu fork and an isolated custom Android product built on mGBA.
+This repository contains two deliberately isolated emulator clients. The primary Android product uses mGBA; a legacy cross-platform client retains the original SkyEmu architecture and MIT lineage. No APK packages both cores.
 
-## Build the installable SkyEmu MVP
+## Build the primary Android product
 
-The SkyEmu fork is feature-frozen: it is kept buildable exactly as documented
-below and receives no further product work. All product development continues
-in the custom mGBA app (see
-`docs/superpowers/specs/2026-07-13-mgba-product-roadmap-design.md`).
-
-Requirements: JDK 17, Android SDK 35, NDK `22.1.7171670`, and CMake `3.18.1`.
+Requirements: JDK 17, Android SDK 35, NDK `22.1.7171670`, CMake `3.18.1`, and Ninja.
 
 ```sh
-git submodule update --init --depth 1
-cd tools/android_project
-./gradlew clean lintDebug assembleDebug
-```
-
-APK: `tools/android_project/app/build/outputs/apk/debug/com.trebuchetdynamics.skyemu-v1-debug.apk`
-
-Fork-specific changes:
-
-- application ID `com.trebuchetdynamics.skyemu`;
-- target API 35;
-- no repository-stored release keystore or hard-coded signing password;
-- no legacy broad storage permissions;
-- selected files are copied through Android's document picker into private app storage;
-- CI builds and uploads an unsigned debug artifact.
-
-No games or proprietary BIOS files are included. Supply only content you are authorized to use.
-
-## Build the custom mGBA product
-
-```sh
+git submodule update --init --recursive
 tools/android_project/gradlew -p mgba-android clean lintDebug \
-  :app:assembleBenchmark :core:assembleBenchmark :core:assembleDebugAndroidTest
+  :app:testDebugUnitTest :app:assembleBenchmark \
+  :core:assembleBenchmark :core:assembleDebugAndroidTest
 ```
 
 Outputs:
 
-- optimized test APK: `mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk`
-- optimized AAR: `mgba-android/core/build/outputs/aar/core-benchmark.aar`
+- optimized Garnacha Boy APK: `mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk`
+- reusable mGBA AAR: `mgba-android/core/build/outputs/aar/core-benchmark.aar`
 
-The installable benchmark APK uses `-O2` native code and an Android debug key; it is for performance testing, not production distribution.
+The app ID is permanently `com.trebuchetdynamics.garnacha`. The benchmark APK uses optimized native code and Android's debug signing key; it is not a production release. The app imports user-selected `.gb`, `.gbc`, `.gba`, and ZIP files into private storage, renders and plays audio through mGBA, supports touch and physical controls, and persists cartridge saves and save states.
 
-The custom app atomically imports user-selected GBA ROMs to private files without retaining a Java ROM copy, renders mGBA frames, streams audio, maps touch/gamepad input, and persists cartridge saves. See `mgba-android/README.md` and `docs/adr/0001-dual-core-strategy.md`.
+Host smoke tests:
+
+```sh
+cmake -S mgba-android/smoke -B build/mgba-smoke -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release
+cmake --build build/mgba-smoke
+ctest --test-dir build/mgba-smoke --output-on-failure
+```
+
+See [`mgba-android/README.md`](mgba-android/README.md) for implementation details.
+
+## Build the legacy SkyEmu-derived client
+
+This path is retained to keep the fork's original cross-platform implementation buildable and independently attributable. Product-facing names and artifacts use Garnacha Boy, while compatibility-sensitive Java/JNI namespaces, preference paths, cache signatures, and upstream references remain unchanged.
+
+```sh
+cd tools/android_project
+./gradlew clean lintDebug assembleDebug
+```
+
+APK: `tools/android_project/app/build/outputs/apk/debug/garnacha-boy-legacy-v1-debug.apk`
+
+Legacy-client properties:
+
+- application ID `com.trebuchetdynamics.skyemu`, retained for install/data compatibility;
+- target API 35;
+- no repository-stored release keystore or hard-coded signing password;
+- no legacy broad storage permissions;
+- selected files are copied through Android's document picker into private app storage;
+- CI builds and uploads a debug artifact.
+
+The cross-platform CMake client can also be built with:
+
+```sh
+cmake -S . -B build/garnacha-boy
+cmake --build build/garnacha-boy
+```
+
+The native executable is `GarnachaBoy`; the libretro target is `garnachaboy_libretro`.
 
 ## Upstreams and licenses
 
-- SkyEmu: <https://github.com/skylersaleh/SkyEmu>, MIT (`LICENSE`), tracked as Git remote `upstream`.
-- mGBA: <https://github.com/mgba-emu/mgba>, MPL-2.0, pinned as `vendor/mgba` submodule; its license is packaged in the core AAR.
+- [SkyEmu](https://github.com/skylersaleh/SkyEmu): MIT, preserved in [`LICENSE`](LICENSE), tracked as Git remote `upstream`.
+- [mGBA](https://github.com/mgba-emu/mgba): MPL-2.0, pinned as `vendor/mgba`; its license is packaged in the Android core AAR and app notices.
+
+No games or proprietary BIOS files are included. Supply only content you are authorized to use.

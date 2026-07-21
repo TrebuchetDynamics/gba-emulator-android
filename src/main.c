@@ -1,7 +1,8 @@
 /*****************************************************************************
  *
- *   SkyBoy GB Emulator
+ *   Garnacha Boy Emulator
  *
+ *   Derived from SkyEmu/SkyBoy.
  *   Copyright (c) 2021 Skyler "Sky" Saleh
  *
 **/
@@ -614,6 +615,7 @@ const char* se_get_pref_path(){
   return "/offline/";
 #elif defined(USE_SDL)
   static const char* cached_pref_path=NULL;
+  // Keep the upstream preference namespace so rebranded builds retain existing settings.
   if(cached_pref_path==NULL)cached_pref_path=SDL_GetPrefPath("Sky","SkyEmu");
   return cached_pref_path;
 #elif defined(SE_PLATFORM_ANDROID)
@@ -667,7 +669,7 @@ char* se_replace_fake_path(char * new_path){
     const char* base, *filename, *ext; 
     sb_breakup_path(new_path,&base, &filename,&ext);
     char* new_base = "/fakepath/";
-    if(gui_state.ui_type==SE_UI_ANDROID)new_base = "/storage/emulated/0/Android/data/com.sky.SkyEmu/";
+    if(gui_state.ui_type==SE_UI_ANDROID)new_base = "/storage/emulated/0/Android/data/com.trebuchetdynamics.skyemu/";
     snprintf(fake_path,sizeof(fake_path),"%s%s.%s",new_base,filename,ext);
     new_path = fake_path; 
   }
@@ -1307,7 +1309,7 @@ const char *se_get_host_platform() {
 
 se_emu_id se_get_emu_id(){
   se_emu_id emu_id={0};
-  snprintf(emu_id.name,sizeof(emu_id.name),"SkyEmu (%s,%s)",se_get_host_platform(),se_get_host_arch());
+  snprintf(emu_id.name,sizeof(emu_id.name),"Garnacha Boy (%s,%s)",se_get_host_platform(),se_get_host_arch());
   strncpy(emu_id.build,GIT_COMMIT_HASH,sizeof(emu_id.build));
 
   emu_id.rcheevos_buffer_offset = offsetof(se_core_state_t,rc_buffer);
@@ -4457,7 +4459,7 @@ void se_boxed_image_triple_label(const char * first_label, const char* second_la
 #ifdef SE_PLATFORM_ANDROID
 #include <android/log.h>
 
-#define TAG "SkyEmu"
+#define TAG "GarnachaBoy"
 
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,    TAG, __VA_ARGS__)
 #define LOGW(...) __android_log_print(ANDROID_LOG_WARN,     TAG, __VA_ARGS__)
@@ -5930,7 +5932,7 @@ void se_draw_save_states(bool cloud){
       if(!cloud&&states[i].valid==2){
         igSetCursorScreenPos((ImVec2){screen_x+screen_w*0.5-15,screen_y+screen_h*0.5-15});
         se_button(ICON_FK_EXCLAMATION_TRIANGLE,(ImVec2){30,30});
-        se_tooltip("This save state came from an incompatible build. SkyEmu has attempted to recover it, but there may be issues");
+        se_tooltip("This save state came from an incompatible build. Garnacha Boy has attempted to recover it, but there may be issues");
       }
     }else{
       screen_h*=0.85;
@@ -6801,7 +6803,7 @@ uint8_t* se_hcs_callback(const char* cmd, const char** params, uint64_t* result_
     int off = 0;
     off+=snprintf(buffer+off,sizeof(buffer)-off,"{\n");
 
-    off+=snprintf(buffer+off,sizeof(buffer)-off,"  \"emulator\": \"SkyEmu (%s)\",\n",GIT_COMMIT_HASH);
+    off+=snprintf(buffer+off,sizeof(buffer)-off,"  \"emulator\": \"Garnacha Boy (%s)\",\n",GIT_COMMIT_HASH);
     off+=snprintf(buffer+off,sizeof(buffer)-off,"  \"run-mode\": ");
     switch(emu_state.run_mode){
       case SB_MODE_PAUSE: off+=snprintf(buffer+off,sizeof(buffer)-off,"\"PAUSE\",\n");break;
@@ -8643,7 +8645,7 @@ static bool se_reload_theme(){
   return false;
 }
 static void se_init(){
-  printf("SkyEmu %s\n",GIT_COMMIT_HASH);
+  printf("Garnacha Boy %s\n",GIT_COMMIT_HASH);
   stm_setup();
   se_load_settings();
   se_reset_cheats();
@@ -8891,7 +8893,7 @@ sapp_desc sokol_main(int argc, char* argv[]) {
       .frame_cb = frame,
       .cleanup_cb = cleanup,
       .event_cb = event,
-      .window_title = "SkyEmu",
+      .window_title = "Garnacha Boy",
       .width = width,
       .height = height,
       .enable_dragndrop = true,

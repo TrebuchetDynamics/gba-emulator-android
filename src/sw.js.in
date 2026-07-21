@@ -4,8 +4,8 @@ const CACHE_VERSION = '@GIT_COMMIT_HASH@';
 // Define an array of URLs to cache
 const CACHE_URLS = [
   '/',  	
-  'SkyEmu.js',
-  'SkyEmu.wasm',
+  'GarnachaBoy.js',
+  'GarnachaBoy.wasm',
   'android-chrome-192x192.png',
   'android-chrome-512x512.png',
   'apple-touch-icon.png',

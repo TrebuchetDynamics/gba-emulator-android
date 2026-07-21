@@ -1,4 +1,4 @@
-name: Build Android MVP
+name: Build Garnacha Boy for Android
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       - name: Install native Android toolchain
         run: sdkmanager "cmake;3.18.1" "ndk;22.1.7171670"
 
-      - name: Lint and build debug APK
+      - name: Lint and build the legacy SkyEmu-derived APK
         working-directory: tools/android_project
         run: ./gradlew lintDebug assembleDebug
 
@@ -44,13 +44,13 @@ jobs:
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: android-mvp
+          name: garnacha-boy-legacy-android
           path: tools/android_project/app/build/outputs/apk/debug/*.apk
 
       - name: Upload optimized custom mGBA APK
         uses: actions/upload-artifact@v4
         with:
-          name: mgba-custom-android-benchmark
+          name: garnacha-boy-android-benchmark
           path: mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk
 
       - name: Upload optimized mGBA core AAR

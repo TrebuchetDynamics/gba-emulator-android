@@ -1,6 +1,6 @@
-# HTTP Control Server
+# Garnacha Boy HTTP Control Server
 
-SkyEmu contains a web server that implements a REST-like API that can be used to control SkyEmu from other programs and scripts.
+The legacy SkyEmu-derived Garnacha Boy client contains a web server that implements a REST-like API for control from other programs and scripts.
 
 This interface provides access to the following functionality:
 - Loading arbitrary ROM files
@@ -11,11 +11,11 @@ This interface provides access to the following functionality:
 
 To enable the server check the "Enable HTTP Control Server" option in the advanced settings and configure the port. 
 
-Additionally, SkyEmu can be launched in a mode optimized for headless display using the following commandline parameters:
+Garnacha Boy can be launched in a mode optimized for headless display using the following command-line parameters:
 
-``` ./SkyEmu http_server <Server Port> <Path To ROM file> ```
+``` ./GarnachaBoy http_server <Server Port> <Path To ROM file> ```
 
-When running using these parameters, SkyEmu won't render the UI and will run without sleeping to synchronize with real time. 
+When running with these parameters, Garnacha Boy does not render the UI and runs without sleeping to synchronize with real time.
 
 # Overview of API commands
 
@@ -75,7 +75,7 @@ The emulator is playing at 1x speed.
 
 # /screen command
 
-Returns a png image of the current screen of the emulated system. The parameter embed_state can be set to 1 to embed the emulation save state similar to the /save commands output on emulators that support it (ie. SkyEmu). The default keeps embed_state set to 0. 
+Returns a PNG image of the current screen of the emulated system. The `embed_state` parameter can be set to `1` to embed the emulation save state, similar to the `/save` command output. The default keeps `embed_state` set to `0`.
 
 The paramater format specifies which image format to use. It can be set to png, jpg, or bmp. If not specified, png is used by default. 
 
@@ -235,7 +235,7 @@ Returns a json file filled with info about the current state of the emulator and
 
 ```
 {
-  "emulator": "SkyEmu (6af0053049aa689a79ae653a949ed70e517ce2e1)",
+  "emulator": "Garnacha Boy (6af0053049aa689a79ae653a949ed70e517ce2e1)",
   "run-mode": "RUN",
   "rom-loaded" : true,
   "rom-path": "/Users/skylersaleh/Documents/roms/gba/varooom-3d.gba",

@@ -1,4 +1,4 @@
-name: Build FreeBSD
+name: Build Garnacha Boy for FreeBSD
 on: [push,pull_request]
 jobs:
   build-and-deploy:
@@ -24,6 +24,6 @@ jobs:
         # You may pin to the exact commit or the version.
         uses: actions/upload-artifact@v4
         with:
-           name: FreeBSDRelease
+           name: GarnachaBoy-FreeBSD
            path: build/bin/
        

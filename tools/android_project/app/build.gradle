@@ -12,11 +12,11 @@ android {
         targetSdkVersion 35
         versionCode 1
         versionName "0.1.0"
-        setProperty("archivesBaseName", applicationId + "-v" + versionCode)
+        setProperty("archivesBaseName", "garnacha-boy-legacy-v" + versionCode)
         externalNativeBuild {
             cmake {
                 arguments '-DANDROID_STL=c++_static', '-DANDROID=1', '-DNDK_DEBUG=0', '-DCMAKE_BUILD_TYPE=RELWITHDEBINFO', "-DANDROID_ARM_NEON=TRUE"
-                targets "SkyEmu"
+                targets "GarnachaBoy"
             }
         }
         ndk {

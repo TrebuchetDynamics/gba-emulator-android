@@ -4,6 +4,14 @@ All notable changes to Garnacha Boy are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+- Completed the repository-wide Garnacha Boy rebrand across Android, desktop,
+  web, libretro, package metadata, CI artifacts, documentation, and icon assets.
+- Preserved explicit SkyEmu fork attribution and compatibility-sensitive
+  identifiers instead of erasing upstream authorship or orphaning user data.
+
 ## [0.5.0] — 2026-07-16
 
 The daily-driver release: a game library, in-game save states, a full settings

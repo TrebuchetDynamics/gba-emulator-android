@@ -45,7 +45,7 @@ public class EnhancedNativeActivity extends NativeActivity {
     final static int APP_STORAGE_ACCESS_REQUEST_CODE = 501; // Any value
     final static int STORAGE_PERMISSION_CODE = 501; // Any value
     final static int FILE_PICKER_REQUEST_CODE = 123;
-    final static String TAG="SkyEmu"; // Any value
+    final static String TAG="GarnachaBoy";
     public Rect visibleRect;
     public EditText invisibleEditText;
     public View mRootView;
@@ -54,7 +54,7 @@ public class EnhancedNativeActivity extends NativeActivity {
     CustomTabsIntent authIntent;
 
     static {
-        System.loadLibrary("SkyEmu");
+        System.loadLibrary("GarnachaBoy");
     }
     public void requestPermissions() {
     }

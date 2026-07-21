@@ -1,4 +1,4 @@
-name: Build Windows (Libretro)
+name: Build Garnacha Boy Libretro for Windows
 on: [push,pull_request]
 jobs:
   build-and-deploy:
@@ -14,17 +14,17 @@ jobs:
           mkdir build
           cd build
           cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_SYSTEM_VERSION=10.0.19041.0 -DRETRO_CORE_ONLY=ON ..
-          cmake --build . --config Release --target skyemu_libretro
-          mkdir skyemu_libretro_zip
-          mv bin/Release/skyemu_libretro.dll skyemu_libretro_zip
-          cp ../skyemu_libretro.info skyemu_libretro_zip
-          Compress-Archive -Destination skyemu_libretro.zip -Path skyemu_libretro_zip
+          cmake --build . --config Release --target garnachaboy_libretro
+          mkdir garnachaboy_libretro_zip
+          mv bin/Release/garnachaboy_libretro.dll garnachaboy_libretro_zip
+          cp ../garnachaboy_libretro.info garnachaboy_libretro_zip
+          Compress-Archive -Destination garnachaboy_libretro.zip -Path garnachaboy_libretro_zip
       - name: GH Release 🚀
         # You may pin to the exact commit or the version.
         uses: actions/upload-artifact@v4
         with:
-           name: WindowsRelease (Libretro)
-           path: build/skyemu_libretro.zip
+           name: GarnachaBoy-Windows-Libretro
+           path: build/garnachaboy_libretro.zip
         #uses: softprops/action-gh-release@v0.1.5
         #with:
         #  # Note-worthy description of changes in release

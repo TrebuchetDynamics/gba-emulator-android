@@ -1,4 +1,4 @@
-name: Build Web & Deploy to GH
+name: Build Garnacha Boy for Web
 on: [push,pull_request]
 jobs:
   build-and-deploy:
@@ -17,7 +17,7 @@ jobs:
           cd build
           emcmake cmake .. -DPLATFORM=Web && cmake --build .
           mkdir website
-          mv bin/SkyEmu.html bin/index.html
+          mv bin/GarnachaBoy.html bin/index.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -32,7 +32,7 @@ jobs:
         uses: mshick/add-pr-comment@v1
         with:
           message: |
-            Web build for ${{ github.sha }} will be live at https://web.skyemu.app/commit/${{ github.sha }}/index.html
+            Garnacha Boy web build for ${{ github.sha }} was deployed to the `gh-pages` branch under `commit/${{ github.sha }}`.
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
           allow-repeats: true # This is the default

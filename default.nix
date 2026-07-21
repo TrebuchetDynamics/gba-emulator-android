@@ -4,8 +4,8 @@
 }:
 
 pkgs.stdenv.mkDerivation {
-  pname = "skyemu";
-  version = "3-unstable-2025-01-25";
+  pname = "garnacha-boy";
+  version = "0.5.0-unstable-2026-07-18";
 
   src = ./.;
 
@@ -40,7 +40,7 @@ pkgs.stdenv.mkDerivation {
   ];
 
   meta = {
-    mainProgram = "SkyEmu";
+    mainProgram = "GarnachaBoy";
     license = lib.licenses.mit;
   };
 }

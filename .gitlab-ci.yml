@@ -8,7 +8,7 @@
 .core-defs:
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
-    CORENAME: skyemu
+    CORENAME: garnachaboy
     CORE_ARGS: -DRETRO_CORE_ONLY=ON
 
 .core-defs-win:

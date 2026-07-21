@@ -1,6 +1,6 @@
 {
-    "name": "SkyEmu",
-    "short_name": "SkyEmu",
+    "name": "Garnacha Boy",
+    "short_name": "Garnacha Boy",
     "icons": [
         {
             "src": "/android-chrome-192x192.png?v=1",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#759091",
-    "background_color": "#759091",
+    "theme_color": "#1E2228",
+    "background_color": "#1E2228",
     "display": "standalone"
 }

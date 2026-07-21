@@ -224,6 +224,7 @@ bool se_load_bios_file(const char* name, const char* base_path, const char* file
   env_cb(RETRO_ENVIRONMENT_GET_SYSTEM_DIRECTORY, &syspath);
   if (!syspath) return false;
   char bios_path[4096];
+  // Preserve SkyEmu's established firmware directory for fork compatibility.
   int written = snprintf(bios_path, sizeof bios_path, "%s/SkyEmu/%s", syspath, file_name);
   if (written >= sizeof bios_path) {
     log_cb(RETRO_LOG_WARN, "path to bios exceeded %d characters", sizeof bios_path);
@@ -897,7 +898,7 @@ void retro_init(void) {}
 void retro_deinit(void) {}
 
 void retro_get_system_info(struct retro_system_info* info){
-    info->library_name = "SkyEmu";
+    info->library_name = "Garnacha Boy";
     info->library_version = GIT_COMMIT_HASH;
     info->block_extract = false;
     info->need_fullpath = false;

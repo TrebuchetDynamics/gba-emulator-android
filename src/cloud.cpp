@@ -596,6 +596,7 @@ void google_cloud_drive_init(cloud_drive_t* drive)
 
         if (!folders_exist)
         {
+            // Preserve the upstream Drive folder so existing cloud saves remain discoverable.
             google_cloud_drive_mkdir(drive, "SkyEmu", "", [](cloud_drive_t* drive) {
                 google_cloud_drive_mkdir(drive, "save_states", "SkyEmu", [](cloud_drive_t* drive) {
                             google_cloud_drive_get_files(

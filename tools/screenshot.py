@@ -9,7 +9,7 @@ border_top = 28
 border_bottom = 10
 border_sides =1; 
 hcs_url = "http://localhost:8080/"
-program_name = "SkyEmu"
+program_name = "GarnachaBoy"
 
 out_dir = "images/"
 win = gw.getWindowsWithTitle(program_name)[0];

@@ -49,6 +49,7 @@
 keystore.properties
 local.properties
 captures/
+binary_cache/
 .externalNativeBuild/
 build*/
 cmake-build-*/
