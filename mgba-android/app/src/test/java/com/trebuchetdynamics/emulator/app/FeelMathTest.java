@@ -38,26 +38,21 @@ public class FeelMathTest {
     }
 
     @Test
-    public void alphaIsFullDuringHold() {
-        assertEquals(255, FeelMath.controlAlpha(1000, 1000, 1500, 500, 60, 255));
-        assertEquals(255, FeelMath.controlAlpha(2500, 1000, 1500, 500, 60, 255)); // exactly at hold end
+    public void controlsUseConfiguredTransparencyWithoutInputOverride() {
+        assertEquals(60, FeelMath.controlAlpha(60, 255));
     }
 
     @Test
-    public void alphaInterpolatesDuringFade() {
-        // elapsed 1750 -> 250 into the 500ms fade -> 50% -> 255 - 0.5*195 = 157.5 -> round 158
-        assertEquals(158, FeelMath.controlAlpha(2750, 1000, 1500, 500, 60, 255));
+    public void activeOpacityStillCapsConfiguredTransparency() {
+        assertEquals(128, FeelMath.controlAlpha(200, 128));
     }
 
     @Test
-    public void alphaBottomsOutAtMin() {
-        assertEquals(60, FeelMath.controlAlpha(3000, 1000, 1500, 500, 60, 255)); // hold+fade
-        assertEquals(60, FeelMath.controlAlpha(9000, 1000, 1500, 500, 60, 255)); // long idle
-    }
-
-    @Test
-    public void activeOpacityCapsIdleOpacity() {
-        assertEquals(128, FeelMath.controlAlpha(9000, 1000, 1500, 500, 200, 128));
+    public void autoHideRequiresEnabledIdleTouchControlsAtTheDeadline() {
+        assertFalse(FeelMath.shouldAutoHideControls(false, false, 10_000, 0, 10_000));
+        assertFalse(FeelMath.shouldAutoHideControls(true, true, 10_000, 0, 10_000));
+        assertFalse(FeelMath.shouldAutoHideControls(true, false, 9_999, 0, 10_000));
+        assertTrue(FeelMath.shouldAutoHideControls(true, false, 10_000, 0, 10_000));
     }
 
     @Test

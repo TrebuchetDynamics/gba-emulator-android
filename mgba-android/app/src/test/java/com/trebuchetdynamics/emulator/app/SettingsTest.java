@@ -59,6 +59,10 @@ public class SettingsTest {
         assertEquals(0, Settings.ScaleMode.INTEGER.ordinal());
         assertEquals(1, Settings.ScaleMode.FILL.ordinal());
 
+        assertEquals(0, Settings.TouchVisibility.ALWAYS.ordinal());
+        assertEquals(1, Settings.TouchVisibility.AFTER_10_SECONDS.ordinal());
+        assertEquals(2, Settings.TouchVisibility.WITH_GAMEPAD.ordinal());
+
         assertEquals(0, DmgPalette.GREEN.ordinal());
         assertEquals(1, DmgPalette.GREY.ordinal());
     }

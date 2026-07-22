@@ -120,21 +120,21 @@ final class InGameMenuView extends FrameLayout {
         rewindButton = wideButton(
                 context.getString(R.string.menu_rewind), v -> showRewindPage());
         mainPage.addView(rewindButton);
-        mainPage.addView(wideButton(context.getString(R.string.menu_screenshot),
-                v -> listener.onScreenshot()));
+        mainPage.addView(wideButton(
+                context.getString(R.string.menu_edit_layout), v -> listener.onEditLayout()));
         mainPage.addView(wideButton(context.getString(R.string.menu_more), v -> showMorePage()));
 
         morePage.addView(wideButton(context.getString(R.string.menu_back), v -> showMainPage()));
         recoveryButton = wideButton(
                 context.getString(R.string.menu_recovery), v -> showRecoveryPage());
         morePage.addView(recoveryButton);
+        morePage.addView(wideButton(context.getString(R.string.menu_screenshot),
+                v -> listener.onScreenshot()));
         morePage.addView(wideButton(context.getString(R.string.menu_reset), v -> listener.onReset()));
         morePage.addView(wideButton(
                 context.getString(R.string.menu_library), v -> listener.onLibrary()));
         morePage.addView(wideButton(
                 context.getString(R.string.menu_settings), v -> listener.onSettings()));
-        morePage.addView(wideButton(
-                context.getString(R.string.menu_edit_layout), v -> listener.onEditLayout()));
         morePage.addView(wideButton(
                 context.getString(R.string.menu_notices), v -> listener.onNotices()));
 

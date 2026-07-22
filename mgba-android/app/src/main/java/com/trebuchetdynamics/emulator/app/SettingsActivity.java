@@ -93,10 +93,8 @@ public final class SettingsActivity extends Activity {
                 page(R.string.settings_group_controls, R.string.settings_group_controls_sub);
                 content.addView(switchRow(getString(R.string.settings_haptics),
                         settings.haptics(), (b, on) -> settings.setHaptics(on)));
-                content.addView(switchRow(getString(R.string.settings_hide_touch_gamepad),
-                        getString(R.string.settings_hide_touch_gamepad_sub),
-                        settings.hideTouchWithGamepad(),
-                        (b, on) -> settings.setHideTouchWithGamepad(on)));
+                content.addView(choiceRow(getString(R.string.settings_touch_visibility),
+                        touchVisibilityLabel(), v -> pickTouchVisibility()));
                 content.addView(sliderRow(getString(R.string.settings_active_opacity), 10, 100,
                         settings.activeControlOpacityPercent(),
                         settings::setActiveControlOpacityPercent));
@@ -296,6 +294,32 @@ public final class SettingsActivity extends Activity {
         tv.setTextColor(Color.WHITE);
         tv.setTextSize(16);
         return tv;
+    }
+
+    private String touchVisibilityLabel() {
+        switch (settings.touchVisibility()) {
+            case AFTER_10_SECONDS:
+                return getString(R.string.settings_touch_visibility_idle);
+            case WITH_GAMEPAD:
+                return getString(R.string.settings_touch_visibility_gamepad);
+            default:
+                return getString(R.string.settings_touch_visibility_always);
+        }
+    }
+
+    private void pickTouchVisibility() {
+        String[] labels = {
+                getString(R.string.settings_touch_visibility_always),
+                getString(R.string.settings_touch_visibility_idle),
+                getString(R.string.settings_touch_visibility_gamepad) };
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.settings_touch_visibility)
+                .setSingleChoiceItems(labels, settings.touchVisibility().ordinal(), (d, which) -> {
+                    settings.setTouchVisibility(Settings.TouchVisibility.values()[which]);
+                    d.dismiss();
+                    showSection(CONTROLS);
+                })
+                .show();
     }
 
     private String orientationLabel() {

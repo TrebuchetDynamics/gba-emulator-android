@@ -60,9 +60,17 @@
     <string name="menu_slot_empty">Slot %1$d · empty</string>
     <string name="menu_slot_filled">Slot %1$d · saved</string>
     <string name="library_title">Garnacha Boy</string>
+    <string name="library_subtitle">Your offline game library</string>
     <string name="library_import">Import game</string>
-    <string name="library_empty">No games yet.\nImport a .gba, .gb, .gbc, or .zip file.</string>
-    <string name="library_never">never played</string>
+    <string name="library_games">Your games</string>
+    <plurals name="library_game_count">
+        <item quantity="one">%d game</item>
+        <item quantity="other">%d games</item>
+    </plurals>
+    <string name="library_empty">No games yet\nImport a .gba, .gb, .gbc, or .zip file.</string>
+    <string name="library_never">Never played</string>
+    <string name="library_more">More options for %1$s</string>
+    <string name="library_play">Play</string>
     <string name="library_importing">Importing…</string>
     <string name="library_import_failed">Could not import the selected ROM</string>
     <string name="library_import_error_title">Couldn’t import game</string>
@@ -99,8 +107,10 @@
     <string name="audio_disabled">Audio disabled in Settings</string>
     <string name="settings_volume">Volume</string>
     <string name="settings_haptics">Vibrate on touch</string>
-    <string name="settings_hide_touch_gamepad">Controller-only mode</string>
-    <string name="settings_hide_touch_gamepad_sub">Hide touch buttons when a gamepad is connected</string>
+    <string name="settings_touch_visibility">Touch controls</string>
+    <string name="settings_touch_visibility_always">Always visible</string>
+    <string name="settings_touch_visibility_idle">Hide after 10 seconds</string>
+    <string name="settings_touch_visibility_gamepad">Hide with a connected gamepad</string>
     <string name="settings_active_opacity">Control opacity while playing</string>
     <string name="settings_opacity">Control opacity when idle</string>
     <string name="settings_ff_speed">Fast-forward speed</string>

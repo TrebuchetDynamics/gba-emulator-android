@@ -99,7 +99,7 @@ Data Safety disclosure.
 | Quick/Auto save | Four stable manual slots plus three rotating lifecycle autosaves with automatic resume and a user-selectable recovery-history page | Present; recovery generations show relative age and remain separate from manual slots. |
 | Rotate Save States | Three dedicated autosave generations | Present and kept separate from manual slots. |
 | Local/Wi-Fi multiplayer | Not exposed | Defer until single-player lifecycle, saves, and performance are release-grade. |
-| Improved controls | Large touch controls, idle fade, haptics, hardware remapping, direct portrait/landscape editing with selected-control size/opacity feedback, and controller-only mode | Strong coverage. Add controller identity/conflict feedback only when needed. |
+| Improved controls | Large touch controls, stable configurable opacity, haptics, hardware remapping, direct portrait/landscape editing, and a visibility choice for always-on, ten-second idle hiding, or controller-only play | Strong coverage. Add controller identity/conflict feedback only when needed. |
 | Custom BIOS | No user BIOS picker or JNI bridge | High-value compatibility feature after autosave. Validate platform and expected file size without bundling BIOS content. |
 | Gyroscope/light/tilt/rumble cartridge hardware | Android host does not bridge device peripherals into mGBA | Add one peripheral at a time, backed by game-specific tests. |
 | Rewind | Five-second rewind backed by a 24 MiB memory-capped state timeline | Present; extend duration only after longer thermal/performance testing. |
@@ -115,12 +115,14 @@ Data Safety disclosure.
 
 ## Implemented from this study
 
+- A responsive offline library with one prominent import action, bounded landscape width, structured platform rows, and explicit per-game options.
+- Direct control-layout editing in the primary game drawer; lower-frequency screenshot capture lives under **More**.
 - Three atomic rotating autosaves, automatic lifecycle resume, a relative-age recovery-history page, and unchanged manual slots.
 - Mutually exclusive ½× slow motion and 2×–4× fast-forward with a transient speed/audio-status badge that leaves normal play chrome-free.
 - Clean-frame PNG capture through scoped Android Pictures storage.
 - Optional native smooth-pixel filtering while preserving crisp pixels as the default.
 - Accessible import-error dialogs with actionable ZIP, multi-ROM, invalid-ROM, size-limit, and unsupported-7z guidance.
-- Optional controller-only mode that hides touch controls when a gamepad is present.
+- Touch-control visibility choices for always-on, ten-second idle hiding, or a connected gamepad.
 - A contextual layout editor with per-orientation arbitrary touch-combination buttons, fixed whole-combination Turbo, direct position/size editing, and an eight-button limit; no sequence recording or adjustable Turbo rate.
 - An offline-only APK with no Internet permission.
 - Five-second rewind with a 24 MiB cap, future-branch discard, unit coverage, and a connected-device no-crash walkthrough.

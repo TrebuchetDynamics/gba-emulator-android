@@ -198,6 +198,8 @@ public final class MainActivity extends Activity {
                 Settings.opacityPercentToAlpha(settings.controlOpacityPercent()));
         emulatorView.setIntegerScale(settings.scaleMode() == Settings.ScaleMode.INTEGER);
         emulatorView.setSmoothVideo(settings.smoothVideo());
+        emulatorView.setAutoHideTouchControls(
+                settings.touchVisibility() == Settings.TouchVisibility.AFTER_10_SECONDS);
         updateControllerMode();
         emulatorView.setControlLayouts(
                 settings.controlOverrides(false), settings.macroControls(false),
@@ -440,7 +442,7 @@ public final class MainActivity extends Activity {
         }
         int key = bindings == null ? 0 : bindings.gbaKeyFor(event.getKeyCode());
         if (key != 0) {
-            if (settings.hideTouchWithGamepad()
+            if (settings.touchVisibility() == Settings.TouchVisibility.WITH_GAMEPAD
                     && (event.getSource() & (InputDevice.SOURCE_GAMEPAD
                             | InputDevice.SOURCE_JOYSTICK)) != 0) {
                 emulatorView.setTouchControlsHidden(true);
@@ -453,7 +455,9 @@ public final class MainActivity extends Activity {
 
     private void updateControllerMode() {
         if (emulatorView != null) {
-            emulatorView.setTouchControlsHidden(settings.hideTouchWithGamepad() && hasGamepad());
+            emulatorView.setTouchControlsHidden(
+                    settings.touchVisibility() == Settings.TouchVisibility.WITH_GAMEPAD
+                            && hasGamepad());
         }
     }
 

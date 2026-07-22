@@ -14,16 +14,19 @@ import android.view.View;
 import com.trebuchetdynamics.emulator.mgba.MgbaSession;
 
 final class EmulatorView extends View {
-    private static final int HOLD_MS = 1500;
-    private static final int FADE_MS = 500;
     private static final int CONTROL_COLOR = Color.rgb(100, 113, 132);
     private static final int CONTROL_PRESSED_COLOR = Color.rgb(113, 153, 222);
+    private static final long AUTO_HIDE_CONTROLS_MS = 10_000L;
 
     private int minAlpha = 60;              // was MIN_ALPHA constant
     private int maxAlpha = 255;
     private boolean hapticsEnabled = true;
     private boolean integerScale = true;    // false = fill
     private boolean touchControlsHidden;
+    private boolean autoHideTouchControls;
+    private boolean touchActive;
+    private boolean revealingHiddenControls;
+    private long lastTouchMs = SystemClock.uptimeMillis();
     private boolean muted;
     private String speedIndicator;
     private long speedIndicatorUntilMs;
@@ -54,7 +57,6 @@ final class EmulatorView extends View {
     private int previousTouchKeys;
     private volatile boolean hasFrame;
     private volatile String status = "Tap to load a GBA ROM";
-    private long lastInputMs = SystemClock.uptimeMillis();
 
     public EmulatorView(Context context) {
         this(context, () -> {}, () -> {}, () -> {});
@@ -87,7 +89,6 @@ final class EmulatorView extends View {
     }
 
     void setHardwareKey(int key, boolean pressed) {
-        lastInputMs = SystemClock.uptimeMillis();
         if (pressed) {
             hardwareKeys |= key;
         } else {
@@ -123,11 +124,19 @@ final class EmulatorView extends View {
     void setTouchControlsHidden(boolean hidden) {
         touchControlsHidden = hidden;
         if (hidden) {
-            touchKeys = 0;
-            touchTurboKeys = 0;
-            previousTouchKeys = 0;
+            clearTouchInput();
         }
         invalidate();
+    }
+
+    void setAutoHideTouchControls(boolean enabled) {
+        autoHideTouchControls = enabled;
+        lastTouchMs = SystemClock.uptimeMillis();
+        revealingHiddenControls = false;
+        invalidate();
+        if (enabled) {
+            postInvalidateDelayed(AUTO_HIDE_CONTROLS_MS);
+        }
     }
 
     void setMuted(boolean muted) {
@@ -213,10 +222,7 @@ final class EmulatorView extends View {
                 videoWidth, videoHeight, hasShoulders, activeMacros(getWidth(), getHeight()));
         gameRect.set(layout.gameLeft, layout.gameTop, layout.gameRight, layout.gameBottom);
 
-        int controlAlpha = hasFrame
-                ? FeelMath.controlAlpha(SystemClock.uptimeMillis(), lastInputMs,
-                        HOLD_MS, FADE_MS, minAlpha, maxAlpha)
-                : maxAlpha;
+        int controlAlpha = FeelMath.controlAlpha(minAlpha, maxAlpha);
 
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);
@@ -242,7 +248,7 @@ final class EmulatorView extends View {
         drawMenuButton(canvas, controlAlpha);
         drawMuteButton(canvas, controlAlpha);
 
-        if (!touchControlsHidden) {
+        if (!controlsHidden(SystemClock.uptimeMillis())) {
             for (ControlLayout.Control control : layout.controls) {
                 switch (control.shape) {
                     case DPAD:
@@ -375,30 +381,67 @@ final class EmulatorView extends View {
         canvas.drawText(control.label, control.cx, control.cy + control.halfHeight * 0.32f, paint);
     }
 
+    private boolean controlsHidden(long nowMs) {
+        return touchControlsHidden || FeelMath.shouldAutoHideControls(
+                autoHideTouchControls, touchActive, nowMs, lastTouchMs,
+                AUTO_HIDE_CONTROLS_MS);
+    }
+
+    private void clearTouchInput() {
+        touchKeys = 0;
+        touchTurboKeys = 0;
+        previousTouchKeys = 0;
+        touchActive = false;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        lastInputMs = SystemClock.uptimeMillis();
-        if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-            touchKeys = 0;
-            touchTurboKeys = 0;
-            previousTouchKeys = 0;
-            if (layout.isMenuHit(event.getX(), event.getY())) {
-                requestMenu.run();
-            } else if (layout.isMuteHit(event.getX(), event.getY())) {
-                requestMute.run();
-            } else if (!hasFrame) {
-                performClick();
+        int action = event.getActionMasked();
+        long nowMs = SystemClock.uptimeMillis();
+        boolean autoHidden = !touchControlsHidden && controlsHidden(nowMs);
+        lastTouchMs = nowMs;
+
+        if (action == MotionEvent.ACTION_DOWN) {
+            touchActive = true;
+            if (autoHidden && !layout.isMenuHit(event.getX(), event.getY())
+                    && !layout.isMuteHit(event.getX(), event.getY())) {
+                revealingHiddenControls = true;
+                invalidate();
+                return true;
+            }
+        }
+
+        if (revealingHiddenControls) {
+            if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+                revealingHiddenControls = false;
+                touchActive = false;
+                postInvalidateDelayed(AUTO_HIDE_CONTROLS_MS);
+            }
+            return true;
+        }
+
+        if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+            clearTouchInput();
+            if (action == MotionEvent.ACTION_UP) {
+                if (layout.isMenuHit(event.getX(), event.getY())) {
+                    requestMenu.run();
+                } else if (layout.isMuteHit(event.getX(), event.getY())) {
+                    requestMute.run();
+                } else if (!hasFrame) {
+                    performClick();
+                }
+            }
+            if (autoHideTouchControls) {
+                postInvalidateDelayed(AUTO_HIDE_CONTROLS_MS);
             }
             return true;
         }
 
         int normalKeys = 0;
         int turboKeys = 0;
-        if (!touchControlsHidden
-                && event.getActionMasked() != MotionEvent.ACTION_CANCEL) {
+        if (!touchControlsHidden) {
             for (int i = 0; i < event.getPointerCount(); ++i) {
-                if (event.getActionMasked() == MotionEvent.ACTION_POINTER_UP
-                        && i == event.getActionIndex()) {
+                if (action == MotionEvent.ACTION_POINTER_UP && i == event.getActionIndex()) {
                     continue;
                 }
                 ControlLayout.Input input = layout.inputAt(event.getX(i), event.getY(i));

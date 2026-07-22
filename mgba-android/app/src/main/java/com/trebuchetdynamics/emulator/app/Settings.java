@@ -15,6 +15,9 @@ final class Settings {
     // reorder or remove existing ones, or stored user choices remap silently.
     enum ScaleMode { INTEGER, FILL }
 
+    // Persisted by ordinal in SharedPreferences — append new values only.
+    enum TouchVisibility { ALWAYS, AFTER_10_SECONDS, WITH_GAMEPAD }
+
     private static final String FILE = "garnacha_settings";
     private static final String K_ORIENTATION = "orientation";
     private static final String K_SCALE = "scaleMode";
@@ -34,6 +37,7 @@ final class Settings {
     private static final String K_DMG_PALETTE = "dmgPalette";
     private static final String K_AUTO_LOAD_STATE = "autoLoadState";
     private static final String K_CONFIRM_RESET = "confirmReset";
+    private static final String K_TOUCH_VISIBILITY = "touchVisibility";
     private static final String K_HIDE_TOUCH_GAMEPAD = "hideTouchWithGamepad";
 
     private final SharedPreferences prefs;
@@ -148,12 +152,17 @@ final class Settings {
         prefs.edit().putBoolean(K_CONFIRM_RESET, value).apply();
     }
 
-    boolean hideTouchWithGamepad() {
-        return prefs.getBoolean(K_HIDE_TOUCH_GAMEPAD, false);
+    TouchVisibility touchVisibility() {
+        if (!prefs.contains(K_TOUCH_VISIBILITY)) {
+            return prefs.getBoolean(K_HIDE_TOUCH_GAMEPAD, false)
+                    ? TouchVisibility.WITH_GAMEPAD : TouchVisibility.ALWAYS;
+        }
+        return touchVisibilityFromOrdinal(prefs.getInt(
+                K_TOUCH_VISIBILITY, TouchVisibility.ALWAYS.ordinal()));
     }
 
-    void setHideTouchWithGamepad(boolean value) {
-        prefs.edit().putBoolean(K_HIDE_TOUCH_GAMEPAD, value).apply();
+    void setTouchVisibility(TouchVisibility value) {
+        prefs.edit().putInt(K_TOUCH_VISIBILITY, value.ordinal()).apply();
     }
 
     KeyBindings gamepadBindings(Map<Integer, Integer> defaults) {
@@ -224,6 +233,12 @@ final class Settings {
     private static ScaleMode scaleModeFromOrdinal(int ordinal) {
         ScaleMode[] values = ScaleMode.values();
         return ordinal >= 0 && ordinal < values.length ? values[ordinal] : ScaleMode.INTEGER;
+    }
+
+    private static TouchVisibility touchVisibilityFromOrdinal(int ordinal) {
+        TouchVisibility[] values = TouchVisibility.values();
+        return ordinal >= 0 && ordinal < values.length
+                ? values[ordinal] : TouchVisibility.ALWAYS;
     }
 
     private static DmgPalette dmgPaletteFromOrdinal(int ordinal) {

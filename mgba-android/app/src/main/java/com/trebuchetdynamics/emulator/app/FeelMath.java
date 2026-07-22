@@ -1,8 +1,8 @@
 package com.trebuchetdynamics.emulator.app;
 
 /**
- * Pure "feel" math for the play view: integer game scaling, idle-fade alpha, and
- * new-press detection. No android.* imports so it unit-tests on the JVM.
+ * Pure "feel" math for the play view: game scaling, control visibility, and
+ * input handling. No android.* imports so it unit-tests on the JVM.
  */
 final class FeelMath {
     private FeelMath() {
@@ -61,23 +61,15 @@ final class FeelMath {
         return new Box(left, top, left + drawW, top + drawH);
     }
 
-    /**
-     * Alpha (0..255) for the on-screen controls: {@code maxAlpha} for {@code
-     * holdMs} after the last input, then a linear fade to {@code minAlpha} over
-     * {@code fadeMs}.
-     */
-    static int controlAlpha(long nowMs, long lastInputMs, int holdMs, int fadeMs,
-                            int minAlpha, int maxAlpha) {
-        minAlpha = Math.min(minAlpha, maxAlpha);
-        long elapsed = nowMs - lastInputMs;
-        if (elapsed <= holdMs) {
-            return maxAlpha;
-        }
-        if (elapsed >= (long) holdMs + fadeMs) {
-            return minAlpha;
-        }
-        float frac = (float) (elapsed - holdMs) / (float) fadeMs;
-        return Math.round(maxAlpha - frac * (maxAlpha - minAlpha));
+    /** Alpha (0..255) for controls, unchanged by input state. */
+    static int controlAlpha(int configuredAlpha, int capAlpha) {
+        return Math.min(configuredAlpha, capAlpha);
+    }
+
+    /** True when optional touch controls have been idle for the configured delay. */
+    static boolean shouldAutoHideControls(boolean enabled, boolean touchActive,
+            long nowMs, long lastTouchMs, long delayMs) {
+        return enabled && !touchActive && nowMs - lastTouchMs >= delayMs;
     }
 
     /** True iff {@code currentKeys} presses a key bit not already down in {@code previousKeys}. */
