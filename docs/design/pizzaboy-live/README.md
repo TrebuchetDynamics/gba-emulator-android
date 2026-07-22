@@ -13,6 +13,9 @@ advanced actions, rewind, save-file tools, and every settings category. The
 Pro features with Garnacha's current Android path and prioritizes follow-up work.
 A [2026-07-20 responsive follow-up](fresh-2026-07-20/README.md) adds paired
 choice-dialog, controller-mapping, help, and refreshed core-surface evidence.
+A [2026-07-21 deeper feature walkthrough](deeper-2026-07-21/README.md) adds
+ROM-folder, control auto-hide, shader, controller-command, touch-tuning, and
+BIOS evidence with a source-verified Garnacha gap ranking.
 
 ## Portrait
 
