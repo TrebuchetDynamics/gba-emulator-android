@@ -333,7 +333,7 @@ available at https://mozilla.org/MPL/2.0/.
 
 ## Garnacha Boy
 
-- Source: https://github.com/TrebuchetDynamics/gba-emulator-android
+- Source: https://github.com/TrebuchetDynamics/garnacha-boy-android
 - Licence: MIT
 
 No game ROMs or BIOS files are included with this application. Supply only

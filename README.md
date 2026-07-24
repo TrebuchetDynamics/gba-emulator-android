@@ -2,8 +2,8 @@
 
 **A free, ad-free, offline Game Boy, Game Boy Color, and Game Boy Advance emulator for Android.**
 
-[![Android CI](https://github.com/TrebuchetDynamics/gba-emulator-android/actions/workflows/deploy_android.yml/badge.svg)](https://github.com/TrebuchetDynamics/gba-emulator-android/actions/workflows/deploy_android.yml)
-[![Release](https://github.com/TrebuchetDynamics/gba-emulator-android/actions/workflows/release.yml/badge.svg)](https://github.com/TrebuchetDynamics/gba-emulator-android/actions/workflows/release.yml)
+[![Android CI](https://github.com/TrebuchetDynamics/garnacha-boy-android/actions/workflows/deploy_android.yml/badge.svg)](https://github.com/TrebuchetDynamics/garnacha-boy-android/actions/workflows/deploy_android.yml)
+[![Release](https://github.com/TrebuchetDynamics/garnacha-boy-android/actions/workflows/release.yml/badge.svg)](https://github.com/TrebuchetDynamics/garnacha-boy-android/actions/workflows/release.yml)
 
 Garnacha Boy keeps the game in focus: import your own ROMs, play with touch or physical controls, and keep cartridge saves and save states entirely on-device. No games, proprietary BIOS files, ads, telemetry, or online account are included.
 
