@@ -8,7 +8,7 @@
 
 | Question | Decision |
 |---|---|
-| Track focus | Custom mGBA product only. The SkyEmu fork is a completed stopgap: frozen, kept buildable, no further work. |
+| Track focus | Custom mGBA product only. The former secondary emulator path has been removed. |
 | Distribution | Both Google Play and open channels (GitHub Releases, F-Droid). |
 | Test hardware | A physical arm64 Android device is available now. |
 | 1.0 feature set | Standard emulator 1.0: ROM library, settings, fast-forward, touch/gamepad remapping, screen scaling options, multiple save-state slots. Rewind/cheats/shaders deferred. |
@@ -32,7 +32,7 @@ The free, open-source, ad-free, maintained GBA emulator. Pizza Boy GBA is closed
 
 ### M0 — Baseline
 
-Land the uncommitted work on `mvp` (JNI layer, `MgbaSession`, `MainActivity`/`EmulationRunner`, instrumentation tests, docs) and get CI green. Freeze the SkyEmu track.
+Keep the JNI layer, `MgbaSession`, `MainActivity`/`EmulationRunner`, instrumentation tests, and docs green in the single mGBA build path.
 
 **Exit criteria:** clean worktree; CI green on both build paths.
 
@@ -119,6 +119,6 @@ Rewind, cheats, shaders/filters, per-game profiles, cover-art metadata, cloud sa
 
 ## Out of scope
 
-- Any work on the SkyEmu fork beyond keeping it buildable.
+- Adding or maintaining a second emulator core.
 - Emulator cores other than mGBA (rules out NES/SNES/NDS and any multi-system direction).
 - Monetization of any kind: the app is free and ad-free.

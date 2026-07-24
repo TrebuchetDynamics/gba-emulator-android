@@ -78,7 +78,7 @@ jobs:
           VERSION="${GITHUB_REF_NAME#v}"
           GARNACHA_VERSION_NAME="${VERSION}" \
           GARNACHA_VERSION_CODE="${GITHUB_RUN_NUMBER}" \
-          tools/android_project/gradlew -p mgba-android \
+          mgba-android/gradlew -p mgba-android \
             lintDebug :app:testDebugUnitTest :app:assembleRelease
 
       - name: Verify the APK is signed with the expected key

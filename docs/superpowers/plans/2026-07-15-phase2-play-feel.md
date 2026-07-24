@@ -6,7 +6,7 @@
 
 **Architecture:** All new decision logic (fade alpha over time, integer-scaled draw rect, new-press detection) lives in a pure, android-free `FeelMath` class that unit-tests on the JVM (the codebase pattern used by `ControlLayout`, `SaveStateStore`, `FrameStats`). `EmulatorView` consumes those helpers in its existing Canvas `onDraw`/`onTouchEvent` loop: it draws the game bitmap with nearest-neighbor filtering into an integer-scaled, letterboxed rect; it tracks a last-input timestamp and applies a time-based alpha to the controls and chips while a game is running; and it fires a light haptic when a touch introduces a new key press. No new threads, no new geometry — control positions stay single-sourced in `ControlLayout`.
 
-**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), Canvas 2D drawing, `View.performHapticFeedback`, JUnit 4 (JVM unit tests), Gradle via `tools/android_project/gradlew`.
+**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), Canvas 2D drawing, `View.performHapticFeedback`, JUnit 4 (JVM unit tests), Gradle via `mgba-android/gradlew`.
 
 ## Global Constraints
 
@@ -126,7 +126,7 @@ public class FeelMathTest {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest'
 ```
 Expected: FAIL — `FeelMath` does not exist.
 
@@ -208,7 +208,7 @@ final class FeelMath {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest'
 ```
 Expected: PASS (7 tests).
 
@@ -290,7 +290,7 @@ Add a reusable `RectF` field next to `gameRect` (around line 19):
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass (37 from before + 7 new FeelMath = 44).
 
@@ -371,7 +371,7 @@ Because `setColor` resets alpha to the color's own alpha, `setAlpha` must be cal
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all tests pass. The controller installs and confirms on-device (Task 5) that controls fade after ~2 s of no touch and snap back on touch while a game runs, and stay solid on the home screen.
 
@@ -427,7 +427,7 @@ And in the `ACTION_UP` branch, reset the tracker so the next touch's first press
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all tests pass.
 

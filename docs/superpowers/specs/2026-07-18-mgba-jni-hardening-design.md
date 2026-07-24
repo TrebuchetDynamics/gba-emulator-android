@@ -9,7 +9,7 @@
 Garnacha Boy has three distinct native-code improvement tracks:
 
 1. harden the primary Android JNI adapter;
-2. reduce warnings and split bounded responsibilities from the legacy SkyEmu client;
+2. keep the mGBA JNI boundary small and testable;
 3. benchmark and optimize only measured runtime bottlenecks.
 
 This specification covers only track 1. The primary Android adapter is currently a single 500-line file, `mgba-android/core/src/main/cpp/mgba_android.c`, containing both JNI conversion and mGBA session ownership. Android instrumentation covers successful runtime behavior, but the adapter's ownership and failure paths cannot be exercised directly by host sanitizers.
@@ -28,7 +28,7 @@ This specification covers only track 1. The primary Android adapter is currently
 - No UI or application-layer refactor.
 - No C++ conversion, general native framework, logging framework, allocator abstraction, or custom error hierarchy.
 - No speculative optimization or performance claim.
-- No work on legacy `src/main.c`; that is a separate design.
+- No work outside the mGBA Android product boundary.
 - No physical-device gate for this behavior-preserving hardening slice.
 
 ## Chosen approach
@@ -189,12 +189,12 @@ ctest --test-dir build/mgba-smoke --output-on-failure
 build/mgba-smoke/mgba-core-benchmark \
   mgba-android/core/src/androidTest/assets/hello.gba 30000
 
-tools/android_project/gradlew -p mgba-android clean lintDebug \
+mgba-android/gradlew -p mgba-android clean lintDebug \
   :app:testDebugUnitTest :app:assembleBenchmark \
   :core:assembleBenchmark :core:assembleDebugAndroidTest
 
 : "${ANDROID_SERIAL:?Set ANDROID_SERIAL to the target emulator or device serial}"
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 ```
 
@@ -206,7 +206,7 @@ The slice is complete when host CTest passes under both sanitizers, product-owne
 
 After this slice is implemented and validated:
 
-1. write a separate design for bounded legacy SkyEmu warning cleanup and `src/main.c` decomposition;
+1. keep future cleanup scoped to the mGBA Android product;
 2. write a separate measurement-first performance design using the existing benchmark and device frame statistics.
 
 Neither follow-on track is silently included in this implementation.

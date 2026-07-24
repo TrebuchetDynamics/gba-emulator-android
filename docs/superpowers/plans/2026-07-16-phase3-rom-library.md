@@ -6,7 +6,7 @@
 
 **Architecture:** A new `RomLibrary` (pure java.io) enumerates the private ROM files and tracks a display name + last-played time per ROM in a properties index, and cascades a delete to the ROM plus its cartridge save and save states. The SAF import logic moves out of `MainActivity` into a reusable `RomImporter` that also records the imported ROM into the library. A new `LibraryActivity` becomes the launcher: it lists the library, imports, and deletes, and starts `MainActivity` with a ROM id. `MainActivity` is refactored to play the ROM named by that id (and bump its last-played time), dropping its own picker/empty-state. Control geometry, the in-game menu, save states, and play-feel are untouched.
 
-**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), Storage Access Framework, programmatic Views (the codebase's no-XML pattern), `java.util.Properties`, JUnit 4 (JVM), Gradle via `tools/android_project/gradlew`.
+**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), Storage Access Framework, programmatic Views (the codebase's no-XML pattern), `java.util.Properties`, JUnit 4 (JVM), Gradle via `mgba-android/gradlew`.
 
 ## Global Constraints
 
@@ -171,7 +171,7 @@ public class RomLibraryTest {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomLibraryTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomLibraryTest'
 ```
 Expected: FAIL — `RomLibrary` does not exist.
 
@@ -338,7 +338,7 @@ final class RomLibrary {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomLibraryTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomLibraryTest'
 ```
 Expected: PASS (7 tests).
 
@@ -503,7 +503,7 @@ Delete the now-unused private `importRom(Uri)` method, the `hex(byte[])` method,
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass (prior + Task 1's 7 RomLibrary). The app still builds and imports as before, now also recording each import into the library index.
 
@@ -560,7 +560,7 @@ In `onCreate`, after `library = new RomLibrary(getFilesDir());`, if an id was pa
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass. Launched normally the app behaves as before; launched with `EXTRA_ROM_ID` it will play that ROM (exercised on device after Task 4).
 
@@ -839,7 +839,7 @@ In `AndroidManifest.xml`, move the `MAIN`/`LAUNCHER` intent-filter from `MainAct
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass. The app now launches into the library; importing adds a row; tapping a row plays; long-press deletes.
 

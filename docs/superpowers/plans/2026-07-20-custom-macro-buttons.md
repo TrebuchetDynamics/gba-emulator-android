@@ -150,7 +150,7 @@ public class MacroControlsTest {
 Run:
 
 ```bash
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest \
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest \
   --tests com.trebuchetdynamics.emulator.app.MacroControlsTest
 ```
 
@@ -402,7 +402,7 @@ private static ControlLayout.Control controlById(ControlLayout layout, int id) {
 - [ ] **Step 2: Run focused tests and verify RED**
 
 ```bash
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest \
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest \
   --tests com.trebuchetdynamics.emulator.app.ControlLayoutTest.macroUsesStableLayoutIdAndOverride \
   --tests com.trebuchetdynamics.emulator.app.ControlLayoutTest.normalAndTurboMacrosUseSeparateChannels
 ```
@@ -528,7 +528,7 @@ will use the separate channels in Task 4.
 - [ ] **Step 6: Run all ControlLayout tests**
 
 ```bash
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest \
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest \
   --tests com.trebuchetdynamics.emulator.app.ControlLayoutTest
 ```
 
@@ -596,7 +596,7 @@ migrated. Do not change existing preference names or defaults.
 - [ ] **Step 3: Compile the app**
 
 ```bash
-tools/android_project/gradlew -p mgba-android :app:compileDebugJavaWithJavac
+mgba-android/gradlew -p mgba-android :app:compileDebugJavaWithJavac
 ```
 
 Expected: `BUILD SUCCESSFUL`.
@@ -650,7 +650,7 @@ Append to `FeelMathTest`:
 - [ ] **Step 2: Run cadence tests and verify RED**
 
 ```bash
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest \
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest \
   --tests com.trebuchetdynamics.emulator.app.FeelMathTest.turboPulsesWholeCombinationTwoFramesOnTwoFramesOff \
   --tests com.trebuchetdynamics.emulator.app.FeelMathTest.normalKeysRemainHeldWhileTurboPulses
 ```
@@ -789,7 +789,7 @@ emulatorView.setControlLayouts(
 - [ ] **Step 9: Run focused and full unit tests**
 
 ```bash
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest \
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest \
   --tests com.trebuchetdynamics.emulator.app.FeelMathTest \
   --tests com.trebuchetdynamics.emulator.app.ControlLayoutTest
 ```
@@ -1101,7 +1101,7 @@ content descriptions. Newly added macro selection announces, for example,
 - [ ] **Step 8: Run unit, lint, and assemble checks**
 
 ```bash
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
 ```
 
@@ -1141,7 +1141,7 @@ Do not claim Pizza Boy assets, skins, or trade dress.
 
 ```bash
 git diff --check
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
 ```
 
@@ -1158,7 +1158,7 @@ cmake -S mgba-android/smoke -B mgba-android/smoke/build \
 cmake --build mgba-android/smoke/build
 ctest --test-dir mgba-android/smoke/build --output-on-failure
 
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 ```
 

@@ -1089,7 +1089,7 @@ endif()
 Run:
 
 ```sh
-tools/android_project/gradlew -p mgba-android clean \
+mgba-android/gradlew -p mgba-android clean \
   :core:assembleDebug :core:assembleDebugAndroidTest
 ```
 
@@ -1101,7 +1101,7 @@ Run with a booted emulator or connected device selected through the environment:
 
 ```sh
 : "${ANDROID_SERIAL:?Set ANDROID_SERIAL to the target emulator or device serial}"
-tools/android_project/gradlew -p mgba-android :core:connectedDebugAndroidTest
+mgba-android/gradlew -p mgba-android :core:connectedDebugAndroidTest
 ```
 
 Expected: all existing `MgbaCoreInstrumentedTest` methods pass, exercising every migrated JNI operation through real Java/native linkage.
@@ -1225,7 +1225,7 @@ Android release artifacts.
 Run:
 
 ```sh
-tools/android_project/gradlew -p mgba-android clean lintDebug \
+mgba-android/gradlew -p mgba-android clean lintDebug \
   :app:testDebugUnitTest :app:assembleBenchmark \
   :core:assembleBenchmark :core:assembleDebugAndroidTest
 

@@ -66,8 +66,8 @@ cmake-build-*/
 .idea/
 .gradle
 .google
-tools/android_project/app/release
-tools/android_project/local.properties
-tools/android_project/skyemu-open-signing-store
+mgba-android/app/release
+mgba-android/local.properties
+mgba-android/app/keystore.properties
 research/**/platform-sources/*.html
 research/**/coverage-stats.log

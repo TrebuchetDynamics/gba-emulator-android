@@ -6,7 +6,7 @@
 
 **Architecture:** The emulated core is single-threaded and lives on the `mgba-emulation` thread inside `EmulationRunner`. The UI cannot call `MgbaSession` directly, so the menu enqueues commands (save/load/reset) that the emulation loop drains each iteration; results are posted back to the UI via a listener. Save-state bytes live in per-ROM slot files managed by a pure, JVM-tested `SaveStateStore`. Fast-forward is a volatile flag that shrinks the per-frame time budget and mutes audio. The menu itself is a programmatic translucent `View` overlaid on the existing `EmulatorView` inside a `FrameLayout`, opened by a new MENU handle chip added to the single-sourced `ControlLayout` geometry. Soft reset needs a new `MgbaSession.reset()` + one JNI method, since the core exposes save/load state but no reset.
 
-**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), JNI/C (mGBA 0.10.5), JUnit 4 (JVM unit tests), AndroidX instrumentation tests, Gradle via `tools/android_project/gradlew`.
+**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), JNI/C (mGBA 0.10.5), JUnit 4 (JVM unit tests), AndroidX instrumentation tests, Gradle via `mgba-android/gradlew`.
 
 ## Global Constraints
 
@@ -79,7 +79,7 @@ If `readAsset` is not the exact helper name in this file, use whatever helper th
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :core:compileDebugAndroidTestSources
+mgba-android/gradlew -p mgba-android :core:compileDebugAndroidTestSources
 ```
 Expected: FAIL — `cannot find symbol: method reset()`.
 
@@ -123,7 +123,7 @@ And add the native declaration with the other `private static native` lines (nea
 
 Run (a device/emulator must be connected; use its serial):
 ```sh
-ANDROID_SERIAL=<serial> tools/android_project/gradlew -p mgba-android :core:connectedDebugAndroidTest
+ANDROID_SERIAL=<serial> mgba-android/gradlew -p mgba-android :core:connectedDebugAndroidTest
 ```
 Expected: `BUILD SUCCESSFUL`; the report under `mgba-android/core/build/reports/androidTests/connected/` shows `resetReturnsTheCoreToPowerOn` passing and 0 failures. If no device is available to the implementer, STOP and report DONE_WITH_CONCERNS — the controller will run this on the physical device.
 
@@ -241,7 +241,7 @@ public class SaveStateStoreTest {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SaveStateStoreTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SaveStateStoreTest'
 ```
 Expected: FAIL — `SaveStateStore` does not exist.
 
@@ -329,7 +329,7 @@ final class SaveStateStore {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SaveStateStoreTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SaveStateStoreTest'
 ```
 Expected: PASS (6 tests).
 
@@ -395,7 +395,7 @@ public class EmulationRunnerTest {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*EmulationRunnerTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*EmulationRunnerTest'
 ```
 Expected: FAIL — `frameBudgetNanos` does not exist.
 
@@ -558,7 +558,7 @@ Add the `applyCommands` helper method after `run()` (after line 116, before `cre
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*EmulationRunnerTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*EmulationRunnerTest'
 ```
 Expected: PASS (2 tests).
 
@@ -566,7 +566,7 @@ Expected: PASS (2 tests).
 
 The only caller of the `EmulationRunner` constructor is `MainActivity`, updated in Task 5. To keep this task independently compilable, this task builds only the classes it owns via the unit-test compile above; the full `:app:assembleBenchmark` is run at the end of Task 5. Run lint on the changed file's module now to catch obvious issues:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:compileDebugUnitTestJavaWithJavac
+mgba-android/gradlew -p mgba-android :app:compileDebugUnitTestJavaWithJavac
 ```
 Expected: BUILD SUCCESSFUL (the unit-test source set compiles `EmulationRunner` and the test).
 
@@ -623,7 +623,7 @@ In `ControlLayoutTest.java`, add a test that the MENU chip does not overlap the 
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'
 ```
 Expected: FAIL — `menuLeft` (etc.) do not exist.
 
@@ -686,7 +686,7 @@ Add the hit-test after `isNoticesHit` (after line 298):
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'
 ```
 Expected: PASS (all ControlLayoutTest tests, including the new one).
 
@@ -709,7 +709,7 @@ In `onTouchEvent`, in the `ACTION_UP` branch where `isNoticesHit`/`isLoadHit` ar
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass. (Full APK assembly happens in Task 5 once `MainActivity` provides the new `requestMenu` argument.)
 
@@ -1007,7 +1007,7 @@ Add a back-button handler so the system Back closes the menu instead of leaving 
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass. The full app now compiles with the new constructor arguments.
 

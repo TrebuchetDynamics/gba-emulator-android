@@ -28,26 +28,16 @@ jobs:
       - name: Install native Android toolchain
         run: sdkmanager "cmake;3.18.1" "ndk;22.1.7171670"
 
-      - name: Lint and build the legacy SkyEmu-derived APK
-        working-directory: tools/android_project
-        run: ./gradlew lintDebug assembleDebug
-
       - name: Test mGBA core lifecycle on host
         run: |
           cmake -S mgba-android/smoke -B build/mgba-smoke -G Ninja -DCMAKE_BUILD_TYPE=Release
           cmake --build build/mgba-smoke
           ctest --test-dir build/mgba-smoke --output-on-failure
 
-      - name: Build optimized custom mGBA app and core
-        run: tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :core:assembleBenchmark
+      - name: Build mGBA app and core
+        run: mgba-android/gradlew -p mgba-android lintDebug :app:testDebugUnitTest :app:assembleBenchmark :core:assembleBenchmark
 
-      - name: Upload debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: garnacha-boy-legacy-android
-          path: tools/android_project/app/build/outputs/apk/debug/*.apk
-
-      - name: Upload optimized custom mGBA APK
+      - name: Upload optimized APK
         uses: actions/upload-artifact@v4
         with:
           name: garnacha-boy-android-benchmark
@@ -56,5 +46,5 @@ jobs:
       - name: Upload optimized mGBA core AAR
         uses: actions/upload-artifact@v4
         with:
-          name: mgba-android-core-benchmark
+          name: garnacha-boy-android-core-benchmark
           path: mgba-android/core/build/outputs/aar/core-benchmark.aar

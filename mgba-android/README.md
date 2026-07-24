@@ -1,6 +1,6 @@
 # Garnacha Boy for Android
 
-This is the primary Garnacha Boy product: an owned Android client around canonical mGBA. It remains isolated from the repository's legacy SkyEmu-derived client so an APK never packages two emulator cores.
+This is the Garnacha Boy product: an owned Android client around canonical mGBA. It is the repository's only supported emulator client and never packages a second emulator core.
 
 ## Current scope
 
@@ -24,10 +24,10 @@ ctest --test-dir build/mgba-smoke --output-on-failure
 build/mgba-smoke/mgba-core-benchmark \
   mgba-android/core/src/androidTest/assets/hello.gba 30000
 
-tools/android_project/gradlew -p mgba-android clean lintDebug \
+mgba-android/gradlew -p mgba-android clean lintDebug \
   :app:assembleBenchmark :core:assembleBenchmark :core:assembleDebugAndroidTest
 # With an emulator/device connected, run correctness tests against the debug core:
-ANDROID_SERIAL=<serial> tools/android_project/gradlew -p mgba-android \
+ANDROID_SERIAL=<serial> mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 ```
 
@@ -53,7 +53,7 @@ start a user-owned GBA game with normal speed, audio on, frameskip 0, rewind
 on, and fixed brightness. After one minute of warm-up:
 
 ```sh
-tools/android_project/gradlew -p mgba-android :app:assembleBenchmark
+mgba-android/gradlew -p mgba-android :app:assembleBenchmark
 adb -s RFCX81EJPNN install -r \
   mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk
 export ANDROID_SERIAL=RFCX81EJPNN

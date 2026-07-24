@@ -11,7 +11,7 @@
 ## Automated receipts
 
 ```text
-tools/android_project/gradlew -p mgba-android clean lintDebug \
+mgba-android/gradlew -p mgba-android clean lintDebug \
   :app:assembleDebug :core:assembleDebug :core:assembleDebugAndroidTest
 BUILD SUCCESSFUL
 app lint: 0 errors, 1 target-API warning because SDK 36 is locally installed
@@ -19,7 +19,7 @@ core lint: No issues found
 ```
 
 ```text
-ANDROID_SERIAL=emulator-5556 tools/android_project/gradlew -p mgba-android \
+ANDROID_SERIAL=emulator-5556 mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 Starting 4 tests on game-emulator-mvp(AVD) - 14
 Finished 4 tests on game-emulator-mvp(AVD) - 14

@@ -18,7 +18,7 @@ the later commit is docs-only).
 
 ## Instrumentation suite on arm64
 
-`ANDROID_SERIAL=RFCX81EJPNN tools/android_project/gradlew -p mgba-android
+`ANDROID_SERIAL=RFCX81EJPNN mgba-android/gradlew -p mgba-android
 :core:connectedDebugAndroidTest`: **5 tests, 0 failures, 0 errors, 0
 skipped** (`pinnedCoreLoadsAndInitializesOnAndroid`,
 `sessionRunsMitLicensedRomAndRestoresState`,

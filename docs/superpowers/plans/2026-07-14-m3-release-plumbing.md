@@ -252,7 +252,7 @@ is free to do now and only now.
 - [ ] **Step 8: Build and verify identity is really in the APK**
 
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark
 $ANDROID_HOME/build-tools/35.0.0/aapt2 dump badging \
   mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk | grep -E "application-label|application-icon|^package:"
 ```
@@ -379,7 +379,7 @@ public class NoticesTest {
 - [ ] **Step 3: Run it to verify it fails**
 
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*NoticesTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*NoticesTest'
 ```
 Expected: FAIL — `Notices` does not exist.
 
@@ -417,7 +417,7 @@ final class Notices {
 - [ ] **Step 5: Run it to verify it passes**
 
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*NoticesTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*NoticesTest'
 ```
 Expected: PASS (2 tests).
 
@@ -489,7 +489,7 @@ In `MainActivity`, pass a callback that starts the activity:
 - [ ] **Step 8: Build, test, and verify on device**
 
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 adb install -r mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk
 ```
 On the device: tap NOTICES; confirm the mGBA MPL-2.0 attribution and source URL
@@ -605,7 +605,7 @@ measurement and must not start depending on the release key.
 Without credentials (the contributor path):
 ```sh
 unset GARNACHA_KEYSTORE_PATH
-tools/android_project/gradlew -p mgba-android :app:assembleRelease
+mgba-android/gradlew -p mgba-android :app:assembleRelease
 ls mgba-android/app/build/outputs/apk/release/
 ```
 Expected: BUILD SUCCESSFUL, an `app-release-unsigned.apk` — not a failure.
@@ -614,7 +614,7 @@ With credentials (the release path):
 ```sh
 export GARNACHA_KEYSTORE_PATH=~/.android-keys/garnacha-release.jks
 export GARNACHA_KEYSTORE_PASSWORD='...' GARNACHA_KEY_ALIAS=garnacha GARNACHA_KEY_PASSWORD='...'
-tools/android_project/gradlew -p mgba-android clean :app:assembleRelease
+mgba-android/gradlew -p mgba-android clean :app:assembleRelease
 $ANDROID_HOME/build-tools/35.0.0/apksigner verify --print-certs \
   mgba-android/app/build/outputs/apk/release/app-release.apk
 ```
@@ -707,7 +707,7 @@ entitled to use.
 
 ```sh
 GARNACHA_VERSION_NAME=0.1.0 GARNACHA_VERSION_CODE=1 \
-  tools/android_project/gradlew -p mgba-android :app:assembleBenchmark
+  mgba-android/gradlew -p mgba-android :app:assembleBenchmark
 $ANDROID_HOME/build-tools/35.0.0/aapt2 dump badging \
   mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk | head -1
 ```
@@ -805,7 +805,7 @@ jobs:
           VERSION="${GITHUB_REF_NAME#v}"
           GARNACHA_VERSION_NAME="$VERSION" \
           GARNACHA_VERSION_CODE="${GITHUB_RUN_NUMBER}" \
-          tools/android_project/gradlew -p mgba-android \
+          mgba-android/gradlew -p mgba-android \
             lintDebug :app:testDebugUnitTest :app:assembleRelease
 
       - name: Verify the APK is signed with the expected key

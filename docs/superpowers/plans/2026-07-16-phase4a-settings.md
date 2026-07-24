@@ -6,7 +6,7 @@
 
 **Architecture:** A thin `Settings` class wraps `SharedPreferences` with typed getters/setters and pure, JVM-tested clamp/enum helpers. A programmatic grouped `SettingsActivity` (no `androidx.preference` dependency — matching the codebase's build-Views-in-code pattern used by `LibraryActivity`/`NoticesActivity`) reads and writes it. The settings are applied by `MainActivity` on resume: it sets the requested orientation, pushes control settings (haptics, idle opacity, scale mode) into `EmulatorView`, and constructs `EmulationRunner` with a small playback config (fast-forward speed, audio enable, volume). Two pure helpers are added to already-tested classes: `FeelMath.fitScale` (aspect-fill, the non-integer scale option) and a fast-forward-speed parameter on `EmulationRunner.frameBudgetNanos`.
 
-**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), `SharedPreferences`, programmatic Views, `AudioTrack`, JUnit 4 (JVM), Gradle via `tools/android_project/gradlew`.
+**Tech Stack:** Android (Java, minSdk 24, targetSdk 35), `SharedPreferences`, programmatic Views, `AudioTrack`, JUnit 4 (JVM), Gradle via `mgba-android/gradlew`.
 
 ## Global Constraints
 
@@ -110,7 +110,7 @@ In `EmulationRunnerTest.java`, replace the two existing `frameBudgetNanos` tests
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest' --tests '*EmulationRunnerTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest' --tests '*EmulationRunnerTest'
 ```
 Expected: FAIL — `fitScale` missing; `frameBudgetNanos(boolean,int)` missing.
 
@@ -153,7 +153,7 @@ In `EmulationRunner.java`:
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest' --tests '*EmulationRunnerTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*FeelMathTest' --tests '*EmulationRunnerTest'
 ```
 Expected: PASS.
 
@@ -227,7 +227,7 @@ public class SettingsTest {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'
 ```
 Expected: FAIL — `Settings` missing.
 
@@ -352,7 +352,7 @@ final class Settings {
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'
 ```
 Expected: PASS (3 tests).
 
@@ -653,7 +653,7 @@ In `MainActivity.java`, the `InGameMenuView.Listener` anonymous implementation g
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass. The settings screen opens from the library and the in-game menu and persists changes (its effect on a running game is Task 4). `Switch` may raise a lint deprecation warning (use `SwitchCompat` only if the project already depends on appcompat — it does not — so `Switch` is correct here and any such warning is acceptable, not an error).
 
@@ -798,7 +798,7 @@ as the last three constructor arguments (after the `StateListener`).
 
 Run:
 ```sh
-tools/android_project/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android lintDebug :app:assembleBenchmark :app:testDebugUnitTest
 ```
 Expected: BUILD SUCCESSFUL, 0 lint errors, all unit tests pass. Defaults reproduce prior behavior; changing a setting and returning to the game applies it.
 

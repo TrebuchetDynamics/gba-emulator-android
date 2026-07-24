@@ -9,8 +9,8 @@ All notable changes to Garnacha Boy are documented here. The format follows
 ### Changed
 - Completed the repository-wide Garnacha Boy rebrand across Android, desktop,
   web, libretro, package metadata, CI artifacts, documentation, and icon assets.
-- Preserved explicit SkyEmu fork attribution and compatibility-sensitive
-  identifiers instead of erasing upstream authorship or orphaning user data.
+- Removed the unused legacy emulator clients and made the mGBA Android product
+  the repository's sole supported build path.
 
 ## [0.5.0] — 2026-07-16
 

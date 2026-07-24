@@ -144,7 +144,7 @@ public class FrameStatsTest {
 - [ ] **Step 3: Run the focused test and verify compilation fails**
 
 ```sh
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :app:testDebugUnitTest --tests '*FrameStatsTest'
 ```
 
@@ -317,7 +317,7 @@ Keep the existing `MgbaPerf` logging and pacing code immediately after this bloc
 - [ ] **Step 2: Compile and run all app unit tests**
 
 ```sh
-tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest
+mgba-android/gradlew -p mgba-android :app:testDebugUnitTest
 ```
 
 Expected: `BUILD SUCCESSFUL`; all app tests pass.
@@ -604,7 +604,7 @@ Expected: all commands exit zero.
 - [ ] **Step 6: Verify benchmark-only profileability**
 
 ```sh
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :app:processBenchmarkMainManifest :app:processReleaseMainManifest
 python3 - <<'PY'
 from pathlib import Path
@@ -676,10 +676,10 @@ or app-private data.
 
 ```sh
 bash -n mgba-android/tools/measure-session.sh
-tools/android_project/gradlew -p mgba-android clean lintDebug \
+mgba-android/gradlew -p mgba-android clean lintDebug \
   :app:testDebugUnitTest :app:assembleBenchmark \
   :core:assembleBenchmark :core:assembleDebugAndroidTest
-ANDROID_SERIAL=YOUR_DEVICE_SERIAL tools/android_project/gradlew -p mgba-android \
+ANDROID_SERIAL=YOUR_DEVICE_SERIAL mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 cmake -S mgba-android/smoke -B build/mgba-smoke -G Ninja \
   -DCMAKE_BUILD_TYPE=Debug -DGARNACHA_SANITIZERS=ON
@@ -724,7 +724,7 @@ git commit -m "docs: describe connected performance baselines"
 - [ ] **Step 1: Build and install the benchmark APK**
 
 ```sh
-tools/android_project/gradlew -p mgba-android :app:assembleBenchmark
+mgba-android/gradlew -p mgba-android :app:assembleBenchmark
 adb -s YOUR_DEVICE_SERIAL install -r \
   mgba-android/app/build/outputs/apk/benchmark/app-benchmark.apk
 ```

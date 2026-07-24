@@ -19,9 +19,9 @@
 - The private per-ROM filename stays `roms/<romId>.gba` for **all** systems (opaque suffix; content is detected at load) — preserves the existing romId↔path and file-scan contracts.
 - minSdk 24; 0 lint errors; commit trailer `Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>`.
 - Build/test (from repo root):
-  - Unit tests: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest`
-  - Lint: `tools/android_project/gradlew -p mgba-android lintDebug`
-  - Benchmark APK: `tools/android_project/gradlew -p mgba-android :app:assembleBenchmark`
+  - Unit tests: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest`
+  - Lint: `mgba-android/gradlew -p mgba-android lintDebug`
+  - Benchmark APK: `mgba-android/gradlew -p mgba-android :app:assembleBenchmark`
   - Instrumented (needs a device/AVD): `:core:connectedBenchmarkAndroidTest` (or the project's existing instrumented task)
 
 ## File Structure
@@ -272,7 +272,7 @@ Leave the existing `canCreateGbaCore` and session/load tests unchanged — they 
 
 - [ ] **Step 6: Build the core + APK, run instrumented tests on a device/AVD**
 
-Run: `tools/android_project/gradlew -p mgba-android :core:assembleBenchmark :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :core:assembleBenchmark :app:assembleBenchmark`
 Expected: native build succeeds with the GB core compiled in; APK assembles.
 Then on a booted AVD run the core instrumented tests (the project's existing instrumented task). Expected: `canCreateGbaCore` and `canCreateGbCore` both pass; existing GBA session/load tests pass.
 
@@ -369,7 +369,7 @@ public class RomSystemTest {
 
 - [ ] **Step 2: Run to verify it fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomSystemTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomSystemTest'`
 Expected: FAIL — `RomSystem` does not exist.
 
 - [ ] **Step 3: Implement `RomSystem`**
@@ -436,7 +436,7 @@ enum RomSystem {
 
 - [ ] **Step 4: Run to green, then lint**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomSystemTest' lintDebug`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*RomSystemTest' lintDebug`
 Expected: PASS; lint 0 errors.
 
 - [ ] **Step 5: Commit**
@@ -514,7 +514,7 @@ Add to `ControlLayoutTest.java`:
 
 - [ ] **Step 2: Run to verify it fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'`
 Expected: FAIL — the 6-arg `of(...)` does not exist.
 
 - [ ] **Step 3: Add the parameterized builder + thread through `portrait`/`landscape`**
@@ -565,7 +565,7 @@ Wrap the two `controls.add(... KEY_L ...)` / `controls.add(... KEY_R ...)` block
 
 - [ ] **Step 4: Run to green + full suite + lint**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug`
 Expected: new tests pass; all pre-existing `ControlLayoutTest` cases still pass (GBA layout unchanged); lint 0 errors.
 
 - [ ] **Step 5: Commit**
@@ -675,7 +675,7 @@ with:
 
 - [ ] **Step 3: Build, unit tests, lint, APK**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
 Expected: tests pass, lint 0 errors, APK assembles. A GBA ROM still plays at 240×160 with L/R (unchanged); a Game Boy ROM would now load into the GB core at 160×144 with L/R hidden.
 
 - [ ] **Step 4: Commit**
@@ -744,7 +744,7 @@ In `LibraryActivity.java`, where each row renders the display name + relative ti
 
 - [ ] **Step 4: Build, unit tests, lint, APK**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
 Expected: tests pass, lint 0 errors, APK assembles. (If `RomLibrary`/`RomImporter` have unit tests, update their `record(...)` calls to the new signature and keep them green.)
 
 - [ ] **Step 5: Commit**

@@ -153,7 +153,7 @@ cover-art metadata, cloud save sync, link cable.
 
 ## Out of scope
 
-- Any work on the frozen SkyEmu fork.
+- Any work on a second emulator core.
 - Emulator cores other than mGBA (rules out multi-system).
 - Monetization of any kind.
 - Rendering/audio architecture rework — measured unnecessary by the M1 gate.

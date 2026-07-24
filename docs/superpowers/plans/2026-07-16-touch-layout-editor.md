@@ -20,9 +20,9 @@
 - No change to the in-game menu save-state/notices/settings wiring beyond adding "Edit layout", to the ROM library/import/play-by-id contract, or to Phase 4a/4b behavior.
 - Commit trailer on every commit: `Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>`.
 - Build/test (from repo root):
-  - Unit tests: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest`
-  - Lint: `tools/android_project/gradlew -p mgba-android lintDebug`
-  - Benchmark APK: `tools/android_project/gradlew -p mgba-android :app:assembleBenchmark`
+  - Unit tests: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest`
+  - Lint: `mgba-android/gradlew -p mgba-android lintDebug`
+  - Benchmark APK: `mgba-android/gradlew -p mgba-android :app:assembleBenchmark`
 
 ## File Structure
 
@@ -136,7 +136,7 @@ public class ControlOverridesTest {
 
 - [ ] **Step 2: Run to verify it fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlOverridesTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlOverridesTest'`
 Expected: FAIL — `ControlOverrides` does not exist.
 
 - [ ] **Step 3: Implement `ControlOverrides`**
@@ -266,7 +266,7 @@ final class ControlOverrides {
 
 - [ ] **Step 4: Run `ControlOverrides` test to green**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlOverridesTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlOverridesTest'`
 Expected: PASS.
 
 - [ ] **Step 5: Write the failing `LayoutEditMath` test**
@@ -307,7 +307,7 @@ public class LayoutEditMathTest {
 
 - [ ] **Step 6: Run to verify it fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*LayoutEditMathTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*LayoutEditMathTest'`
 Expected: FAIL — `LayoutEditMath` does not exist.
 
 - [ ] **Step 7: Implement `LayoutEditMath`**
@@ -353,7 +353,7 @@ final class LayoutEditMath {
 
 - [ ] **Step 8: Run `LayoutEditMath` test to green**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*LayoutEditMathTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*LayoutEditMathTest'`
 Expected: PASS.
 
 - [ ] **Step 9: Write the failing `Settings` round-trip test**
@@ -377,7 +377,7 @@ Add `import static org.junit.Assert.assertEquals;` if not already present.
 
 - [ ] **Step 10: Run to verify it fails, then implement the `Settings` additions**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'`
 Expected: FAIL (compile) until the test's referenced types build — this test only needs `ControlOverrides` (from Step 3), so it should already pass once compiled; if it passes immediately that is acceptable (it documents the contract). Then add the `Settings` methods regardless.
 
 In `Settings.java`, add constants near the others:
@@ -401,7 +401,7 @@ Add the methods (after the gamepad bindings methods):
 
 - [ ] **Step 11: Full suite + lint**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug`
 Expected: all tests pass; lint 0 errors.
 
 - [ ] **Step 12: Commit**
@@ -520,7 +520,7 @@ Add to `ControlLayoutTest.java`:
 
 - [ ] **Step 2: Run to verify it fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'`
 Expected: FAIL — `of(w, h, overrides)` does not exist.
 
 - [ ] **Step 3: Implement the overload + clamp**
@@ -587,12 +587,12 @@ with:
 
 - [ ] **Step 4: Run the tests to green**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*ControlLayoutTest'`
 Expected: PASS (new tests + all pre-existing `ControlLayoutTest` cases).
 
 - [ ] **Step 5: Full suite + lint**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug`
 Expected: all pass; lint 0 errors.
 
 - [ ] **Step 6: Commit**
@@ -663,7 +663,7 @@ In `MainActivity.java`, in `onResume` next to the other `emulatorView.set…` pu
 
 - [ ] **Step 4: Build, test, lint, APK**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
 Expected: tests pass, lint 0 errors, APK assembles. Behavior is unchanged (no overrides stored → `EMPTY` → default layout).
 
 - [ ] **Step 5: Commit**
@@ -952,7 +952,7 @@ In the `InGameMenuView.Listener` anonymous implementation (the `new InGameMenuVi
 
 - [ ] **Step 4: Build, test, lint, APK**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
 Expected: tests pass, lint 0 errors, APK assembles. The whole app compiles (the new `Listener.onEditLayout` is implemented in `MainActivity`).
 
 - [ ] **Step 5: Commit**

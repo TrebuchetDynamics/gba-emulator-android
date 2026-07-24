@@ -364,7 +364,7 @@ Add this test and helper before `readAsset`:
 - [ ] **Step 2: Run instrumentation compilation to verify it fails**
 
 ```sh
-tools/android_project/gradlew -p mgba-android :core:compileDebugAndroidTestJavaWithJavac
+mgba-android/gradlew -p mgba-android :core:compileDebugAndroidTestJavaWithJavac
 ```
 
 Expected: compilation fails because `directFrameBuffer` and `runFrameDirect` are undefined.
@@ -481,9 +481,9 @@ Add native declarations beside `nativeRunFrame`:
 - [ ] **Step 5: Run core compilation and connected instrumentation**
 
 ```sh
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :core:assembleDebugAndroidTest :core:assembleDebug
-ANDROID_SERIAL=YOUR_DEVICE_SERIAL tools/android_project/gradlew -p mgba-android \
+ANDROID_SERIAL=YOUR_DEVICE_SERIAL mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 ```
 
@@ -639,7 +639,7 @@ Expected: the confirmation line prints.
 - [ ] **Step 4: Run app unit tests and build the benchmark APK**
 
 ```sh
-tools/android_project/gradlew -p mgba-android \
+mgba-android/gradlew -p mgba-android \
   :app:testDebugUnitTest :app:assembleBenchmark
 ```
 
@@ -648,7 +648,7 @@ Expected: all app unit tests pass and `app-benchmark.apk` builds.
 - [ ] **Step 5: Run connected core pixel-equivalence tests again**
 
 ```sh
-ANDROID_SERIAL=YOUR_DEVICE_SERIAL tools/android_project/gradlew -p mgba-android \
+ANDROID_SERIAL=YOUR_DEVICE_SERIAL mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 ```
 
@@ -687,10 +687,10 @@ Otherwise leave these files unstaged.
 ```sh
 set -euo pipefail
 bash -n mgba-android/tools/measure-session.sh
-tools/android_project/gradlew -p mgba-android clean lintDebug \
+mgba-android/gradlew -p mgba-android clean lintDebug \
   :app:testDebugUnitTest :app:assembleBenchmark \
   :core:assembleBenchmark :core:assembleDebugAndroidTest
-ANDROID_SERIAL=YOUR_DEVICE_SERIAL tools/android_project/gradlew -p mgba-android \
+ANDROID_SERIAL=YOUR_DEVICE_SERIAL mgba-android/gradlew -p mgba-android \
   :core:connectedDebugAndroidTest
 rm -rf build/mgba-direct-final
 cmake -S mgba-android/smoke -B build/mgba-direct-final -G Ninja \

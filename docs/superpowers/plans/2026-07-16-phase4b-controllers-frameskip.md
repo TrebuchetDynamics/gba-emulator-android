@@ -20,9 +20,9 @@
 - GBA key bitmasks (from `MgbaSession`): `KEY_A=1, KEY_B=2, KEY_SELECT=4, KEY_START=8, KEY_RIGHT=16, KEY_LEFT=32, KEY_UP=64, KEY_DOWN=128, KEY_R=256, KEY_L=512`.
 - Commit trailer on every commit: `Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>`.
 - Build/test commands (run from repo root):
-  - Unit tests: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest`
-  - Lint: `tools/android_project/gradlew -p mgba-android lintDebug`
-  - Benchmark APK: `tools/android_project/gradlew -p mgba-android :app:assembleBenchmark`
+  - Unit tests: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest`
+  - Lint: `mgba-android/gradlew -p mgba-android lintDebug`
+  - Benchmark APK: `mgba-android/gradlew -p mgba-android :app:assembleBenchmark`
 
 ## File Structure
 
@@ -152,7 +152,7 @@ public class KeyBindingsTest {
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*KeyBindingsTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*KeyBindingsTest'`
 Expected: FAIL — `KeyBindings` does not exist (compile error).
 
 - [ ] **Step 3: Implement `KeyBindings`**
@@ -265,7 +265,7 @@ final class KeyBindings {
 
 - [ ] **Step 4: Run the `KeyBindings` test to verify it passes**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*KeyBindingsTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*KeyBindingsTest'`
 Expected: PASS (8 tests).
 
 - [ ] **Step 5: Write the failing test for the `Settings` additions**
@@ -287,7 +287,7 @@ If (and only if) the existing `SettingsTest` already builds a real `Settings` in
 
 - [ ] **Step 6: Run to verify the new `Settings` test fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*SettingsTest'`
 Expected: FAIL — `clampFrameskip` not defined.
 
 - [ ] **Step 7: Implement the `Settings` additions**
@@ -332,12 +332,12 @@ Add these methods (place `frameskip`/`setFrameskip` after `setFastForwardSpeed`,
 
 - [ ] **Step 8: Run the full unit-test suite to verify green**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest`
 Expected: PASS — all prior tests plus the new `KeyBindings` and `Settings` tests.
 
 - [ ] **Step 9: Lint**
 
-Run: `tools/android_project/gradlew -p mgba-android lintDebug`
+Run: `mgba-android/gradlew -p mgba-android lintDebug`
 Expected: 0 errors.
 
 - [ ] **Step 10: Commit**
@@ -401,7 +401,7 @@ Ensure the JUnit imports for `assertTrue`/`assertFalse` are present (add `import
 
 - [ ] **Step 2: Run to verify it fails**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest --tests '*EmulationRunnerTest'`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest --tests '*EmulationRunnerTest'`
 Expected: FAIL — `shouldRenderFrame` not defined.
 
 - [ ] **Step 3: Add `shouldRenderFrame` + the `frameskip` field/arg + loop gating**
@@ -495,7 +495,7 @@ Add to `res/values/strings.xml` (after `settings_ff_speed`):
 
 - [ ] **Step 6: Run unit tests + lint + build the APK**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
 Expected: tests PASS (incl. the 3 new frameskip tests), lint 0 errors, APK assembles. The whole app compiles (the `EmulationRunner` ctor change and its call site are both updated here).
 
 - [ ] **Step 7: Commit**
@@ -754,7 +754,7 @@ In `AndroidManifest.xml`, alongside the other non-exported activities:
 
 - [ ] **Step 6: Unit tests + lint + build**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
 Expected: tests PASS (unchanged set still green), lint 0 errors, APK assembles.
 
 - [ ] **Step 7: Commit**
@@ -814,7 +814,7 @@ Delete the now-unused `private static int mapKey(int keyCode)` method and, if it
 
 - [ ] **Step 3: Unit tests + lint + build**
 
-Run: `tools/android_project/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
+Run: `mgba-android/gradlew -p mgba-android :app:testDebugUnitTest lintDebug :app:assembleBenchmark`
 Expected: tests PASS, lint 0 errors (no "unused method" warning for `mapKey` since it's deleted), APK assembles.
 
 - [ ] **Step 4: Commit**
