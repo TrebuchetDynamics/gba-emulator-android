@@ -6,11 +6,25 @@ All notable changes to Garnacha Boy are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-07-24
+
+### Added
+- Game Boy and Game Boy Color import and playback with content-detected library
+  badges, correct screen dimensions, and system-appropriate controls.
+- Configurable Game Boy palettes.
+- Custom multi-input and turbo touch buttons.
+
 ### Changed
-- Completed the repository-wide Garnacha Boy rebrand across Android, desktop,
-  web, libretro, package metadata, CI artifacts, documentation, and icon assets.
+- Completed the repository-wide Garnacha Boy rebrand across Android, package
+  metadata, CI artifacts, documentation, and icon assets.
 - Removed the unused legacy emulator clients and made the mGBA Android product
   the repository's sole supported build path.
+- Reworked the project README around end-user installation, privacy, features,
+  compatibility, and verified app screenshots.
+
+### Fixed
+- Corrected GB/GBC ROM detection, post-load video dimensions, and frame-buffer
+  validation.
 
 ## [0.5.0] — 2026-07-16
 
